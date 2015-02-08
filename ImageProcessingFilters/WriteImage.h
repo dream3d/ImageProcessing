@@ -39,7 +39,7 @@
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
 #include "DREAM3DLib/DataArrays/IDataArray.h"
-#include "Plugins/ImageProcessing/ImageProcessingConstants.h"
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 #include "TemplateUtilities.h"
 
