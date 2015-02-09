@@ -158,19 +158,19 @@ QString ImageProcessingPlugin::getCopyright()
 // -----------------------------------------------------------------------------
 QString ImageProcessingPlugin::getLicense()
 {
-  QFile licenseFile(":/DREAM3D/DREAM3DLicense.txt");
-  QFileInfo licenseFileInfo(licenseFile);
-  QString text = "<<--License was not read-->>";
+	QFile licenseFile(":/ImageProcessing/ImageProcessingLicense.txt");
+	QFileInfo licenseFileInfo(licenseFile);
+	QString text = "<<--License was not read-->>";
 
-  if ( licenseFileInfo.exists() )
-  {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
-    {
-      QTextStream in(&licenseFile);
-      text = in.readAll();
-    }
-  }
-  return text;
+	if (licenseFileInfo.exists())
+	{
+		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+		{
+			QTextStream in(&licenseFile);
+			text = in.readAll();
+		}
+	}
+	return text;
 }
 
 // -----------------------------------------------------------------------------

@@ -2,5 +2,6 @@
  <RCC version="1.0">
  <qresource>
  <file>ImageProcessing/ImageProcessingDescription.txt</file>
+ <file>ImageProcessing/ImageProcessingLicense.txt</file>
  </qresource>
  </RCC>
