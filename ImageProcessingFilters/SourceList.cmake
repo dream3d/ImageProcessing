@@ -35,7 +35,10 @@ set(_PublicFilters
   GrayToRGB
  # FindMaxima
  # BinaryWatershed
-  DetermineStitching
+ # DetermineStitching
+ # BugTest
+  DetermineStitchingCoordinatesGeneric
+  StitchImages
 )
 
 
@@ -68,6 +71,10 @@ ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} Itk
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} TemplateUtilities.h)
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.h)
 ADD_DREAM3D_SUPPORT_SOURCE(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.cpp)
+
+#-------------
+# These are files that need to be compiled into DREAM3DLib but are NOT filters
+ADD_DREAM3D_SUPPORT_CLASS(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} util/DetermineStitching)
 
 #---------------------
 # This macro must come last after we are done adding all the filters and support files.

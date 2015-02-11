@@ -360,6 +360,55 @@ class ItkBridge
       return importFilter;
     }
 
+    template<typename TPixel>
+    static typename itk::ImportImageFilter<TPixel, ImageProcessing::ImageDimension>::Pointer Dream3DtoITKImportFilterDataArray(size_t totalPoints, QVector<size_t> udims, float sampleOrigin[3],  float voxelResolution[3], ComponentType* data)
+    {
+//      AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(attrMatName);
+
+      //get size+dimensions of dataset
+//      QVector<size_t> udims = attrMat->getTupleDimensions();
+//      size_t totalPoints = attrMat->getNumTuples();
+
+      //create and setup import filter
+      typedef itk::ImportImageFilter<TPixel, ImageProcessing::ImageDimension> ImportImageFilterType;
+      typename ImportImageFilterType::Pointer importFilter = ImportImageFilterType::New();
+
+      typename ImportImageFilterType::SizeType  size;
+      size[0]  = udims[0];  // size along X
+      size[1]  = udims[1];  // size along Y
+      size[2]  = udims[2];  // size along Z
+
+      typename ImportImageFilterType::IndexType start;
+      start.Fill( 0 );
+
+      typename ImportImageFilterType::RegionType region;
+      region.SetIndex( start );
+      region.SetSize(  size  );
+      importFilter->SetRegion( region );
+
+//      float sampleOrigin[3] = {0.0f, 0.0f, 0.0f};
+//      m->getOrigin(sampleOrigin);
+      double origin[ ImageProcessing::ImageDimension ];
+      origin[0] = sampleOrigin[0];    // X coordinate
+      origin[1] = sampleOrigin[1];    // Y coordinate
+      origin[2] = sampleOrigin[2];    // Z coordinate
+      importFilter->SetOrigin( origin );
+
+//      float voxelResolution[3] = {0.0f, 0.0f, 0.0f};
+//      m->getResolution(voxelResolution);
+      double spacing[ ImageProcessing::ImageDimension ];
+      spacing[0] = voxelResolution[0];    // along X direction
+      spacing[1] = voxelResolution[1];    // along Y direction
+      spacing[2] = voxelResolution[2];    // along Z direction
+      importFilter->SetSpacing( spacing );
+
+      const bool importImageFilterWillOwnTheBuffer = false;
+      importFilter->SetImportPointer( reinterpret_cast<TPixel*>(data), totalPoints, importImageFilterWillOwnTheBuffer );
+      importFilter->Update();
+      return importFilter;
+    }
+
+
     /**
      * @brief Dream3DtoITK conversion from dream3d arrays to itk images
      * @param m
