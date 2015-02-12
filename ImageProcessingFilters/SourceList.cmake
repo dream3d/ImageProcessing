@@ -33,10 +33,8 @@ set(_PublicFilters
   ReadImage
   RGBToGray
   GrayToRGB
- # FindMaxima
- # BinaryWatershed
- # DetermineStitching
- # BugTest
+  FindMaxima
+  BinaryWatershed
   DetermineStitchingCoordinatesGeneric
   StitchImages
 )
