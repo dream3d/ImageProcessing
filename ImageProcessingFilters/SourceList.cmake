@@ -34,7 +34,7 @@ set(_PublicFilters
   RGBToGray
   GrayToRGB
   FindMaxima
-  BinaryWatershed
+  BinaryWatershedLabeled
   DetermineStitchingCoordinatesGeneric
   StitchImages
 )

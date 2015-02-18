@@ -31,8 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _BinaryWatershed_H_
-#define _BinaryWatershed_H_
+#ifndef _BinaryWatershedLabeled_H_
+#define _BinaryWatershedLabeled_H_
 
 //#include <vector>
 #include <QtCore/QString>
@@ -45,22 +45,22 @@
 #include "ImageProcessing/ImageProcessingConstants.h"
 
 /**
- * @class BinaryWatershed BinaryWatershed.h ImageProcessing/ImageProcessingFilters/BinaryWatershed.h
+ * @class BinaryWatershedLabeled BinaryWatershedLabeled.h ImageProcessing/ImageProcessingFilters/BinaryWatershedLabeled.h
  * @brief splits concave objects in a binary array with a watershed segmentation
  * @author Will Lenthe
  * @date 8/29/14
  * @version 1.0
  */
-class BinaryWatershed : public AbstractFilter
+class BinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(BinaryWatershed)
-    DREAM3D_STATIC_NEW_MACRO(BinaryWatershed)
-    DREAM3D_TYPE_MACRO_SUPER(BinaryWatershed, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(BinaryWatershedLabeled)
+    DREAM3D_STATIC_NEW_MACRO(BinaryWatershedLabeled)
+    DREAM3D_TYPE_MACRO_SUPER(BinaryWatershedLabeled, AbstractFilter)
 
-    virtual ~BinaryWatershed();
+    virtual ~BinaryWatershedLabeled();
 
     DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
@@ -136,7 +136,7 @@ class BinaryWatershed : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void BinaryWatershed::template_execute();
+//virtual void BinaryWatershedLabeled::template_execute();
 
   signals:
     /**
@@ -162,7 +162,7 @@ class BinaryWatershed : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    BinaryWatershed();
+    BinaryWatershedLabeled();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -171,10 +171,10 @@ class BinaryWatershed : public AbstractFilter
 
   private:
     DEFINE_REQUIRED_DATAARRAY_VARIABLE(bool, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(bool, NewCellArray)
+    DEFINE_CREATED_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
 
-    BinaryWatershed(const BinaryWatershed&); // Copy Constructor Not Implemented
-    void operator=(const BinaryWatershed&); // Operator '=' Not Implemented
+    BinaryWatershedLabeled(const BinaryWatershedLabeled&); // Copy Constructor Not Implemented
+    void operator=(const BinaryWatershedLabeled&); // Operator '=' Not Implemented
 };
 
-#endif /* _BinaryWatershed_H_ */
+#endif /* _BinaryWatershedLabeled_H_ */
