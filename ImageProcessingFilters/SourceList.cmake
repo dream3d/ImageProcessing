@@ -16,6 +16,7 @@ set(_PublicFilters
   #AlignSectionsPhaseCorrelation
   AutoThreshold
   ConvertArrayTo8BitImage
+  ConvertArrayTo8BitImageAttributeMatrix
   DiscreteGaussianBlur
   GaussianBlur
   HoughCircles
