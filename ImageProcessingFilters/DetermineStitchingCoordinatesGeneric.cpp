@@ -281,20 +281,57 @@ QVector<float> DetermineStitchingCoordinatesGeneric::extractFloatValues(QString 
   bool ok = false; // Used to make sure we can convert the string into an integer
   tempPath.update(getMetaDataAttributeMatrixName().getDataContainerName(), getMetaDataAttributeMatrixName().getAttributeMatrixName(), arrayName);
 
-  QVector<size_t> dims(1,1);
-  StringDataArray::Pointer metaDataArray = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, tempPath, dims);
+  QString datatype = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath)->getTypeAsString();
 
-  for (size_t i=0; i < m_PointerList.size(); i++)
+  QVector<size_t> dims(1,1);
+
+  if(datatype == "int8_t")
   {
-    QString value = metaDataArray->getValue(i);
-    tileList[i] = value.toFloat(&ok);
-    if(!ok){
-      QString ss = QObject::tr("Error trying to convert the string '%1' to a float. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
-      setErrorCondition(-34005);
+      std::stringstream str;
+      IDataArray::Pointer iDataArray = getDataContainerArray()->getPrereqIDataArrayFromPath<DataArray<int8_t>, AbstractFilter>(this, tempPath);
+      Int8ArrayType::Pointer MetaDataPtr = boost::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
+      int8_t* MetaData = MetaDataPtr->getPointer(0);
+      dims = MetaDataPtr->getComponentDimensions();
+      for (size_t i=0; i < m_PointerList.size(); i++)
+      {
+
+          for (size_t j=0; j<dims[0]; j++)
+          {
+              char test = char(MetaData[(dims[0]*i+j)]);
+              str << test;
+          }
+
+          str >> tileList[i];
+          str.str("");
+          str.clear();
+      }
+
+
+  }
+
+  else if (datatype == "StringDataArray")
+  {
+      StringDataArray::Pointer metaDataArray = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, tempPath, dims);
+
+      for (size_t i=0; i < m_PointerList.size(); i++)
+      {
+        QString value = metaDataArray->getValue(i);
+        tileList[i] = value.toFloat(&ok);
+        if(!ok){
+          QString ss = QObject::tr("Error trying to convert the string '%1' to a float. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
+          setErrorCondition(-34005);
+          notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+          tileList.clear();
+          return tileList;
+        }
+      }
+
+  }
+  else
+  {
+      QString ss = QObject::tr("Error trying to read the metadata");
+      setErrorCondition(-34006);
       notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-      tileList.clear();
-      return tileList;
-    }
   }
 
   return tileList;
@@ -311,19 +348,52 @@ QVector<qint32> DetermineStitchingCoordinatesGeneric::extractIntegerValues(QStri
   tempPath.update(getMetaDataAttributeMatrixName().getDataContainerName(), getMetaDataAttributeMatrixName().getAttributeMatrixName(), arrayName);
 
   QVector<size_t> dims(1,1);
-  StringDataArray::Pointer metaDataArray = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, tempPath, dims);
+  QString datatype = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath)->getTypeAsString();
 
-  for (size_t i=0; i < m_PointerList.size(); i++)
+  if (datatype == "int8_t")
   {
-    QString value = metaDataArray->getValue(i);
-    tileList[i] = value.toInt(&ok);
-    if(!ok){
-      QString ss = QObject::tr("Error trying to convert the string '%1' to an integer. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
-      setErrorCondition(-34005);
+      std::stringstream str;
+      IDataArray::Pointer iDataArray = getDataContainerArray()->getPrereqIDataArrayFromPath<DataArray<int8_t>, AbstractFilter>(this, tempPath);
+      Int8ArrayType::Pointer MetaDataPtr = boost::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
+      int8_t* MetaData = MetaDataPtr->getPointer(0);
+      dims = MetaDataPtr->getComponentDimensions();
+      for (size_t i=0; i < m_PointerList.size(); i++)
+      {
+
+          for (size_t j=0; j<dims[0]; j++)
+          {
+              char test = char(MetaData[(dims[0]*i+j)]);
+              str << test;
+          }
+
+          str >> tileList[i];
+          str.str("");
+          str.clear();
+      }
+  }
+  else if (datatype == "StringDataArray")
+  {
+
+      StringDataArray::Pointer metaDataArray = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, tempPath, dims);
+
+      for (size_t i=0; i < m_PointerList.size(); i++)
+      {
+        QString value = metaDataArray->getValue(i);
+        tileList[i] = value.toInt(&ok);
+        if(!ok){
+          QString ss = QObject::tr("Error trying to convert the string '%1' to an integer. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
+          setErrorCondition(-34005);
+          notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+          tileList.clear();
+          return tileList;
+        }
+      }
+  }
+  else
+  {
+      QString ss = QObject::tr("Error trying to read the metadata");
+      setErrorCondition(-34006);
       notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-      tileList.clear();
-      return tileList;
-    }
   }
 
   return tileList;
