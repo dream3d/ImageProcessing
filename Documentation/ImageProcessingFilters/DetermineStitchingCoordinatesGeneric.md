@@ -6,7 +6,7 @@ ImageProcessing (ImageProcessing)
 
 
 ## Description ##
-This filter takes a series of tiled gray-scale images (8bit) and calculates the origin of each tile such that a fully stitched montage would result from placing each tile. Currently the only way to import the required data is to use the Zeiss AxioVision Import filter. The meta-data must include the global stage positions of each tile, and index, which is used as a rough starting point. 
+This filter takes a series of tiled gray-scale images (8bit) and calculates the origin of each tile such that a fully stitched montage would result from placing each tile. The images, and only the images, must all be sitting in one attribute matrix.Currently the only way to import the required data is to use the Zeiss AxioVision Import filter. The meta-data must include the global stage positions of each tile, and index, which is used as a rough starting point. 
 
 For a series of images, the images are re-ordered as though they were captured in a row-by-row comb of the data ![](RowWiseComb.tif)
 
@@ -25,7 +25,10 @@ This filter uses the *FFTNormalizedCorrelationImageFilter* from the ITK library.
 The result of this filter is an array containing the global xy origins of each tile (with (0, 0) being the origin of the first tile). In order to actually stitch the images and put into a new data array, the *Stitch Images* filter must be called after this one. 
 
 
-
+## Parameters ##
+| Name             | Type | Comment |
+|------------------|------|--------|
+| Use Zeiss Meta Data | Bool | Currently must be clicked on |
 
 
 
