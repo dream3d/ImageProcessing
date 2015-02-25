@@ -32,6 +32,7 @@ set(_PublicFilters
   Watershed
   WriteImage
   ReadImage
+  #RegionGrowing
   RGBToGray
   GrayToRGB
   FindMaxima
