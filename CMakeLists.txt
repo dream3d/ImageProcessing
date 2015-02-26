@@ -8,7 +8,7 @@ set(PLUGIN_NAME ImageProcessing)
 
 # --------------------------------------------------------------------
 # Look for Qt 5 as we need it for the plugin GUI to be generated
-if(NOT Qt5Core_FOUND)
+if(NOT Qt5_FOUND)
     message(FATAL_ERROR "Qt 5 is Needed for plugin ${PLUGIN_NAME}Plugin.")
 endif()
 
@@ -212,14 +212,15 @@ endif()
 
 add_library(${PLUGIN_NAME} MODULE ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
-                    Qt5::Core
-                    DREAM3DLib
-                    OrientationLib
-                    Qt5::Gui Qt5::Widgets
-                    QtSupport
-                    DREAM3DWidgetsLib
-                    ${ITK_LIBRARIES}
-                    )
+                        hdf5
+                        Qt5::Core
+                        DREAM3DLib
+                        Qt5::Gui 
+                        Qt5::Widgets
+                        QtSupport
+                        DREAM3DWidgetsLib
+                        ${ITK_LIBRARIES}
+                        )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 qt5_use_modules(${PROJECT_NAME} Core Gui Widgets)
 

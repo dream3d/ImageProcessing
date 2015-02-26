@@ -8,6 +8,8 @@
 #include "itkBinaryImageToLabelMapFilter.h"
 #include "itkBinaryThresholdImageFunction.h"
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
+#include "itkImageFileWriter.h"
+
 
 namespace ImageProcessing
 {
@@ -31,12 +33,15 @@ namespace ImageProcessing
         maxima->SetBackgroundValue(0);
         maxima->SetForegroundValue(255);
         maxima->SetFullyConnected(fullyConnected);//4 vs 8 connected
-
         //segment local maxima flag image
         typename BinaryToLabelType::Pointer binaryLabel = BinaryToLabelType::New();
         binaryLabel->SetInput(maxima->GetOutput());
         binaryLabel->SetFullyConnected(fullyConnected);
         binaryLabel->Update();
+
+
+
+
 
         //loop over all local maxima eliminating bad peaks
         int numObjects = binaryLabel->GetOutput()->GetNumberOfLabelObjects();

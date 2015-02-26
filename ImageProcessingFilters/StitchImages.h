@@ -66,6 +66,9 @@ class StitchImages : public AbstractFilter
     DREAM3D_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
     Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
 
+    DREAM3D_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
+    Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
+
     DREAM3D_FILTER_PARAMETER(QString, StitchedImagesArrayName)
     Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
 
