@@ -31,9 +31,26 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
+#include <QtCore/QFile>
+#include <QtCore/QDateTime>
+
+#include "DREAM3DLib/DREAM3DLib.h"
+#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
+#include "DREAM3DLib/DataArrays/DataArray.hpp"
+#include "DREAM3DLib/Common/FilterPipeline.h"
+#include "DREAM3DLib/Common/FilterManager.h"
+#include "DREAM3DLib/Common/FilterFactory.hpp"
+#include "DREAM3DLib/Plugin/IDREAM3DPlugin.h"
+#include "DREAM3DLib/Plugin/DREAM3DPluginLoader.h"
+#include "DREAM3DLib/Utilities/UnitTestSupport.hpp"
+#include "DREAM3DLib/Utilities/QMetaObjectUtilities.h"
+
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessingFilters/ItkBridge.h"
-#include "DREAM3DLib/DataContainers/DataContainer.h"
+
 
 
 /**
@@ -41,6 +58,16 @@
 *  will properly compile. If these are actually executed the program would surely crash
 * due to the use of the NULL pointers every where.
 */
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+void RemoveTestFiles()
+{
+#if REMOVE_TEST_FILES
+  //QFile::remove();
+#endif
+}
 
 // -----------------------------------------------------------------------------
 //
@@ -129,13 +156,45 @@ void TestSetSlice()
   ItkBridge<ImageProcessing::DefaultPixelType>::SetSlice(imagePtr, slicePtr, 0, 0);
 }
 
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int main(int argc, char* argv[])
+void loadFilterPlugins()
 {
-  return EXIT_SUCCESS;
+  // Register all the filters including trying to load those from Plugins
+  FilterManager* fm = FilterManager::Instance();
+  DREAM3DPluginLoader::LoadPluginFilters(fm);
+
+  // Send progress messages from PipelineBuilder to this object for display
+  QMetaObjectUtilities::RegisterMetaTypes();
 }
+
+// -----------------------------------------------------------------------------
+//  Use test framework
+// -----------------------------------------------------------------------------
+int main(int argc, char** argv)
+{
+  // Instantiate the QCoreApplication that we need to get the current path and load plugins.
+  QCoreApplication app(argc, argv);
+  QCoreApplication::setOrganizationName("BlueQuartz Software");
+  QCoreApplication::setOrganizationDomain("bluequartz.net");
+  QCoreApplication::setApplicationName("ITKUtilitiesTest");
+
+  int err = EXIT_SUCCESS;
+  DREAM3D_REGISTER_TEST( loadFilterPlugins() );
+
+  DREAM3D_REGISTER_TEST( TestSetSlice() );
+  DREAM3D_REGISTER_TEST( TestExtractSlice() )
+  DREAM3D_REGISTER_TEST( TestCopyITKtoDream3D() )
+  DREAM3D_REGISTER_TEST( TestSetITKOutput() )
+  DREAM3D_REGISTER_TEST( TestCreateItkWrapperForDataPointer() )
+  DREAM3D_REGISTER_TEST( TestDream3DtoITKImportFilter() )
+
+
+  DREAM3D_REGISTER_TEST( RemoveTestFiles() )
+  PRINT_TEST_SUMMARY();
+  return err;
+}
+
 
 
