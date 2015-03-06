@@ -1,4 +1,4 @@
-Stitch Images {#stichimages}
+Stitch Images {#stitchimages}
 =====
 
 ## Group (Subgroup) ##
