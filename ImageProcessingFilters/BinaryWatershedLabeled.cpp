@@ -2,7 +2,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#include "BinaryWatershed.h"
+#include "BinaryWatershedLabeled.h"
 
 //thresholding filter
 #include "itkSignedMaurerDistanceMapImageFilter.h"
@@ -11,6 +11,7 @@
 #include "itkMaskImageFilter.h"
 #include "itkBinaryThresholdImageFilter.h"
 
+
 // ImageProcessing Plugin
 #include "ItkBridge.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
@@ -18,11 +19,11 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-BinaryWatershed::BinaryWatershed() :
+BinaryWatershedLabeled::BinaryWatershedLabeled() :
   AbstractFilter(),
   m_SelectedCellArrayPath("", "", ""),
   m_PeakTolerance(1.0),
-  m_NewCellArrayName("BinaryWatershed"),
+  m_NewCellArrayName("BinaryWatershedLabeled"),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {
@@ -32,14 +33,14 @@ BinaryWatershed::BinaryWatershed() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-BinaryWatershed::~BinaryWatershed()
+BinaryWatershedLabeled::~BinaryWatershedLabeled()
 {
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void BinaryWatershed::setupFilterParameters()
+void BinaryWatershedLabeled::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), false, ""));
@@ -51,7 +52,7 @@ void BinaryWatershed::setupFilterParameters()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void BinaryWatershed::readFilterParameters(AbstractFilterParametersReader* reader, int index)
+void BinaryWatershedLabeled::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
   setSelectedCellArrayPath( reader->readDataArrayPath( "SelectedCellArrayPath", getSelectedCellArrayPath() ) );
@@ -63,7 +64,7 @@ void BinaryWatershed::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int BinaryWatershed::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
+int BinaryWatershedLabeled::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
   DREAM3D_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
@@ -76,7 +77,7 @@ int BinaryWatershed::writeFilterParameters(AbstractFilterParametersWriter* write
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void BinaryWatershed::dataCheck()
+void BinaryWatershedLabeled::dataCheck()
 {
   setErrorCondition(0);
   DataArrayPath tempPath;
@@ -91,7 +92,7 @@ void BinaryWatershed::dataCheck()
   if(getErrorCondition() < 0 || NULL == image.get()) { return; }
 
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint32_t>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -99,7 +100,7 @@ void BinaryWatershed::dataCheck()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void BinaryWatershed::preflight()
+void BinaryWatershedLabeled::preflight()
 {
   // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
   setInPreflight(true); // Set the fact that we are preflighting.
@@ -113,7 +114,7 @@ void BinaryWatershed::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void BinaryWatershed::execute()
+void BinaryWatershedLabeled::execute()
 {
   QString ss;
   dataCheck();
@@ -131,6 +132,7 @@ void BinaryWatershed::execute()
   //get utilities
   typedef ItkBridge<bool> BoolBridgeType;
   typedef ItkBridge<float> FloatBridgeType;
+  typedef ItkBridge<uint32_t> LabelBridgeType;
 
   //wrap input
   BoolBridgeType::ScalarImageType::Pointer inputImage = BoolBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
@@ -177,26 +179,27 @@ void BinaryWatershed::execute()
   WatershedType::Pointer watershed = WatershedType::New();
   watershed->SetInput1(invert->GetOutput());
   watershed->SetInput2(seedLabels);
+  watershed->SetMarkWatershedLine(false);
 
   //mask watershed output (we only want things that were originally in the)
-  typedef itk::MaskImageFilter<LabelImageType, BoolBridgeType::ScalarImageType, LabelImageType> MaskType;
+  typedef itk::MaskImageFilter<LabelImageType, BoolBridgeType::ScalarImageType, LabelBridgeType::ScalarImageType> MaskType;
   MaskType::Pointer mask = MaskType::New();
   mask->SetInput(watershed->GetOutput());
   mask->SetMaskImage(inputImage);
 
-  //threshold all labels into boolean array
-  typedef itk::BinaryThresholdImageFilter< LabelImageType, BoolBridgeType::ScalarImageType > ThresholdType;
-  ThresholdType::Pointer threshold = ThresholdType::New();
-  threshold->SetInput(mask->GetOutput());
-  threshold->SetLowerThreshold(1);
-  threshold->SetInsideValue(true);
-  threshold->SetOutsideValue(false);
+//  //threshold all labels into boolean array
+//  typedef itk::BinaryThresholdImageFilter< LabelImageType, BoolBridgeType::ScalarImageType > ThresholdType;
+//  ThresholdType::Pointer threshold = ThresholdType::New();
+//  threshold->SetInput(mask->GetOutput());
+//  threshold->SetLowerThreshold(1);
+//  threshold->SetInsideValue(true);
+//  threshold->SetOutsideValue(false);
 
   //wrap output
-  BoolBridgeType::SetITKFilterOutput(threshold->GetOutput(), m_NewCellArrayPtr.lock());
+  LabelBridgeType::SetITKFilterOutput(mask->GetOutput(), m_NewCellArrayPtr.lock());
   try
   {
-    threshold->Update();
+    mask->Update();
   }
   catch( itk::ExceptionObject& err )
   {
@@ -212,9 +215,9 @@ void BinaryWatershed::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer BinaryWatershed::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer BinaryWatershedLabeled::newFilterInstance(bool copyFilterParameters)
 {
-  BinaryWatershed::Pointer filter = BinaryWatershed::New();
+  BinaryWatershedLabeled::Pointer filter = BinaryWatershedLabeled::New();
   if(true == copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
@@ -226,27 +229,27 @@ AbstractFilter::Pointer BinaryWatershed::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString BinaryWatershed::getCompiledLibraryName()
+const QString BinaryWatershedLabeled::getCompiledLibraryName()
 {return ImageProcessing::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString BinaryWatershed::getGroupName()
+const QString BinaryWatershedLabeled::getGroupName()
 {return "ImageProcessing";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString BinaryWatershed::getSubGroupName()
+const QString BinaryWatershedLabeled::getSubGroupName()
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString BinaryWatershed::getHumanLabel()
-{return "Binary Watershed";}
+const QString BinaryWatershedLabeled::getHumanLabel()
+{return "Binary Watershed Labeled";}
 

@@ -16,6 +16,7 @@ set(_PublicFilters
   #AlignSectionsPhaseCorrelation
   AutoThreshold
   ConvertArrayTo8BitImage
+  ConvertArrayTo8BitImageAttributeMatrix
   DiscreteGaussianBlur
   GaussianBlur
   HoughCircles
@@ -31,10 +32,11 @@ set(_PublicFilters
   Watershed
   WriteImage
   ReadImage
+  #RegionGrowing
   RGBToGray
   GrayToRGB
   FindMaxima
-  BinaryWatershed
+  BinaryWatershedLabeled
   DetermineStitchingCoordinatesGeneric
   StitchImages
 )

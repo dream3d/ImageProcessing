@@ -1,5 +1,5 @@
 
-Convert Array To 8 Bit Image Attribute Matrix{#convertarrayto8bitimageattributematrix}
+Convert Array To 8 Bit Image{#convertarrayto8bitimage}
 =====
 
 ## Group (Subgroup) ##
@@ -7,7 +7,7 @@ ImageProcessing (ImageProcessing)
 
 
 ## Description ##
-Converts all data arrays in an attribute Matrix to 8 bit arrays.
+Converts a color images to grayscal with the specified weigtings
 
 ## Parameters ##
 | Name             | Type |
@@ -33,7 +33,7 @@ Converts all data arrays in an attribute Matrix to 8 bit arrays.
 
 ## Authors: ##
 
-**Contact Info:** Megna Shah megna.shah@bluequartz.net
+**Contact Info:** Will Lente willlenthe@gmail.com
 
 **Version:** 1.0.0
 

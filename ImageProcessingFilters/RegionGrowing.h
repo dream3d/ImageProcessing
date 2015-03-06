@@ -31,10 +31,11 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _BinaryWatershed_H_
-#define _BinaryWatershed_H_
 
-//#include <vector>
+#ifndef _RegionGrowing_H_
+#define _RegionGrowing_H_
+
+#include <vector>
 #include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
@@ -44,32 +45,35 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+
 /**
- * @class BinaryWatershed BinaryWatershed.h ImageProcessing/ImageProcessingFilters/BinaryWatershed.h
- * @brief splits concave objects in a binary array with a watershed segmentation
- * @author Will Lenthe
- * @date 8/29/14
+ * @class RegionGrowing RegionGrowing.h ImageProcessing/ImageProcessingFilters/RegionGrowing.h
+ * @brief
+ * @author
+ * @date
  * @version 1.0
  */
-class BinaryWatershed : public AbstractFilter
+class RegionGrowing : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(BinaryWatershed)
-    DREAM3D_STATIC_NEW_MACRO(BinaryWatershed)
-    DREAM3D_TYPE_MACRO_SUPER(BinaryWatershed, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(RegionGrowing)
+    DREAM3D_STATIC_NEW_MACRO(RegionGrowing)
+    DREAM3D_TYPE_MACRO_SUPER(RegionGrowing, AbstractFilter)
 
-    virtual ~BinaryWatershed();
+    virtual ~RegionGrowing();
 
     DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(float, PeakTolerance)
-    Q_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
-
     DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+
+    DREAM3D_FILTER_PARAMETER(bool, SaveAsNewArray)
+    Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    DREAM3D_FILTER_PARAMETER(int, ManualParameter)
+    Q_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -136,8 +140,6 @@ class BinaryWatershed : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void BinaryWatershed::template_execute();
-
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -162,7 +164,7 @@ class BinaryWatershed : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    BinaryWatershed();
+    RegionGrowing();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -170,11 +172,12 @@ class BinaryWatershed : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(bool, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(bool, NewCellArray)
 
-    BinaryWatershed(const BinaryWatershed&); // Copy Constructor Not Implemented
-    void operator=(const BinaryWatershed&); // Operator '=' Not Implemented
+    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
+    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, NewCellArray)
+
+    RegionGrowing(const RegionGrowing&); // Copy Constructor Not Implemented
+    void operator=(const RegionGrowing&); // Operator '=' Not Implemented
 };
 
-#endif /* _BinaryWatershed_H_ */
+#endif /* _RegionGrowing_H_ */

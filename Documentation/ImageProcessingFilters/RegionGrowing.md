@@ -1,5 +1,4 @@
-
-Convert Array To 8 Bit Image Attribute Matrix{#convertarrayto8bitimageattributematrix}
+Region Growing {#regiongrowing}
 =====
 
 ## Group (Subgroup) ##
@@ -7,33 +6,36 @@ ImageProcessing (ImageProcessing)
 
 
 ## Description ##
-Converts all data arrays in an attribute Matrix to 8 bit arrays.
+Grows a region based on seed points. 
 
 ## Parameters ##
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |
-| Color Weights | 3*float |
+| Overwrite Array| Bool |
 | Created Array Name | String |
+| Threshold Method | String |
+| Slice at a Time | Bool|
+| Manual Parameter | Int |
 
 ## Required Arrays ##
 
 | Type | Default Array Name | Description | Comment |
 |------|--------------------|-------------|---------|
-| any | ImageData | any 3 component image data       | |
+| uint8_t | ImageData | 8 bit image data       | |
 
 
 ## Created Arrays ##
 
 | Type | Default Array Name | Description | Comment |
 |------|--------------------|-------------|---------|
-| any (same as input) | ProcessedArray | 1 component image data       | |
+| uint8_t | ProcessedArray | 8 bit image data       | |
 
 
 
 ## Authors: ##
 
-**Contact Info:** Megna Shah megna.shah@bluequartz.net
+**Contact Info:** Will Lente willlenthe@gmail.com
 
 **Version:** 1.0.0
 

@@ -52,6 +52,7 @@ StitchImages::StitchImages() :
   m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
   m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::DataContainerName, "", ""),
   m_StitchedCoordinates(NULL),
+  m_StitchedVolumeDataContainerName("Montaged Volume DataContainer"),
   m_StitchedImagesArrayName(""),
   m_StitchedImageArray(NULL),
   m_StitchedAttributeMatrixName("Montage Attribute Matrix")
@@ -78,8 +79,9 @@ void StitchImages::setupFilterParameters()
   parameters.push_back(FilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), false, ""));
   parameters.push_back(FilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getStitchedCoordinatesArrayPath(), false, ""));
   parameters.push_back(FilterParameter::New("Created Information", "", FilterParameterWidgetType::SeparatorWidget, "", false));
-  parameters.push_back(FilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", FilterParameterWidgetType::StringWidget, getStitchedAttributeMatrixName(), false, ""));
-  parameters.push_back(FilterParameter::New("Montage Array Name", "StitchedImagesArrayName", FilterParameterWidgetType::StringWidget, getStitchedImagesArrayName(), false, ""));
+  parameters.push_back(FilterParameter::New("Stitched Volume Data Container", "StitchedVolumeDataContainerName", FilterParameterWidgetType::StringWidget, getStitchedVolumeDataContainerName(), true, ""));
+  parameters.push_back(FilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", FilterParameterWidgetType::StringWidget, getStitchedAttributeMatrixName(), true, ""));
+  parameters.push_back(FilterParameter::New("Montage Array Name", "StitchedImagesArrayName", FilterParameterWidgetType::StringWidget, getStitchedImagesArrayName(), true, ""));
 
   setFilterParameters(parameters);
 }
@@ -90,10 +92,11 @@ void StitchImages::setupFilterParameters()
 void StitchImages::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
+  setStitchedVolumeDataContainerName(reader->readString("StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName() ) );
   setAttributeMatrixName(reader->readDataArrayPath("AttributeMatrixName", getAttributeMatrixName()));
   setStitchedCoordinatesArrayPath(reader->readDataArrayPath("StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath()));
   setStitchedImagesArrayName(reader->readString("StitchedImagesArrayName", getStitchedImagesArrayName()));
-  setStitchedAttributeMatrixName(reader->readString("StitchedAttributeMatrix", getStitchedAttributeMatrixName()));
+  setStitchedAttributeMatrixName(reader->readString("StitchedAttributeMatrixName", getStitchedAttributeMatrixName()));
   reader->closeFilterGroup();
 
 }
@@ -105,9 +108,10 @@ int StitchImages::writeFilterParameters(AbstractFilterParametersWriter* writer, 
 {
   writer->openFilterGroup(this, index);
   DREAM3D_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-      DREAM3D_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
-      DREAM3D_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
-      DREAM3D_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
+  DREAM3D_FILTER_WRITE_PARAMETER(StitchedVolumeDataContainerName)
+  DREAM3D_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
+  DREAM3D_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
+  DREAM3D_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
 
       writer->closeFilterGroup();
   return ++index;
@@ -121,6 +125,8 @@ void StitchImages::dataCheck()
   setErrorCondition(0);
 
   DataArrayPath tempPath;
+
+
 
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
@@ -161,12 +167,28 @@ void StitchImages::dataCheck()
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
   if(getErrorCondition() < 0 || NULL == m) { return; }
 
+
+  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
+  if(getErrorCondition() < 0) { return; }
+
+  ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
+  m2->setGeometry(image);
+
+  //Keep Resolution the same as original images
+  m2->getGeometryAs<ImageGeom>()->setResolution(m->getGeometryAs<ImageGeom>()->getXRes(), m->getGeometryAs<ImageGeom>()->getYRes(), m->getGeometryAs<ImageGeom>()->getZRes());
+  //Set origin to zero
+  m2->getGeometryAs<ImageGeom>()->setOrigin(0, 0, 0);
+
+  m2->getGeometryAs<ImageGeom>()->setDimensions(1, 1, 1);
+
   QVector<size_t> tDims(1, 0);
-  AttributeMatrix::Pointer stitchedAttMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::Cell);
+
+  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::Cell);
   if(getErrorCondition() < 0){ return; }
   dims[0] = 1;
 
-  tempPath.update(getStitchedCoordinatesArrayPath().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
+
+  tempPath.update(getStitchedVolumeDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
   m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_StitchedImageArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
@@ -236,6 +258,11 @@ void StitchImages::execute()
 
   // getting the fist data container just to get the dimensions of each image.
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
+  DataContainer::Pointer m2 = getDataContainerArray()->getDataContainer(getStitchedVolumeDataContainerName());
+
+
+
+
 
 
   QVector<size_t> udims;
@@ -300,7 +327,9 @@ void StitchImages::execute()
   tDims[1] = NumCols;
   tDims[2] = 1;
 
-  m->getAttributeMatrix(getStitchedAttributeMatrixName())->resizeAttributeArrays(tDims);
+  m2->getAttributeMatrix(getStitchedAttributeMatrixName())->resizeAttributeArrays(tDims);
+  m2->getGeometryAs<ImageGeom>()->setDimensions(tDims[0], tDims[1], tDims[2]);
+
   QVector<size_t> cDims(1,1);
 
   // run through all the data containers (images)

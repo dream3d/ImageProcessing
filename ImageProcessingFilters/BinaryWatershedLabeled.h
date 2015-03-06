@@ -31,49 +31,45 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _StitchImages_H_
-#define _StitchImages_H_
+#ifndef _BinaryWatershedLabeled_H_
+#define _BinaryWatershedLabeled_H_
 
+//#include <vector>
 #include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
+#include "DREAM3DLib/DataArrays/IDataArray.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
 /**
- * @class StitchImages StitchImages.h ImageProcessing/ImageProcessingFilters/StitchImages.h
- * @brief
- * @author
- * @date
+ * @class BinaryWatershedLabeled BinaryWatershedLabeled.h ImageProcessing/ImageProcessingFilters/BinaryWatershedLabeled.h
+ * @brief splits concave objects in a binary array with a watershed segmentation
+ * @author Will Lenthe
+ * @date 8/29/14
  * @version 1.0
  */
-class StitchImages : public AbstractFilter
+class BinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(StitchImages)
-    DREAM3D_STATIC_NEW_MACRO(StitchImages)
-    DREAM3D_TYPE_MACRO_SUPER(StitchImages, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(BinaryWatershedLabeled)
+    DREAM3D_STATIC_NEW_MACRO(BinaryWatershedLabeled)
+    DREAM3D_TYPE_MACRO_SUPER(BinaryWatershedLabeled, AbstractFilter)
 
-    virtual ~StitchImages();
+    virtual ~BinaryWatershedLabeled();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
-    Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
-    Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
+    DREAM3D_FILTER_PARAMETER(float, PeakTolerance)
+    Q_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
-    Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
-
-    DREAM3D_FILTER_PARAMETER(QString, StitchedImagesArrayName)
-    Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
-
-    DREAM3D_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
-    Q_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
+    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -140,6 +136,8 @@ class StitchImages : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
+//virtual void BinaryWatershedLabeled::template_execute();
+
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -164,7 +162,7 @@ class StitchImages : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    StitchImages();
+    BinaryWatershedLabeled();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -172,12 +170,11 @@ class StitchImages : public AbstractFilter
     void dataCheck();
 
   private:
+    DEFINE_REQUIRED_DATAARRAY_VARIABLE(bool, SelectedCellArray)
+    DEFINE_CREATED_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(float, StitchedCoordinates)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, StitchedImageArray)
-    StitchImages(const StitchImages&); // Copy Constructor Not Implemented
-    void operator=(const StitchImages&); // Operator '=' Not Implemented
+    BinaryWatershedLabeled(const BinaryWatershedLabeled&); // Copy Constructor Not Implemented
+    void operator=(const BinaryWatershedLabeled&); // Operator '=' Not Implemented
 };
 
-#endif /* _StitchImages_H_ */
+#endif /* _BinaryWatershedLabeled_H_ */

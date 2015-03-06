@@ -303,10 +303,24 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
             newYfromleft = previousYleft + newXYOrigin[1];
 
 
+//            std::cout << "max from left" << newXYOrigin[2] << std::endl;
+//            std::cout << "max from top" << newXYOrigin2[2] << std::endl;
 
             //AVERAGE the two new locations
             xyStitchedGlobalListPtr->setValue(2*i, (newXfromtop + newXfromleft)/2.0);
             xyStitchedGlobalListPtr->setValue(2*i + 1, (newYfromtop + newYfromleft)/2.0);
+
+//            if (newXYOrigin2[2] > newXYOrigin[2])
+//            {
+//                xyStitchedGlobalListPtr->setValue(2*i, newXfromtop);
+//                xyStitchedGlobalListPtr->setValue(2*i + 1, newYfromtop);
+
+//            }
+//            else
+//            {
+//                xyStitchedGlobalListPtr->setValue(2*i, newXfromleft);
+//                xyStitchedGlobalListPtr->setValue(2*i + 1, newYfromleft);
+//            }
 
         }
 
@@ -340,7 +354,7 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
 std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> cropSpecsIm1Im2,  ImageProcessing::UInt8ImageType* currentImage,  ImageProcessing::UInt8ImageType* fixedImage)
 {
 
-    std::vector<float> newXYOrigin(2, 0);
+    std::vector<float> newXYOrigin(3, 0);
 
 
 
@@ -455,6 +469,7 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
 
     newXYOrigin[0] = float(calculator->GetIndexOfMaximum()[0]) - float(fixedImageWindow2->GetLargestPossibleRegion().GetSize()[0]);
     newXYOrigin[1] = float(calculator->GetIndexOfMaximum()[1]) - float(fixedImageWindow2->GetLargestPossibleRegion().GetSize()[1]);
+    newXYOrigin[2] = calculator->GetMaximum();  // add this for when more than one image pair has to be xcorrelated - want ot use this value to find best fit location
 
     // xcoutputImage->SetPixel(calculator->GetIndexOfMaximum(), 0); //just testing to make the brightest pixel dark so I could see which one it is
 
