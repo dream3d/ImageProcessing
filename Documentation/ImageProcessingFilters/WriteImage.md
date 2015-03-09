@@ -1,4 +1,4 @@
-Write Array to Image{#writeimage}
+Write Array to Image {#writeimage}
 =====
 
 ## Group (Subgroup) ##
@@ -22,14 +22,23 @@ Writes the selected array to a tif stack
 
 
 ## Created Arrays ##
+
 None
 
 
+## Authors ##
 
-## Authors: ##
+**Copyright:** 2015 BlueQuartz Software, LLC
 
-**Contact Info:** Will Lenthe willlenthe@gmail.com
+**Contact Info:** dream3d@bluequartz.net
 
-**Version:** 1.0
+**Version:** 1.0.0
+
+**License:**  See the License.txt file that came with DREAM3D.
 
 
+
+See a bug? Does this documentation need updated with a citation? Send comments, corrections and additions to [The DREAM3D development team](mailto:dream3d@bluequartz.net?subject=Documentation%20Correction)
+
+
+See a bug? Does this documentation need updated with a citation? Send comments, corrections and additions to [The DREAM3D development team](mailto:dream3d@bluequartz.net?subject=Documentation%20Correction)
