@@ -24,9 +24,6 @@ file(MAKE_DIRECTORY ${TEST_TEMP_DIR})
 configure_file(${${PROJECT_NAME}_SOURCE_DIR}/TestFileLocations.h.in
                ${${PROJECT_NAME}_BINARY_DIR}/${PROJECT_NAME}FileLocations.h @ONLY IMMEDIATE)
 
-
-AddDREAM3DUnitTest(TESTNAME ITKUtilitiesTest 
-                   SOURCES ${${PROJECT_NAME}_SOURCE_DIR}/ITKUtilitiesTest.cpp 
-                   LINK_LIBRARIES Qt5::Core H5Support DREAM3DLib Qt5::Gui Qt5::Widgets
-                    QtSupport ${ITK_LIBRARIES})
+add_executable(ITKUtilitiesTest  ${${PROJECT_NAME}_SOURCE_DIR}/ITKUtilitiesTest.cpp)
+target_link_libraries(ITKUtilitiesTest Qt5::Core H5Support DREAM3DLib Qt5::Gui Qt5::Widgets QtSupport ${ITK_LIBRARIES} )
 
