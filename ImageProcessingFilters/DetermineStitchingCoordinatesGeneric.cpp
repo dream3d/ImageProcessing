@@ -9,6 +9,10 @@
 #include "ImageProcessing/ImageProcessingFilters/util/DetermineStitching.h"
 
 #include "DREAM3DLib/DataArrays/StringDataArray.hpp"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+
+
 
 
 // -----------------------------------------------------------------------------

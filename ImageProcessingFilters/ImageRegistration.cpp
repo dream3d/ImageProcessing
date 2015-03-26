@@ -35,6 +35,10 @@
 
 #include <QtCore/QString>
 
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+
+
 #include "ImageProcessing/ImageProcessingConstants.h"
 
 // -----------------------------------------------------------------------------

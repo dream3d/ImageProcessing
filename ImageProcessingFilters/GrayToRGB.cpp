@@ -37,6 +37,10 @@
 #include "itkComposeImageFilter.h"
 
 #include "DREAM3DLib/Common/TemplateHelpers.hpp"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+
+
 
 // ImageProcessing Plugin
 #include "ItkBridge.h"

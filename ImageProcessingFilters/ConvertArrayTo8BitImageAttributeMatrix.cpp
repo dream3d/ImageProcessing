@@ -38,6 +38,10 @@
 #include "ConvertArrayTo8BitImageAttributeMatrix.h"
 
 #include "DREAM3DLib/Common/Constants.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+
+
 
 // -----------------------------------------------------------------------------
 //

@@ -43,6 +43,10 @@
 #include "itkBinaryThresholdImageFunction.h"
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
 
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+
+
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
  * for us like figuring out if we can use this private implementation with the data array that is assigned.
