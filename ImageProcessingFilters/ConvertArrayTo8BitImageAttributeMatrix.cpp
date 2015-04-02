@@ -181,10 +181,10 @@ void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
   T* inputArrayPtr = inputArray->getPointer(0);
   size_t numPoints = inputArray->getNumberOfTuples();
 
-  float min = 1000000.0f;
-  float max = 0.0f;
-  float value;
-  float scaledValue;
+  T min = std::numeric_limits<T>::max();
+  T max = 0.0f;
+  T value;
+  T scaledValue;
   for (size_t i = 0; i < numPoints; i++)
   {
     value = inputArrayPtr[i];

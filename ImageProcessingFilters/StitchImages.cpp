@@ -55,6 +55,7 @@ StitchImages::StitchImages() :
   AbstractFilter(),
   m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
   m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::DataContainerName, "", ""),
+  m_AttributeArrayNamesPath(),
   m_StitchedCoordinates(NULL),
   m_StitchedVolumeDataContainerName("Montaged Volume DataContainer"),
   m_StitchedImagesArrayName(""),
@@ -82,6 +83,7 @@ void StitchImages::setupFilterParameters()
   parameters.push_back(FilterParameter::New("Required Information", "", FilterParameterWidgetType::SeparatorWidget, "", false));
   parameters.push_back(FilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), false, ""));
   parameters.push_back(FilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getStitchedCoordinatesArrayPath(), false, ""));
+  parameters.push_back(FilterParameter::New("Attribute Array Names", "AttributeArrayNamesPath", FilterParameterWidgetType::DataArraySelectionWidget, getAttributeArrayNamesPath(), false, ""));
   parameters.push_back(FilterParameter::New("Created Information", "", FilterParameterWidgetType::SeparatorWidget, "", false));
   parameters.push_back(FilterParameter::New("Stitched Volume Data Container", "StitchedVolumeDataContainerName", FilterParameterWidgetType::StringWidget, getStitchedVolumeDataContainerName(), true, ""));
   parameters.push_back(FilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", FilterParameterWidgetType::StringWidget, getStitchedAttributeMatrixName(), true, ""));
@@ -101,6 +103,7 @@ void StitchImages::readFilterParameters(AbstractFilterParametersReader* reader, 
   setStitchedCoordinatesArrayPath(reader->readDataArrayPath("StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath()));
   setStitchedImagesArrayName(reader->readString("StitchedImagesArrayName", getStitchedImagesArrayName()));
   setStitchedAttributeMatrixName(reader->readString("StitchedAttributeMatrixName", getStitchedAttributeMatrixName()));
+  setAttributeArrayNamesPath(reader->readDataArrayPath("AttributeArrayNamesPath", getAttributeArrayNamesPath()));
   reader->closeFilterGroup();
 
 }
@@ -116,7 +119,7 @@ int StitchImages::writeFilterParameters(AbstractFilterParametersWriter* writer, 
   DREAM3D_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
   DREAM3D_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
   DREAM3D_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
-
+  DREAM3D_FILTER_WRITE_PARAMETER(AttributeArrayNamesPath)
       writer->closeFilterGroup();
   return ++index;
 }
@@ -130,9 +133,6 @@ void StitchImages::dataCheck()
 
   DataArrayPath tempPath;
 
-
-
-
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
   if (am.get() == NULL)
@@ -143,7 +143,6 @@ void StitchImages::dataCheck()
   }
 
   QList<QString> names = am->getAttributeArrayNames();
-
 
   QVector<size_t> dims(1, 1);
 
@@ -159,7 +158,19 @@ void StitchImages::dataCheck()
     if(NULL == imagePtr)
     {
       setErrorCondition(-76001);
-      notifyErrorMessage(getHumanLabel(), "The data was not found", -76001);
+      notifyErrorMessage(getHumanLabel(), "The data was not found", getErrorCondition());
+    }
+  }
+
+
+  m_AttributeArrayNamesPtr = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, getAttributeArrayNamesPath(), dims);
+  if( NULL != m_StitchedCoordinatesPtr.lock().get() )
+  {
+    if(names.size() != m_StitchedCoordinatesPtr.lock()->getNumberOfTuples() )
+    {
+      QString ss = QObject::tr("The number of Attribute Array Names (%1) does not match the number of Images (%2)").arg(m_StitchedCoordinatesPtr.lock()->getNumberOfTuples()).arg(names.size());
+      setErrorCondition(-76002);
+      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     }
   }
 
@@ -247,9 +258,7 @@ void StitchImages::execute()
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
-
   QList<QString> names = am->getAttributeArrayNames();
-
 
   UInt8ArrayType::Pointer imagePtr = UInt8ArrayType::NullPointer();
   IDataArray::Pointer iDataArray = IDataArray::NullPointer();
@@ -257,17 +266,9 @@ void StitchImages::execute()
 
   DataArrayPath tempPath;
 
-
-
-
   // getting the fist data container just to get the dimensions of each image.
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
   DataContainer::Pointer m2 = getDataContainerArray()->getDataContainer(getStitchedVolumeDataContainerName());
-
-
-
-
-
 
   QVector<size_t> udims;
   udims = am->getTupleDimensions();
