@@ -258,7 +258,14 @@ void StitchImages::execute()
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
-  QList<QString> names = am->getAttributeArrayNames();
+  size_t numArrays = m_AttributeArrayNamesPtr.lock()->getNumberOfTuples();
+  QList<QString> names;
+
+  for (size_t i = 0; i < numArrays; i++)
+  {
+    QString tmpName = m_AttributeArrayNamesPtr.lock()->getValue(i);
+    names.append(tmpName);
+  }
 
   UInt8ArrayType::Pointer imagePtr = UInt8ArrayType::NullPointer();
   IDataArray::Pointer iDataArray = IDataArray::NullPointer();
