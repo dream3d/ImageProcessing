@@ -39,6 +39,7 @@
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
+#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -65,6 +66,9 @@ class StitchImages : public AbstractFilter
 
     DREAM3D_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
     Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
+
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
+    Q_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
 
     DREAM3D_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
     Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
@@ -175,6 +179,7 @@ class StitchImages : public AbstractFilter
 
     DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
     DEFINE_REQUIRED_DATAARRAY_VARIABLE(float, StitchedCoordinates)
+    StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
     DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, StitchedImageArray)
     StitchImages(const StitchImages&); // Copy Constructor Not Implemented
     void operator=(const StitchImages&); // Operator '=' Not Implemented

@@ -181,24 +181,38 @@ void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
   T* inputArrayPtr = inputArray->getPointer(0);
   size_t numPoints = inputArray->getNumberOfTuples();
 
-  float min = 1000000.0f;
-  float max = 0.0f;
-  float value;
-  float scaledValue;
+  T min = std::numeric_limits<T>::max();
+  T max = 0.0f;
+  T value;
+  T scaledValue;
   for (size_t i = 0; i < numPoints; i++)
   {
     value = inputArrayPtr[i];
     if(value > max) { max = value; }
     if(value < min) { min = value; }
   }
-
-  for (size_t i = 0; i < numPoints; i++)
+  
+  float delta = (max - min);
+  if(delta < 0.0000001)
   {
-    scaledValue = (inputArrayPtr[i] - min) / (max - min);
-    if(scaledValue < 0.0) scaledValue = 0.0f;
-    else if(scaledValue > 1.0f) scaledValue = 1.0f;
-    scaledValue *= 255.0f;
-    newArray[i] = static_cast<uint8_t>(scaledValue);
+    for (size_t i = 0; i < numPoints; i++)
+    {
+      scaledValue = inputArrayPtr[i];
+      if(scaledValue < 0.0) scaledValue = 0.0f;
+      else if(scaledValue > 1.0f) scaledValue = 1.0f;
+      scaledValue *= 255.0f;
+      newArray[i] = static_cast<uint8_t>(scaledValue);
+    }
+  }
+  else{
+    for (size_t i = 0; i < numPoints; i++)
+    {
+      scaledValue = (inputArrayPtr[i] - min) / delta;
+      if(scaledValue < 0.0) scaledValue = 0.0f;
+      else if(scaledValue > 1.0f) scaledValue = 1.0f;
+      scaledValue *= 255.0f;
+      newArray[i] = static_cast<uint8_t>(scaledValue);
+    }
   }
 }
 
