@@ -51,6 +51,8 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "DREAM3DLib/FilterParameters/ChoiceFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
 
 
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
