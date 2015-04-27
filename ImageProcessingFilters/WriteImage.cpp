@@ -140,7 +140,7 @@ class WriteImagePrivate
       } /** else//vector image
       {
         //define types and wrap input image
-        typedef itk::Image<itk::FixedArray<TInputType, numComp> >, ImageProcessing::ImageDimension> ImageType;
+        typedef itk::Image<itk::FixedArray<TInputType, numComp> >, ImageProcessingConstants::ImageDimension> ImageType;
         typedef itk::ImageFileWriter<ImageType> WriterType;
         ImageType::Pointer inputImage = ItkBridgeType::Dream3DtoITKTemplate<ImageType>(m, attrMatName, inputData);
 
@@ -391,7 +391,7 @@ AbstractFilter::Pointer WriteImage::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString WriteImage::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

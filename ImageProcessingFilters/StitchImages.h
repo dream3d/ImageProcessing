@@ -177,10 +177,10 @@ class StitchImages : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
+    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_REQUIRED_DATAARRAY_VARIABLE(float, StitchedCoordinates)
     StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, StitchedImageArray)
+    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, StitchedImageArray)
     StitchImages(const StitchImages&); // Copy Constructor Not Implemented
     void operator=(const StitchImages&); // Operator '=' Not Implemented
 };

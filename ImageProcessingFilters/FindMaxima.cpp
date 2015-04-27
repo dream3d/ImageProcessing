@@ -83,8 +83,8 @@ class FindMaximaPrivate
       typedef ItkBridge<PixelType> ItkBridgeType;
 
       //wrap input and output as itk image
-      typedef itk::Image<PixelType, ImageProcessing::ImageDimension> ImageType;
-      typedef itk::Image<bool, ImageProcessing::ImageDimension> BoolImageType;
+      typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
+      typedef itk::Image<bool, ImageProcessingConstants::ImageDimension> BoolImageType;
       typename ImageType::Pointer inputImage = ItkBridge<PixelType>::CreateItkWrapperForDataPointer(m, attrMatName, inputData);
       BoolImageType::Pointer outputImage = ItkBridge<bool>::CreateItkWrapperForDataPointer(m, attrMatName, outputData);
 
@@ -317,7 +317,7 @@ AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString FindMaxima::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

@@ -320,7 +320,7 @@ AbstractFilter::Pointer ConvertArrayTo8BitImageAttributeMatrix::newFilterInstanc
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName()
-{ return ImageProcessing::ImageProcessingBaseName; }
+{ return ImageProcessingConstants::ImageProcessingBaseName; }
 
 
 // -----------------------------------------------------------------------------

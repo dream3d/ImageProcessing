@@ -97,7 +97,7 @@ class ReadImagePrivate
       {
         case itk::ImageIOBase::SCALAR:
         {
-          typedef itk::Image<PixelType, ImageProcessing::ImageDimension> ImageType;
+          typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
           typedef itk::ImageFileReader<ImageType> ReaderType;
           typename ReaderType::Pointer reader = ReaderType::New();
           reader->SetFileName(inputFile.toLocal8Bit().constData());
@@ -108,7 +108,7 @@ class ReadImagePrivate
 
         case itk::ImageIOBase::RGB:
         {
-          typedef itk::Image<itk::RGBPixel<PixelType>, ImageProcessing::ImageDimension> ImageType;
+          typedef itk::Image<itk::RGBPixel<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
           typedef itk::ImageFileReader<ImageType> ReaderType;
           typename ReaderType::Pointer reader = ReaderType::New();
           reader->SetFileName(inputFile.toLocal8Bit().constData());
@@ -119,7 +119,7 @@ class ReadImagePrivate
 
         case itk::ImageIOBase::RGBA:
         {
-          typedef itk::Image<itk::RGBAPixel<PixelType>, ImageProcessing::ImageDimension> ImageType;
+          typedef itk::Image<itk::RGBAPixel<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
           typedef itk::ImageFileReader<ImageType> ReaderType;
           typename ReaderType::Pointer reader = ReaderType::New();
           reader->SetFileName(inputFile.toLocal8Bit().constData());
@@ -130,7 +130,7 @@ class ReadImagePrivate
         /**
         case itk::ImageIOBase::FIXEDARRAY:
           {
-            typedef itk::VectorImage<PixelType>, ImageProcessing::ImageDimension> ImageType;
+            typedef itk::VectorImage<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
             typedef itk::ImageFileReader<ImageType> ReaderType;
             typename ReaderType::Pointer reader = ReaderType::New();
             reader->SetFileName(inputFile.toLocal8Bit().constData());
@@ -594,7 +594,7 @@ AbstractFilter::Pointer ReadImage::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString ReadImage::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

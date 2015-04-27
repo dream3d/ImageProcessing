@@ -122,7 +122,7 @@ void MultiOtsuThreshold::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -132,7 +132,7 @@ void MultiOtsuThreshold::dataCheck()
 
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -179,22 +179,22 @@ void MultiOtsuThreshold::execute()
   };
 
   //wrap input as itk image
-  ImageProcessing::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   if(m_Slice)
   {
     //define 2d histogram generator
-    typedef itk::OtsuMultipleThresholdsImageFilter< ImageProcessing::DefaultSliceType, ImageProcessing::DefaultSliceType > ThresholdType;
+    typedef itk::OtsuMultipleThresholdsImageFilter< ImageProcessingConstants::DefaultSliceType, ImageProcessingConstants::DefaultSliceType > ThresholdType;
     ThresholdType::Pointer otsuThresholder = ThresholdType::New();
 
     //wrap output buffer as image
-    ImageProcessing::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
+    ImageProcessingConstants::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
 
     //loop over slices
     for(int i = 0; i < dims[2]; i++)
     {
       //get slice
-      ImageProcessing::DefaultSliceType::Pointer slice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessing::ZSlice, i);
+      ImageProcessingConstants::DefaultSliceType::Pointer slice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
 
       //threshold
       otsuThresholder->SetInput(slice);
@@ -213,12 +213,12 @@ void MultiOtsuThreshold::execute()
       }
 
       //copy back into volume
-      ITKUtilitiesType::SetSlice(outputImage, otsuThresholder->GetOutput(), ImageProcessing::ZSlice, i);
+      ITKUtilitiesType::SetSlice(outputImage, otsuThresholder->GetOutput(), ImageProcessingConstants::ZSlice, i);
     }
   }
   else
   {
-    typedef itk::OtsuMultipleThresholdsImageFilter< ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType > ThresholdType;
+    typedef itk::OtsuMultipleThresholdsImageFilter< ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType > ThresholdType;
     ThresholdType::Pointer otsuThresholder = ThresholdType::New();
     otsuThresholder->SetInput(inputImage);
     otsuThresholder->SetNumberOfThresholds(m_Levels);
@@ -283,7 +283,7 @@ AbstractFilter::Pointer MultiOtsuThreshold::newFilterInstance(bool copyFilterPar
 //
 // -----------------------------------------------------------------------------
 const QString MultiOtsuThreshold::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

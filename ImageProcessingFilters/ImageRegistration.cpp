@@ -118,7 +118,7 @@ void ImageRegistration::preflight()
 // -----------------------------------------------------------------------------
 const QString ImageRegistration::getCompiledLibraryName()
 {
-  return ImageProcessing::ImageProcessingBaseName;
+  return ImageProcessingConstants::ImageProcessingBaseName;
 }
 
 // -----------------------------------------------------------------------------

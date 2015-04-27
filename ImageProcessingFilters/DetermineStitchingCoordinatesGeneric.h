@@ -164,8 +164,8 @@ class DetermineStitchingCoordinatesGeneric : public AbstractFilter
   private:
 //    DEFINE_CREATED_DATAARRAY_VARIABLE(QVector<IDataArray::Pointer>, PointerList)
 
-    QVector<ImageProcessing::DefaultPixelType* > m_PointerList;
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
+    QVector<ImageProcessingConstants::DefaultPixelType* > m_PointerList;
+    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_CREATED_DATAARRAY_VARIABLE(float, StitchedCoordinates)
     StringDataArray::WeakPointer m_DataArrayNamesForStitchedCoordinatesPtr;
 

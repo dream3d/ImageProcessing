@@ -126,7 +126,7 @@ void HoughCircles::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -136,7 +136,7 @@ void HoughCircles::dataCheck()
 
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -190,11 +190,11 @@ void HoughCircles::execute()
   }
 
   //wrap raw and processed image data as itk::images
-  ImageProcessing::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
-  ImageProcessing::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
 
-  ImageProcessing::DefaultSliceType::IndexType localIndex;
-  typedef itk::HoughTransform2DCirclesImageFilter<ImageProcessing::DefaultPixelType, ImageProcessing::FloatPixelType> HoughTransformFilterType;
+  ImageProcessingConstants::DefaultSliceType::IndexType localIndex;
+  typedef itk::HoughTransform2DCirclesImageFilter<ImageProcessingConstants::DefaultPixelType, ImageProcessingConstants::FloatPixelType> HoughTransformFilterType;
   HoughTransformFilterType::Pointer houghFilter = HoughTransformFilterType::New();
   houghFilter->SetNumberOfCircles( m_NumberCircles );
   houghFilter->SetMinimumRadius( m_MinRadius );
@@ -212,10 +212,10 @@ void HoughCircles::execute()
     //extract slice and transform
     QString ss = QObject::tr("Hough Transforming Slice: %1").arg(i + 1);
     notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
-    ImageProcessing::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessing::ZSlice, i);
+    ImageProcessingConstants::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
     houghFilter->SetInput( inputSlice );
     houghFilter->Update();
-    ImageProcessing::FloatSliceType::Pointer localAccumulator = houghFilter->GetOutput();
+    ImageProcessingConstants::FloatSliceType::Pointer localAccumulator = houghFilter->GetOutput();
 
     //find circles
     ss = QObject::tr("Finding Circles on Slice: %1").arg(i + 1);
@@ -223,8 +223,8 @@ void HoughCircles::execute()
     HoughTransformFilterType::CirclesListType circles = houghFilter->GetCircles( m_NumberCircles );
 
     //create blank slice of same dimensions
-    ImageProcessing::DefaultSliceType::Pointer outputSlice = ImageProcessing::DefaultSliceType::New();
-    ImageProcessing::DefaultSliceType::RegionType region;
+    ImageProcessingConstants::DefaultSliceType::Pointer outputSlice = ImageProcessingConstants::DefaultSliceType::New();
+    ImageProcessingConstants::DefaultSliceType::RegionType region;
     region.SetSize(inputSlice->GetLargestPossibleRegion().GetSize());
     region.SetIndex(inputSlice->GetLargestPossibleRegion().GetIndex());
     outputSlice->SetRegions( region );
@@ -247,7 +247,7 @@ void HoughCircles::execute()
                                    + (*itCircles)->GetRadius()[0] * vcl_cos(angle));
         localIndex[1] = (long int)((*itCircles)->GetObjectToParentTransform()->GetOffset()[1]
                                    + (*itCircles)->GetRadius()[0] * vcl_sin(angle));
-        ImageProcessing::DefaultSliceType::RegionType outputRegion = outputSlice->GetLargestPossibleRegion();
+        ImageProcessingConstants::DefaultSliceType::RegionType outputRegion = outputSlice->GetLargestPossibleRegion();
         if( outputRegion.IsInside( localIndex ) )
         {
           outputSlice->SetPixel( localIndex, 255 );
@@ -257,7 +257,7 @@ void HoughCircles::execute()
     }
 
     //copy slice into output
-    ITKUtilitiesType::SetSlice(outputImage, outputSlice, ImageProcessing::ZSlice, i);
+    ITKUtilitiesType::SetSlice(outputImage, outputSlice, ImageProcessingConstants::ZSlice, i);
   }
 
   //array name changing/cleanup
@@ -291,7 +291,7 @@ AbstractFilter::Pointer HoughCircles::newFilterInstance(bool copyFilterParameter
 //
 // -----------------------------------------------------------------------------
 const QString HoughCircles::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

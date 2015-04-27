@@ -135,7 +135,7 @@ void ImageProcessingFilter::preflight()
 // -----------------------------------------------------------------------------
 const QString ImageProcessingFilter::getCompiledLibraryName()
 {
-  return ImageProcessing::ImageProcessingBaseName;
+  return ImageProcessingConstants::ImageProcessingBaseName;
 }
 
 // -----------------------------------------------------------------------------

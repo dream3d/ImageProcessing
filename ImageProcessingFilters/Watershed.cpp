@@ -116,7 +116,7 @@ void Watershed::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -157,18 +157,18 @@ void Watershed::execute()
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
 
   //wrap m_RawImageData as itk::image
-  ImageProcessing::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   //create gradient magnitude filter
   notifyStatusMessage(getHumanLabel(), "Calculating Gradient Magnitude");
-  typedef itk::GradientMagnitudeImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType >  GradientMagnitudeImageFilterType;
+  typedef itk::GradientMagnitudeImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType >  GradientMagnitudeImageFilterType;
   GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
   gradientMagnitudeImageFilter->SetInput(inputImage);
   gradientMagnitudeImageFilter->Update();
 
   //watershed image
   notifyStatusMessage(getHumanLabel(), "Watershedding");
-  typedef itk::WatershedImageFilter<ImageProcessing::DefaultImageType> WatershedFilterType;
+  typedef itk::WatershedImageFilter<ImageProcessingConstants::DefaultImageType> WatershedFilterType;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
   watershed->SetThreshold(m_Threshold);
   watershed->SetLevel(m_Level);
@@ -187,10 +187,10 @@ void Watershed::execute()
   }
 
   //get output and copy to grainids
-  typedef itk::Image<unsigned long, ImageProcessing::ImageDimension>   WatershedImageType;
+  typedef itk::Image<unsigned long, ImageProcessingConstants::ImageDimension>   WatershedImageType;
   WatershedImageType::Pointer output = watershed->GetOutput();
   WatershedImageType::RegionType filterRegion = output->GetLargestPossibleRegion();
-  typedef itk::ImageRegionConstIterator<itk::Image<unsigned long, ImageProcessing::ImageDimension> > WatershedIteratorType;
+  typedef itk::ImageRegionConstIterator<itk::Image<unsigned long, ImageProcessingConstants::ImageDimension> > WatershedIteratorType;
   WatershedIteratorType it(output, filterRegion);
   it.GoToBegin();
   int index = 0;
@@ -224,7 +224,7 @@ AbstractFilter::Pointer Watershed::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString Watershed::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

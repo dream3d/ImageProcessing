@@ -86,7 +86,7 @@ class ManualThresholdTemplatePrivate
       typedef ItkBridge<PixelType> ItkBridgeType;
 
       //wrap input as itk image
-      typedef itk::Image<PixelType, ImageProcessing::ImageDimension> ImageType;
+      typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
       typename ImageType::Pointer inputImage = ItkBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, inputData);
 
       //define threshold filters
@@ -251,7 +251,7 @@ void filter(IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIData
   typedef ItkBridge<PixelType> ItkBridgeType;
 
   //wrap input as itk image
-  typedef itk::Image<PixelType, ImageProcessing::ImageDimension> ImageType;
+  typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
   typename ImageType::Pointer inputImage = ItkBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, inputData);
 
   //define threshold filters
@@ -402,7 +402,7 @@ AbstractFilter::Pointer ManualThresholdTemplate::newFilterInstance(bool copyFilt
 //
 // -----------------------------------------------------------------------------
 const QString ManualThresholdTemplate::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

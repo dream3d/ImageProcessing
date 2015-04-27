@@ -122,7 +122,7 @@ void DetermineStitchingCoordinatesGeneric::dataCheck()
   for(int i = 0; i < names.size(); i++)
   {
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-    m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, tempPath, dims);
+    m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, tempPath, dims);
 
     if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
     { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
@@ -409,7 +409,7 @@ QVector<qint32> DetermineStitchingCoordinatesGeneric::extractIntegerValues(QStri
 // -----------------------------------------------------------------------------
 const QString DetermineStitchingCoordinatesGeneric::getCompiledLibraryName()
 {
-  return ImageProcessing::ImageProcessingBaseName;
+  return ImageProcessingConstants::ImageProcessingBaseName;
 }
 
 // -----------------------------------------------------------------------------
