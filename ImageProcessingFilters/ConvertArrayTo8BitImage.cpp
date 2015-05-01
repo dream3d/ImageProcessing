@@ -274,7 +274,7 @@ AbstractFilter::Pointer ConvertArrayTo8BitImage::newFilterInstance(bool copyFilt
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImage::getCompiledLibraryName()
-{ return ImageProcessing::ImageProcessingBaseName; }
+{ return ImageProcessingConstants::ImageProcessingBaseName; }
 
 
 // -----------------------------------------------------------------------------

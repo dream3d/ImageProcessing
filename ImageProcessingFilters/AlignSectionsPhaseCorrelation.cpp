@@ -116,8 +116,8 @@ class AlignSectionsPhaseCorrelationPrivate
 
         //extract slices
         int sliceNum = static_cast<int>( (dims[2] - 1) - iter );
-        SliceType::Pointer fixedImage = ItkBridgeType::ExtractSlice(inputImage, ImageProcessing::ZSlice, sliceNum);
-        SliceType::Pointer movingImage = ItkBridgeType::ExtractSlice(inputImage, ImageProcessing::ZSlice, sliceNum + 1);
+        SliceType::Pointer fixedImage = ItkBridgeType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, sliceNum);
+        SliceType::Pointer movingImage = ItkBridgeType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, sliceNum + 1);
 
         //fft correlation
         CorrelationType::Pointer correlation = CorrelationType::New();
@@ -250,7 +250,7 @@ void AlignSectionsPhaseCorrelation::preflight()
 // -----------------------------------------------------------------------------
 const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
 {
-  return ImageProcessing::ImageProcessingBaseName;
+  return ImageProcessingConstants::ImageProcessingBaseName;
 }
 
 // -----------------------------------------------------------------------------

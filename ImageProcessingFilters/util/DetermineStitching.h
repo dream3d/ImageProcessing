@@ -71,7 +71,7 @@ class DetermineStitching
                                                      QVector<size_t> udims,
                                                      float sampleOrigin[],
                                                      float voxelResolution[],
-                                                     QVector<ImageProcessing::DefaultPixelType *> dataArrayList,
+                                                     QVector<ImageProcessingConstants::DefaultPixelType *> dataArrayList,
                                                      QVector<float> xGlobCoordsList,
                                                      QVector<float> yGlobCoordsList,
                                                      QVector<qint32> xTileList,
@@ -95,7 +95,7 @@ class DetermineStitching
    * @param fixedImage
    * @return
    */
-    static std::vector<float> CropAndCrossCorrelate(std::vector<float> cropSpecsIm1Im2, ImageProcessing::UInt8ImageType* currentImage, ImageProcessing::UInt8ImageType* fixedImage);
+    static std::vector<float> CropAndCrossCorrelate(std::vector<float> cropSpecsIm1Im2, ImageProcessingConstants::UInt8ImageType* currentImage, ImageProcessingConstants::UInt8ImageType* fixedImage);
 
   protected:
     DetermineStitching();

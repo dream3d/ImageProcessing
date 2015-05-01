@@ -204,7 +204,7 @@ void StitchImages::dataCheck()
 
 
   tempPath.update(getStitchedVolumeDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
-  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_StitchedImageArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
@@ -304,15 +304,15 @@ void StitchImages::execute()
   }
 
 
-  //    ImageProcessing::UInt8ImageType* image2 = ImageProcessing::UInt8ImageType::New();
-  ImageProcessing::UInt8ImageType::Pointer image2 = ImageProcessing::UInt8ImageType::New();
-  ImageProcessing::UInt8ImageType::RegionType region;
-  ImageProcessing::UInt8ImageType::IndexType start;
+  //    ImageProcessingConstants::UInt8ImageType* image2 = ImageProcessingConstants::UInt8ImageType::New();
+  ImageProcessingConstants::UInt8ImageType::Pointer image2 = ImageProcessingConstants::UInt8ImageType::New();
+  ImageProcessingConstants::UInt8ImageType::RegionType region;
+  ImageProcessingConstants::UInt8ImageType::IndexType start;
   start[0] = 0;
   start[1] = 0;
   start[2] = 0;
 
-  ImageProcessing::UInt8ImageType::SizeType size;
+  ImageProcessingConstants::UInt8ImageType::SizeType size;
   unsigned int NumRows = udims[0] + abs(int(maxx)) + abs(int(minx));
   unsigned int NumCols = udims[1] + abs(int(maxy)) + abs(int(miny));
   size[0] = NumRows;
@@ -326,13 +326,13 @@ void StitchImages::execute()
   image2->SetRegions(region);
   image2->Allocate();
 
-  typedef itk::PasteImageFilter <ImageProcessing::UInt8ImageType, ImageProcessing::UInt8ImageType > PasteImageFilterType;
+  typedef itk::PasteImageFilter <ImageProcessingConstants::UInt8ImageType, ImageProcessingConstants::UInt8ImageType > PasteImageFilterType;
   PasteImageFilterType::Pointer pasteFilter = PasteImageFilterType::New ();
 
-  typedef itk::ImageFileWriter< ImageProcessing::UInt8ImageType > WriterType;
+  typedef itk::ImageFileWriter< ImageProcessingConstants::UInt8ImageType > WriterType;
   WriterType::Pointer writer = WriterType::New();
 
-  ImageProcessing::UInt8ImageType::IndexType destinationIndex;
+  ImageProcessingConstants::UInt8ImageType::IndexType destinationIndex;
 
   QVector<size_t> tDims(3);
   tDims[0] = NumRows;
@@ -355,8 +355,8 @@ void StitchImages::execute()
     if(NULL != imagePtr.get())
     {
       image = imagePtr->getPointer(0);
-      ImageProcessing::ImportUInt8FilterType::Pointer importFilter = ITKUtilitiesType::Dream3DtoITKImportFilter<ImageProcessing::DefaultPixelType>(m, getAttributeMatrixName().getAttributeMatrixName(), image);
-      ImageProcessing::UInt8ImageType* currentImage = importFilter->GetOutput();
+      ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter = ITKUtilitiesType::Dream3DtoITKImportFilter<ImageProcessingConstants::DefaultPixelType>(m, getAttributeMatrixName().getAttributeMatrixName(), image);
+      ImageProcessingConstants::UInt8ImageType* currentImage = importFilter->GetOutput();
 
 
       destinationIndex[0] = m_StitchedCoordinates[2*i] + abs(int(minx));
@@ -410,7 +410,7 @@ AbstractFilter::Pointer StitchImages::newFilterInstance(bool copyFilterParameter
 //
 // -----------------------------------------------------------------------------
 const QString StitchImages::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

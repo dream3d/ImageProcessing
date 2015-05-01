@@ -39,7 +39,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
 
 #include "ItkBridge.h"
 
@@ -115,7 +115,7 @@ void GaussianBlur::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -125,7 +125,7 @@ void GaussianBlur::dataCheck()
 
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -157,15 +157,15 @@ void GaussianBlur::execute()
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
 
   //get filter to convert m_RawImageData to itk::image
-  ImageProcessing::ImportUInt8FilterType::Pointer importFilter = ITKUtilitiesType::Dream3DtoITKImportFilter<ImageProcessing::DefaultPixelType>(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter = ITKUtilitiesType::Dream3DtoITKImportFilter<ImageProcessingConstants::DefaultPixelType>(m, attrMatName, m_SelectedCellArray);
 
   //get image from filter
-  const ImageProcessing::UInt8ImageType* inputImage = importFilter->GetOutput();
-  ImageProcessing::UInt8ImageType::RegionType filterRegion = inputImage->GetBufferedRegion();
-  ImageProcessing::UInt8ConstIteratorType it(inputImage, filterRegion);
+  const ImageProcessingConstants::UInt8ImageType* inputImage = importFilter->GetOutput();
+  ImageProcessingConstants::UInt8ImageType::RegionType filterRegion = inputImage->GetBufferedRegion();
+  ImageProcessingConstants::UInt8ConstIteratorType it(inputImage, filterRegion);
 
   //create guassian blur filter
-  typedef itk::GaussianBlurImageFunction< ImageProcessing::UInt8ImageType > GFunctionType;
+  typedef itk::GaussianBlurImageFunction< ImageProcessingConstants::UInt8ImageType > GFunctionType;
   GFunctionType::Pointer gaussianFunction = GFunctionType::New();
   gaussianFunction->SetInputImage( inputImage );
 
@@ -217,7 +217,7 @@ AbstractFilter::Pointer GaussianBlur::newFilterInstance(bool copyFilterParameter
 //
 // -----------------------------------------------------------------------------
 const QString GaussianBlur::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

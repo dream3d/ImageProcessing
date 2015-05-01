@@ -88,7 +88,7 @@ class GrayToRGBPrivate
       typedef ItkBridge<PixelType> ItkBridgeType;
 
       //wrap inputs as itk images
-      typedef itk::Image<PixelType, ImageProcessing::ImageDimension> ImageType;
+      typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
       typename ImageType::Pointer redImage = ItkBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, redData);
       typename ImageType::Pointer greenImage = ItkBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, greenData);
       typename ImageType::Pointer blueImage = ItkBridgeType::CreateItkWrapperForDataPointer(m, attrMatName, blueData);
@@ -350,7 +350,7 @@ AbstractFilter::Pointer GrayToRGB::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString GrayToRGB::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

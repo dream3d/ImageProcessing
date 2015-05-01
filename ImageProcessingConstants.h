@@ -51,7 +51,7 @@
 /**
 * @brief This namespace is used to define some Constants for the plugin itself.
 */
-namespace ImageProcessing
+namespace ImageProcessingConstants
 {
   const QString ImageProcessingPluginFile("ImageProcessingPlugin");
   const QString ImageProcessingPluginDisplayName("ImageProcessingPlugin");
@@ -110,7 +110,7 @@ namespace ImageProcessing
   typedef itk::Image< FloatPixelType, ImageDimension > FloatImageType;
   typedef itk::Image< DoublePixelType, ImageDimension > DoubleImageType;
 
-  typedef itk::Image< ImageProcessing::RGBUInt8PixelType, ImageProcessing::ImageDimension > RGBUInt8ImageType;
+  typedef itk::Image< ImageProcessingConstants::RGBUInt8PixelType, ImageProcessingConstants::ImageDimension > RGBUInt8ImageType;
   typedef itk::Image< itk::RGBPixel<DefaultPixelType>, ImageDimension> RGBImageType;
 
   //typedef itk::Image< RGBAFloatPixelType, ImageDimension > RGBAFloatImageType;
@@ -155,7 +155,7 @@ namespace ImageProcessing
   typedef itk::ImageRegionConstIterator< FloatImageType > FloatConstIteratorType;
   typedef itk::ImageRegionConstIterator< DoubleImageType > DoubleConstIteratorType;
 
-  typedef itk::ImageRegionConstIterator< ImageProcessing::RGBUInt8PixelType > RGBUInt8ConstIteratorType;
+  typedef itk::ImageRegionConstIterator< ImageProcessingConstants::RGBUInt8PixelType > RGBUInt8ConstIteratorType;
   //typedef itk::ImageRegionConstIterator< RGBAFloatPixelType > RGBAFloatConstIteratorType;
 
 }

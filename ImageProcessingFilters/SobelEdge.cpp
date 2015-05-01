@@ -37,7 +37,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
 
 #include "ItkBridge.h"
 #include "itkSobelEdgeDetectionImageFilter.h"
@@ -119,7 +119,7 @@ void SobelEdge::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -129,7 +129,7 @@ void SobelEdge::dataCheck()
 
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -160,12 +160,12 @@ void SobelEdge::execute()
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
 
   //wrap m_RawImageData as itk::image
-  ImageProcessing::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   if(m_Slice)
   {
     //wrap output array
-    ImageProcessing::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
+    ImageProcessingConstants::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
 
     //get dimensions
     size_t udims[3] = {0, 0, 0};
@@ -183,11 +183,11 @@ void SobelEdge::execute()
     };
 
     //create edge filter
-    typedef itk::SobelEdgeDetectionImageFilter<ImageProcessing::DefaultSliceType, ImageProcessing::FloatSliceType> SobelFilterType;
+    typedef itk::SobelEdgeDetectionImageFilter<ImageProcessingConstants::DefaultSliceType, ImageProcessingConstants::FloatSliceType> SobelFilterType;
     SobelFilterType::Pointer sobelFilter = SobelFilterType::New();
 
     //convert result back to uint8
-    typedef itk::RescaleIntensityImageFilter<ImageProcessing::FloatSliceType, ImageProcessing::DefaultSliceType> RescaleImageType;
+    typedef itk::RescaleIntensityImageFilter<ImageProcessingConstants::FloatSliceType, ImageProcessingConstants::DefaultSliceType> RescaleImageType;
     RescaleImageType::Pointer rescaleFilter = RescaleImageType::New();
     rescaleFilter->SetOutputMinimum(0);
     rescaleFilter->SetOutputMaximum(255);
@@ -199,7 +199,7 @@ void SobelEdge::execute()
       notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
 
       //get slice
-      ImageProcessing::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessing::ZSlice, i);
+      ImageProcessingConstants::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
 
       //run filters
       sobelFilter->SetInput(inputSlice);
@@ -220,18 +220,18 @@ void SobelEdge::execute()
       }
 
       //copy into volume
-      ITKUtilitiesType::SetSlice(outputImage, rescaleFilter->GetOutput(), ImageProcessing::ZSlice, i);
+      ITKUtilitiesType::SetSlice(outputImage, rescaleFilter->GetOutput(), ImageProcessingConstants::ZSlice, i);
     }
   }
   else
   {
     //create edge filter
-    typedef itk::SobelEdgeDetectionImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> SobelFilterType;
+    typedef itk::SobelEdgeDetectionImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> SobelFilterType;
     SobelFilterType::Pointer sobelFilter = SobelFilterType::New();
     sobelFilter->SetInput(inputImage);
 
     //convert result back to uint8
-    typedef itk::RescaleIntensityImageFilter<ImageProcessing::FloatImageType, ImageProcessing::DefaultImageType> RescaleImageType;
+    typedef itk::RescaleIntensityImageFilter<ImageProcessingConstants::FloatImageType, ImageProcessingConstants::DefaultImageType> RescaleImageType;
     RescaleImageType::Pointer rescaleFilter = RescaleImageType::New();
     rescaleFilter->SetInput(sobelFilter->GetOutput());
     rescaleFilter->SetOutputMinimum(0);
@@ -285,7 +285,7 @@ AbstractFilter::Pointer SobelEdge::newFilterInstance(bool copyFilterParameters)
 //
 // -----------------------------------------------------------------------------
 const QString SobelEdge::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

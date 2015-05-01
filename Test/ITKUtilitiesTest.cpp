@@ -75,16 +75,16 @@ void RemoveTestFiles()
 void TestDream3DtoITKImportFilter()
 {
 
-  ImageProcessing::DefaultImageType::Pointer ptr;
+  ImageProcessingConstants::DefaultImageType::Pointer ptr;
 
 
   DataContainer::Pointer m = DataContainer::New();
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
   m->setGeometry(image);
   QString attrMatName("CellData");
-  ImageProcessing::DefaultPixelType* data = NULL;
+  ImageProcessingConstants::DefaultPixelType* data = NULL;
 
-  ImageProcessing::ImportUInt8FilterType::Pointer importFilter = ItkBridge<ImageProcessing::DefaultPixelType>::Dream3DtoITKImportFilter<ImageProcessing::DefaultPixelType>(m, attrMatName, data);
+  ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter = ItkBridge<ImageProcessingConstants::DefaultPixelType>::Dream3DtoITKImportFilter<ImageProcessingConstants::DefaultPixelType>(m, attrMatName, data);
 
 }
 
@@ -94,15 +94,15 @@ void TestDream3DtoITKImportFilter()
 // -----------------------------------------------------------------------------
 void TestCreateItkWrapperForDataPointer()
 {
-  ImageProcessing::DefaultImageType::Pointer imagePtr;
+  ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
   DataContainer::Pointer m = DataContainer::New();
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
   m->setGeometry(image);
   QString attrMatName("CellData");
 
-  ImageProcessing::DefaultPixelType* data = NULL;
+  ImageProcessingConstants::DefaultPixelType* data = NULL;
 
-  imagePtr = (ImageProcessing::DefaultImageType::Pointer)ItkBridge<ImageProcessing::DefaultPixelType>::CreateItkWrapperForDataPointer(m, attrMatName, data);
+  imagePtr = (ImageProcessingConstants::DefaultImageType::Pointer)ItkBridge<ImageProcessingConstants::DefaultPixelType>::CreateItkWrapperForDataPointer(m, attrMatName, data);
 }
 
 // -----------------------------------------------------------------------------
@@ -111,11 +111,11 @@ void TestCreateItkWrapperForDataPointer()
 void TestSetITKOutput()
 {
 
-  ImageProcessing::DefaultImageType::Pointer imagePtr;
-// ImageProcessing::DefaultPixelType* output = NULL;
+  ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
+// ImageProcessingConstants::DefaultPixelType* output = NULL;
 // unsigned int totalPoints = 0;
-  ImageProcessing::DefaultArrayType::Pointer array;
-  ItkBridge<ImageProcessing::DefaultPixelType>::SetITKFilterOutput(imagePtr, array);
+  ImageProcessingConstants::DefaultArrayType::Pointer array;
+  ItkBridge<ImageProcessingConstants::DefaultPixelType>::SetITKFilterOutput(imagePtr, array);
 
 }
 
@@ -126,9 +126,9 @@ void TestSetITKOutput()
 void TestCopyITKtoDream3D()
 {
 
-  ImageProcessing::DefaultImageType::Pointer imagePtr;
-  ImageProcessing::DefaultPixelType* data = NULL;
-  ItkBridge<ImageProcessing::DefaultPixelType>::CopyITKtoDream3D(imagePtr, data);
+  ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
+  ImageProcessingConstants::DefaultPixelType* data = NULL;
+  ItkBridge<ImageProcessingConstants::DefaultPixelType>::CopyITKtoDream3D(imagePtr, data);
 
 }
 
@@ -137,10 +137,10 @@ void TestCopyITKtoDream3D()
 // -----------------------------------------------------------------------------
 void TestExtractSlice()
 {
-  //itk::Image<ImageProcessing::DefaultPixelType,ImageProcessing::SliceDimension>::Pointer slicePtr;
-  ImageProcessing::DefaultSliceType::Pointer slicePtr;
-  ImageProcessing::DefaultImageType::Pointer image;
-  slicePtr = ItkBridge<ImageProcessing::DefaultPixelType>::ExtractSlice(image, 0, 0);
+  //itk::Image<ImageProcessingConstants::DefaultPixelType,ImageProcessingConstants::SliceDimension>::Pointer slicePtr;
+  ImageProcessingConstants::DefaultSliceType::Pointer slicePtr;
+  ImageProcessingConstants::DefaultImageType::Pointer image;
+  slicePtr = ItkBridge<ImageProcessingConstants::DefaultPixelType>::ExtractSlice(image, 0, 0);
 }
 
 // -----------------------------------------------------------------------------
@@ -149,11 +149,11 @@ void TestExtractSlice()
 void TestSetSlice()
 {
   // Lets use a typedef to shorten up the "type" that is used in the templates
-  //typedef ImageProcessing::DefaultPixelType PixelType;
+  //typedef ImageProcessingConstants::DefaultPixelType PixelType;
   // Now declare our Image and Slice variables
-  ImageProcessing::DefaultImageType::Pointer imagePtr;
-  ImageProcessing::DefaultSliceType::Pointer slicePtr;
-  ItkBridge<ImageProcessing::DefaultPixelType>::SetSlice(imagePtr, slicePtr, 0, 0);
+  ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
+  ImageProcessingConstants::DefaultSliceType::Pointer slicePtr;
+  ItkBridge<ImageProcessingConstants::DefaultPixelType>::SetSlice(imagePtr, slicePtr, 0, 0);
 }
 
 // -----------------------------------------------------------------------------

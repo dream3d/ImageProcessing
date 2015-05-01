@@ -57,7 +57,8 @@
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/ChoiceFilterParameter.h"
 
 
 #include "ItkBridge.h"
@@ -164,7 +165,7 @@ void AutoThreshold::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -174,7 +175,7 @@ void AutoThreshold::dataCheck()
 
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -221,14 +222,14 @@ void AutoThreshold::execute()
   };
 
   //wrap input as itk image
-  ImageProcessing::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   //define threshold filters
-  typedef itk::BinaryThresholdImageFilter <ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> BinaryThresholdImageFilterType;
-  typedef itk::BinaryThresholdImageFilter <ImageProcessing::DefaultSliceType, ImageProcessing::DefaultSliceType> BinaryThresholdImageFilterType2D;
+  typedef itk::BinaryThresholdImageFilter <ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> BinaryThresholdImageFilterType;
+  typedef itk::BinaryThresholdImageFilter <ImageProcessingConstants::DefaultSliceType, ImageProcessingConstants::DefaultSliceType> BinaryThresholdImageFilterType2D;
 
   //define hitogram generator (will make the same kind of histogram for 2 and 3d images
-  typedef itk::Statistics::ImageToHistogramFilter<ImageProcessing::DefaultImageType> HistogramGenerator;
+  typedef itk::Statistics::ImageToHistogramFilter<ImageProcessingConstants::DefaultImageType> HistogramGenerator;
 
   //find threshold value w/ histogram
   itk::HistogramThresholdCalculator< HistogramGenerator::HistogramType, uint8_t >::Pointer calculator;
@@ -324,7 +325,7 @@ void AutoThreshold::execute()
   if(m_Slice)
   {
     //define 2d histogram generator
-    typedef itk::Statistics::ImageToHistogramFilter<ImageProcessing::DefaultSliceType> HistogramGenerator2D;
+    typedef itk::Statistics::ImageToHistogramFilter<ImageProcessingConstants::DefaultSliceType> HistogramGenerator2D;
     HistogramGenerator2D::Pointer histogramFilter2D = HistogramGenerator2D::New();
 
     //specify number of bins / bounds
@@ -341,13 +342,13 @@ void AutoThreshold::execute()
     histogramFilter2D->SetHistogramBinMaximum( upperBound );
 
     //wrap output buffer as image
-    ImageProcessing::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
+    ImageProcessingConstants::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
 
     //loop over slices
     for(int i = 0; i < dims[2]; i++)
     {
       //get slice
-      ImageProcessing::DefaultSliceType::Pointer slice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessing::ZSlice, i);
+      ImageProcessingConstants::DefaultSliceType::Pointer slice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
 
       //find histogram
       histogramFilter2D->SetInput( slice );
@@ -369,7 +370,7 @@ void AutoThreshold::execute()
       thresholdFilter->Update();
 
       //copy back into volume
-      ITKUtilitiesType::SetSlice(outputImage, thresholdFilter->GetOutput(), ImageProcessing::ZSlice, i);
+      ITKUtilitiesType::SetSlice(outputImage, thresholdFilter->GetOutput(), ImageProcessingConstants::ZSlice, i);
     }
   }
   else
@@ -443,7 +444,7 @@ AbstractFilter::Pointer AutoThreshold::newFilterInstance(bool copyFilterParamete
 //
 // -----------------------------------------------------------------------------
 const QString AutoThreshold::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

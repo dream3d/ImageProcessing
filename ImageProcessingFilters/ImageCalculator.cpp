@@ -49,7 +49,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/ChoiceFilterParameter.h"
 
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
@@ -147,7 +147,7 @@ void ImageCalculator::dataCheck()
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);
-  m_SelectedCellArray1Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath1(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArray1Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath1(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArray1Ptr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray1 = m_SelectedCellArray1Ptr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -155,7 +155,7 @@ void ImageCalculator::dataCheck()
   ImageGeom::Pointer image1 = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath1().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
   if(getErrorCondition() < 0 || NULL == image1.get()) { return; }
 
-  m_SelectedCellArray2Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath2(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArray2Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath2(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_SelectedCellArray2Ptr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_SelectedCellArray2 = m_SelectedCellArray2Ptr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
@@ -164,7 +164,7 @@ void ImageCalculator::dataCheck()
   if(getErrorCondition() < 0 || NULL == image2.get()) { return; }
 
   tempPath.update(getSelectedCellArrayPath1().getDataContainerName(), getSelectedCellArrayPath1().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessing::DefaultPixelType>, AbstractFilter, ImageProcessing::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -196,24 +196,24 @@ void ImageCalculator::execute()
   QString attrMatName = getSelectedCellArrayPath1().getAttributeMatrixName();
 
   //wrap m_RawImageData as itk::image
-  ImageProcessing::DefaultImageType::Pointer inputImage1 = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray1);
-  ImageProcessing::DefaultImageType::Pointer inputImage2 = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray2);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage1 = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray1);
+  ImageProcessingConstants::DefaultImageType::Pointer inputImage2 = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray2);
 
   //define filters
-  typedef itk::AddImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> AddType;//
-  typedef itk::SubtractImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> SubtractType;//
-  typedef itk::MultiplyImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> MultiplyType;//
-  typedef itk::DivideImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> DivideType;//
-  typedef itk::AndImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> AndType;
-  typedef itk::OrImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> OrType;
-  typedef itk::XorImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> XorType;
-  typedef itk::MinimumImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> MinType;
-  typedef itk::MaximumImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType> MaxType;
-  typedef itk::BinaryFunctorImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType, ImageProcessing::Functor::Mean<ImageProcessing::DefaultPixelType> > MeanType;
-  typedef itk::AbsoluteValueDifferenceImageFilter<ImageProcessing::DefaultImageType, ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType> DifferenceType;
+  typedef itk::AddImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> AddType;//
+  typedef itk::SubtractImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> SubtractType;//
+  typedef itk::MultiplyImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> MultiplyType;//
+  typedef itk::DivideImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> DivideType;//
+  typedef itk::AndImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> AndType;
+  typedef itk::OrImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> OrType;
+  typedef itk::XorImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> XorType;
+  typedef itk::MinimumImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> MinType;
+  typedef itk::MaximumImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> MaxType;
+  typedef itk::BinaryFunctorImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType, ImageProcessing::Functor::Mean<ImageProcessingConstants::DefaultPixelType> > MeanType;
+  typedef itk::AbsoluteValueDifferenceImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> DifferenceType;
 
   //set up filters to cap image ranges
-  typedef itk::UnaryFunctorImageFilter< ImageProcessing::FloatImageType, ImageProcessing::DefaultImageType, ImageProcessing::Functor::LimitsRound<ImageProcessing::FloatPixelType, ImageProcessing::DefaultPixelType> > LimitsRoundType;
+  typedef itk::UnaryFunctorImageFilter< ImageProcessingConstants::FloatImageType, ImageProcessingConstants::DefaultImageType, ImageProcessing::Functor::LimitsRound<ImageProcessingConstants::FloatPixelType, ImageProcessingConstants::DefaultPixelType> > LimitsRoundType;
   LimitsRoundType::Pointer limitsRound = LimitsRoundType::New();
 
   //set up and run selected filter
@@ -374,7 +374,7 @@ AbstractFilter::Pointer ImageCalculator::newFilterInstance(bool copyFilterParame
 //
 // -----------------------------------------------------------------------------
 const QString ImageCalculator::getCompiledLibraryName()
-{return ImageProcessing::ImageProcessingBaseName;}
+{return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------

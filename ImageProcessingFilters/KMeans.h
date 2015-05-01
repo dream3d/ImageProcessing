@@ -177,8 +177,8 @@ class KMeans : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessing::DefaultPixelType, NewCellArray)
+    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     KMeans(const KMeans&); // Copy Constructor Not Implemented
     void operator=(const KMeans&); // Operator '=' Not Implemented

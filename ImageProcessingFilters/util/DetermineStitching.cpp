@@ -85,7 +85,7 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
                                                               QVector<size_t> udims,
                                                               float sampleOrigin[],
                                                               float voxelResolution[],
-                                                              QVector<ImageProcessing::DefaultPixelType *> dataArrayList,
+                                                              QVector<ImageProcessingConstants::DefaultPixelType *> dataArrayList,
                                                               QVector<float> xGlobCoordsList,
                                                               QVector<float> yGlobCoordsList,
                                                               QVector<qint32> xTileList,
@@ -110,11 +110,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
     //this is how the stitching algorithm will stitch the tiles together
     combIndexList = ReturnIndexForCombOrder(xTileList, yTileList, numXtiles, numYtiles);
 
-    ImageProcessing::UInt8ImageType* currentImage;
-    ImageProcessing::UInt8ImageType* leftImage;
-    ImageProcessing::UInt8ImageType* aboveImage;
-    ImageProcessing::ImportUInt8FilterType::Pointer importFilter;
-    ImageProcessing::ImportUInt8FilterType::Pointer importFilter2;
+    ImageProcessingConstants::UInt8ImageType* currentImage;
+    ImageProcessingConstants::UInt8ImageType* leftImage;
+    ImageProcessingConstants::UInt8ImageType* aboveImage;
+    ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter;
+    ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter2;
     std::vector<float> cropSpecsIm1Im2(12, 0);
     std::vector<float> newXYOrigin(2,0);
     std::vector<float> newXYOrigin2(2,0);
@@ -150,9 +150,9 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
 
             //get filter to convert m_RawImageData to itk::image
 
-            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
             currentImage = importFilter->GetOutput();
-            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-1]]);
+            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-1]]);
             leftImage = importFilter2->GetOutput();
 
             // Determine the windows to be cross correlated depending on the rough overlap as found from the global coordinates
@@ -192,9 +192,9 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
 
             //get filter to convert m_RawImageData to itk::image
 
-            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]); //combIndexList[i]]
+            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]); //combIndexList[i]]
             currentImage = importFilter->GetOutput();
-            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-numXtiles]]);
+            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-numXtiles]]);
             aboveImage = importFilter2->GetOutput();
 
             // Determine the windows to be cross correlated depending on the rough overlap as found from the global coordinates
@@ -240,9 +240,9 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
 
             //get filter to convert m_RawImageData to itk::image
             ///TOP IMAGE FIRST
-            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
             currentImage = importFilter->GetOutput();
-            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-numXtiles]]);
+            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-numXtiles]]);
             aboveImage = importFilter2->GetOutput();
 
 
@@ -273,9 +273,9 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
             newYfromtop = previousYtop + newXYOrigin2[1] + cropSpecsIm1Im2[1];
 
             //BOTTOM IMAGE NEXT
-            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+            importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
             currentImage = importFilter->GetOutput();
-            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessing::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-1]]);
+            importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i-1]]);
             leftImage = importFilter2->GetOutput();
 
             cropSpecsIm1Im2[0] = xGlobCoordsList[combIndexList[i]] - xGlobCoordsList[combIndexList[i-1]]; //xGlobCoordsList[combIndexList[i]] - xyStitchedGlobalListPtr->getValue(2*(i-1)) - xGlobCoordsList[0]; //left image X Origin
@@ -351,7 +351,7 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(size_t totalPoints
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> cropSpecsIm1Im2,  ImageProcessing::UInt8ImageType* currentImage,  ImageProcessing::UInt8ImageType* fixedImage)
+std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> cropSpecsIm1Im2,  ImageProcessingConstants::UInt8ImageType* currentImage,  ImageProcessingConstants::UInt8ImageType* fixedImage)
 {
 
     std::vector<float> newXYOrigin(3, 0);
@@ -360,7 +360,7 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
 
 
     //////FIRST IMAGE CROP
-    ImageProcessing::UInt8ImageType::RegionType cropRegion;
+    ImageProcessingConstants::UInt8ImageType::RegionType cropRegion;
 
     cropRegion.SetIndex(0, cropSpecsIm1Im2[0]);
     cropRegion.SetIndex(1, cropSpecsIm1Im2[1]);
@@ -371,17 +371,17 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
     cropRegion.SetSize(2, cropSpecsIm1Im2[8]);
 
     //Extract window from first image
-    typedef itk::RegionOfInterestImageFilter< ImageProcessing::UInt8ImageType, ImageProcessing::UInt8ImageType > exImFilterType;
+    typedef itk::RegionOfInterestImageFilter< ImageProcessingConstants::UInt8ImageType, ImageProcessingConstants::UInt8ImageType > exImFilterType;
     exImFilterType::Pointer exImfilter = exImFilterType::New();
     exImfilter->SetRegionOfInterest(cropRegion);
     exImfilter->SetInput(fixedImage);
     exImfilter->Update();
-    ImageProcessing::UInt8ImageType* fixedImageWindow = exImfilter->GetOutput();
+    ImageProcessingConstants::UInt8ImageType* fixedImageWindow = exImfilter->GetOutput();
 
 
 
     /////////////////////SECOND IMAGE CROP
-    ImageProcessing::UInt8ImageType::RegionType cropRegion2;
+    ImageProcessingConstants::UInt8ImageType::RegionType cropRegion2;
     cropRegion2.SetIndex(0, cropSpecsIm1Im2[3]);
     cropRegion2.SetIndex(1, cropSpecsIm1Im2[4]);
     cropRegion2.SetIndex(2, cropSpecsIm1Im2[5]);
@@ -395,12 +395,12 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
     exImfilter2->SetRegionOfInterest(cropRegion2);
     exImfilter2->SetInput(currentImage);
     exImfilter2->Update();
-    ImageProcessing::UInt8ImageType* currentImageWindow = exImfilter2->GetOutput();
+    ImageProcessingConstants::UInt8ImageType* currentImageWindow = exImfilter2->GetOutput();
 
 
     ///CHANGE THE ORIGIN OF THE IMAGES SO THEY MATCH - the cross correlation filter will not work unless this is done
-    typedef itk::ChangeInformationImageFilter< ImageProcessing::UInt8ImageType > ChangeInfoFilterType;
-    ImageProcessing::UInt8ImageType::PointType origin = fixedImageWindow->GetOrigin();
+    typedef itk::ChangeInformationImageFilter< ImageProcessingConstants::UInt8ImageType > ChangeInfoFilterType;
+    ImageProcessingConstants::UInt8ImageType::PointType origin = fixedImageWindow->GetOrigin();
     origin[0] = 0;
     origin[1] = 0;
     origin[2] = 0;
@@ -411,7 +411,7 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
     changeInfo->SetOutputOrigin( origin );
     changeInfo->ChangeOriginOn();
     changeInfo->UpdateOutputInformation();
-    ImageProcessing::UInt8ImageType* fixedImageWindow2 = changeInfo->GetOutput();
+    ImageProcessingConstants::UInt8ImageType* fixedImageWindow2 = changeInfo->GetOutput();
 
     //Next the Current Image
     ChangeInfoFilterType::Pointer changeInfo2 = ChangeInfoFilterType::New();
@@ -419,11 +419,11 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
     changeInfo2->SetOutputOrigin( origin );
     changeInfo2->ChangeOriginOn();
     changeInfo2->UpdateOutputInformation();
-    ImageProcessing::UInt8ImageType* currentImageWindow2 = changeInfo2->GetOutput();
+    ImageProcessingConstants::UInt8ImageType* currentImageWindow2 = changeInfo2->GetOutput();
 
 
     /////WRITING THE IMAGES FOR TESTING
-    typedef itk::ImageFileWriter< ImageProcessing::UInt8ImageType > WriterType;
+    typedef itk::ImageFileWriter< ImageProcessingConstants::UInt8ImageType > WriterType;
 #if 0
     QString imagePath = QDir::homePath() + QDir::separator() + "Desktop" + QDir::separator() + "fixedImageWindow.tiff";
     WriterType::Pointer writer = WriterType::New();
@@ -443,16 +443,16 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
 
     //CROSS CORRELATE THE 2 WINDOWS.
     //Note: It is much faster to cross correlate the extracted windows than to cross correlate the full windows with a mask applied
-    typedef itk::MaskedFFTNormalizedCorrelationImageFilter< ImageProcessing::DefaultImageType, ImageProcessing::FloatImageType, ImageProcessing::DefaultImageType > XCFilterType;
+    typedef itk::MaskedFFTNormalizedCorrelationImageFilter< ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType, ImageProcessingConstants::DefaultImageType > XCFilterType;
     XCFilterType::Pointer xCorrFilter = XCFilterType::New();
     xCorrFilter->SetFixedImage(fixedImageWindow2);
     xCorrFilter->SetMovingImage(currentImageWindow2);
     xCorrFilter->SetRequiredFractionOfOverlappingPixels(0.5); //currently require that the windows overlap at least 50percent. Might want to make this a user controlled variable
     xCorrFilter->Update();
-    ImageProcessing::FloatImageType* xcoutputImage = xCorrFilter->GetOutput();
+    ImageProcessingConstants::FloatImageType* xcoutputImage = xCorrFilter->GetOutput();
 
     // Create and initialize the calculator
-    typedef itk::MinimumMaximumImageCalculator<ImageProcessing::FloatImageType>   MinMaxCalculatorType;
+    typedef itk::MinimumMaximumImageCalculator<ImageProcessingConstants::FloatImageType>   MinMaxCalculatorType;
     MinMaxCalculatorType::Pointer calculator = MinMaxCalculatorType::New();
     calculator->SetImage( xcoutputImage );
     calculator->Compute();
@@ -473,7 +473,7 @@ std::vector<float> DetermineStitching::CropAndCrossCorrelate(std::vector<float> 
 
     // xcoutputImage->SetPixel(calculator->GetIndexOfMaximum(), 0); //just testing to make the brightest pixel dark so I could see which one it is
 
-    //    typedef itk::ImageFileWriter< ImageProcessing::FloatImageType > nWriterType;
+    //    typedef itk::ImageFileWriter< ImageProcessingConstants::FloatImageType > nWriterType;
     //    nWriterType::Pointer writer3 = nWriterType::New();
     //    writer3->SetFileName( "/Users/megnashah/Desktop/imageXC.tiff");
     //    writer3->SetInput( xcoutputImage );
