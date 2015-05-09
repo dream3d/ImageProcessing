@@ -191,7 +191,7 @@ void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
     if(value > max) { max = value; }
     if(value < min) { min = value; }
   }
-  
+
   float delta = (max - min);
   if(delta < 0.0000001)
   {
@@ -285,10 +285,10 @@ void ConvertArrayTo8BitImageAttributeMatrix::execute()
       {
         scaleArray2<double>(inputData, m_NewArray);
       }
-      else if (dType.compare("bool") == 0)
-      {
-        scaleArray2<bool>(inputData, m_NewArray);
-      }
+//      else if (dType.compare("bool") == 0)
+//      {
+//        scaleArray2<bool>(inputData, m_NewArray);
+//      }
 
       am->removeAttributeArray(names[i]);
       am->renameAttributeArray(names[i]+"8bit", names[i]);
