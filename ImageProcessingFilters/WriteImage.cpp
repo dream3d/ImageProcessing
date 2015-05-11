@@ -173,9 +173,9 @@ class WriteImagePrivate
 // -----------------------------------------------------------------------------
 WriteImage::WriteImage() :
   AbstractFilter(),
+  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArrayPath("", "", ""),
   m_OutputFileName(""),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL)
 {
   setupFilterParameters();

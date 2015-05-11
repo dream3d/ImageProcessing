@@ -48,8 +48,8 @@
 // -----------------------------------------------------------------------------
 ConvertArrayTo8BitImageAttributeMatrix::ConvertArrayTo8BitImageAttributeMatrix() :
   AbstractFilter(),
-  m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
 //  m_SelectedArrayPath("", "", ""),
+  m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
   m_NewArrayArrayName(""),
   m_NewArray(NULL)
 {

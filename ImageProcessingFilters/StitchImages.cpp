@@ -56,13 +56,11 @@ StitchImages::StitchImages() :
   m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
   m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::DataContainerName, "", ""),
   m_AttributeArrayNamesPath(),
-  m_StitchedCoordinates(NULL),
   m_StitchedVolumeDataContainerName("Montaged Volume DataContainer"),
   m_StitchedImagesArrayName(""),
-  m_StitchedImageArray(NULL),
-  m_StitchedAttributeMatrixName("Montage Attribute Matrix")
-
-
+  m_StitchedAttributeMatrixName("Montage Attribute Matrix"),
+  m_StitchedCoordinates(NULL),
+  m_StitchedImageArray(NULL)
 {
   setupFilterParameters();
 }
