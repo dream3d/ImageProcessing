@@ -197,7 +197,6 @@ void DetermineStitchingCoordinatesGeneric::preflight()
 // -----------------------------------------------------------------------------
 void DetermineStitchingCoordinatesGeneric::execute()
 {
-  int err = 0;
   dataCheck();
   if(getErrorCondition() < 0) { return; }
   setErrorCondition(0);

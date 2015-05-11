@@ -232,8 +232,6 @@ void StitchImages::execute()
 {
 
   int err = 0;
-  int xval = 0;
-  int yval = 0;
   // typically run your dataCheck function to make sure you can get that far and all your variables are initialized
   dataCheck();
   // Check to make sure you made it through the data check. Errors would have been reported already so if something
@@ -279,18 +277,6 @@ void StitchImages::execute()
 
   QVector<size_t> udims;
   udims = am->getTupleDimensions();
-
-#if (CMP_SIZEOF_SIZE_T == 4)
-  typedef int32_t DimType;
-#else
-  typedef int64_t DimType;
-#endif
-  DimType dims[3] =
-  {
-    static_cast<DimType>(udims[0]),
-    static_cast<DimType>(udims[1]),
-    static_cast<DimType>(udims[2]),
-  };
 
   for (size_t i = 0; i < names.size(); i++)
   {
