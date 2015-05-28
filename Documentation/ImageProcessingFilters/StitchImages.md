@@ -31,15 +31,11 @@ This filter stitches together images using the data array containing the stitche
 | Montage Attribute Matrix  | This attribute matrix contains the montaged data array created above. | 
 
 
-## Authors ##
 
-**Copyright:** 2015 BlueQuartz Software, LLC
 
-**Contact Info:** dream3d@bluequartz.net
+## License & Copyright ##
 
-**Version:** 1.0.0
-
-**License:**  See the License.txt file that came with DREAM3D.
+Please see the description file distributed with this plugin.
 
 ## DREAM3D Mailing Lists ##
 
