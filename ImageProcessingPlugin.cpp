@@ -41,9 +41,7 @@
 #include "DREAM3DLib/Common/FilterManager.h"
 #include "DREAM3DLib/Common/IFilterFactory.hpp"
 #include "DREAM3DLib/Common/FilterFactory.hpp"
-
-
-#include "ImageProcessing/moc_ImageProcessingPlugin.cpp"
+#include "ImageProcessing/ImageProcessingVersion.h"
 
 
 
@@ -58,13 +56,13 @@ namespace Detail
 //
 // -----------------------------------------------------------------------------
 ImageProcessingPlugin::ImageProcessingPlugin() :
-m_Version(DREAM3DLib::Version::Package()),
-m_CompatibilityVersion(DREAM3DLib::Version::Package()),
-m_Vendor(DREAM3D::BlueQuartz::VendorName),
-m_URL(DREAM3D::BlueQuartz::URL),
-m_Location(""),
-m_Copyright(DREAM3D::BlueQuartz::Copyright),
-m_Filters(QList<QString>()),
+  m_Version(ImageProcessing::Version::Package()),
+  m_CompatibilityVersion(ImageProcessing::Version::Package()),
+  m_Vendor("Open-Source"),
+  m_URL("http://www.github.com/dream3d/ImageProcessing"),
+  m_Location(""),
+  m_Copyright(DREAM3D::BlueQuartz::Copyright),
+  m_Filters(QList<QString>()),
   m_DidLoad(false)
 {
 
@@ -158,19 +156,19 @@ QString ImageProcessingPlugin::getCopyright()
 // -----------------------------------------------------------------------------
 QString ImageProcessingPlugin::getLicense()
 {
-	QFile licenseFile(":/ImageProcessing/ImageProcessingLicense.txt");
-	QFileInfo licenseFileInfo(licenseFile);
-	QString text = "<<--License was not read-->>";
+  QFile licenseFile(":/ImageProcessing/ImageProcessingLicense.txt");
+  QFileInfo licenseFileInfo(licenseFile);
+  QString text = "<<--License was not read-->>";
 
-	if (licenseFileInfo.exists())
-	{
-		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
-		{
-			QTextStream in(&licenseFile);
-			text = in.readAll();
-		}
-	}
-	return text;
+  if (licenseFileInfo.exists())
+  {
+    if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+      QTextStream in(&licenseFile);
+      text = in.readAll();
+    }
+  }
+  return text;
 }
 
 // -----------------------------------------------------------------------------
