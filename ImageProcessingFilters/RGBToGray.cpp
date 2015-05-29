@@ -134,9 +134,9 @@ class RGBToGrayPrivate
 // -----------------------------------------------------------------------------
 RGBToGray::RGBToGray() :
   AbstractFilter(),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArrayArrayPath("", "", ""),
   m_NewCellArrayName(""),
+  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {
