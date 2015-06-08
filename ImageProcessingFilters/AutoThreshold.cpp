@@ -120,7 +120,7 @@ void AutoThreshold::setupFilterParameters()
     choices.push_back("Triangle");
     choices.push_back("Yen");
     parameter->setChoices(choices);
-    parameter->setAdvanced(false);
+    parameter->setCategory(FilterParameter::Uncategorized);
     parameters.push_back(parameter);
   }
   parameters.push_back(FilterParameter::New("Slice at a Time", "Slice", FilterParameterWidgetType::BooleanWidget, getSlice(), FilterParameter::Uncategorized));
