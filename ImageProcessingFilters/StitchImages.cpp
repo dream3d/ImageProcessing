@@ -35,6 +35,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
@@ -78,11 +79,11 @@ StitchImages::~StitchImages()
 void StitchImages::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Required Information", "", FilterParameterWidgetType::SeparatorWidget, "", false));
+  parameters.push_back(SeparatorFilterParameter::New("Required Information", FilterParameter::Uncategorized));
   parameters.push_back(FilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::Uncategorized, ""));
   parameters.push_back(FilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getStitchedCoordinatesArrayPath(), FilterParameter::Uncategorized, ""));
   parameters.push_back(FilterParameter::New("Attribute Array Names", "AttributeArrayNamesPath", FilterParameterWidgetType::DataArraySelectionWidget, getAttributeArrayNamesPath(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Created Information", "", FilterParameterWidgetType::SeparatorWidget, "", false));
+  parameters.push_back(SeparatorFilterParameter::New("Created Information", FilterParameter::Uncategorized));
   parameters.push_back(FilterParameter::New("Stitched Volume Data Container", "StitchedVolumeDataContainerName", FilterParameterWidgetType::StringWidget, getStitchedVolumeDataContainerName(), FilterParameter::Uncategorized, ""));
   parameters.push_back(FilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", FilterParameterWidgetType::StringWidget, getStitchedAttributeMatrixName(), FilterParameter::Uncategorized, ""));
   parameters.push_back(FilterParameter::New("Montage Array Name", "StitchedImagesArrayName", FilterParameterWidgetType::StringWidget, getStitchedImagesArrayName(), FilterParameter::Uncategorized, ""));

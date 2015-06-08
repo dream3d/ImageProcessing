@@ -49,7 +49,7 @@ void DetermineStitchingCoordinatesGeneric::setupFilterParameters()
   parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, false));
   parameters.push_back(FilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getMetaDataAttributeMatrixName(), FilterParameter::Uncategorized, ""));
 
-  parameters.push_back(FilterParameter::New("Created Data Parameters", "", FilterParameterWidgetType::SeparatorWidget, "", true));
+  parameters.push_back(SeparatorFilterParameter::New("Created Data Parameters", FilterParameter::Uncategorized));
 
   parameters.push_back(FilterParameter::New("Stitched Attribute Matrix Name", "TileCalculatedInfoAttributeMatrixName", FilterParameterWidgetType::StringWidget, getTileCalculatedInfoAttributeMatrixName(), FilterParameter::Uncategorized, ""));
   parameters.push_back(FilterParameter::New("Stitched Coordinates Data Array", "StitchedCoordinatesArrayName", FilterParameterWidgetType::StringWidget, getStitchedCoordinatesArrayName(), FilterParameter::Uncategorized, ""));
