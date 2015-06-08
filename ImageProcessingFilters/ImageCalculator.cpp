@@ -85,7 +85,7 @@ ImageCalculator::~ImageCalculator()
 void ImageCalculator::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("First Array to Process", "SelectedCellArrayPath1", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath1(), false, ""));
+  parameters.push_back(FilterParameter::New("First Array to Process", "SelectedCellArrayPath1", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath1(), FilterParameter::Uncategorized, ""));
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
@@ -106,8 +106,8 @@ void ImageCalculator::setupFilterParameters()
     parameter->setChoices(choices);
     parameters.push_back(parameter);
   }
-  parameters.push_back(FilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath2(), false, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), false, ""));
+  parameters.push_back(FilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath2(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::Uncategorized, ""));
   setFilterParameters(parameters);
 }
 

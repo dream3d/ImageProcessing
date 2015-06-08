@@ -194,8 +194,8 @@ WriteImage::~WriteImage()
 void WriteImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array to Write", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), false, ""));
-  parameters.push_back(FileSystemFilterParameter::New("Output File Name", "OutputFileName", FilterParameterWidgetType::OutputFileWidget, getOutputFileName(), false, "", "*.tif", "TIFF"));
+  parameters.push_back(FilterParameter::New("Array to Write", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FileSystemFilterParameter::New("Output File Name", "OutputFileName", FilterParameterWidgetType::OutputFileWidget, getOutputFileName(), FilterParameter::Uncategorized, "", "*.tif", "TIFF"));
   setFilterParameters(parameters);
 }
 

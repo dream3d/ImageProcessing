@@ -74,15 +74,15 @@ HoughCircles::~HoughCircles()
 void HoughCircles::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), false, ""));
+  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, false));
 
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), false, ""));
-  parameters.push_back(FilterParameter::New("Minimum Radius", "MinRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), false));
-  parameters.push_back(FilterParameter::New("Maximum Radius", "MaxRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), false));
-  parameters.push_back(FilterParameter::New("Number of Circles", "NumberCircles", FilterParameterWidgetType::IntWidget, getNumberCircles(), false));
+  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Minimum Radius", "MinRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), FilterParameter::Uncategorized));
+  parameters.push_back(FilterParameter::New("Maximum Radius", "MaxRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), FilterParameter::Uncategorized));
+  parameters.push_back(FilterParameter::New("Number of Circles", "NumberCircles", FilterParameterWidgetType::IntWidget, getNumberCircles(), FilterParameter::Uncategorized));
   setFilterParameters(parameters);
 }
 

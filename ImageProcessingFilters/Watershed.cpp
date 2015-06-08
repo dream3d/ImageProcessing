@@ -73,10 +73,10 @@ Watershed::~Watershed()
 void Watershed::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Image Data Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), false, ""));
-  parameters.push_back(FilterParameter::New("Feature Ids Array", "FeatureIdsArrayName", FilterParameterWidgetType::StringWidget, getFeatureIdsArrayName(), false, ""));
-  parameters.push_back(FilterParameter::New("Threshold", "Threshold", FilterParameterWidgetType::DoubleWidget, getThreshold(), false));
-  parameters.push_back(FilterParameter::New("Level", "Level", FilterParameterWidgetType::DoubleWidget, getLevel(), false));
+  parameters.push_back(FilterParameter::New("Image Data Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Feature Ids Array", "FeatureIdsArrayName", FilterParameterWidgetType::StringWidget, getFeatureIdsArrayName(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Threshold", "Threshold", FilterParameterWidgetType::DoubleWidget, getThreshold(), FilterParameter::Uncategorized));
+  parameters.push_back(FilterParameter::New("Level", "Level", FilterParameterWidgetType::DoubleWidget, getLevel(), FilterParameter::Uncategorized));
   setFilterParameters(parameters);
 }
 
