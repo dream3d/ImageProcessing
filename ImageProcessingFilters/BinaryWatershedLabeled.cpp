@@ -48,9 +48,9 @@ BinaryWatershedLabeled::~BinaryWatershedLabeled()
 void BinaryWatershedLabeled::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Peak Noise Tolerance", "PeakTolerance", FilterParameterWidgetType::DoubleWidget, getPeakTolerance(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(FilterParameter::New("Peak Noise Tolerance", "PeakTolerance", FilterParameterWidgetType::DoubleWidget, getPeakTolerance(), FilterParameter::Parameter, ""));
+  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 

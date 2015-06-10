@@ -150,10 +150,10 @@ GrayToRGB::~GrayToRGB()
 void GrayToRGB::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Red Channel", "RedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getRedArrayPath(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Green Channel", "GreenArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getGreenArrayPath(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Blue Channel", "BlueArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getBlueArrayPath(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(FilterParameter::New("Red Channel", "RedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getRedArrayPath(), FilterParameter::Parameter, ""));
+  parameters.push_back(FilterParameter::New("Green Channel", "GreenArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getGreenArrayPath(), FilterParameter::Parameter, ""));
+  parameters.push_back(FilterParameter::New("Blue Channel", "BlueArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getBlueArrayPath(), FilterParameter::Parameter, ""));
+  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 
