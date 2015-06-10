@@ -15,10 +15,14 @@ START_FILTER_GROUP(${ImageProcessing_BINARY_DIR} "${_filterGroupName}" "ImagePro
 set(_PublicFilters
   #AlignSectionsPhaseCorrelation
   AutoThreshold
+  BinaryWatershedLabeled
   ConvertArrayTo8BitImage
   ConvertArrayTo8BitImageAttributeMatrix
+  DetermineStitchingCoordinatesGeneric
   DiscreteGaussianBlur
+  FindMaxima
   GaussianBlur
+  GrayToRGB
   HoughCircles
   ImageCalculator
   ImageMath
@@ -28,17 +32,13 @@ set(_PublicFilters
   MeanKernel
   MedianKernel
   MultiOtsuThreshold
-  SobelEdge
-  Watershed
-  WriteImage
-  ReadImage
   #RegionGrowing
   RGBToGray
-  GrayToRGB
-  FindMaxima
-  BinaryWatershedLabeled
-  DetermineStitchingCoordinatesGeneric
+  ReadImage
+  SobelEdge
   StitchImages
+  Watershed
+  WriteImage
 )
 
 
