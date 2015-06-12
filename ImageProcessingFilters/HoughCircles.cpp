@@ -74,15 +74,18 @@ HoughCircles::~HoughCircles()
 void HoughCircles::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::CreatedArray));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+
+  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
 
   parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   parameters.push_back(FilterParameter::New("Minimum Radius", "MinRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), FilterParameter::Parameter));
   parameters.push_back(FilterParameter::New("Maximum Radius", "MaxRadius", FilterParameterWidgetType::DoubleWidget, getMinRadius(), FilterParameter::Parameter));
   parameters.push_back(FilterParameter::New("Number of Circles", "NumberCircles", FilterParameterWidgetType::IntWidget, getNumberCircles(), FilterParameter::Parameter));
+
   setFilterParameters(parameters);
 }
 

@@ -87,6 +87,11 @@ ImageMath::~ImageMath()
 void ImageMath::setupFilterParameters()
 {
   FilterParameterVector parameters;
+
+  QStringList linkedProps;
+  linkedProps << "NewCellArrayName";
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+
   parameters.push_back(FilterParameter::New("Array to Operate On", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
@@ -111,10 +116,8 @@ void ImageMath::setupFilterParameters()
     parameters.push_back(parameter);
   }
   parameters.push_back(FilterParameter::New("Value", "Value", FilterParameterWidgetType::DoubleWidget, getValue(), FilterParameter::Parameter, ""));
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::CreatedArray));
   parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+
   setFilterParameters(parameters);
 }
 

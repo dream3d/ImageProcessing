@@ -44,10 +44,12 @@ DetermineStitchingCoordinatesGeneric::~DetermineStitchingCoordinatesGeneric()
 void DetermineStitchingCoordinatesGeneric::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Image Data Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
+
   QStringList linkedProps;
   linkedProps << "MetaDataAttributeMatrixName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::RequiredArray));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter));
+
+  parameters.push_back(FilterParameter::New("Image Data Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, ""));
 
 
