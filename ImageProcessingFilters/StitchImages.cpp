@@ -400,7 +400,7 @@ const QString StitchImages::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString StitchImages::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

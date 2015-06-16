@@ -227,7 +227,7 @@ const QString GaussianBlur::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString GaussianBlur::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

@@ -232,7 +232,7 @@ const QString RegionGrowing::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString RegionGrowing::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

@@ -301,7 +301,7 @@ const QString HoughCircles::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString HoughCircles::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

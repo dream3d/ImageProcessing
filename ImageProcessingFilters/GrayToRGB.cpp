@@ -357,7 +357,7 @@ const QString GrayToRGB::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString GrayToRGB::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

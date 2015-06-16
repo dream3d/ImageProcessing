@@ -389,7 +389,7 @@ const QString ImageMath::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ImageMath::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

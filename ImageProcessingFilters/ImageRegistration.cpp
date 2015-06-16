@@ -126,7 +126,7 @@ const QString ImageRegistration::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ImageRegistration::getGroupName()
 {
-  return "ImageProcessing";
+  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
 }
 
 // -----------------------------------------------------------------------------

@@ -601,7 +601,7 @@ const QString ReadImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ReadImage::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

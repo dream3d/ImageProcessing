@@ -324,7 +324,7 @@ const QString ConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImageAttributeMatrix::getGroupName()
-{ return "ImageProcessing"; }
+{ return ImageProcessingConstants::FilterGroups::ImageProcessingFilters; }
 
 
 // -----------------------------------------------------------------------------

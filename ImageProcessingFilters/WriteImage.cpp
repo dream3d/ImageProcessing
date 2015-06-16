@@ -398,7 +398,7 @@ const QString WriteImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString WriteImage::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

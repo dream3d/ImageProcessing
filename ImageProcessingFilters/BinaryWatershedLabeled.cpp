@@ -242,7 +242,7 @@ const QString BinaryWatershedLabeled::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString BinaryWatershedLabeled::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

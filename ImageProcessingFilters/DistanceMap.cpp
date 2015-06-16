@@ -328,7 +328,7 @@ const QString FindMaxima::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString FindMaxima::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

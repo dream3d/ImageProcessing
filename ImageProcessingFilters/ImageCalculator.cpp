@@ -382,7 +382,7 @@ const QString ImageCalculator::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ImageCalculator::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

@@ -57,6 +57,11 @@ namespace ImageProcessingConstants
   const QString ImageProcessingPluginDisplayName("ImageProcessingPlugin");
   const QString ImageProcessingBaseName("ImageProcessingPlugin");
 
+  namespace FilterGroups
+  {
+    const QString ImageProcessingFilters("Image Processing");
+  }
+
   //define pixels for dream3d variable types
   typedef int8_t Int8PixelType;
   typedef uint8_t UInt8PixelType;

@@ -418,7 +418,7 @@ const QString DetermineStitchingCoordinatesGeneric::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString DetermineStitchingCoordinatesGeneric::getGroupName()
 {
-  return "ImageProcessing";
+  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
 }
 
 // -----------------------------------------------------------------------------

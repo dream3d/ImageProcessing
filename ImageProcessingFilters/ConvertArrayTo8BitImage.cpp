@@ -280,7 +280,7 @@ const QString ConvertArrayTo8BitImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImage::getGroupName()
-{ return "ImageProcessing"; }
+{ return ImageProcessingConstants::FilterGroups::ImageProcessingFilters; }
 
 
 // -----------------------------------------------------------------------------

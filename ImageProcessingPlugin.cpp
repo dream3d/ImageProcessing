@@ -43,14 +43,7 @@
 #include "DREAM3DLib/Common/FilterFactory.hpp"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
-
-
-namespace Detail
-{
-  const QString ImageProcessingPluginFile("ImageProcessingPlugin");
-  const QString ImageProcessingPluginDisplayName("ImageProcessing");
-  const QString ImageProcessingPluginBaseName("ImageProcessingPlugin");
-}
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 // -----------------------------------------------------------------------------
 //
@@ -80,7 +73,7 @@ ImageProcessingPlugin::~ImageProcessingPlugin()
 // -----------------------------------------------------------------------------
 QString ImageProcessingPlugin::getPluginName()
 {
-  return (Detail::ImageProcessingPluginDisplayName);
+  return (ImageProcessingConstants::ImageProcessingPluginDisplayName);
 }
 
 // -----------------------------------------------------------------------------

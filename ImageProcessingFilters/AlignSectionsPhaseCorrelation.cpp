@@ -258,7 +258,7 @@ const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString AlignSectionsPhaseCorrelation::getGroupName()
 {
-  return "ImageProcessing";
+  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
 }
 
 // -----------------------------------------------------------------------------

@@ -293,7 +293,7 @@ const QString MultiOtsuThreshold::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString MultiOtsuThreshold::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

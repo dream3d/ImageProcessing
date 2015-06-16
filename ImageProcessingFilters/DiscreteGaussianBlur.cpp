@@ -232,7 +232,7 @@ const QString DiscreteGaussianBlur::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString DiscreteGaussianBlur::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

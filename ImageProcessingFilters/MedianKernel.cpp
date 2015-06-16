@@ -235,7 +235,7 @@ const QString MedianKernel::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString MedianKernel::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

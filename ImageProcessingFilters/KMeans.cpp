@@ -332,7 +332,7 @@ const QString KMeans::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString KMeans::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

@@ -231,7 +231,7 @@ const QString Watershed::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString Watershed::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

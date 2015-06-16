@@ -413,7 +413,7 @@ const QString ManualThresholdTemplate::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ManualThresholdTemplate::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

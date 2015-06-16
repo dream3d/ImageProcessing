@@ -236,7 +236,7 @@ const QString ManualThreshold::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ManualThreshold::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

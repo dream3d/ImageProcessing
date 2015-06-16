@@ -257,7 +257,7 @@ const QString MeanKernel::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString MeanKernel::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------

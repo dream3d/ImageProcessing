@@ -295,7 +295,7 @@ const QString SobelEdge::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString SobelEdge::getGroupName()
-{return "ImageProcessing";}
+{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
 
 
 // -----------------------------------------------------------------------------
