@@ -53,7 +53,6 @@ MultiOtsuThreshold::MultiOtsuThreshold() :
   m_SaveAsNewArray(true),
   m_Slice(false),
   m_Levels(1),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

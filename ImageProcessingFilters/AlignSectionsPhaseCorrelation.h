@@ -89,7 +89,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index);
 
   private:
-    DEFINE_REQUIRED_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
     void dataCheck();
 
     AlignSectionsPhaseCorrelation(const AlignSectionsPhaseCorrelation&); // Copy Constructor Not Implemented

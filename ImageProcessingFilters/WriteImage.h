@@ -167,7 +167,7 @@ class WriteImage : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
 
     WriteImage(const WriteImage&); // Copy Constructor Not Implemented
     void operator=(const WriteImage&); // Operator '=' Not Implemented

@@ -174,8 +174,8 @@ class HoughCircles : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     HoughCircles(const HoughCircles&); // Copy Constructor Not Implemented
     void operator=(const HoughCircles&); // Operator '=' Not Implemented

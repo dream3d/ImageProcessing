@@ -54,7 +54,6 @@ KMeans::KMeans() :
   m_SaveAsNewArray(true),
   m_Slice(false),
   m_Classes(2),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

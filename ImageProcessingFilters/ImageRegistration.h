@@ -159,8 +159,8 @@ class ImageRegistration : public AbstractFilter
 
   private:
     /* Your private class instance variables go here. You can use several preprocessor macros to help
-     * make sure you have all the variables defined correctly. Those are "DEFINE_REQUIRED_DATAARRAY_VARIABLE()"
-     * and  DEFINE_CREATED_DATAARRAY_VARIABLE() which are defined in DREAM3DGetSetMacros.h
+     * make sure you have all the variables defined correctly. Those are "DEFINE_DATAARRAY_VARIABLE()"
+     * and  DEFINE_DATAARRAY_VARIABLE() which are defined in DREAM3DGetSetMacros.h
      */
 
     ImageRegistration(const ImageRegistration&); // Copy Constructor Not Implemented

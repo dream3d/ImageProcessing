@@ -172,8 +172,8 @@ class MedianKernel : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     MedianKernel(const MedianKernel&); // Copy Constructor Not Implemented
     void operator=(const MedianKernel&); // Operator '=' Not Implemented

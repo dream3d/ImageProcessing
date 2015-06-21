@@ -174,9 +174,8 @@ class ManualThreshold : public AbstractFilter
     void dataCheck();
 
   private:
-
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     ManualThreshold(const ManualThreshold&); // Copy Constructor Not Implemented
     void operator=(const ManualThreshold&); // Operator '=' Not Implemented

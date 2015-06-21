@@ -52,7 +52,6 @@ GaussianBlur::GaussianBlur() :
   m_SelectedCellArrayPath("", "", ""),
   m_NewCellArrayName(""),
   m_SaveAsNewArray(true),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

@@ -178,8 +178,8 @@ class ManualThresholdTemplate : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_REQUIRED_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_CREATED_IDATAARRAY_VARIABLE(NewCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
 
     ManualThresholdTemplate(const ManualThresholdTemplate&); // Copy Constructor Not Implemented

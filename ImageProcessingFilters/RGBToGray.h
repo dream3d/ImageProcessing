@@ -176,8 +176,8 @@ class RGBToGray : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_REQUIRED_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_CREATED_IDATAARRAY_VARIABLE(NewCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
 
     RGBToGray(const RGBToGray&); // Copy Constructor Not Implemented

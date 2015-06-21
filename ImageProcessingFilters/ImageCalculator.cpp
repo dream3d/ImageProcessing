@@ -63,9 +63,7 @@ ImageCalculator::ImageCalculator() :
   m_SelectedCellArrayPath2("", "", ""),
   m_NewCellArrayName(""),
   m_Operator(0),
-  m_SelectedCellArray1ArrayName(""),
   m_SelectedCellArray1(NULL),
-  m_SelectedCellArray2ArrayName(""),
   m_SelectedCellArray2(NULL),
   m_NewCellArray(NULL)
 {

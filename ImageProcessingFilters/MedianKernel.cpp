@@ -51,7 +51,6 @@ MedianKernel::MedianKernel() :
   m_NewCellArrayName(""),
   m_SaveAsNewArray(true),
   m_Slice(false),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {
@@ -84,7 +83,7 @@ void MedianKernel::setupFilterParameters()
   parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
 
   parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
-  
+
   setFilterParameters(parameters);
 }
 

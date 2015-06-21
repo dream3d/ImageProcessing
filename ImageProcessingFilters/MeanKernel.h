@@ -174,8 +174,8 @@ class MeanKernel : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     MeanKernel(const MeanKernel&); // Copy Constructor Not Implemented
     void operator=(const MeanKernel&); // Operator '=' Not Implemented

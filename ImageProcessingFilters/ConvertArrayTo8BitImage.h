@@ -139,7 +139,7 @@ class ConvertArrayTo8BitImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_CREATED_DATAARRAY_VARIABLE(uint8_t, NewArray)
+    DEFINE_DATAARRAY_VARIABLE(uint8_t, NewArray)
 
     ConvertArrayTo8BitImage(const ConvertArrayTo8BitImage&); // Copy Constructor Not Implemented
     void operator=(const ConvertArrayTo8BitImage&); // Operator '=' Not Implemented

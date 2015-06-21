@@ -67,7 +67,6 @@ ImageMath::ImageMath() :
   m_SaveAsNewArray(true),
   m_Operator(0),
   m_Value(1),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

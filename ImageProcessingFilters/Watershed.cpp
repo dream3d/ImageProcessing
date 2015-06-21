@@ -53,7 +53,6 @@ Watershed::Watershed() :
   m_FeatureIdsArrayName(DREAM3D::CellData::FeatureIds),
   m_Threshold(0.005f),
   m_Level(0.5f),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_FeatureIds(NULL)
 {

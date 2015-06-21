@@ -172,9 +172,9 @@ class ImageCalculator : public AbstractFilter
 
   private:
 
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray1)
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray2)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray1)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray2)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     ImageCalculator(const ImageCalculator&); // Copy Constructor Not Implemented
     void operator=(const ImageCalculator&); // Operator '=' Not Implemented

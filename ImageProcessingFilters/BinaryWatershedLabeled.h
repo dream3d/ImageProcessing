@@ -170,8 +170,8 @@ class BinaryWatershedLabeled : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_REQUIRED_DATAARRAY_VARIABLE(bool, SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
+    DEFINE_DATAARRAY_VARIABLE(bool, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
 
     BinaryWatershedLabeled(const BinaryWatershedLabeled&); // Copy Constructor Not Implemented
     void operator=(const BinaryWatershedLabeled&); // Operator '=' Not Implemented

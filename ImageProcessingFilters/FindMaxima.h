@@ -175,8 +175,8 @@ class FindMaxima : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_REQUIRED_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_CREATED_DATAARRAY_VARIABLE(bool, NewCellArray)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(bool, NewCellArray)
 
     FindMaxima(const FindMaxima&); // Copy Constructor Not Implemented
     void operator=(const FindMaxima&); // Operator '=' Not Implemented

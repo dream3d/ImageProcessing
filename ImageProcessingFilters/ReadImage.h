@@ -179,7 +179,7 @@ class ReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_CREATED_IDATAARRAY_VARIABLE(ImageData)
+    DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
 
     ReadImage(const ReadImage&); // Copy Constructor Not Implemented

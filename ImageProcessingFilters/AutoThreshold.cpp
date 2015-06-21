@@ -76,7 +76,6 @@ AutoThreshold::AutoThreshold() :
   m_Slice(false),
   m_Method(7),
   m_ManualParameter(128),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

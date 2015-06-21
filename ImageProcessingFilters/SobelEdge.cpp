@@ -53,7 +53,6 @@ SobelEdge::SobelEdge() :
   m_NewCellArrayName(""),
   m_SaveAsNewArray(true),
   m_Slice(false),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {

@@ -137,7 +137,7 @@ class ConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_CREATED_DATAARRAY_VARIABLE(uint8_t, NewArray)
+    DEFINE_DATAARRAY_VARIABLE(uint8_t, NewArray)
 
     ConvertArrayTo8BitImageAttributeMatrix(const ConvertArrayTo8BitImageAttributeMatrix&); // Copy Constructor Not Implemented
     void operator=(const ConvertArrayTo8BitImageAttributeMatrix&); // Operator '=' Not Implemented

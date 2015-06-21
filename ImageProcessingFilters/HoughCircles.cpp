@@ -54,7 +54,6 @@ HoughCircles::HoughCircles() :
   m_MinRadius(0),
   m_MaxRadius(0),
   m_NumberCircles(0),
-  m_SelectedCellArrayArrayName(""),
   m_SelectedCellArray(NULL),
   m_NewCellArray(NULL)
 {
