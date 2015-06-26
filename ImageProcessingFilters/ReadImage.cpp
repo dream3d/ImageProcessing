@@ -179,7 +179,7 @@ class ReadImagePrivate
 ReadImage::ReadImage() :
   AbstractFilter(),
   m_InputFileName(""),
-  m_DataContainerName(DREAM3D::Defaults::DataContainerName),
+  m_DataContainerName(DREAM3D::Defaults::ImageDataContainerName),
   m_CellAttributeMatrixName(DREAM3D::Defaults::CellAttributeMatrixName),
   m_ImageDataArrayName(DREAM3D::CellData::ImageData),
   m_ImageData(NULL)
@@ -201,9 +201,10 @@ void ReadImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(FileSystemFilterParameter::New("Input File", "InputFileName", FilterParameterWidgetType::InputFileWidget, getInputFileName(), FilterParameter::Parameter, "", "*.tif *.jpeg *.png *.bmp", "Image"));
-  parameters.push_back(FilterParameter::New("DataContainer Name", "DataContainerName", FilterParameterWidgetType::StringWidget, getDataContainerName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("Cell AttributeMatrix Name", "CellAttributeMatrixName", FilterParameterWidgetType::StringWidget, getCellAttributeMatrixName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("ImageData Array Name", "ImageDataArrayName", FilterParameterWidgetType::StringWidget, getImageDataArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Data Container", "DataContainerName", FilterParameterWidgetType::StringWidget, getDataContainerName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", FilterParameterWidgetType::StringWidget, getCellAttributeMatrixName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Image Data", "ImageDataArrayName", FilterParameterWidgetType::StringWidget, getImageDataArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 

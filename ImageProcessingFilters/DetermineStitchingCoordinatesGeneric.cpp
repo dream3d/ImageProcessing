@@ -21,12 +21,12 @@
 // -----------------------------------------------------------------------------
 DetermineStitchingCoordinatesGeneric::DetermineStitchingCoordinatesGeneric() :
   AbstractFilter(),
-  m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
+  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellAttributeMatrixName, ""),
   m_UseZeissMetaData(false),
-  m_MetaDataAttributeMatrixName("Tile AttributeMatrix"),
-  m_TileCalculatedInfoAttributeMatrixName("Tile Info AttrMat"),
-  m_StitchedCoordinatesArrayName("Stitched Coordinates"),
-  m_StitchedArrayNames("Stitched Array Names")
+  m_MetaDataAttributeMatrixName("TileAttributeMatrix"),
+  m_TileCalculatedInfoAttributeMatrixName("TileInfoAttrMat"),
+  m_StitchedCoordinatesArrayName("StitchedCoordinates"),
+  m_StitchedArrayNames("StitchedArrayNames")
 {
   setupFilterParameters();
 }
@@ -48,14 +48,14 @@ void DetermineStitchingCoordinatesGeneric::setupFilterParameters()
   QStringList linkedProps;
   linkedProps << "MetaDataAttributeMatrixName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter));
-
-  parameters.push_back(FilterParameter::New("Image Data Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, ""));
 
-
-  parameters.push_back(FilterParameter::New("Stitched Attribute Matrix Name", "TileCalculatedInfoAttributeMatrixName", FilterParameterWidgetType::StringWidget, getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("Stitched Coordinates Data Array", "StitchedCoordinatesArrayName", FilterParameterWidgetType::StringWidget, getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("Stitched Coordinates Data Array Names", "StitchedArrayNames", FilterParameterWidgetType::StringWidget, getStitchedArrayNames(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", FilterParameterWidgetType::StringWidget, getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Stitched Coordinates", "StitchedCoordinatesArrayName", FilterParameterWidgetType::StringWidget, getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Stitched Coordinates Names", "StitchedArrayNames", FilterParameterWidgetType::StringWidget, getStitchedArrayNames(), FilterParameter::CreatedArray, ""));
 
   setFilterParameters(parameters);
 }

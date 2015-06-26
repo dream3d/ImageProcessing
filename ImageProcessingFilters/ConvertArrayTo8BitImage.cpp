@@ -69,8 +69,10 @@ ConvertArrayTo8BitImage::~ConvertArrayTo8BitImage()
 void ConvertArrayTo8BitImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array To Convert", "SelectedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedArrayPath(), FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewArrayArrayName", FilterParameterWidgetType::StringWidget, getNewArrayArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedArrayPath(), FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Converted Attribute Array", "NewArrayArrayName", FilterParameterWidgetType::StringWidget, getNewArrayArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 
@@ -294,5 +296,5 @@ const QString ConvertArrayTo8BitImage::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImage::getHumanLabel()
-{ return "Convert Array To 8 Bit Image"; }
+{ return "Convert Array to 8 Bit Image"; }
 

@@ -40,6 +40,7 @@
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 #include "ItkBridge.h"
 
@@ -74,11 +75,11 @@ void GaussianBlur::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
-
-  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
-
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Blurred Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
 
   setFilterParameters(parameters);
 }

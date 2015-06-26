@@ -50,6 +50,7 @@
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/ChoiceFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
@@ -83,7 +84,8 @@ ImageCalculator::~ImageCalculator()
 void ImageCalculator::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("First Array to Process", "SelectedCellArrayPath1", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath1(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath1(), FilterParameter::RequiredArray, ""));
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
@@ -106,7 +108,8 @@ void ImageCalculator::setupFilterParameters()
     parameters.push_back(parameter);
   }
   parameters.push_back(FilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath2(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Output Attribute Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 

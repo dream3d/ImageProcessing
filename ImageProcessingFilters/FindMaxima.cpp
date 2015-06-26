@@ -45,7 +45,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
@@ -141,9 +141,11 @@ FindMaxima::~FindMaxima()
 void FindMaxima::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FilterParameter::New("Noise Tolerance", "Tolerance", FilterParameterWidgetType::DoubleWidget, getTolerance(), FilterParameter::Parameter, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Output Attribute Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 

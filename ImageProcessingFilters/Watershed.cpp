@@ -38,7 +38,7 @@
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 #include "ItkBridge.h"
@@ -72,8 +72,10 @@ Watershed::~Watershed()
 void Watershed::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Image Data Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Feature Ids Array", "FeatureIdsArrayName", FilterParameterWidgetType::StringWidget, getFeatureIdsArrayName(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Image Data", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Feature Ids", "FeatureIdsArrayName", FilterParameterWidgetType::StringWidget, getFeatureIdsArrayName(), FilterParameter::CreatedArray, ""));
   parameters.push_back(FilterParameter::New("Threshold", "Threshold", FilterParameterWidgetType::DoubleWidget, getThreshold(), FilterParameter::Parameter));
   parameters.push_back(FilterParameter::New("Level", "Level", FilterParameterWidgetType::DoubleWidget, getLevel(), FilterParameter::Parameter));
   setFilterParameters(parameters);

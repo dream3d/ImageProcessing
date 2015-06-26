@@ -54,12 +54,12 @@
 // -----------------------------------------------------------------------------
 StitchImages::StitchImages() :
   AbstractFilter(),
-  m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
-  m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::DataContainerName, "", ""),
+  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
+  m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::ImageDataContainerName, "", ""),
   m_AttributeArrayNamesPath(),
-  m_StitchedVolumeDataContainerName("Montaged Volume DataContainer"),
-  m_StitchedImagesArrayName(""),
-  m_StitchedAttributeMatrixName("Montage Attribute Matrix"),
+  m_StitchedVolumeDataContainerName("MontagedImageDataContainer"),
+  m_StitchedImagesArrayName("Montage"),
+  m_StitchedAttributeMatrixName("MontageAttributeMatrix"),
   m_StitchedCoordinates(NULL),
   m_StitchedImageArray(NULL)
 {
@@ -79,12 +79,15 @@ StitchImages::~StitchImages()
 void StitchImages::setupFilterParameters()
 {
   FilterParameterVector parameters;
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   parameters.push_back(FilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Attribute Array Names", "AttributeArrayNamesPath", FilterParameterWidgetType::DataArraySelectionWidget, getAttributeArrayNamesPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Stitched Volume Data Container", "StitchedVolumeDataContainerName", FilterParameterWidgetType::StringWidget, getStitchedVolumeDataContainerName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", FilterParameterWidgetType::DataArraySelectionWidget, getAttributeArrayNamesPath(), FilterParameter::RequiredArray, ""));
+
+  parameters.push_back(FilterParameter::New("Stitched Image Data Container", "StitchedVolumeDataContainerName", FilterParameterWidgetType::StringWidget, getStitchedVolumeDataContainerName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(FilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", FilterParameterWidgetType::StringWidget, getStitchedAttributeMatrixName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("Montage Array Name", "StitchedImagesArrayName", FilterParameterWidgetType::StringWidget, getStitchedImagesArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(FilterParameter::New("Montage", "StitchedImagesArrayName", FilterParameterWidgetType::StringWidget, getStitchedImagesArrayName(), FilterParameter::CreatedArray, ""));
 
   setFilterParameters(parameters);
 }

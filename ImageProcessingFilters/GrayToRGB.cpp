@@ -39,7 +39,7 @@
 #include "DREAM3DLib/Common/TemplateHelpers.hpp"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 // ImageProcessing Plugin
@@ -150,10 +150,12 @@ GrayToRGB::~GrayToRGB()
 void GrayToRGB::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Red Channel", "RedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getRedArrayPath(), FilterParameter::Parameter, ""));
-  parameters.push_back(FilterParameter::New("Green Channel", "GreenArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getGreenArrayPath(), FilterParameter::Parameter, ""));
-  parameters.push_back(FilterParameter::New("Blue Channel", "BlueArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getBlueArrayPath(), FilterParameter::Parameter, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Red Channel", "RedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getRedArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(FilterParameter::New("Green Channel", "GreenArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getGreenArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(FilterParameter::New("Blue Channel", "BlueArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getBlueArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("RGB Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 
@@ -371,5 +373,5 @@ const QString GrayToRGB::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString GrayToRGB::getHumanLabel()
-{return "Gray to RGB (Merge Channels)";}
+{return "Convert Grayscale to RGB (Merge Channels)";}
 

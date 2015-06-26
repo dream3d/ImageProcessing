@@ -46,7 +46,7 @@
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/FileSystemFilterParameter.h"
-
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 #include "ImageProcessing/ImageProcessingFilters/ItkBridge.h"
 
@@ -193,7 +193,8 @@ WriteImage::~WriteImage()
 void WriteImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array to Write", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Color Data", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FileSystemFilterParameter::New("Output File Name", "OutputFileName", FilterParameterWidgetType::OutputFileWidget, getOutputFileName(), FilterParameter::Parameter, "", "*.tif", "TIFF"));
   setFilterParameters(parameters);
 }

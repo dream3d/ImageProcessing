@@ -14,6 +14,7 @@
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 
@@ -48,9 +49,11 @@ BinaryWatershedLabeled::~BinaryWatershedLabeled()
 void BinaryWatershedLabeled::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Attribute Array to Watershed", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
   parameters.push_back(FilterParameter::New("Peak Noise Tolerance", "PeakTolerance", FilterParameterWidgetType::DoubleWidget, getPeakTolerance(), FilterParameter::Parameter, ""));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+  parameters.push_back(FilterParameter::New("Watershed Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
   setFilterParameters(parameters);
 }
 

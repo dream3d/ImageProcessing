@@ -50,7 +50,7 @@
 ConvertArrayTo8BitImageAttributeMatrix::ConvertArrayTo8BitImageAttributeMatrix() :
   AbstractFilter(),
 //  m_SelectedArrayPath("", "", ""),
-  m_AttributeMatrixName(DREAM3D::Defaults::DataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
+  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellAttributeMatrixName, ""),
   m_NewArrayArrayName(""),
   m_NewArray(NULL)
 {
@@ -70,7 +70,8 @@ ConvertArrayTo8BitImageAttributeMatrix::~ConvertArrayTo8BitImageAttributeMatrix(
 void ConvertArrayTo8BitImageAttributeMatrix::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Attribute Matrix Name", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(FilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
   setFilterParameters(parameters);
 }
 
@@ -338,5 +339,5 @@ const QString ConvertArrayTo8BitImageAttributeMatrix::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImageAttributeMatrix::getHumanLabel()
-{ return "Convert Array To 8 Bit Image Attribute Matrix"; }
+{ return "Convert Array to 8 Bit Image Attribute Matrix"; }
 
