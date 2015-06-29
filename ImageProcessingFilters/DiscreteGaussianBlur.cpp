@@ -233,7 +233,7 @@ const QString DiscreteGaussianBlur::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString DiscreteGaussianBlur::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

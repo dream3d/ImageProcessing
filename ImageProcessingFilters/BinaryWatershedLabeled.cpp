@@ -245,7 +245,7 @@ const QString BinaryWatershedLabeled::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString BinaryWatershedLabeled::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

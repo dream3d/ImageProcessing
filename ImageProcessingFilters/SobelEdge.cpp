@@ -295,7 +295,7 @@ const QString SobelEdge::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString SobelEdge::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

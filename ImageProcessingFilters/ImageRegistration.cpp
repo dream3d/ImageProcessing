@@ -126,7 +126,7 @@ const QString ImageRegistration::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ImageRegistration::getGroupName()
 {
-  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
+  return DREAM3D::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

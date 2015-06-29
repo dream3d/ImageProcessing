@@ -602,7 +602,7 @@ const QString ReadImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ReadImage::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

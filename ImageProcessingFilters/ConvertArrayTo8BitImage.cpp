@@ -186,8 +186,8 @@ void scaleArray(IDataArray::Pointer inputData, uint8_t* newArray)
   for (size_t i = 0; i < numPoints; i++)
   {
     scaledValue = (inputArrayPtr[i] - min) / (max - min);
-    if(scaledValue < 0.0) scaledValue = 0.0f;
-    else if(scaledValue > 1.0f) scaledValue = 1.0f;
+    if(scaledValue < 0.0) { scaledValue = 0.0f; }
+    else if(scaledValue > 1.0f) { scaledValue = 1.0f; }
     scaledValue *= 255.0f;
     newArray[i] = static_cast<uint8_t>(scaledValue);
   }
@@ -282,7 +282,7 @@ const QString ConvertArrayTo8BitImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImage::getGroupName()
-{ return ImageProcessingConstants::FilterGroups::ImageProcessingFilters; }
+{ return DREAM3D::FilterGroups::Unsupported; }
 
 
 // -----------------------------------------------------------------------------

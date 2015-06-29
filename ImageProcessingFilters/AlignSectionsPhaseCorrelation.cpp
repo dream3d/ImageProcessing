@@ -167,7 +167,7 @@ AlignSectionsPhaseCorrelation::AlignSectionsPhaseCorrelation() :
   AlignSections(),
   m_SelectedCellArrayPath("", "", ""),
   m_SelectedCellArray(NULL)
-/* DO NOT FORGET TO INITIALIZE ALL YOUR DREAM3D Filter Parameters HERE */
+  /* DO NOT FORGET TO INITIALIZE ALL YOUR DREAM3D Filter Parameters HERE */
 {
   setupFilterParameters();
 }
@@ -258,7 +258,7 @@ const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString AlignSectionsPhaseCorrelation::getGroupName()
 {
-  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
+  return DREAM3D::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

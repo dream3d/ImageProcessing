@@ -235,7 +235,7 @@ const QString MedianKernel::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString MedianKernel::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

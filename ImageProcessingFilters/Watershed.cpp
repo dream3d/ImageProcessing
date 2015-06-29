@@ -232,7 +232,7 @@ const QString Watershed::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString Watershed::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

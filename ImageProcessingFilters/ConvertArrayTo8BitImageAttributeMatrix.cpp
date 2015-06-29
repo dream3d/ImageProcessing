@@ -123,26 +123,26 @@ void ConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 
     for(int i = 0; i < names.size(); i++)
     {
-        tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-        IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);
-        if (NULL == inputData.get())
+      tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
+      IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);
+      if (NULL == inputData.get())
+      {
+        QString ss = QObject::tr("Data array '%1' does not exist in the DataContainer. Was it spelled correctly?").arg(names[i]);
+        setErrorCondition(-11001);
+        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        return;
+      }
+      else
+      {
+        if(inputData->getNumberOfComponents() > 1)
         {
-          QString ss = QObject::tr("Data array '%1' does not exist in the DataContainer. Was it spelled correctly?").arg(names[i]);
-          setErrorCondition(-11001);
+          QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
+          setErrorCondition(-11002);
           notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
           return;
         }
-        else
-        {
-          if(inputData->getNumberOfComponents() > 1)
-          {
-            QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
-            setErrorCondition(-11002);
-            notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-            return;
-          }
 
-    }
+      }
     }
 
 
@@ -196,18 +196,19 @@ void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
     for (size_t i = 0; i < numPoints; i++)
     {
       scaledValue = inputArrayPtr[i];
-      if(scaledValue < 0.0) scaledValue = 0.0f;
-      else if(scaledValue > 1.0f) scaledValue = 1.0f;
+      if(scaledValue < 0.0) { scaledValue = 0.0f; }
+      else if(scaledValue > 1.0f) { scaledValue = 1.0f; }
       scaledValue *= 255.0f;
       newArray[i] = static_cast<uint8_t>(scaledValue);
     }
   }
-  else{
+  else
+  {
     for (size_t i = 0; i < numPoints; i++)
     {
       scaledValue = (inputArrayPtr[i] - min) / delta;
-      if(scaledValue < 0.0) scaledValue = 0.0f;
-      else if(scaledValue > 1.0f) scaledValue = 1.0f;
+      if(scaledValue < 0.0) { scaledValue = 0.0f; }
+      else if(scaledValue > 1.0f) { scaledValue = 1.0f; }
       scaledValue *= 255.0f;
       newArray[i] = static_cast<uint8_t>(scaledValue);
     }
@@ -232,64 +233,64 @@ void ConvertArrayTo8BitImageAttributeMatrix::execute()
   for(size_t i = 0; i < names.size(); i++)
   {
 
-      m_NewArrayArrayName = names[i] + "8bit";
-      tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), getNewArrayArrayName() );
-      m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-      if( NULL != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
-      { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
+    m_NewArrayArrayName = names[i] + "8bit";
+    tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), getNewArrayArrayName() );
+    m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+    if( NULL != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+    { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
-      IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);
+    IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);
 
 
-      QString dType = inputData->getTypeAsString();
-      IDataArray::Pointer p = IDataArray::NullPointer();
-      if (dType.compare("int8_t") == 0)
-      {
-        scaleArray2<int8_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("uint8_t") == 0)
-      {
-        scaleArray2<uint8_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("int16_t") == 0)
-      {
-        scaleArray2<int16_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("uint16_t") == 0)
-      {
-        scaleArray2<uint16_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("int32_t") == 0)
-      {
-        scaleArray2<int32_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("uint32_t") == 0)
-      {
-        scaleArray2<uint32_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("int64_t") == 0)
-      {
-        scaleArray2<int64_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("uint64_t") == 0)
-      {
-        scaleArray2<uint64_t>(inputData, m_NewArray);
-      }
-      else if (dType.compare("float") == 0)
-      {
-        scaleArray2<float>(inputData, m_NewArray);
-      }
-      else if (dType.compare("double") == 0)
-      {
-        scaleArray2<double>(inputData, m_NewArray);
-      }
+    QString dType = inputData->getTypeAsString();
+    IDataArray::Pointer p = IDataArray::NullPointer();
+    if (dType.compare("int8_t") == 0)
+    {
+      scaleArray2<int8_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("uint8_t") == 0)
+    {
+      scaleArray2<uint8_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("int16_t") == 0)
+    {
+      scaleArray2<int16_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("uint16_t") == 0)
+    {
+      scaleArray2<uint16_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("int32_t") == 0)
+    {
+      scaleArray2<int32_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("uint32_t") == 0)
+    {
+      scaleArray2<uint32_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("int64_t") == 0)
+    {
+      scaleArray2<int64_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("uint64_t") == 0)
+    {
+      scaleArray2<uint64_t>(inputData, m_NewArray);
+    }
+    else if (dType.compare("float") == 0)
+    {
+      scaleArray2<float>(inputData, m_NewArray);
+    }
+    else if (dType.compare("double") == 0)
+    {
+      scaleArray2<double>(inputData, m_NewArray);
+    }
 //      else if (dType.compare("bool") == 0)
 //      {
 //        scaleArray2<bool>(inputData, m_NewArray);
 //      }
 
-      am->removeAttributeArray(names[i]);
-      am->renameAttributeArray(names[i]+"8bit", names[i]);
+    am->removeAttributeArray(names[i]);
+    am->renameAttributeArray(names[i] + "8bit", names[i]);
 
 
   }
@@ -325,7 +326,7 @@ const QString ConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ConvertArrayTo8BitImageAttributeMatrix::getGroupName()
-{ return ImageProcessingConstants::FilterGroups::ImageProcessingFilters; }
+{ return DREAM3D::FilterGroups::Unsupported; }
 
 
 // -----------------------------------------------------------------------------

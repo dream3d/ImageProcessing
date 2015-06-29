@@ -293,7 +293,7 @@ const QString MultiOtsuThreshold::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString MultiOtsuThreshold::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

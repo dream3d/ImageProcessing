@@ -331,7 +331,7 @@ const QString KMeans::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString KMeans::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

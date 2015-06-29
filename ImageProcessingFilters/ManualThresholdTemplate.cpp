@@ -412,7 +412,7 @@ const QString ManualThresholdTemplate::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ManualThresholdTemplate::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

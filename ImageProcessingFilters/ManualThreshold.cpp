@@ -235,7 +235,7 @@ const QString ManualThreshold::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ManualThreshold::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

@@ -398,7 +398,7 @@ const QString WriteImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString WriteImage::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

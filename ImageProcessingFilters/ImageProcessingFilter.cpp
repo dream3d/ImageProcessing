@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------
 ImageProcessingFilter::ImageProcessingFilter() :
   AbstractFilter()
-/* DO NOT FORGET TO INITIALIZE ALL YOUR DREAM3D Filter Parameters HERE */
+  /* DO NOT FORGET TO INITIALIZE ALL YOUR DREAM3D Filter Parameters HERE */
 {
   setupFilterParameters();
 }
@@ -143,7 +143,7 @@ const QString ImageProcessingFilter::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ImageProcessingFilter::getGroupName()
 {
-  return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;
+  return DREAM3D::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

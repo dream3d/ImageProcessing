@@ -326,7 +326,7 @@ const QString FindMaxima::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString FindMaxima::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

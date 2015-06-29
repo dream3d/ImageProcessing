@@ -359,7 +359,7 @@ const QString GrayToRGB::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString GrayToRGB::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

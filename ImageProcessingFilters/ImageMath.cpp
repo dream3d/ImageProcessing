@@ -389,7 +389,7 @@ const QString ImageMath::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ImageMath::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

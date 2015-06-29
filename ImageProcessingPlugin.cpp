@@ -199,7 +199,7 @@ QMap<QString, QString> ImageProcessingPlugin::getThirdPartyLicenses()
 // -----------------------------------------------------------------------------
 bool ImageProcessingPlugin::getDidLoad()
 {
-    return m_DidLoad;
+  return m_DidLoad;
 }
 
 // -----------------------------------------------------------------------------
@@ -207,7 +207,7 @@ bool ImageProcessingPlugin::getDidLoad()
 // -----------------------------------------------------------------------------
 void ImageProcessingPlugin::setDidLoad(bool didLoad)
 {
-    m_DidLoad = didLoad;
+  m_DidLoad = didLoad;
 }
 
 // -----------------------------------------------------------------------------

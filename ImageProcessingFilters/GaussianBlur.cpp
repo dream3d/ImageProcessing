@@ -227,7 +227,7 @@ const QString GaussianBlur::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString GaussianBlur::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

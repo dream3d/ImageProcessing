@@ -120,7 +120,7 @@ int StitchImages::writeFilterParameters(AbstractFilterParametersWriter* writer, 
   DREAM3D_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
   DREAM3D_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
   DREAM3D_FILTER_WRITE_PARAMETER(AttributeArrayNamesPath)
-      writer->closeFilterGroup();
+  writer->closeFilterGroup();
   return ++index;
 }
 
@@ -199,7 +199,7 @@ void StitchImages::dataCheck()
   QVector<size_t> tDims(1, 0);
 
   AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::Cell);
-  if(getErrorCondition() < 0){ return; }
+  if(getErrorCondition() < 0) { return; }
   dims[0] = 1;
 
 
@@ -280,11 +280,11 @@ void StitchImages::execute()
 
   for (size_t i = 0; i < names.size(); i++)
   {
-    value = m_StitchedCoordinates[2*i];
+    value = m_StitchedCoordinates[2 * i];
     if(value > maxx) { maxx = value; }
     if(value < minx) { minx = value; }
 
-    value = m_StitchedCoordinates[2*i+1];
+    value = m_StitchedCoordinates[2 * i + 1];
     if(value > maxy) { maxy = value; }
     if(value < miny) { miny = value; }
   }
@@ -328,7 +328,7 @@ void StitchImages::execute()
   m2->getAttributeMatrix(getStitchedAttributeMatrixName())->resizeAttributeArrays(tDims);
   m2->getGeometryAs<ImageGeom>()->setDimensions(tDims[0], tDims[1], tDims[2]);
 
-  QVector<size_t> cDims(1,1);
+  QVector<size_t> cDims(1, 1);
 
   // run through all the data containers (images)
   for(size_t i = 0; i < names.size(); i++)
@@ -345,8 +345,8 @@ void StitchImages::execute()
       ImageProcessingConstants::UInt8ImageType* currentImage = importFilter->GetOutput();
 
 
-      destinationIndex[0] = m_StitchedCoordinates[2*i] + abs(int(minx));
-      destinationIndex[1] = m_StitchedCoordinates[2*i + 1] + abs(int(miny));;
+      destinationIndex[0] = m_StitchedCoordinates[2 * i] + abs(int(minx));
+      destinationIndex[1] = m_StitchedCoordinates[2 * i + 1] + abs(int(miny));;
       destinationIndex[2] = 0;
 
       pasteFilter->InPlaceOn();
@@ -403,7 +403,7 @@ const QString StitchImages::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString StitchImages::getGroupName()
-{return ImageProcessingConstants::FilterGroups::ImageProcessingFilters;}
+{return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
