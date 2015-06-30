@@ -38,6 +38,9 @@
 
 #include "DREAM3DLib/Common/TemplateHelpers.hpp"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
@@ -151,11 +154,11 @@ void GrayToRGB::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Red Channel", "RedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getRedArrayPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Green Channel", "GreenArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getGreenArrayPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Blue Channel", "BlueArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getBlueArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Red Channel", "RedArrayPath", getRedArrayPath(), FilterParameter::RequiredArray));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Green Channel", "GreenArrayPath", getGreenArrayPath(), FilterParameter::RequiredArray));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Blue Channel", "BlueArrayPath", getBlueArrayPath(), FilterParameter::RequiredArray));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("RGB Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("RGB Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);
 }
 

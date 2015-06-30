@@ -35,6 +35,9 @@
 
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/IntFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
@@ -74,14 +77,14 @@ void ManualThreshold::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(FilterParameter::New("Threshold Value", "ManualParameter", FilterParameterWidgetType::IntWidget, getManualParameter(), FilterParameter::Parameter, ""));
+  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Parameter));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Attribute Array to Threshold", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Threshold", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Threshold Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Threshold Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
 
   setFilterParameters(parameters);
 }

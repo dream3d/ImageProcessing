@@ -45,8 +45,11 @@
 
 #include "DREAM3DLib/Common/TemplateHelpers.hpp"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+
+#include "DREAM3DLib/FilterParameters/InputFileFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/FileSystemFilterParameter.h"
+
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
 
@@ -200,11 +203,11 @@ ReadImage::~ReadImage()
 void ReadImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FileSystemFilterParameter::New("Input File", "InputFileName", FilterParameterWidgetType::InputFileWidget, getInputFileName(), FilterParameter::Parameter, "", "*.tif *.jpeg *.png *.bmp", "Image"));
-  parameters.push_back(FilterParameter::New("Data Container", "DataContainerName", FilterParameterWidgetType::StringWidget, getDataContainerName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(InputFileFilterParameter::New("Input File", "InputFileName", getInputFileName(), FilterParameter::Parameter, "*.tif *.jpeg *.png *.bmp", "Image"));
+  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", FilterParameterWidgetType::StringWidget, getCellAttributeMatrixName(), FilterParameter::CreatedArray, ""));
-  parameters.push_back(FilterParameter::New("Image Data", "ImageDataArrayName", FilterParameterWidgetType::StringWidget, getImageDataArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Image Data", "ImageDataArrayName", getImageDataArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);
 }
 

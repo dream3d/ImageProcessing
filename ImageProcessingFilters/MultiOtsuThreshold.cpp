@@ -36,6 +36,10 @@
 #include <QtCore/QString>
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/BooleanFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/IntFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
@@ -74,15 +78,15 @@ void MultiOtsuThreshold::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(FilterParameter::New("Slice at a Time", "Slice", FilterParameterWidgetType::BooleanWidget, getSlice(), FilterParameter::Parameter));
-  parameters.push_back(FilterParameter::New("Number of Levels", "Levels", FilterParameterWidgetType::IntWidget, getLevels(), FilterParameter::Parameter, ""));
+  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter));
+  parameters.push_back(IntFilterParameter::New("Number of Levels", "Levels", getLevels(), FilterParameter::Parameter));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Output Attribute Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
 
   setFilterParameters(parameters);
 }

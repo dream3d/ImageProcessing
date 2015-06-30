@@ -39,6 +39,7 @@
 
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
@@ -71,7 +72,7 @@ void ConvertArrayTo8BitImageAttributeMatrix::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", FilterParameterWidgetType::AttributeMatrixSelectionWidget, getAttributeMatrixName(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray));
   setFilterParameters(parameters);
 }
 

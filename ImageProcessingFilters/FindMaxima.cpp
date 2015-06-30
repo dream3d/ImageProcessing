@@ -44,6 +44,9 @@
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/DoubleFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
@@ -142,10 +145,10 @@ void FindMaxima::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
-  parameters.push_back(FilterParameter::New("Noise Tolerance", "Tolerance", FilterParameterWidgetType::DoubleWidget, getTolerance(), FilterParameter::Parameter, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray));
+  parameters.push_back(DoubleFilterParameter::New("Noise Tolerance", "Tolerance", getTolerance(), FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Output Attribute Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);
 }
 

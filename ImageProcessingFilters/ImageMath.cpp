@@ -50,6 +50,9 @@
 
 
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/DoubleFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/ChoiceFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
@@ -91,12 +94,12 @@ void ImageMath::setupFilterParameters()
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::RequiredArray, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray));
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
     parameter->setPropertyName("Operator");
-    parameter->setWidgetType(FilterParameterWidgetType::ChoiceWidget);
+    
     QVector<QString> choices;
     choices.push_back("Add");
     choices.push_back("Subtract");
@@ -114,9 +117,9 @@ void ImageMath::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(FilterParameter::New("Value", "Value", FilterParameterWidgetType::DoubleWidget, getValue(), FilterParameter::Parameter, ""));
+  parameters.push_back(DoubleFilterParameter::New("Value", "Value", getValue(), FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Output Attribute Array", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
 
   setFilterParameters(parameters);
 }

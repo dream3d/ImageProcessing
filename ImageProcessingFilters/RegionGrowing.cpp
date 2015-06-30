@@ -71,12 +71,12 @@ RegionGrowing::~RegionGrowing()
 void RegionGrowing::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Array to Process", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Uncategorized));
-  parameters.push_back(FilterParameter::New("Created Array Name", "NewCellArrayName", FilterParameterWidgetType::StringWidget, getNewCellArrayName(), FilterParameter::Uncategorized, ""));
-  parameters.push_back(FilterParameter::New("Threshold Value", "ManualParameter", FilterParameterWidgetType::IntWidget, getManualParameter(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized));
+  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Uncategorized));
   setFilterParameters(parameters);
 }
 

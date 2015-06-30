@@ -185,7 +185,7 @@ AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation()
 void AlignSectionsPhaseCorrelation::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(FilterParameter::New("Input Array", "SelectedCellArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedCellArrayPath(), FilterParameter::Uncategorized, ""));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized));
   setFilterParameters(parameters);
 }
 

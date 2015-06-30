@@ -39,6 +39,8 @@
 
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
@@ -70,9 +72,9 @@ void ConvertArrayTo8BitImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(FilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", FilterParameterWidgetType::DataArraySelectionWidget, getSelectedArrayPath(), FilterParameter::RequiredArray));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", getSelectedArrayPath(), FilterParameter::RequiredArray));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(FilterParameter::New("Converted Attribute Array", "NewArrayArrayName", FilterParameterWidgetType::StringWidget, getNewArrayArrayName(), FilterParameter::CreatedArray, ""));
+  parameters.push_back(StringFilterParameter::New("Converted Attribute Array", "NewArrayArrayName", getNewArrayArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);
 }
 
