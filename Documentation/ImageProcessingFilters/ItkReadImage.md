@@ -1,4 +1,4 @@
-Read Image {#readimage}
+Read Image {#itkreadimage}
 =====
 
 ## Group (Subgroup) ##

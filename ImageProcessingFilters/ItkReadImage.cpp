@@ -31,17 +31,9 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#include "ReadImage.h"
+#include "ItkReadImage.h"
 
 #include <string>
-
-//image reading
-#include "itkImageIOBase.h"
-#include "itkImageIOFactory.h"
-#include "itkImageFileReader.h"
-#include "itkRGBPixel.h"
-#include "itkRGBAPixel.h"
-#include "itkVectorImage.h"
 
 #include "DREAM3DLib/Common/TemplateHelpers.hpp"
 #include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
@@ -52,134 +44,12 @@
 
 #include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
 
-
-// ImageProcessing Plugin
-#include "ItkBridge.h"
-
-/**
- * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
- * for us like figuring out if we can use this private implementation with the data array that is assigned.
- */
-template<typename PixelType>
-class ReadImagePrivate
-{
-  public:
-    typedef DataArray<PixelType> DataArrayType;
-
-    ReadImagePrivate() {}
-    virtual ~ReadImagePrivate() {}
-
-    // -----------------------------------------------------------------------------
-    // Determine if this is the proper type of an array to downcast from the IDataArray
-    // -----------------------------------------------------------------------------
-    bool operator()(IDataArray::Pointer p)
-    {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
-    }
-
-    // -----------------------------------------------------------------------------
-    // This is the actual templated algorithm
-    // -----------------------------------------------------------------------------
-    void static Execute(ReadImage* filter, QString inputFile, IDataArray::Pointer outputIDataArray, DataContainer::Pointer m, QString attrMatName)
-    {
-      typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
-
-      //convert arrays to correct type
-      PixelType* outputData = static_cast<PixelType*>(outputDataPtr->getPointer(0));
-      size_t numVoxels = outputDataPtr->getNumberOfTuples();
-
-      //read image meta data and get pixel type
-      itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(inputFile.toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
-      imageIO->SetFileName(inputFile.toLocal8Bit().data());
-      imageIO->ReadImageInformation();
-      itk::ImageIOBase::IOPixelType pixelType = imageIO->GetPixelType();
-
-      itk::ProcessObject::Pointer readerObject;
-
-      //read based on pixel type
-      switch(pixelType)
-      {
-        case itk::ImageIOBase::SCALAR:
-        {
-          typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;
-          typedef itk::ImageFileReader<ImageType> ReaderType;
-          typename ReaderType::Pointer reader = ReaderType::New();
-          reader->SetFileName(inputFile.toLocal8Bit().constData());
-          reader->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
-          readerObject = reader;
-        }
-        break;
-
-        case itk::ImageIOBase::RGB:
-        {
-          typedef itk::Image<itk::RGBPixel<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
-          typedef itk::ImageFileReader<ImageType> ReaderType;
-          typename ReaderType::Pointer reader = ReaderType::New();
-          reader->SetFileName(inputFile.toLocal8Bit().constData());
-          reader->GetOutput()->GetPixelContainer()->SetImportPointer(reinterpret_cast<itk::RGBPixel<PixelType>*>(outputData), numVoxels, false);
-          readerObject = reader;
-        }
-        break;
-
-        case itk::ImageIOBase::RGBA:
-        {
-          typedef itk::Image<itk::RGBAPixel<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
-          typedef itk::ImageFileReader<ImageType> ReaderType;
-          typename ReaderType::Pointer reader = ReaderType::New();
-          reader->SetFileName(inputFile.toLocal8Bit().constData());
-          reader->GetOutput()->GetPixelContainer()->SetImportPointer(reinterpret_cast<itk::RGBAPixel<PixelType>*>(outputData), numVoxels, false);
-          readerObject = reader;
-        }
-        break;
-        /**
-        case itk::ImageIOBase::FIXEDARRAY:
-          {
-            typedef itk::VectorImage<PixelType>, ImageProcessingConstants::ImageDimension> ImageType;
-            typedef itk::ImageFileReader<ImageType> ReaderType;
-            typename ReaderType::Pointer reader = ReaderType::New();
-            reader->SetFileName(inputFile.toLocal8Bit().constData());
-            reader->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
-            readerObject=reader;
-          }break;
-          */
-        case itk::ImageIOBase::UNKNOWNPIXELTYPE:
-        case itk::ImageIOBase::OFFSET:
-        case itk::ImageIOBase::VECTOR:
-        case itk::ImageIOBase::POINT:
-        case itk::ImageIOBase::COVARIANTVECTOR:
-        case itk::ImageIOBase::SYMMETRICSECONDRANKTENSOR:
-        case itk::ImageIOBase::DIFFUSIONTENSOR3D:
-        case itk::ImageIOBase::COMPLEX:
-        case itk::ImageIOBase::FIXEDARRAY:
-        case itk::ImageIOBase::MATRIX:
-          break;
-        default:
-          filter->setErrorCondition(-2);
-          QString message = QObject::tr("Unable to read image '%1'").arg(filter->getInputFileName());
-          filter->notifyErrorMessage(filter->getHumanLabel(), message, filter->getErrorCondition());
-          outputIDataArray->resize(0);
-      }
-
-      try
-      {
-        readerObject->Update();
-      }
-      catch( itk::ExceptionObject& err )
-      {
-        filter->setErrorCondition(-5);
-        QString ss = QObject::tr("Failed to read image '%1': %2").arg(inputFile).arg(err.GetDescription());
-        filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
-      }
-    }
-  private:
-    ReadImagePrivate(const ReadImagePrivate&); // Copy Constructor Not Implemented
-    void operator=(const ReadImagePrivate&); // Operator '=' Not Implemented
-};
+#include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ReadImage::ReadImage() :
+ItkReadImage::ItkReadImage() :
   AbstractFilter(),
   m_InputFileName(""),
   m_DataContainerName(DREAM3D::Defaults::ImageDataContainerName),
@@ -193,14 +63,14 @@ ReadImage::ReadImage() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ReadImage::~ReadImage()
+ItkReadImage::~ItkReadImage()
 {
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ReadImage::setupFilterParameters()
+void ItkReadImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(InputFileFilterParameter::New("Input File", "InputFileName", getInputFileName(), FilterParameter::Parameter, "*.tif *.jpeg *.png *.bmp", "Image"));
@@ -214,7 +84,7 @@ void ReadImage::setupFilterParameters()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ReadImage::readFilterParameters(AbstractFilterParametersReader* reader, int index)
+void ItkReadImage::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
   setInputFileName( reader->readString( "InputFileName", getInputFileName() ) );
@@ -227,7 +97,7 @@ void ReadImage::readFilterParameters(AbstractFilterParametersReader* reader, int
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ReadImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
+int ItkReadImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
   DREAM3D_FILTER_WRITE_PARAMETER(InputFileName)
@@ -241,7 +111,7 @@ int ReadImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ReadImage::dataCheck()
+void ItkReadImage::dataCheck()
 {
   setErrorCondition(0);
 
@@ -486,7 +356,7 @@ void ReadImage::dataCheck()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ReadImage::preflight()
+void ItkReadImage::preflight()
 {
   // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
   setInPreflight(true); // Set the fact that we are preflighting.
@@ -500,7 +370,7 @@ void ReadImage::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ReadImage::execute()
+void ItkReadImage::execute()
 {
   QString ss;
   dataCheck();
@@ -525,45 +395,45 @@ void ReadImage::execute()
   // we can work on the correct type and actually handling the algorithm execution. We pass in "this" so
   // that the private implementation can get access to the current object to pass up status notifications,
   // progress or handle "cancel" if needed.
-  if(ReadImagePrivate<int8_t>()(imageData))
+  if(ItkReadImagePrivate<int8_t, AbstractFilter>()(imageData))
   {
-    ReadImagePrivate<int8_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<int8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<uint8_t>()(imageData) )
+  else if(ItkReadImagePrivate<uint8_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<uint8_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<uint8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<int16_t>()(imageData) )
+  else if(ItkReadImagePrivate<int16_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<int16_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<int16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<uint16_t>()(imageData) )
+  else if(ItkReadImagePrivate<uint16_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<uint16_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<uint16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<int32_t>()(imageData) )
+  else if(ItkReadImagePrivate<int32_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<int32_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<int32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<uint32_t>()(imageData) )
+  else if(ItkReadImagePrivate<uint32_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<uint32_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<uint32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<int64_t>()(imageData) )
+  else if(ItkReadImagePrivate<int64_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<int64_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<int64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<uint64_t>()(imageData) )
+  else if(ItkReadImagePrivate<uint64_t, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<uint64_t>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<uint64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<float>()(imageData) )
+  else if(ItkReadImagePrivate<float, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<float>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<float, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
-  else if(ReadImagePrivate<double>()(imageData) )
+  else if(ItkReadImagePrivate<double, AbstractFilter>()(imageData) )
   {
-    ReadImagePrivate<double>::Execute(this, getInputFileName(), imageData, m, getCellAttributeMatrixName());
+    ItkReadImagePrivate<double, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
   else
   {
@@ -583,9 +453,9 @@ void ReadImage::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ReadImage::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkReadImage::newFilterInstance(bool copyFilterParameters)
 {
-  ReadImage::Pointer filter = ReadImage::New();
+  ItkReadImage::Pointer filter = ItkReadImage::New();
   if(true == copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
@@ -597,27 +467,27 @@ AbstractFilter::Pointer ReadImage::newFilterInstance(bool copyFilterParameters)
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ReadImage::getCompiledLibraryName()
+const QString ItkReadImage::getCompiledLibraryName()
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ReadImage::getGroupName()
+const QString ItkReadImage::getGroupName()
 {return DREAM3D::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ReadImage::getSubGroupName()
+const QString ItkReadImage::getSubGroupName()
 {return "IO";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ReadImage::getHumanLabel()
-{return "Read Image";}
+const QString ItkReadImage::getHumanLabel()
+{return "ITK - Read Image";}
 

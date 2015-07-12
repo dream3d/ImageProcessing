@@ -26,6 +26,7 @@ set(_PublicFilters
   HoughCircles
   ImageCalculator
   ImageMath
+  ItkImportImageStack
   #ImageRegistration
   KMeans
   ManualThreshold
@@ -34,7 +35,7 @@ set(_PublicFilters
   MultiOtsuThreshold
   #RegionGrowing
   RGBToGray
-  ReadImage
+  ItkReadImage
   SobelEdge
   StitchImages
   Watershed
@@ -68,6 +69,7 @@ foreach(f ${_PrivateFilters} )
 endforeach()
 
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkBridge.h)
+ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkReadImageImpl.hpp)
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} TemplateUtilities.h)
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.h)
 ADD_DREAM3D_SUPPORT_SOURCE(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.cpp)

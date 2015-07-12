@@ -32,8 +32,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ReadImage_H_
-#define _ReadImage_H_
+#ifndef _ItkReadImage_H_
+#define _ItkReadImage_H_
 
 //#include <vector>
 #include <QtCore/QString>
@@ -51,22 +51,22 @@
 
 
 /**
- * @class ReadImage ReadImage.h ImageProcessing/ImageProcessingFilters/ReadImage.h
+ * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ReadImage : public AbstractFilter
+class ItkReadImage : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkReadImage)
+    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
+    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
 
-    virtual ~ReadImage();
+    virtual ~ItkReadImage();
 
     DREAM3D_FILTER_PARAMETER(QString, InputFileName)
     Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
@@ -145,7 +145,7 @@ class ReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ReadImage::template_execute();
+//virtual void ItkReadImage::template_execute();
 
   signals:
     /**
@@ -171,7 +171,7 @@ class ReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ReadImage();
+    ItkReadImage();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -182,8 +182,8 @@ class ReadImage : public AbstractFilter
     DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
 
-    ReadImage(const ReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ReadImage&); // Operator '=' Not Implemented
+    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
+    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
 };
 
-#endif /* _ReadImage_H_ */
+#endif /* _ItkReadImage_H_ */
