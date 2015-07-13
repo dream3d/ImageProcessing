@@ -1,19 +1,40 @@
-Itk Import Images (3D Stack) {#itkimportimagestack}
+Itk - Import Images (3D Stack) {#itkimportimagestack}
 =============
 
 ## Group (Subgroup) ##
 IO (Input)
 
 ## Description ##
-This **Filter** is used to import a stack of 2D images that represent a 3D volume.  This **Filter** makes use of Qt's [QImage](http://doc.qt.io/qt-4.8/qimage.html) class to perform the import, although not all [QImage formats](http://doc.qt.io/qt-4.8/qimage.html#Format-enum) are currently supported by this **Filter**. Currently, support only exists for 8 bit grayscale, 32 bit RGB, and 32 bit ARGB images. Note that due to limitations of the Xdmf wrapper, 4 component ARGB images cannot be visualized using ParaView. The only current way to solve this issue is to import the image data and then apply the [Flatten Image](flattenimage.html) **Filter**, which will convert the color data to gray scale data. The image can then be visualized in ParaView using the Xdmf wrapper.
+This **Filter** is used to import a stack of 2D images that represent a 3D volume.  This **Filter** makes use of ITK's classes to perform the import. In theory the filter should be able to import any type of image supported by ITK. Due to the nature of file systems and the strict lexicographical sorting of most file system APIs the user needs to enter parameters that will allow DREAM.3D to actually generate the file names and *then* check if those files actually exist. This approach guarantees that the images will be ordered correctly in the Z Direction within the 3D array.
+
+### Visualization Notes ###
+
+Note that due to limitations of the Xdmf wrapper, 4 component ARGB images cannot be visualized using ParaView. The only current way to solve this issue is to import the image data and then apply the [Flatten Image](flattenimage.html) **Filter**, which will convert the color data to gray scale data. The image can then be visualized in ParaView using the Xdmf wrapper.
 
 ## Importing a Stack of Images ##
 This **Filter** will import a directory of sequentially numbered image files into the DREAM.3D data structure, creating a **Data Container**, **Cell Attribute Matrix**, and **Attribute Array** in the process, which the user may name. The user selects the directory that contains all the files to be imported then uses the additional input widgets on the **Filter** interface (_File Prefix_, _File Suffix_, _File Extension_, and _Padding Digits_) to make adjustments to the generated file name until the correct number of files is found. The user may also select starting and ending indices to import. The user interface indicates through red and green icons if an expected file exists on the file system. This **Filter** may also be used to import single images in addition to stacks of images.  The user may also enter the origin and resolution of the imported images, if known.
 
 -----
 
-![Import Image Stack User Interface](ImportImageStackGUI.png)
+![Import Image Stack User Interface](ItkImportImageStackGUI.png)
 @image latex ImportImageStackGUI.png "Import Image Stack User Interface" width=6in
+
+
+## Example Stack Import ##
+
+
+	MNML-3_200x_769-Raw_p09_Aligned.tif	MNML-3_200x_770-Raw_p09_Aligned.tif	MNML-3_200x_771-Raw_p09_Aligned.tif	MNML-3_200x_772-Raw_p09_Aligned.tif	MNML-3_200x_773-Raw_p09_Aligned.tif	MNML-3_200x_774-Raw_p09_Aligned.tif	MNML-3_200x_775-Raw_p09_Aligned.tif	MNML-3_200x_776-Raw_p09_Aligned.tif	MNML-3_200x_777-Raw_p09_Aligned.tif	MNML-3_200x_778-Raw_p09_Aligned.tif	MNML-3_200x_779-Raw_p09_Aligned.tif	MNML-3_200x_780-Raw_p09_Aligned.tif
+
+| Parameter | Value |
+|---------------|---------|
+| File Prefix | MNML-3_200x_ |
+| File Suffix | -Raw_p09_Aligned |
+| File Extension | tif |
+| Start Index | 769 |
+| End Index | 780 |
+| Padding Digits | 3 |
+
+
 
 -----
 

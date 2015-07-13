@@ -324,6 +324,34 @@ void ItkImportImageStack::preflight()
   setInPreflight(false);
 }
 
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+template<typename T, typename AbstractFilter>
+void copySingleImageIntoStack(AbstractFilter* filter, IDataArray::Pointer output3DStack, const QString& imageFName, size_t width, size_t height, size_t targetSlice)
+{
+  typedef DataArray<T> DataArrayType;
+  // Downcast the "3D" array that holds the final data array
+  typename DataArrayType::Pointer imageStack = boost::dynamic_pointer_cast<DataArrayType>(output3DStack);
+
+  size_t planeVoxels = height * width;
+  // Create a new "2D" array to hold the single slice of image data
+  typename DataArrayType::Pointer fileImage = DataArrayType::CreateArray(planeVoxels, imageStack->getComponentDimensions(), "temp_image_data");
+
+  // Read the image from the file system. The functio
+  ItkReadImagePrivate<T, AbstractFilter>::Execute(filter, imageFName, fileImage);
+
+  //typename DataArrayType::Pointer fileImage = boost::dynamic_pointer_cast<DataArrayType>(iDataArray);
+
+  T* sourcePtr = fileImage->getPointer(0);
+  T* destPtr = imageStack->getTuplePointer(targetSlice * height * width);
+
+
+  ::memcpy(destPtr, sourcePtr, fileImage->getSize() * sizeof(T));
+
+}
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -339,17 +367,17 @@ void ItkImportImageStack::execute()
     return;
   }
 
-#if 1
-  setErrorCondition(-666);
-  ss = QObject::tr("This filter does not currently work correctly.");
-  notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-  return;
-#endif
 
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getDataContainerName());
+  AttributeMatrix::Pointer am = m->getAttributeMatrix(getCellAttributeMatrixName());
 
   m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
   m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+
+  size_t height = 0;
+  size_t width = 0;
+  size_t depth = 0;
+  m->getGeometryAs<ImageGeom>()->getDimensions(width, height, depth);
 
   int64_t z = m_InputFileListInfo.StartIndex;
   int64_t zSpot;
@@ -381,50 +409,50 @@ void ItkImportImageStack::execute()
 
     //get input and output data
     IDataArray::Pointer imageData = m_ImageDataPtr.lock();
+    zSpot = (z -  m_InputFileListInfo.StartIndex);
 
-    //execute type dependant portion using a Private Implementation that takes care of figuring out if
+    // execute type dependant portion using a Private Implementation that takes care of figuring out if
     // we can work on the correct type and actually handling the algorithm execution. We pass in "this" so
     // that the private implementation can get access to the current object to pass up status notifications,
-    // progress or handle "cancel" if needed.
     if(ItkReadImagePrivate<int8_t, AbstractFilter>()(imageData))
     {
-      ItkReadImagePrivate<int8_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<int8_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<uint8_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<uint8_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<uint8_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<int16_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<int16_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<int16_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<uint16_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<uint16_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<uint16_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<int32_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<int32_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<int32_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<uint32_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<uint32_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<uint32_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<int64_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<int64_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<int64_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<uint64_t, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<uint64_t, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<uint64_t, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<float, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<float, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<float, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else if(ItkReadImagePrivate<double, AbstractFilter>()(imageData) )
     {
-      ItkReadImagePrivate<double, AbstractFilter>::Execute(this, imageFName, imageData);
+      copySingleImageIntoStack<double, AbstractFilter>(this, imageData, imageFName, width, height, zSpot);
     }
     else
     {
@@ -434,10 +462,20 @@ void ItkImportImageStack::execute()
       return;
     }
 
+    z++;
 
+    // Check for read errors and bail out if we find them
+    if(getErrorCondition() < 0)
+    {
+      return;
+    }
 
+    // Check for canceled pipeline
+    if(getCancel())
+    {
+      return;
+    }
   }
-
 
   /* Let the GUI know we are done with this filter */
   notifyStatusMessage(getMessagePrefix(), getHumanLabel(), "Complete");
@@ -455,22 +493,22 @@ AbstractFilter::Pointer ItkImportImageStack::newFilterInstance(bool copyFilterPa
     // We are going to hand copy all of the parameters because the other way of copying the parameters are going to
     // miss some of them because we are not enumerating all of them.
     DREAM3D_COPY_INSTANCEVAR(DataContainerName)
-        DREAM3D_COPY_INSTANCEVAR(CellAttributeMatrixName)
-        DREAM3D_COPY_INSTANCEVAR(Resolution)
-        DREAM3D_COPY_INSTANCEVAR(Origin)
-    #if 0
-        DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
-        DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
-        DREAM3D_COPY_INSTANCEVAR(InputPath)
-        DREAM3D_COPY_INSTANCEVAR(FilePrefix)
-        DREAM3D_COPY_INSTANCEVAR(FileSuffix)
-        DREAM3D_COPY_INSTANCEVAR(FileExtension)
-        DREAM3D_COPY_INSTANCEVAR(PaddingDigits)
-        DREAM3D_COPY_INSTANCEVAR(RefFrameZDir)
-    #endif
-        DREAM3D_COPY_INSTANCEVAR(InputFileListInfo)
-        DREAM3D_COPY_INSTANCEVAR(ImageStack)
-        DREAM3D_COPY_INSTANCEVAR(ImageDataArrayName)
+    DREAM3D_COPY_INSTANCEVAR(CellAttributeMatrixName)
+    DREAM3D_COPY_INSTANCEVAR(Resolution)
+    DREAM3D_COPY_INSTANCEVAR(Origin)
+#if 0
+    DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
+    DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
+    DREAM3D_COPY_INSTANCEVAR(InputPath)
+    DREAM3D_COPY_INSTANCEVAR(FilePrefix)
+    DREAM3D_COPY_INSTANCEVAR(FileSuffix)
+    DREAM3D_COPY_INSTANCEVAR(FileExtension)
+    DREAM3D_COPY_INSTANCEVAR(PaddingDigits)
+    DREAM3D_COPY_INSTANCEVAR(RefFrameZDir)
+#endif
+    DREAM3D_COPY_INSTANCEVAR(InputFileListInfo)
+    DREAM3D_COPY_INSTANCEVAR(ImageStack)
+    DREAM3D_COPY_INSTANCEVAR(ImageDataArrayName)
   }
   return filter;
 }
