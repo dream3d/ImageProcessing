@@ -88,7 +88,12 @@ void ItkImageCalculator::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray));
+  {
+    FilterParameter::DataStructureRequirements req;
+    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::UInt8);
+    req.componentDimensions = QVector<size_t>(1, 1);
+    parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray, req));
+  }
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
@@ -110,7 +115,12 @@ void ItkImageCalculator::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray));
+  {
+    FilterParameter::DataStructureRequirements req;
+    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::UInt8);
+    req.componentDimensions = QVector<size_t>(1, 1);
+    parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray, req));
+  }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);
