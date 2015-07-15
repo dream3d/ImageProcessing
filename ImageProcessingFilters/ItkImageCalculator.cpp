@@ -91,7 +91,7 @@ void ItkImageCalculator::setupFilterParameters()
   {
     FilterParameter::DataStructureRequirements req;
     req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::UInt8);
-    req.componentDimensions = QVector<size_t>(1, 1);
+    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
     parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray, req));
   }
   {
@@ -118,7 +118,7 @@ void ItkImageCalculator::setupFilterParameters()
   {
     FilterParameter::DataStructureRequirements req;
     req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::UInt8);
-    req.componentDimensions = QVector<size_t>(1, 1);
+    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
     parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

@@ -147,7 +147,7 @@ void ItkFindMaxima::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     FilterParameter::DataStructureRequirements req;
-    req.componentDimensions = QVector<size_t>(1, 1);
+    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
     parameters.push_back(DataArraySelectionFilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(DoubleFilterParameter::New("Noise Tolerance", "Tolerance", getTolerance(), FilterParameter::Parameter));
