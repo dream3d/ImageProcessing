@@ -197,7 +197,7 @@ void ItkWriteImage::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    FilterParameter::DataStructureRequirements req;
+    DataArraySelectionFilterParameter::DataStructureRequirements req;
     parameters.push_back(DataArraySelectionFilterParameter::New("Color Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(OutputFileFilterParameter::New("Output File Name", "OutputFileName", getOutputFileName(), FilterParameter::Parameter, "*.tif", "TIFF"));

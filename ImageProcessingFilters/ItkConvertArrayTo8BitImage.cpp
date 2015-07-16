@@ -73,7 +73,7 @@ void ItkConvertArrayTo8BitImage::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    FilterParameter::DataStructureRequirements req;
+    DataArraySelectionFilterParameter::DataStructureRequirements req;
     req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 3));
     parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", getSelectedArrayPath(), FilterParameter::RequiredArray, req));
   }
