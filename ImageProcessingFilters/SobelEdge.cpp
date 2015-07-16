@@ -312,5 +312,5 @@ const QString SobelEdge::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString SobelEdge::getHumanLabel()
-{return "Sobel Edge Detector";}
+{return "ITK: Sobel Edge Detector";}
 

@@ -421,5 +421,5 @@ const QString StitchImages::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString StitchImages::getHumanLabel()
-{return "Stitch Images";}
+{return "ITK: Stitch Images";}
 

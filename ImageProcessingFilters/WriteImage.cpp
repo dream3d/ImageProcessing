@@ -414,5 +414,5 @@ const QString WriteImage::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString WriteImage::getHumanLabel()
-{return "Write Tiff Image Stack";}
+{return "ITK: Write Tiff Image Stack";}
 

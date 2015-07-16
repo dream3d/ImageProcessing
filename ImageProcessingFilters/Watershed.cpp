@@ -250,5 +250,5 @@ const QString Watershed::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString Watershed::getHumanLabel()
-{return "Watershed Filter";}
+{return "ITK: Watershed Filter";}
 

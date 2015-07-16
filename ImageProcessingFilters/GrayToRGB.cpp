@@ -376,5 +376,5 @@ const QString GrayToRGB::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString GrayToRGB::getHumanLabel()
-{return "Convert Grayscale to RGB (Merge Channels)";}
+{return "ITK: Convert Grayscale to RGB (Merge Channels)";}
 

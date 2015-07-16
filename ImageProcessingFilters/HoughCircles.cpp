@@ -320,5 +320,5 @@ const QString HoughCircles::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString HoughCircles::getHumanLabel()
-{return "Hough Circle Detection";}
+{return "ITK: Hough Circle Detection";}
 

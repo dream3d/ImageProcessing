@@ -246,5 +246,5 @@ const QString RegionGrowing::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString RegionGrowing::getHumanLabel()
-{return "Region Growing";}
+{return "ITK: Region Growing";}
 

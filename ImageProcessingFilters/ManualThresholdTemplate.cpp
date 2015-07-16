@@ -429,5 +429,5 @@ const QString ManualThresholdTemplate::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ManualThresholdTemplate::getHumanLabel()
-{return "Threshold Image Template (Manual - Single Level)";}
+{return "ITK: Threshold Image Template (Manual - Single Level)";}
 

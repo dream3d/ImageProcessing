@@ -243,5 +243,5 @@ const QString GaussianBlur::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString GaussianBlur::getHumanLabel()
-{return "Gaussian Blur";}
+{return "ITK: Gaussian Blur";}
 

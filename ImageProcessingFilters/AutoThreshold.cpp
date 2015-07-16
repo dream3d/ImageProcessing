@@ -470,5 +470,5 @@ const QString AutoThreshold::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString AutoThreshold::getHumanLabel()
-{return "Threshold Image (Auto)";}
+{return "ITK: Threshold Image (Auto)";}
 

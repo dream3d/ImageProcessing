@@ -311,5 +311,5 @@ const QString MultiOtsuThreshold::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString MultiOtsuThreshold::getHumanLabel()
-{return "Multi Level Otsu Threshold";}
+{return "ITK: Multi Level Otsu Threshold";}
 
