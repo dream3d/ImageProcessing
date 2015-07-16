@@ -52,8 +52,14 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
   linkedProps << "MetaDataAttributeMatrixName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray));
-  parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray));
+  {
+    AttributeMatrixSelectionFilterParameter::DataStructureRequirements req;
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req));
+  }
+  {
+    AttributeMatrixSelectionFilterParameter::DataStructureRequirements req;
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, req));
+  }
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray));
