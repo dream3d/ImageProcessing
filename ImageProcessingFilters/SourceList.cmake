@@ -14,32 +14,32 @@ START_FILTER_GROUP(${ImageProcessing_BINARY_DIR} "${_filterGroupName}" "ImagePro
 # List your public filters here
 set(_PublicFilters
   #AlignSectionsPhaseCorrelation
-  AutoThreshold
-  BinaryWatershedLabeled
-  ConvertArrayTo8BitImage
-  ConvertArrayTo8BitImageAttributeMatrix
-  DetermineStitchingCoordinatesGeneric
-  DiscreteGaussianBlur
-  FindMaxima
-  GaussianBlur
-  GrayToRGB
-  HoughCircles
-  ImageCalculator
-  ImageMath
+  ItkAutoThreshold
+  ItkBinaryWatershedLabeled
+  ItkConvertArrayTo8BitImage
+  ItkConvertArrayTo8BitImageAttributeMatrix
+  ItkDetermineStitchingCoordinatesGeneric
+  ItkDiscreteGaussianBlur
+  ItkFindMaxima
+  ItkGaussianBlur
+  ItkGrayToRGB
+  ItkHoughCircles
+  ItkImageCalculator
+  ItkImageMath
   ItkImportImageStack
-  #ImageRegistration
-  KMeans
-  ManualThreshold
-  MeanKernel
-  MedianKernel
-  MultiOtsuThreshold
-  #RegionGrowing
-  RGBToGray
+  #ItkImageRegistration
+  ItkKMeans
+  ItkManualThreshold
+  ItkMeanKernel
+  ItkMedianKernel
+  ItkMultiOtsuThreshold
+  #ItkRegionGrowing
+  ItkRGBToGray
   ItkReadImage
-  SobelEdge
-  StitchImages
-  Watershed
-  WriteImage
+  ItkSobelEdge
+  ItkStitchImages
+  ItkWatershed
+  ItkWriteImage
 )
 
 
@@ -70,9 +70,9 @@ endforeach()
 
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkBridge.h)
 ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkReadImageImpl.hpp)
-ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} TemplateUtilities.h)
-ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.h)
-ADD_DREAM3D_SUPPORT_SOURCE(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ManualThresholdTemplate.cpp)
+ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkTemplateUtilities.h)
+ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkManualThresholdTemplate.h)
+ADD_DREAM3D_SUPPORT_SOURCE(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkManualThresholdTemplate.cpp)
 
 #-------------
 # These are files that need to be compiled into DREAM3DLib but are NOT filters

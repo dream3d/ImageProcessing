@@ -31,53 +31,53 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#ifndef _ItkStitchImages_H_
+#define _ItkStitchImages_H_
 
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
-
-//#include <vector>
 #include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
-
+#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
-//#include "TemplateUtilities.h"
-
-
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class StitchImages StitchImages.h ImageProcessing/ImageProcessingFilters/StitchImages.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkStitchImages : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkStitchImages)
+    DREAM3D_STATIC_NEW_MACRO(ItkStitchImages)
+    DREAM3D_TYPE_MACRO_SUPER(ItkStitchImages, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkStitchImages();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
+    Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
+    Q_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
+    Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
+
+    DREAM3D_FILTER_PARAMETER(QString, StitchedImagesArrayName)
+    Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
+
+    DREAM3D_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
+    Q_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,8 +144,6 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
-
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -170,7 +168,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkStitchImages();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +176,13 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
-
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
+    StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, StitchedImageArray)
+    ItkStitchImages(const ItkStitchImages&); // Copy Constructor Not Implemented
+    void operator=(const ItkStitchImages&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _StitchImages_H_ */

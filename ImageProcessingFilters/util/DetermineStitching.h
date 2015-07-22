@@ -29,8 +29,8 @@
  *
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _DetermineStitching_H_
-#define _DetermineStitching_H_
+#ifndef _ItkDetermineStitching_H_
+#define _ItkDetermineStitching_H_
 
 #include <vector>
 

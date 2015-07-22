@@ -32,52 +32,33 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkImageRegistration_H_
+#define _ItkImageRegistration_H_
 
-//#include <vector>
-#include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
 
-
-#include "ImageProcessing/ImageProcessingConstants.h"
-
-//#include "TemplateUtilities.h"
 
 
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class ImageRegistration ImageRegistration.h ImageProcessing/ImageProcessingFilters/ImageRegistration.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ImageRegistration : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ImageRegistration)
+    DREAM3D_STATIC_NEW_MACRO(ImageRegistration)
+    DREAM3D_TYPE_MACRO_SUPER(ImageRegistration, AbstractFilter)
 
-    virtual ~ItkReadImage();
-
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
-
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
-
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
-
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    virtual ~ImageRegistration();
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,8 +125,6 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
-
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -170,7 +149,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ImageRegistration();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +157,13 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
+    /* Your private class instance variables go here. You can use several preprocessor macros to help
+     * make sure you have all the variables defined correctly. Those are "DEFINE_DATAARRAY_VARIABLE()"
+     * and  DEFINE_DATAARRAY_VARIABLE() which are defined in DREAM3DGetSetMacros.h
+     */
 
-
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ImageRegistration(const ImageRegistration&); // Copy Constructor Not Implemented
+    void operator=(const ImageRegistration&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _ImageRegistration_H_ */

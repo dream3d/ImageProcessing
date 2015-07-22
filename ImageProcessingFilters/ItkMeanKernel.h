@@ -32,52 +32,48 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkMeanKernel_H_
+#define _ItkMeanKernel_H_
 
-//#include <vector>
-#include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
-
+#include "DREAM3DLib/FilterParameters/IntVec3FilterParameter.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
-//#include "TemplateUtilities.h"
-
 
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class MeanKernel MeanKernel.h ImageProcessing/ImageProcessingFilters/MeanKernel.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkMeanKernel : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkMeanKernel)
+    DREAM3D_STATIC_NEW_MACRO(ItkMeanKernel)
+    DREAM3D_TYPE_MACRO_SUPER(ItkMeanKernel, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkMeanKernel();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
-
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(bool, SaveAsNewArray)
+    Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    DREAM3D_FILTER_PARAMETER(bool, Slice)
+    Q_PROPERTY(bool Slice READ getSlice WRITE setSlice)
+    DREAM3D_FILTER_PARAMETER(IntVec3_t, KernelSize)
+    Q_PROPERTY(IntVec3_t KernelSize READ getKernelSize WRITE setKernelSize)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,8 +140,6 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
-
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -170,7 +164,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkMeanKernel();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +172,12 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkMeanKernel(const ItkMeanKernel&); // Copy Constructor Not Implemented
+    void operator=(const ItkMeanKernel&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _MeanKernel_H_ */

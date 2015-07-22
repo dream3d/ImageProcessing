@@ -31,9 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkGrayToRGB_H_
+#define _ItkGrayToRGB_H_
 
 //#include <vector>
 #include <QtCore/QString>
@@ -50,34 +49,34 @@
 
 
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class GrayToRGB GrayToRGB.h ImageProcessing/ImageProcessingFilters/GrayToRGB.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkGrayToRGB : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkGrayToRGB)
+    DREAM3D_STATIC_NEW_MACRO(ItkGrayToRGB)
+    DREAM3D_TYPE_MACRO_SUPER(ItkGrayToRGB, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkGrayToRGB();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, RedArrayPath)
+    Q_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, GreenArrayPath)
+    Q_PROPERTY(DataArrayPath GreenArrayPath READ getGreenArrayPath WRITE setGreenArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, BlueArrayPath)
+    Q_PROPERTY(DataArrayPath BlueArrayPath READ getBlueArrayPath WRITE setBlueArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,7 +143,7 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
+//virtual void GrayToRGB::template_execute();
 
   signals:
     /**
@@ -170,7 +169,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkGrayToRGB();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +177,15 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
+    DEFINE_IDATAARRAY_VARIABLE(Red)
+    DEFINE_IDATAARRAY_VARIABLE(Green)
+    DEFINE_IDATAARRAY_VARIABLE(Blue)
+
+    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
 
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkGrayToRGB(const ItkGrayToRGB&); // Copy Constructor Not Implemented
+    void operator=(const ItkGrayToRGB&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _GrayToRGB_H_ */

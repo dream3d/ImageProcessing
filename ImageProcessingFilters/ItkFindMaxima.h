@@ -31,9 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkFindMaxima_H_
+#define _ItkFindMaxima_H_
 
 //#include <vector>
 #include <QtCore/QString>
@@ -46,38 +45,35 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
-//#include "TemplateUtilities.h"
+//#include "ItkTemplateUtilities.h"
 
 
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class FindMaxima FindMaxima.h ImageProcessing/ImageProcessingFilters/FindMaxima.h
  * @brief
- * @author
- * @date
+ * @author Will Lenthe
+ * @date 8/7/14
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkFindMaxima : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkFindMaxima)
+    DREAM3D_STATIC_NEW_MACRO(ItkFindMaxima)
+    DREAM3D_TYPE_MACRO_SUPER(ItkFindMaxima, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkFindMaxima();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    DREAM3D_FILTER_PARAMETER(float, Tolerance)
+    Q_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
-
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,8 +140,6 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
-
   signals:
     /**
      * @brief updateFilterParameters This is emitted when the filter requests all the latest Filter Parameters need to be
@@ -170,7 +164,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkFindMaxima();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +172,11 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
+    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(bool, NewCellArray)
 
-
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkFindMaxima(const ItkFindMaxima&); // Copy Constructor Not Implemented
+    void operator=(const ItkFindMaxima&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _FindMaxima_H_ */

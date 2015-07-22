@@ -31,9 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkBinaryWatershedLabeled_H_
+#define _ItkBinaryWatershedLabeled_H_
 
 //#include <vector>
 #include <QtCore/QString>
@@ -43,41 +42,34 @@
 #include "DREAM3DLib/Common/AbstractFilter.h"
 #include "DREAM3DLib/DataArrays/IDataArray.h"
 
-
 #include "ImageProcessing/ImageProcessingConstants.h"
 
-//#include "TemplateUtilities.h"
-
-
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
- * @brief
- * @author
- * @date
+ * @class BinaryWatershedLabeled BinaryWatershedLabeled.h ImageProcessing/ImageProcessingFilters/BinaryWatershedLabeled.h
+ * @brief splits concave objects in a binary array with a watershed segmentation
+ * @author Will Lenthe
+ * @date 8/29/14
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkBinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkBinaryWatershedLabeled)
+    DREAM3D_STATIC_NEW_MACRO(ItkBinaryWatershedLabeled)
+    DREAM3D_TYPE_MACRO_SUPER(ItkBinaryWatershedLabeled, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkBinaryWatershedLabeled();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    DREAM3D_FILTER_PARAMETER(float, PeakTolerance)
+    Q_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
-
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -144,7 +136,7 @@ class ItkReadImage : public AbstractFilter
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
 
-//virtual void ItkReadImage::template_execute();
+//virtual void BinaryWatershedLabeled::template_execute();
 
   signals:
     /**
@@ -170,7 +162,7 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkBinaryWatershedLabeled();
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +170,11 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
+    DEFINE_DATAARRAY_VARIABLE(bool, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
 
-
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&); // Copy Constructor Not Implemented
+    void operator=(const ItkBinaryWatershedLabeled&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _BinaryWatershedLabeled_H_ */

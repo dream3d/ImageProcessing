@@ -32,8 +32,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkBridge_H_
-#define _ItkBridge_H_
+#ifndef _ItkItkBridge_H_
+#define _ItkItkBridge_H_
 
 // ITK Includes first
 #include "itkExtractImageFilter.h"

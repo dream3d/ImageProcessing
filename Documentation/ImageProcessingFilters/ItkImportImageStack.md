@@ -23,7 +23,18 @@ This **Filter** will import a directory of sequentially numbered image files int
 ## Example Stack Import ##
 
 
-	MNML-3_200x_769-Raw_p09_Aligned.tif	MNML-3_200x_770-Raw_p09_Aligned.tif	MNML-3_200x_771-Raw_p09_Aligned.tif	MNML-3_200x_772-Raw_p09_Aligned.tif	MNML-3_200x_773-Raw_p09_Aligned.tif	MNML-3_200x_774-Raw_p09_Aligned.tif	MNML-3_200x_775-Raw_p09_Aligned.tif	MNML-3_200x_776-Raw_p09_Aligned.tif	MNML-3_200x_777-Raw_p09_Aligned.tif	MNML-3_200x_778-Raw_p09_Aligned.tif	MNML-3_200x_779-Raw_p09_Aligned.tif	MNML-3_200x_780-Raw_p09_Aligned.tif
+	MNML-3_200x_769-Raw_p09_Aligned.tif
+	MNML-3_200x_770-Raw_p09_Aligned.tif
+	MNML-3_200x_771-Raw_p09_Aligned.tif
+	MNML-3_200x_772-Raw_p09_Aligned.tif
+	MNML-3_200x_773-Raw_p09_Aligned.tif
+	MNML-3_200x_774-Raw_p09_Aligned.tif
+	MNML-3_200x_775-Raw_p09_Aligned.tif
+	MNML-3_200x_776-Raw_p09_Aligned.tif
+	MNML-3_200x_777-Raw_p09_Aligned.tif
+	MNML-3_200x_778-Raw_p09_Aligned.tif
+	MNML-3_200x_779-Raw_p09_Aligned.tif
+	MNML-3_200x_780-Raw_p09_Aligned.tif
 
 | Parameter | Value |
 |---------------|---------|

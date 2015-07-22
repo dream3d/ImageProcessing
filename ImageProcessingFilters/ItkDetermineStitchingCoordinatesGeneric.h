@@ -1,83 +1,65 @@
-/* ============================================================================
- * Copyright (c) 2014 DREAM3D Consortium
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this
- * list of conditions and the following disclaimer.
- *
- * Redistributions in binary form must reproduce the above copyright notice, this
- * list of conditions and the following disclaimer in the documentation and/or
- * other materials provided with the distribution.
- *
- * Neither the names of any of the DREAM3D Consortium contributors
- * may be used to endorse or promote products derived from this software without
- * specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
- * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- *  This code was partially written under United States Air Force Contract number
- *                              FA8650-10-D-5210
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*
+ * Your License or Copyright Information can go here
+ */
 
-#ifndef _ItkItkReadImage_H_
-#define _ItkItkReadImage_H_
+#ifndef _ItkDetermineStitchingCoordinatesGeneric_H_
+#define _ItkDetermineStitchingCoordinatesGeneric_H_
 
-//#include <vector>
-#include <QtCore/QString>
 
 #include "DREAM3DLib/DREAM3DLib.h"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
 #include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
-
-
+#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
 #include "ImageProcessing/ImageProcessingConstants.h"
-
-//#include "TemplateUtilities.h"
 
 
 /**
- * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
+ * @class DetermineStitchingCoordinatesGeneric DetermineStitchingCoordinatesGeneric.h ZeissImport/ZeissImportFilters/DetermineStitchingCoordinatesGeneric.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
 {
-    Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
+  Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    DREAM3D_SHARED_POINTERS(ItkDetermineStitchingCoordinatesGeneric)
+    DREAM3D_STATIC_NEW_MACRO(ItkDetermineStitchingCoordinatesGeneric)
+    DREAM3D_TYPE_MACRO_SUPER(ItkDetermineStitchingCoordinatesGeneric, AbstractFilter)
 
-    virtual ~ItkReadImage();
+    virtual ~ItkDetermineStitchingCoordinatesGeneric();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
-    Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    /* Place your input parameters here using the DREAM3D macros to declare the Filter Parameters
+     * or other instance variables
+     */
+    //DREAM3D_FILTER_PARAMETER(QString, ImagePrefix)
+    /* If you declare a filter parameter above then you MUST create a Q_PROPERTY for that FilterParameter */
+    //Q_PROPERTY(QString ImagePrefix READ getImagePrefix WRITE setImagePrefix)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    /* Here is another example of declaring an integer FilterParameter */
+    // DREAM3D_FILTER_PARAMETER(int, ImageSize)
+    // Q_PROPERTY(int ImageSize READ getImageSize WRITE setImageSize)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
-    Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
-    Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
+    DREAM3D_FILTER_PARAMETER(bool, UseZeissMetaData)
+    Q_PROPERTY(bool UseZeissMetaData READ getUseZeissMetaData WRITE setUseZeissMetaData)
+
+    DREAM3D_FILTER_PARAMETER(DataArrayPath, MetaDataAttributeMatrixName)
+    Q_PROPERTY(DataArrayPath MetaDataAttributeMatrixName READ getMetaDataAttributeMatrixName WRITE setMetaDataAttributeMatrixName)
+
+    DREAM3D_FILTER_PARAMETER(QString, TileCalculatedInfoAttributeMatrixName)
+    Q_PROPERTY(QString TileCalculatedInfoAttributeMatrixName READ getTileCalculatedInfoAttributeMatrixName WRITE setTileCalculatedInfoAttributeMatrixName)
+
+    DREAM3D_FILTER_PARAMETER(QString, StitchedCoordinatesArrayName)
+    Q_PROPERTY(QString StitchedCoordinatesArrayName READ getStitchedCoordinatesArrayName WRITE setStitchedCoordinatesArrayName)
+
+    DREAM3D_FILTER_PARAMETER(QString, StitchedArrayNames)
+    Q_PROPERTY(QString StitchedArrayNames READ getStitchedArrayNames WRITE setStitchedArrayNames)
+
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -125,9 +107,9 @@ class ItkReadImage : public AbstractFilter
     */
     virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index);
 
-    /**
-     * @brief Reimplemented from @see AbstractFilter class
-     */
+   /**
+    * @brief Reimplemented from @see AbstractFilter class
+    */
     virtual void execute();
 
     /**
@@ -143,8 +125,6 @@ class ItkReadImage : public AbstractFilter
      * @return
      */
     virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
-
-//virtual void ItkReadImage::template_execute();
 
   signals:
     /**
@@ -170,7 +150,11 @@ class ItkReadImage : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkReadImage();
+    ItkDetermineStitchingCoordinatesGeneric();
+
+    QVector<qint32> extractIntegerValues(QString arrayName);
+    QVector<float> extractFloatValues(QString arrayName);
+    QVector<float> extractGlobalIndices(QString DataArrayName, QString resolution);
 
     /**
     * @brief Checks for the appropriate parameter values and availability of arrays in the data container
@@ -178,11 +162,16 @@ class ItkReadImage : public AbstractFilter
     void dataCheck();
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(ImageData)
+//    DEFINE_DATAARRAY_VARIABLE(QVector<IDataArray::Pointer>, PointerList)
+
+    QVector<ImageProcessingConstants::DefaultPixelType* > m_PointerList;
+    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
+    StringDataArray::WeakPointer m_DataArrayNamesForStitchedCoordinatesPtr;
 
 
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&); // Copy Constructor Not Implemented
+    void operator=(const ItkDetermineStitchingCoordinatesGeneric&); // Operator '=' Not Implemented
 };
 
-#endif /* _ItkReadImage_H_ */
+#endif /* _DetermineStitchingCoordinatesGeneric_H_ */

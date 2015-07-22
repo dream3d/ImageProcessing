@@ -1,5 +1,5 @@
-#ifndef _ItkReadImageImpl_H_
-#define _ItkReadImageImpl_H_
+#ifndef _ItkItkReadImageImpl_H_
+#define _ItkItkReadImageImpl_H_
 
 
 //image reading
