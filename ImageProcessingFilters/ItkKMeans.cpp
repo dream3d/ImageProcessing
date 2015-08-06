@@ -349,5 +349,5 @@ const QString ItkKMeans::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkKMeans::getHumanLabel()
-{return "ITK: K Means Filter";}
+{return "ITK: K Means";}
 

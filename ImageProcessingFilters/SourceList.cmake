@@ -28,6 +28,7 @@ set(_PublicFilters
   ItkImageMath
   ItkImportImageStack
   #ItkImageRegistration
+  ItkKdTreeKMeans
   ItkKMeans
   ItkManualThreshold
   ItkMeanKernel
