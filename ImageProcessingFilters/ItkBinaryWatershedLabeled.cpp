@@ -178,6 +178,7 @@ void ItkBinaryWatershedLabeled::execute()
   {
     seedLabels->SetPixel(peakLocations[i], i + 1);
   }
+  seedLabels->CopyInformation(inputImage);
 
   //invert distance map as gradient for watershed
   typedef itk::InvertIntensityImageFilter< FloatBridgeType::ScalarImageType, FloatBridgeType::ScalarImageType > InvertType;
