@@ -80,14 +80,13 @@ void ItkGaussianBlur::setupFilterParameters()
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
+    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateRequirement(DREAM3D::TypeNames::Empty, 1, DREAM3D::AttributeMatrixType::Unknown, DREAM3D::GeometryType::UnknownGeometry);
     QVector<QString> vec;
     vec.push_back(DREAM3D::TypeNames::Int8);
     vec.push_back(DREAM3D::TypeNames::Int16);
     vec.push_back(DREAM3D::TypeNames::Int32);
     vec.push_back(DREAM3D::TypeNames::Int64);
     req.daTypes = vec;
-    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
     parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

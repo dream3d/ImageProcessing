@@ -78,9 +78,7 @@ void ItkWatershed::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
-    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::UInt8);
-    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
+    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Unknown);
     parameters.push_back(DataArraySelectionFilterParameter::New("Image Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

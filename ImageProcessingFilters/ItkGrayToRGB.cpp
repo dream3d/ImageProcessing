@@ -155,18 +155,15 @@ void ItkGrayToRGB::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
-    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
+    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateCategoryRequirement(QString(""), 1, DREAM3D::AttributeMatrixObjectType::Unknown);
     parameters.push_back(DataArraySelectionFilterParameter::New("Red Channel", "RedArrayPath", getRedArrayPath(), FilterParameter::RequiredArray, req));
   }
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
-    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
+    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateCategoryRequirement(QString(""), 1, DREAM3D::AttributeMatrixObjectType::Unknown);
     parameters.push_back(DataArraySelectionFilterParameter::New("Green Channel", "GreenArrayPath", getGreenArrayPath(), FilterParameter::RequiredArray, req));
   }
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
-    req.componentDimensions = QVector< QVector<size_t> >(1, QVector<size_t>(1, 1));
+    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateCategoryRequirement(QString(""), 1, DREAM3D::AttributeMatrixObjectType::Unknown);
     parameters.push_back(DataArraySelectionFilterParameter::New("Blue Channel", "BlueArrayPath", getBlueArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

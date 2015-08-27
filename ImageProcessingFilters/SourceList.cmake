@@ -76,7 +76,7 @@ ADD_DREAM3D_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} Itk
 ADD_DREAM3D_SUPPORT_SOURCE(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkManualThresholdTemplate.cpp)
 
 #-------------
-# These are files that need to be compiled into DREAM3DLib but are NOT filters
+# These are files that need to be compiled into the plugin but are NOT filters
 ADD_DREAM3D_SUPPORT_CLASS(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} util/DetermineStitching)
 
 #---------------------
