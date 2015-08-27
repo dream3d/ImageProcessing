@@ -428,17 +428,25 @@ void ItkImportImageStack::execute()
     return;
   }
 
-
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getDataContainerName());
   AttributeMatrix::Pointer am = m->getAttributeMatrix(getCellAttributeMatrixName());
-
-  m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-  m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
 
   size_t height = 0;
   size_t width = 0;
   size_t depth = 0;
-  m->getGeometryAs<ImageGeom>()->getDimensions(width, height, depth);
+
+  if (m_GeometryType == 0)
+  {
+    m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
+    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+    m->getGeometryAs<ImageGeom>()->getDimensions(width, height, depth);
+  }
+  else if (m_GeometryType == 1)
+  {
+    m->getGeometryAs<RectGridGeom>()->getDimensions(width, height, depth);
+    int err = readBounds();
+    if (err < 0) return;
+  }
 
   int64_t z = m_InputFileListInfo.StartIndex;
   int64_t zSpot;
@@ -756,8 +764,10 @@ AbstractFilter::Pointer ItkImportImageStack::newFilterInstance(bool copyFilterPa
     // miss some of them because we are not enumerating all of them.
     DREAM3D_COPY_INSTANCEVAR(DataContainerName)
     DREAM3D_COPY_INSTANCEVAR(CellAttributeMatrixName)
+    DREAM3D_COPY_INSTANCEVAR(GeometryType)
     DREAM3D_COPY_INSTANCEVAR(Resolution)
     DREAM3D_COPY_INSTANCEVAR(Origin)
+    DREAM3D_COPY_INSTANCEVAR(BoundsFile)
 #if 0
     DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
     DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
