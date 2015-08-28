@@ -89,7 +89,7 @@ void ItkImageCalculator::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Unknown);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Any);
     parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray, req));
   }
   {
@@ -114,7 +114,7 @@ void ItkImageCalculator::setupFilterParameters()
     parameters.push_back(parameter);
   }
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Unknown);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Any);
     parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

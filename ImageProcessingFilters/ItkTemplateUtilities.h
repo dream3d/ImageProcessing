@@ -35,6 +35,8 @@
 #ifndef _ItkTemplateUtilities_H_
 #define _ItkTemplateUtilities_H_
 
+#if 0
+
 #include "DREAM3DLib/Common/Constants.h"
 #include "DREAM3DLib/DataArrays/DataArray.hpp"
 #include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
@@ -117,7 +119,7 @@ class TemplateUtilities
       }
       else
       {
-        return DREAM3D::TypeNames::UnknownType;
+        return DREAM3D::Defaults::Any;
       }
     }
 
@@ -178,6 +180,6 @@ class TemplateUtilities
     void operator=(const TemplateUtilities&); // Operator '=' Not Implemented
 };
 
-
+#endif
 
 #endif /* _TemplateUtilities_H_ */

@@ -163,7 +163,7 @@ void ItkRGBToGray::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(QString(""), 3, DREAM3D::AttributeMatrixObjectType::Unknown);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::Defaults::AnyPrimitive, 3, DREAM3D::AttributeMatrixObjectType::Any);
     parameters.push_back(DataArraySelectionFilterParameter::New("RGB Array to Flatten", "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(FloatVec3FilterParameter::New("Color Weighting", "ColorWeights", getColorWeights(), FilterParameter::Parameter));
