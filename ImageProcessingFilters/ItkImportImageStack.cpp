@@ -269,7 +269,7 @@ void ItkImportImageStack::dataCheck()
     else if (m_GeometryType == 1)
     {
       m->getGeometryAs<RectGridGeom>()->setDimensions(static_cast<size_t>(xdim), static_cast<size_t>(ydim), static_cast<size_t>(zdim));
-      err = readBounds();
+      if (!m_BoundsFile.isEmpty()) { err = readBounds(); }
       if (err < 0) { setErrorCondition(err); }
     }
 
