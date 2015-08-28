@@ -86,15 +86,15 @@ void ItkStitchImages::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
 
   {
-    AttributeMatrixSelectionFilterParameter::DataStructureRequirements req;
+    AttributeMatrixSelectionFilterParameter::RequirementType req;
     parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req));
   }
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
+    DataArraySelectionFilterParameter::RequirementType req;
     parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, req));
   }
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req;
+    DataArraySelectionFilterParameter::RequirementType req;
     req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::Float);
     parameters.push_back(DataArraySelectionFilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", getAttributeArrayNamesPath(), FilterParameter::RequiredArray, req));
   }

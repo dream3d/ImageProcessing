@@ -190,7 +190,7 @@ void ItkKdTreeKMeans::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter));
-  DataArraySelectionFilterParameter::DataStructureRequirements req;
+  DataArraySelectionFilterParameter::RequirementType req;
   parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Classify", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   parameters.push_back(StringFilterParameter::New("Class Labels", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
   setFilterParameters(parameters);

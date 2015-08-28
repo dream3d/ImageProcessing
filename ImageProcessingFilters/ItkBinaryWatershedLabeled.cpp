@@ -54,7 +54,7 @@ void ItkBinaryWatershedLabeled::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::DataStructureRequirements req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::Bool, 1, DREAM3D::AttributeMatrixObjectType::Unknown);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::Bool, 1, DREAM3D::AttributeMatrixObjectType::Unknown);
     parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Watershed", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(DoubleFilterParameter::New("Peak Noise Tolerance", "PeakTolerance", getPeakTolerance(), FilterParameter::Parameter));

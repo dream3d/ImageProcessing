@@ -73,7 +73,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    AttributeMatrixSelectionFilterParameter::DataStructureRequirements req;
+    AttributeMatrixSelectionFilterParameter::RequirementType req;
     parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req));
   }
   setFilterParameters(parameters);
