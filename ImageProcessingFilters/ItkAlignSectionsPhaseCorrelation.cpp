@@ -205,7 +205,7 @@ void AlignSectionsPhaseCorrelation::readFilterParameters(AbstractFilterParameter
 int AlignSectionsPhaseCorrelation::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }
@@ -389,10 +389,10 @@ AbstractFilter::Pointer AlignSectionsPhaseCorrelation::newFilterInstance(bool co
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    DREAM3D_COPY_INSTANCEVAR(OutputFile)
-    //    DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZResolution)
+    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
+    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
   }
   return filter;
 }

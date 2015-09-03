@@ -35,10 +35,10 @@
 #define _ItkWriteImage_H_
 
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -56,16 +56,16 @@ class ItkWriteImage : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkWriteImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkWriteImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkWriteImage, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkWriteImage)
+    SIMPL_STATIC_NEW_MACRO(ItkWriteImage)
+    SIMPL_TYPE_MACRO_SUPER(ItkWriteImage, AbstractFilter)
 
     virtual ~ItkWriteImage();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, OutputFileName)
+    SIMPL_FILTER_PARAMETER(QString, OutputFileName)
     Q_PROPERTY(QString OutputFileName READ getOutputFileName WRITE setOutputFileName)
 
     /**

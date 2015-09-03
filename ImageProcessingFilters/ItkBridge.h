@@ -41,11 +41,11 @@
 #include "itkRGBAPixel.h"
 
 // DREAM3D Includes next
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/DataArrays/DataArray.hpp"
-#include "DREAM3DLib/DataContainers/DataContainer.h"
-#include "DREAM3DLib/DataContainers/AttributeMatrix.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
+#include "SIMPLib/DataContainers/DataContainer.h"
+#include "SIMPLib/DataContainers/AttributeMatrix.h"
 
 // Our Plugin Includes next
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -283,8 +283,8 @@ template<typename ComponentType>
 class ItkBridge
 {
   public:
-    DREAM3D_SHARED_POINTERS(ItkBridge<ComponentType>)
-    DREAM3D_TYPE_MACRO(ItkBridge<ComponentType>)
+    SIMPL_SHARED_POINTERS(ItkBridge<ComponentType>)
+    SIMPL_TYPE_MACRO(ItkBridge<ComponentType>)
 
     virtual ~ItkBridge() {}
 

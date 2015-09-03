@@ -69,7 +69,7 @@ int ImageProcessingFilter::writeFilterParameters(AbstractFilterParametersWriter*
 {
   writer->openFilterGroup(this, index);
   /* Place code that will write the inputs values into a file. reference the AbstractFilterParametersWriter class for the proper API to use. */
-  /*  DREAM3D_FILTER_WRITE_PARAMETER(OutputFile) */
+  /*  SIMPL_FILTER_WRITE_PARAMETER(OutputFile) */
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }
@@ -210,10 +210,10 @@ AbstractFilter::Pointer ImageProcessingFilter::newFilterInstance(bool copyFilter
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    DREAM3D_COPY_INSTANCEVAR(OutputFile)
-    //    DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZResolution)
+    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
+    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
   }
   return filter;
 }

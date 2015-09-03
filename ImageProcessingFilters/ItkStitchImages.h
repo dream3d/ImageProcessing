@@ -36,10 +36,10 @@
 
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/StringDataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -55,28 +55,28 @@ class ItkStitchImages : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkStitchImages)
-    DREAM3D_STATIC_NEW_MACRO(ItkStitchImages)
-    DREAM3D_TYPE_MACRO_SUPER(ItkStitchImages, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkStitchImages)
+    SIMPL_STATIC_NEW_MACRO(ItkStitchImages)
+    SIMPL_TYPE_MACRO_SUPER(ItkStitchImages, AbstractFilter)
 
     virtual ~ItkStitchImages();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
     Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
     Q_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
+    SIMPL_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
     Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedImagesArrayName)
+    SIMPL_FILTER_PARAMETER(QString, StitchedImagesArrayName)
     Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
     Q_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
 
     /**

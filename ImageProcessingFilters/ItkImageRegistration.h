@@ -36,9 +36,9 @@
 #define _ItkImageRegistration_H_
 
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
 
 
@@ -54,9 +54,9 @@ class ImageRegistration : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ImageRegistration)
-    DREAM3D_STATIC_NEW_MACRO(ImageRegistration)
-    DREAM3D_TYPE_MACRO_SUPER(ImageRegistration, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ImageRegistration)
+    SIMPL_STATIC_NEW_MACRO(ImageRegistration)
+    SIMPL_TYPE_MACRO_SUPER(ImageRegistration, AbstractFilter)
 
     virtual ~ImageRegistration();
 

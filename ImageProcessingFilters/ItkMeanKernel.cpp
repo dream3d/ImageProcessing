@@ -35,14 +35,14 @@
 
 #include <QtCore/QString>
 
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
-#include "DREAM3DLib/FilterParameters/IntVec3FilterParameter.h"
-#include "DREAM3DLib/FilterParameters/BooleanFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
+#include "SIMPLib/FilterParameters/BooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 #include "ItkBridge.h"
 #include "itkMeanImageFilter.h"
@@ -117,11 +117,11 @@ void ItkMeanKernel::readFilterParameters(AbstractFilterParametersReader* reader,
 int ItkMeanKernel::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  DREAM3D_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  DREAM3D_FILTER_WRITE_PARAMETER(Slice)
-  DREAM3D_FILTER_WRITE_PARAMETER(KernelSize)
+  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
+  SIMPL_FILTER_WRITE_PARAMETER(Slice)
+  SIMPL_FILTER_WRITE_PARAMETER(KernelSize)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

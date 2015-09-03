@@ -37,10 +37,10 @@
 //#include <vector>
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -60,22 +60,22 @@ class ItkManualThresholdTemplate : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkManualThresholdTemplate)
-    DREAM3D_STATIC_NEW_MACRO(ItkManualThresholdTemplate)
-    DREAM3D_TYPE_MACRO_SUPER(ItkManualThresholdTemplate, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkManualThresholdTemplate)
+    SIMPL_STATIC_NEW_MACRO(ItkManualThresholdTemplate)
+    SIMPL_TYPE_MACRO_SUPER(ItkManualThresholdTemplate, AbstractFilter)
 
     virtual ~ItkManualThresholdTemplate();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    DREAM3D_FILTER_PARAMETER(bool, SaveAsNewArray)
+    SIMPL_FILTER_PARAMETER(bool, SaveAsNewArray)
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
 
-    DREAM3D_FILTER_PARAMETER(int, ManualParameter)
+    SIMPL_FILTER_PARAMETER(int, ManualParameter)
     Q_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
 
     /**

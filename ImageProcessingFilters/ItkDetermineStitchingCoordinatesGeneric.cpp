@@ -8,14 +8,14 @@
 
 #include "ImageProcessing/ImageProcessingFilters/util/DetermineStitching.h"
 
-#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/DataArrays/StringDataArray.hpp"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 
-#include "DREAM3DLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/LinkedBooleanFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 
@@ -91,12 +91,12 @@ void ItkDetermineStitchingCoordinatesGeneric::readFilterParameters(AbstractFilte
 int ItkDetermineStitchingCoordinatesGeneric::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-  DREAM3D_FILTER_WRITE_PARAMETER(UseZeissMetaData)
-  DREAM3D_FILTER_WRITE_PARAMETER(MetaDataAttributeMatrixName)
-  DREAM3D_FILTER_WRITE_PARAMETER(TileCalculatedInfoAttributeMatrixName)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayName)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedArrayNames)
+  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
+  SIMPL_FILTER_WRITE_PARAMETER(UseZeissMetaData)
+  SIMPL_FILTER_WRITE_PARAMETER(MetaDataAttributeMatrixName)
+  SIMPL_FILTER_WRITE_PARAMETER(TileCalculatedInfoAttributeMatrixName)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedArrayNames)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }
@@ -470,10 +470,10 @@ AbstractFilter::Pointer ItkDetermineStitchingCoordinatesGeneric::newFilterInstan
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    DREAM3D_COPY_INSTANCEVAR(OutputFile)
-    //    DREAM3D_COPY_INSTANCEVAR(ZStartIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZEndIndex)
-    //    DREAM3D_COPY_INSTANCEVAR(ZResolution)
+    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
+    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
+    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
   }
   return filter;
 }

@@ -37,9 +37,9 @@
 
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -56,21 +56,21 @@ class ItkWatershed : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkWatershed)
-    DREAM3D_STATIC_NEW_MACRO(ItkWatershed)
-    DREAM3D_TYPE_MACRO_SUPER(ItkWatershed, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkWatershed)
+    SIMPL_STATIC_NEW_MACRO(ItkWatershed)
+    SIMPL_TYPE_MACRO_SUPER(ItkWatershed, AbstractFilter)
 
     virtual ~ItkWatershed();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, FeatureIdsArrayName)
+    SIMPL_FILTER_PARAMETER(QString, FeatureIdsArrayName)
     Q_PROPERTY(QString FeatureIdsArrayName READ getFeatureIdsArrayName WRITE setFeatureIdsArrayName)
 
-    DREAM3D_FILTER_PARAMETER(float, Threshold)
+    SIMPL_FILTER_PARAMETER(float, Threshold)
     Q_PROPERTY(float Threshold READ getThreshold WRITE setThreshold)
-    DREAM3D_FILTER_PARAMETER(float, Level)
+    SIMPL_FILTER_PARAMETER(float, Level)
     Q_PROPERTY(float Level READ getLevel WRITE setLevel)
 
     /**

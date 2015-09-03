@@ -37,12 +37,12 @@
 
 #include "ItkConvertArrayTo8BitImage.h"
 
-#include "DREAM3DLib/Common/Constants.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
-#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/Common/Constants.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 
@@ -98,8 +98,8 @@ void ItkConvertArrayTo8BitImage::readFilterParameters(AbstractFilterParametersRe
 int ItkConvertArrayTo8BitImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(NewArrayArrayName)
-  DREAM3D_FILTER_WRITE_PARAMETER(SelectedArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(NewArrayArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(SelectedArrayPath)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

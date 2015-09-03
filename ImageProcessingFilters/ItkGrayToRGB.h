@@ -37,10 +37,10 @@
 //#include <vector>
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -60,22 +60,22 @@ class ItkGrayToRGB : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkGrayToRGB)
-    DREAM3D_STATIC_NEW_MACRO(ItkGrayToRGB)
-    DREAM3D_TYPE_MACRO_SUPER(ItkGrayToRGB, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkGrayToRGB)
+    SIMPL_STATIC_NEW_MACRO(ItkGrayToRGB)
+    SIMPL_TYPE_MACRO_SUPER(ItkGrayToRGB, AbstractFilter)
 
     virtual ~ItkGrayToRGB();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, RedArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, RedArrayPath)
     Q_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, GreenArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, GreenArrayPath)
     Q_PROPERTY(DataArrayPath GreenArrayPath READ getGreenArrayPath WRITE setGreenArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, BlueArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, BlueArrayPath)
     Q_PROPERTY(DataArrayPath BlueArrayPath READ getBlueArrayPath WRITE setBlueArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**

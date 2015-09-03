@@ -34,11 +34,11 @@
 #ifndef _ItkAlignSectionsPhaseCorrelation_H_
 #define _ItkAlignSectionsPhaseCorrelation_H_
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
-#include "DREAM3DLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/Common/TemplateHelpers.hpp"
 
 /**
  * @class AlignSectionsPhaseCorrelation AlignSectionsPhaseCorrelation.h ImageProcessing/ImageProcessingFilters/AlignSectionsPhaseCorrelation.h
@@ -51,16 +51,16 @@ class AlignSectionsPhaseCorrelation : public AlignSections
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
   public:
-    DREAM3D_SHARED_POINTERS(AlignSectionsPhaseCorrelation)
-    DREAM3D_STATIC_NEW_MACRO(AlignSectionsPhaseCorrelation)
-    DREAM3D_TYPE_MACRO_SUPER(AlignSectionsPhaseCorrelation, AlignSections)
+    SIMPL_SHARED_POINTERS(AlignSectionsPhaseCorrelation)
+    SIMPL_STATIC_NEW_MACRO(AlignSectionsPhaseCorrelation)
+    SIMPL_TYPE_MACRO_SUPER(AlignSectionsPhaseCorrelation, AlignSections)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
     virtual ~AlignSectionsPhaseCorrelation();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFile)
+    SIMPL_FILTER_PARAMETER(QString, InputFile)
     Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
 
     virtual const QString getCompiledLibraryName();

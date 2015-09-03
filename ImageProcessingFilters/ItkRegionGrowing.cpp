@@ -33,7 +33,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "RegionGrowing.h"
 
-#include "DREAM3DLib/Common/Constants.h"
+#include "SIMPLib/Common/Constants.h"
 
 #include "ItkBridge.h"
 
@@ -99,10 +99,10 @@ void RegionGrowing::readFilterParameters(AbstractFilterParametersReader* reader,
 int RegionGrowing::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  DREAM3D_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  DREAM3D_FILTER_WRITE_PARAMETER(ManualParameter)
+  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
+  SIMPL_FILTER_WRITE_PARAMETER(ManualParameter)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

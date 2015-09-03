@@ -41,12 +41,12 @@
 #include <QtCore/QString>
 #include <set>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
-#include "DREAM3DLib/DataContainers/DataContainer.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 /**
@@ -60,16 +60,16 @@ class ItkConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
 {
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
   public:
-    DREAM3D_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
-    DREAM3D_STATIC_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)
-    DREAM3D_TYPE_MACRO_SUPER(ItkConvertArrayTo8BitImageAttributeMatrix, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
+    SIMPL_STATIC_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)
+    SIMPL_TYPE_MACRO_SUPER(ItkConvertArrayTo8BitImageAttributeMatrix, AbstractFilter)
 
     virtual ~ItkConvertArrayTo8BitImageAttributeMatrix();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewArrayArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewArrayArrayName)
     Q_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
 
     /**

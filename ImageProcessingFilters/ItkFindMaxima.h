@@ -37,10 +37,10 @@
 //#include <vector>
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -60,19 +60,19 @@ class ItkFindMaxima : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkFindMaxima)
-    DREAM3D_STATIC_NEW_MACRO(ItkFindMaxima)
-    DREAM3D_TYPE_MACRO_SUPER(ItkFindMaxima, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkFindMaxima)
+    SIMPL_STATIC_NEW_MACRO(ItkFindMaxima)
+    SIMPL_TYPE_MACRO_SUPER(ItkFindMaxima, AbstractFilter)
 
     virtual ~ItkFindMaxima();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(float, Tolerance)
+    SIMPL_FILTER_PARAMETER(float, Tolerance)
     Q_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**

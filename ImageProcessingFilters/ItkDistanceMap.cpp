@@ -38,7 +38,7 @@
 #include "itkBinaryThresholdImageFilter.h"
 #include <limits>
 
-#include "DREAM3DLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/Common/TemplateHelpers.hpp"
 
 // ImageProcessing Plugin
 #include "ItkBridge.h"
@@ -169,9 +169,9 @@ void FindMaxima::readFilterParameters(AbstractFilterParametersReader* reader, in
 int FindMaxima::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(MinValue)
-  DREAM3D_FILTER_WRITE_PARAMETER(NewCellArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(MinValue)
+  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

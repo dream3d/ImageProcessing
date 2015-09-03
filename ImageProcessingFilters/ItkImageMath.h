@@ -36,9 +36,9 @@
 
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -55,23 +55,23 @@ class ItkImageMath : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkImageMath)
-    DREAM3D_STATIC_NEW_MACRO(ItkImageMath)
-    DREAM3D_TYPE_MACRO_SUPER(ItkImageMath, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkImageMath)
+    SIMPL_STATIC_NEW_MACRO(ItkImageMath)
+    SIMPL_TYPE_MACRO_SUPER(ItkImageMath, AbstractFilter)
 
     virtual ~ItkImageMath();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    DREAM3D_FILTER_PARAMETER(bool, SaveAsNewArray)
+    SIMPL_FILTER_PARAMETER(bool, SaveAsNewArray)
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
-    DREAM3D_FILTER_PARAMETER(unsigned int, Operator)
+    SIMPL_FILTER_PARAMETER(unsigned int, Operator)
     Q_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
-    DREAM3D_FILTER_PARAMETER(double, Value)
+    SIMPL_FILTER_PARAMETER(double, Value)
     Q_PROPERTY(double Value READ getValue WRITE setValue)
 
     /**

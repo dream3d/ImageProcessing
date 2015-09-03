@@ -6,10 +6,10 @@
 #define _ItkDetermineStitchingCoordinatesGeneric_H_
 
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/StringDataArray.hpp"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/StringDataArray.hpp"
 #include "ImageProcessing/ImageProcessingConstants.h"
 
 
@@ -25,39 +25,39 @@ class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
   Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkDetermineStitchingCoordinatesGeneric)
-    DREAM3D_STATIC_NEW_MACRO(ItkDetermineStitchingCoordinatesGeneric)
-    DREAM3D_TYPE_MACRO_SUPER(ItkDetermineStitchingCoordinatesGeneric, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkDetermineStitchingCoordinatesGeneric)
+    SIMPL_STATIC_NEW_MACRO(ItkDetermineStitchingCoordinatesGeneric)
+    SIMPL_TYPE_MACRO_SUPER(ItkDetermineStitchingCoordinatesGeneric, AbstractFilter)
 
     virtual ~ItkDetermineStitchingCoordinatesGeneric();
 
     /* Place your input parameters here using the DREAM3D macros to declare the Filter Parameters
      * or other instance variables
      */
-    //DREAM3D_FILTER_PARAMETER(QString, ImagePrefix)
+    //SIMPL_FILTER_PARAMETER(QString, ImagePrefix)
     /* If you declare a filter parameter above then you MUST create a Q_PROPERTY for that FilterParameter */
     //Q_PROPERTY(QString ImagePrefix READ getImagePrefix WRITE setImagePrefix)
 
     /* Here is another example of declaring an integer FilterParameter */
-    // DREAM3D_FILTER_PARAMETER(int, ImageSize)
+    // SIMPL_FILTER_PARAMETER(int, ImageSize)
     // Q_PROPERTY(int ImageSize READ getImageSize WRITE setImageSize)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(bool, UseZeissMetaData)
+    SIMPL_FILTER_PARAMETER(bool, UseZeissMetaData)
     Q_PROPERTY(bool UseZeissMetaData READ getUseZeissMetaData WRITE setUseZeissMetaData)
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, MetaDataAttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, MetaDataAttributeMatrixName)
     Q_PROPERTY(DataArrayPath MetaDataAttributeMatrixName READ getMetaDataAttributeMatrixName WRITE setMetaDataAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, TileCalculatedInfoAttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(QString, TileCalculatedInfoAttributeMatrixName)
     Q_PROPERTY(QString TileCalculatedInfoAttributeMatrixName READ getTileCalculatedInfoAttributeMatrixName WRITE setTileCalculatedInfoAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedCoordinatesArrayName)
+    SIMPL_FILTER_PARAMETER(QString, StitchedCoordinatesArrayName)
     Q_PROPERTY(QString StitchedCoordinatesArrayName READ getStitchedCoordinatesArrayName WRITE setStitchedCoordinatesArrayName)
 
-    DREAM3D_FILTER_PARAMETER(QString, StitchedArrayNames)
+    SIMPL_FILTER_PARAMETER(QString, StitchedArrayNames)
     Q_PROPERTY(QString StitchedArrayNames READ getStitchedArrayNames WRITE setStitchedArrayNames)
 
 

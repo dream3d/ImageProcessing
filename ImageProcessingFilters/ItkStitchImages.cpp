@@ -33,13 +33,13 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "ItkStitchImages.h"
 
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 
-#include "DREAM3DLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
@@ -129,12 +129,12 @@ void ItkStitchImages::readFilterParameters(AbstractFilterParametersReader* reade
 int ItkStitchImages::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedVolumeDataContainerName)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
-  DREAM3D_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
-  DREAM3D_FILTER_WRITE_PARAMETER(AttributeArrayNamesPath)
+  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedVolumeDataContainerName)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
+  SIMPL_FILTER_WRITE_PARAMETER(AttributeArrayNamesPath)
   writer->closeFilterGroup();
   return ++index;
 }

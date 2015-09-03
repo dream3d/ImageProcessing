@@ -36,13 +36,13 @@
 //thresholding filter
 #include "itkComposeImageFilter.h"
 
-#include "DREAM3DLib/Common/TemplateHelpers.hpp"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 
-#include "DREAM3DLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/StringFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 // ImageProcessing Plugin
@@ -190,10 +190,10 @@ void ItkGrayToRGB::readFilterParameters(AbstractFilterParametersReader* reader, 
 int ItkGrayToRGB::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(RedArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(GreenArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(BlueArrayPath)
-  DREAM3D_FILTER_WRITE_PARAMETER(NewCellArrayName)
+  SIMPL_FILTER_WRITE_PARAMETER(RedArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(GreenArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(BlueArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

@@ -37,11 +37,11 @@
 
 #include "ItkConvertArrayTo8BitImageAttributeMatrix.h"
 
-#include "DREAM3DLib/Common/Constants.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersWriter.h"
-#include "DREAM3DLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
-#include "DREAM3DLib/FilterParameters/AbstractFilterParametersReader.h"
-#include "DREAM3DLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/Common/Constants.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
+#include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
 
@@ -97,9 +97,9 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::readFilterParameters(AbstractFil
 int ItkConvertArrayTo8BitImageAttributeMatrix::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
 {
   writer->openFilterGroup(this, index);
-  DREAM3D_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-//  DREAM3D_FILTER_WRITE_PARAMETER(NewArrayArrayName)
-//  DREAM3D_FILTER_WRITE_PARAMETER(SelectedArrayPath)
+  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
+//  SIMPL_FILTER_WRITE_PARAMETER(NewArrayArrayName)
+//  SIMPL_FILTER_WRITE_PARAMETER(SelectedArrayPath)
   writer->closeFilterGroup();
   return ++index; // we want to return the next index that was just written to
 }

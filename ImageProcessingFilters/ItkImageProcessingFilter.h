@@ -6,9 +6,9 @@
 #define _ItkImageProcessingFilter_H_
 
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
 
 
 /**
@@ -23,21 +23,21 @@ class ImageProcessingFilter : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ImageProcessingFilter)
-    DREAM3D_STATIC_NEW_MACRO(ImageProcessingFilter)
-    DREAM3D_TYPE_MACRO_SUPER(ImageProcessingFilter, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ImageProcessingFilter)
+    SIMPL_STATIC_NEW_MACRO(ImageProcessingFilter)
+    SIMPL_TYPE_MACRO_SUPER(ImageProcessingFilter, AbstractFilter)
 
     virtual ~ImageProcessingFilter();
 
     /* Place your input parameters here using the DREAM3D macros to declare the Filter Parameters
      * or other instance variables
      */
-    //DREAM3D_FILTER_PARAMETER(QString, ImagePrefix)
+    //SIMPL_FILTER_PARAMETER(QString, ImagePrefix)
     /* If you declare a filter parameter above then you MUST create a Q_PROPERTY for that FilterParameter */
     //Q_PROPERTY(QString ImagePrefix READ getImagePrefix WRITE setImagePrefix)
 
     /* Here is another example of declaring an integer FilterParameter */
-    // DREAM3D_FILTER_PARAMETER(int, ImageSize)
+    // SIMPL_FILTER_PARAMETER(int, ImageSize)
     // Q_PROPERTY(int ImageSize READ getImageSize WRITE setImageSize)
 
 

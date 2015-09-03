@@ -38,10 +38,10 @@
 //#include <vector>
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataArrays/IDataArray.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataArrays/IDataArray.h"
 
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -61,22 +61,22 @@ class ItkReadImage : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkReadImage)
-    DREAM3D_STATIC_NEW_MACRO(ItkReadImage)
-    DREAM3D_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkReadImage)
+    SIMPL_STATIC_NEW_MACRO(ItkReadImage)
+    SIMPL_TYPE_MACRO_SUPER(ItkReadImage, AbstractFilter)
 
     virtual ~ItkReadImage();
 
-    DREAM3D_FILTER_PARAMETER(QString, InputFileName)
+    SIMPL_FILTER_PARAMETER(QString, InputFileName)
     Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
 
-    DREAM3D_FILTER_PARAMETER(QString, DataContainerName)
+    SIMPL_FILTER_PARAMETER(QString, DataContainerName)
     Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
 
-    DREAM3D_FILTER_PARAMETER(QString, CellAttributeMatrixName)
+    SIMPL_FILTER_PARAMETER(QString, CellAttributeMatrixName)
     Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
 
-    DREAM3D_FILTER_PARAMETER(QString, ImageDataArrayName)
+    SIMPL_FILTER_PARAMETER(QString, ImageDataArrayName)
     Q_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
 
     /**

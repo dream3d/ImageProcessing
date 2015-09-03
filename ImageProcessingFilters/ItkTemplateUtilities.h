@@ -37,11 +37,11 @@
 
 #if 0
 
-#include "DREAM3DLib/Common/Constants.h"
-#include "DREAM3DLib/DataArrays/DataArray.hpp"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/DataContainers/DataArrayPath.h"
+#include "SIMPLib/Common/Constants.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/DataContainers/DataArrayPath.h"
 
 namespace TemplateConstants
 {

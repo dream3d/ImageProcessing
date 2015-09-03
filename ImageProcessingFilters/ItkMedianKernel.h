@@ -35,10 +35,10 @@
 #define _ItkMedianKernel_H_
 
 
-#include "DREAM3DLib/DREAM3DLib.h"
-#include "DREAM3DLib/Common/DREAM3DSetGetMacros.h"
-#include "DREAM3DLib/Common/AbstractFilter.h"
-#include "DREAM3DLib/FilterParameters/IntVec3FilterParameter.h"
+#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/Common/AbstractFilter.h"
+#include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -55,23 +55,23 @@ class ItkMedianKernel : public AbstractFilter
     Q_OBJECT /* Need this for Qt's signals and slots mechanism to work */
 
   public:
-    DREAM3D_SHARED_POINTERS(ItkMedianKernel)
-    DREAM3D_STATIC_NEW_MACRO(ItkMedianKernel)
-    DREAM3D_TYPE_MACRO_SUPER(ItkMedianKernel, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ItkMedianKernel)
+    SIMPL_STATIC_NEW_MACRO(ItkMedianKernel)
+    SIMPL_TYPE_MACRO_SUPER(ItkMedianKernel, AbstractFilter)
 
     virtual ~ItkMedianKernel();
 
-    DREAM3D_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    DREAM3D_FILTER_PARAMETER(QString, NewCellArrayName)
+    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    DREAM3D_FILTER_PARAMETER(bool, SaveAsNewArray)
+    SIMPL_FILTER_PARAMETER(bool, SaveAsNewArray)
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
-    DREAM3D_FILTER_PARAMETER(bool, Slice)
+    SIMPL_FILTER_PARAMETER(bool, Slice)
     Q_PROPERTY(bool Slice READ getSlice WRITE setSlice)
-    DREAM3D_FILTER_PARAMETER(IntVec3_t, KernelSize)
+    SIMPL_FILTER_PARAMETER(IntVec3_t, KernelSize)
     Q_PROPERTY(IntVec3_t KernelSize READ getKernelSize WRITE setKernelSize)
 
     /**

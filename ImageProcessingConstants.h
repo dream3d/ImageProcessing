@@ -44,7 +44,7 @@
 
 #include <QtCore/QString>
 
-#include "DREAM3DLib/DataArrays/DataArray.hpp"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConfig.h"
 
