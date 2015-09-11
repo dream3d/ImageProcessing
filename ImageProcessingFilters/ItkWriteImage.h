@@ -1,4 +1,5 @@
 /* ============================================================================
+ * Copyright (c) 2014 William Lenthe
  * Copyright (c) 2014 DREAM3D Consortium
  * All rights reserved.
  *
@@ -12,7 +13,7 @@
  * list of conditions and the following disclaimer in the documentation and/or
  * other materials provided with the distribution.
  *
- * Neither the names of any of the DREAM3D Consortium contributors
+ * Neither the name of William Lenthe or any of the DREAM3D Consortium contributors
  * may be used to endorse or promote products derived from this software without
  * specific prior written permission.
  *

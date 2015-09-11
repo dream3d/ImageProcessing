@@ -30,7 +30,9 @@ SOFTWARE should be clearly marked, so as not to confuse it with the
 version available from the US Air Force Research Laboratories or
 BlueQuartz Software.
 
-Copyright (c) 2009-2015 BlueQuartz Software, LLC, All rights reserved.
+Copyright (c) 2014 William Lenthe
+
+Copyright (c) 2014 BlueQuartz Software, LLC, All rights reserved.
 BlueQuartz Software, LLC
 400 S. Pioneer Blvd.
 Springboro, Ohio 45066
@@ -39,7 +41,8 @@ Springboro, Ohio 45066
 
 <h2>BSD Open-Source License</h2>
 <pre>
-Copyright (c) 2009-2015 BlueQuartz Software, LLC
+Copyright (c) 2014 William Lenthe
+Copyright (c) 2014-2015 BlueQuartz Software, LLC
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -51,7 +54,7 @@ Redistributions in binary form must reproduce the above copyright notice, this
 list of conditions and the following disclaimer in the documentation and/or
 other materials provided with the distribution.
 
-Neither the name of BlueQuartz Software, the US Air Force, nor the names of its 
+Neither the name of William Lenthe, BlueQuartz Software, the US Air Force, nor the names of its 
 contributors may be used to endorse or promote products derived from this software 
 without specific prior written permission.
 
