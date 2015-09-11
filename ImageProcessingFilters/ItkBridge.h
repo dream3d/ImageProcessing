@@ -87,8 +87,14 @@ class Dream3DToItkImageConversion
 
       typename ItkImportImageFilterType::SizeType  size;
       size[0]  = udims[0];  // size along X
-      size[1]  = udims[1];  // size along Y
-      size[2]  = udims[2];  // size along Z
+      size[1] = 1;
+      if(udims.size() > 1) {
+        size[1]  = udims[1];  // size along Y
+      }
+      size[2] = 1;
+      if(udims.size() >2 ) {
+        size[2]  = udims[2];  // size along Z
+      }
 
       typename ItkImportImageFilterType::IndexType start;
       start.Fill( 0 );
@@ -226,8 +232,14 @@ class CreateItkWrapperForDataPointer
 
       typename ImportImageFilterType::SizeType  size;
       size[0]  = udims[0];  // size along X
-      size[1]  = udims[1];  // size along Y
-      size[2]  = udims[2];  // size along Z
+      size[1] = 1;
+      if(udims.size() > 1) {
+        size[1]  = udims[1];  // size along Y
+      }
+      size[2] = 1;
+      if(udims.size() >2 ) {
+        size[2]  = udims[2];  // size along Z
+      }
 
       typename ImportImageFilterType::IndexType start;
       start.Fill( 0 );
@@ -327,8 +339,14 @@ class ItkBridge
 
       typename ImportImageFilterType::SizeType  size;
       size[0]  = udims[0];  // size along X
-      size[1]  = udims[1];  // size along Y
-      size[2]  = udims[2];  // size along Z
+      size[1] = 1;
+      if(udims.size() > 1) {
+        size[1]  = udims[1];  // size along Y
+      }
+      size[2] = 1;
+      if(udims.size() >2 ) {
+        size[2]  = udims[2];  // size along Z
+      }
 
       typename ImportImageFilterType::IndexType start;
       start.Fill( 0 );
@@ -375,8 +393,14 @@ class ItkBridge
 
       typename ImportImageFilterType::SizeType  size;
       size[0]  = udims[0];  // size along X
-      size[1]  = udims[1];  // size along Y
-      size[2]  = udims[2];  // size along Z
+      size[1] = 1;
+      if(udims.size() > 1) {
+        size[1]  = udims[1];  // size along Y
+      }
+      size[2] = 1;
+      if(udims.size() >2 ) {
+        size[2]  = udims[2];  // size along Z
+      }
 
       typename ImportImageFilterType::IndexType start;
       start.Fill( 0 );
