@@ -91,11 +91,11 @@ void ItkStitchImages::setupFilterParameters()
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
+    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::Float);
     parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::Float);
     parameters.push_back(DataArraySelectionFilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", getAttributeArrayNamesPath(), FilterParameter::RequiredArray, req));
   }
 
