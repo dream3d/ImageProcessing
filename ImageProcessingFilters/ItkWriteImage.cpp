@@ -261,8 +261,12 @@ void ItkWriteImage::dataCheck()
   }
   if(getErrorCondition() < 0) { return; }
 
-  ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  getDataContainerArray()->getPrereqGeometryFromDataContainer<ImageGeom, AbstractFilter>(this, getSelectedCellArrayPath().getDataContainerName());
+  // Ignore returning from the dataCheck if this errors out. We are just trying to
+  // ensure an ImageGeometry is selected. If code is added below that starts depending
+  // on the image geometry, then the next line should be uncommented.
+  //if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+
 
   //make sure dims of selected array are appropriate
   if(1 == compDims.size())
