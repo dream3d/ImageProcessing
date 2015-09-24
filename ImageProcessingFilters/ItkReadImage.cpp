@@ -47,6 +47,11 @@
 
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 
+// Include the MOC generated file for this class
+#include "moc_ItkReadImage.cpp"
+
+
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -280,7 +285,7 @@ void ItkReadImage::dataCheck()
       componentDims[0] = 4;
       break;
     default:
-      setErrorCondition(-80001);
+      setErrorCondition(-90001);
       notifyErrorMessage(getHumanLabel(), "The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
   }
 

@@ -124,6 +124,11 @@ class GrayToRGBPrivate
 };
 
 
+// Include the MOC generated file for this class
+#include "moc_ItkGrayToRGB.cpp"
+
+
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------

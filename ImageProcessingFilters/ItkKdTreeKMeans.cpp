@@ -162,6 +162,11 @@ class itkKdTreeKMeansTemplate
     }
 };
 
+// Include the MOC generated file for this class
+#include "moc_ItkKdTreeKMeans.cpp"
+
+
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------

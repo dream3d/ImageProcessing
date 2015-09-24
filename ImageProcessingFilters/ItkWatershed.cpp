@@ -46,14 +46,19 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 
 
-#include "ItkBridge.h"
+#include "ImageProcessing/ImageProcessingFilters/ItkBridge.h"
+//ITK Includes
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkWatershedImageFilter.h"
 
+// Include the MOC generated file for this class
+#include "moc_ItkWatershed.cpp"
+ 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 ItkWatershed::ItkWatershed() :
+  AbstractFilter(),
   m_SelectedCellArrayPath("", "", ""),
   m_FeatureIdsArrayName(DREAM3D::CellData::FeatureIds),
   m_Threshold(0.005f),

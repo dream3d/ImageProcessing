@@ -50,6 +50,11 @@
 
 #include "ItkBridge.h"
 
+// Include the MOC generated file for this class
+#include "moc_ItkHoughCircles.cpp"
+
+
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------

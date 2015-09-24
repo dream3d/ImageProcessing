@@ -59,6 +59,11 @@
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
 
+// Include the MOC generated file for this class
+#include "moc_ItkImageCalculator.cpp"
+
+
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
