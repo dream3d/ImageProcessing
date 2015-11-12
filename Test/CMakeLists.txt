@@ -13,8 +13,8 @@ set(${PLUGIN_NAME}Test_SOURCE_DIR ${${PLUGIN_NAME}_SOURCE_DIR}/Test)
 set(${PLUGIN_NAME}Test_BINARY_DIR ${${PLUGIN_NAME}_BINARY_DIR}/Test)
 include(${DREAM3DProj_SOURCE_DIR}/Test/DREAM3DTestFunctions.cmake)
 
-include_directories(${${PROJECT_NAME}_SOURCE_DIR})
-include_directories(${${PROJECT_NAME}_BINARY_DIR})
+include_directories(${${PLUGIN_NAME}_SOURCE_DIR})
+include_directories(${${PLUGIN_NAME}_BINARY_DIR})
 
 
 set(TEST_TEMP_DIR ${${PLUGIN_NAME}Test_BINARY_DIR}/Temp)
@@ -26,9 +26,9 @@ configure_file(${${PLUGIN_NAME}_SOURCE_DIR}/Test/TestFileLocations.h.in
                ${${PLUGIN_NAME}_BINARY_DIR}/Test/${PLUGIN_NAME}TestFileLocations.h @ONLY IMMEDIATE)
 
 
-set(${PROJECT_NAME}_Link_Libs Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets QtSupportLib ${ITK_LIBRARIES} )
+set(${PLUGIN_NAME}_Link_Libs Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets QtSupportLib SimpleITKExplicit)
 
 
-add_executable(ITKUtilitiesTest  ${${PROJECT_NAME}Test_SOURCE_DIR}/ITKUtilitiesTest.cpp)
-target_link_libraries(ITKUtilitiesTest ${${PROJECT_NAME}_Link_Libs})
+add_executable(ITKUtilitiesTest  ${${PLUGIN_NAME}Test_SOURCE_DIR}/ITKUtilitiesTest.cpp)
+target_link_libraries(ITKUtilitiesTest ${${PLUGIN_NAME}_Link_Libs})
 

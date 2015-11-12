@@ -244,6 +244,7 @@ void ItkSobelEdge::execute()
     typedef itk::SobelEdgeDetectionImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::FloatImageType> SobelFilterType;
     SobelFilterType::Pointer sobelFilter = SobelFilterType::New();
     sobelFilter->SetInput(inputImage);
+    sobelFilter->SetObjectName(std::string("itk::SobelEdgeDetectionImageFilter"));
 
     //convert result back to uint8
     typedef itk::RescaleIntensityImageFilter<ImageProcessingConstants::FloatImageType, ImageProcessingConstants::DefaultImageType> RescaleImageType;
@@ -251,6 +252,7 @@ void ItkSobelEdge::execute()
     rescaleFilter->SetInput(sobelFilter->GetOutput());
     rescaleFilter->SetOutputMinimum(0);
     rescaleFilter->SetOutputMaximum(255);
+    rescaleFilter->SetObjectName(std::string("itk::RescaleIntensityImageFilter"));
 
     //have filter write to dream3d array instead of creating its own buffer
     ITKUtilitiesType::SetITKFilterOutput(rescaleFilter->GetOutput(), m_NewCellArrayPtr.lock());

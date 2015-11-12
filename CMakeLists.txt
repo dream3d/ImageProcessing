@@ -28,9 +28,10 @@
 #-- USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #--////////////////////////////////////////////////////////////////////////////
 
-project(ImageProcessing VERSION 1.0)
-
 set(PLUGIN_NAME ImageProcessing)
+set(${PLUGIN_NAME}_VERSION "1.0")
+get_filename_component(${PLUGIN_NAME}_SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
+set(ImageProcessing_BINARY_DIR "${DREAM3DProj_BINARY_DIR}/Plugins/${PLUGIN_NAME}")
 
 # --------------------------------------------------------------------
 # Look for Qt 5 as we need it for the plugin GUI to be generated
@@ -45,15 +46,17 @@ set(VERSION_SOURCE_FILE_NAME "${PLUGIN_NAME}Version.cpp")
 cmpRevisionString( GENERATED_HEADER_FILE_PATH "${VERSION_HEADER_FILE_NAME}"
                     GENERATED_SOURCE_FILE_PATH "${VERSION_SOURCE_FILE_NAME}"
                     NAMESPACE "${PLUGIN_NAME}"
-                    PROJECT_NAME "${PROJECT_NAME}"
+                    PROJECT_NAME "${PLUGIN_NAME}"
                     EXPORT_MACRO "")
+
 
 ## YOU MUST INCLUDE THIS FILE TO USE ITK !!!
 ## Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
-include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
-
-include_directories(${ITK_INCLUDE_DIRS})
-
+if(SIMPLib_USE_ITK)
+  include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
+  include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
+  include_directories(${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
+endif()
 
 # --------------------------------------------------------------------
 # What image bit depth should be used
@@ -133,7 +136,7 @@ include_directories( ${HDF5_INCLUDE_DIR} )
 include_directories( ${PROJECT_CODE_DIR} )
 include_directories( ${QtSupportLib_BINARY_DIR} )
 include_directories( ${QtSupportLib_SOURCE_DIR} )
-
+include_directories( ${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
 
 get_filename_component(PLUGINS_SOURCE_DIR  ${${PLUGIN_NAME}_SOURCE_DIR} DIRECTORY)
 get_filename_component(PLUGINS_BINARY_DIR  ${${PLUGIN_NAME}_BINARY_DIR} DIRECTORY)
@@ -176,19 +179,19 @@ endif()
 # These headers will be MOC'ed by the build system. They should all inherit from QObject
 # --------------------------------------------------------------------
 set(${PLUGIN_NAME}_HDRS
-  ${PROJECT_SOURCE_DIR}/${PLUGIN_NAME}Constants.h
+  ${${PLUGIN_NAME}_SOURCE_DIR}/${PLUGIN_NAME}Constants.h
 )
 
 set(${PLUGIN_NAME}_MOC_HDRS
-  ${PROJECT_SOURCE_DIR}/${PLUGIN_NAME}Plugin.h
+  ${${PLUGIN_NAME}_SOURCE_DIR}/${PLUGIN_NAME}Plugin.h
 )
 
 set(${PLUGIN_NAME}_SRCS
- ${PROJECT_SOURCE_DIR}/${PLUGIN_NAME}Plugin.cpp
+ ${${PLUGIN_NAME}_SOURCE_DIR}/${PLUGIN_NAME}Plugin.cpp
 )
 
 set(${PLUGIN_NAME}_MISC_HDRS
-    ${PROJECT_SOURCE_DIR}/${PLUGIN_NAME}Constants.h
+    ${${PLUGIN_NAME}_SOURCE_DIR}/${PLUGIN_NAME}Constants.h
 )
 cmp_IDE_SOURCE_PROPERTIES( "" "${${PLUGIN_NAME}_MOC_HDRS};${${PLUGIN_NAME}_HDRS};${${PLUGIN_NAME}_MISC_HDRS}" "${${PLUGIN_NAME}_SRCS}" "0")
 
@@ -262,16 +265,17 @@ endif()
 
 
 
-add_library(${PLUGIN_NAME} MODULE ${${PLUGIN_NAME}_MODULE_SRCS})
+add_library(${PLUGIN_NAME} ${LIB_TYPE} ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
-                        hdf5
-                        Qt5::Core
-                        SIMPLib
-                        Qt5::Gui
-                        Qt5::Widgets
-                        QtSupportLib
+                        # hdf5
+                        # Qt5::Core
+                        # SIMPLib
+                        # Qt5::Gui
+                        # Qt5::Widgets
+                        # QtSupportLib
                         DREAM3DWidgetsLib
-                        ${ITK_LIBRARIES}
+                        SimpleITKExplicit
+                     #   ${ITK_LIBRARIES}
                         )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 qt5_use_modules(${PLUGIN_NAME} Core Gui Widgets)
@@ -290,7 +294,7 @@ endif()
 
 
 if(DREAM3D_BUILD_TESTING)
-  include(${PROJECT_SOURCE_DIR}/Test/CMakeLists.txt)
+  include(${${PLUGIN_NAME}_SOURCE_DIR}/Test/CMakeLists.txt)
 endif()
 
 
