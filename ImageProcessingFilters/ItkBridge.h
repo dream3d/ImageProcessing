@@ -47,6 +47,7 @@
 #include "SIMPLib/DataArrays/DataArray.hpp"
 #include "SIMPLib/DataContainers/DataContainer.h"
 #include "SIMPLib/DataContainers/AttributeMatrix.h"
+#include "SIMPLib/Geometry/ImageGeom.h"
 
 // Our Plugin Includes next
 #include "ImageProcessing/ImageProcessingConstants.h"

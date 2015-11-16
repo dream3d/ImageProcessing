@@ -34,6 +34,7 @@
 #include "RegionGrowing.h"
 
 #include "SIMPLib/Common/Constants.h"
+#include "SIMPLib/Geometry/ImageGeom.h"
 
 #include "ItkBridge.h"
 

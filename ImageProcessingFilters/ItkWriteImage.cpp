@@ -50,6 +50,7 @@
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/Geometry/ImageGeom.h"
 
 #include "ImageProcessing/ImageProcessingFilters/ItkBridge.h"
 

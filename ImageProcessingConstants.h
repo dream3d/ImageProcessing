@@ -56,7 +56,7 @@ namespace ImageProcessingConstants
 {
   const QString ImageProcessingPluginFile("ImageProcessingPlugin");
   const QString ImageProcessingPluginDisplayName("ImageProcessing");
-  const QString ImageProcessingBaseName("ImageProcessingPlugin");
+  const QString ImageProcessingBaseName("ImageProcessing");
 
   namespace FilterGroups
   {

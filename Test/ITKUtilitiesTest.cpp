@@ -47,6 +47,7 @@
 #include "SIMPLib/Plugin/SIMPLibPluginLoader.h"
 #include "SIMPLib/Utilities/UnitTestSupport.hpp"
 #include "SIMPLib/Utilities/QMetaObjectUtilities.h"
+#include "SIMPLib/Geometry/ImageGeom.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessingFilters/ItkBridge.h"

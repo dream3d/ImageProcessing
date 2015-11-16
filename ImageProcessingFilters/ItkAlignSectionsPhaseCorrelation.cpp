@@ -1,4 +1,5 @@
 /* ============================================================================
+#include "SIMPLib/Geometry/ImageGeom.h"
  * Copyright (c) 2014 William Lenthe
  * Copyright (c) 2014 DREAM3D Consortium
  * All rights reserved.
