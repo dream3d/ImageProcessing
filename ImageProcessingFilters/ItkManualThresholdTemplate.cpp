@@ -71,7 +71,7 @@ class ManualThresholdTemplatePrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
     }
 
     // -----------------------------------------------------------------------------
@@ -79,8 +79,8 @@ class ManualThresholdTemplatePrivate
     // -----------------------------------------------------------------------------
     void static Execute(ItkManualThresholdTemplate* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, PixelType manParameter, DataContainer::Pointer m, QString attrMatName)
     {
-      typename DataArrayType::Pointer inputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
-      typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+      typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
+      typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
 
       //convert arrays to correct type
       PixelType* inputData = static_cast<PixelType*>(inputDataPtr->getPointer(0));
@@ -255,8 +255,8 @@ template<typename PixelType>
 void filter(IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, PixelType manParameter, DataContainer::Pointer m, QString attrMatName)
 {
   typedef DataArray<PixelType> DataArrayType;
-  typename DataArrayType::Pointer inputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
-  typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+  typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
+  typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
 
   //convert arrays to correct type
   PixelType* inputData = static_cast<PixelType*>(inputDataPtr->getPointer(0));
@@ -289,8 +289,8 @@ template<typename PixelType>
 void filter(IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, PixelType manParameter)
 {
   typedef DataArray<PixelType> DataArrayType;
-  typename DataArrayType::Pointer inputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
-  typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+  typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
+  typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
 
   //convert arrays to correct type
   PixelType* inputData = static_cast<PixelType*>(inputDataPtr->getPointer(0));

@@ -66,7 +66,7 @@ class ItkReadImagePrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
     }
 
     // -----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ class ItkReadImagePrivate
     // -----------------------------------------------------------------------------
     void static Execute(AbstractFilter* filter, QString inputFile, IDataArray::Pointer outputIDataArray)
     {
-      typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+      typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
 
       //convert arrays to correct type
       PixelType* outputData = static_cast<PixelType*>(outputDataPtr->getPointer(0));

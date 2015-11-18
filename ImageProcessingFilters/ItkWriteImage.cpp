@@ -73,7 +73,7 @@ class WriteImagePrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
     }
 
     // -----------------------------------------------------------------------------
@@ -81,7 +81,7 @@ class WriteImagePrivate
     // -----------------------------------------------------------------------------
     void static Execute(ItkWriteImage* filter, DataContainer::Pointer m, QString attrMatName, IDataArray::Pointer inputDataArray, QString outputFile)
     {
-      typename DataArrayType::Pointer inputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(inputDataArray);
+      typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputDataArray);
 
       // Get a Raw Pointer to the data
       TInputType* inputData = inputDataPtr->getPointer(0);

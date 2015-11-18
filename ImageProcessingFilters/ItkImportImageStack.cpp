@@ -404,7 +404,7 @@ void copySingleImageIntoStack(AbstractFilter* filter, IDataArray::Pointer output
 {
   typedef DataArray<T> DataArrayType;
   // Downcast the "3D" array that holds the final data array
-  typename DataArrayType::Pointer imageStack = boost::dynamic_pointer_cast<DataArrayType>(output3DStack);
+  typename DataArrayType::Pointer imageStack = std::dynamic_pointer_cast<DataArrayType>(output3DStack);
 
   size_t planeVoxels = height * width;
   // Create a new "2D" array to hold the single slice of image data
@@ -413,7 +413,7 @@ void copySingleImageIntoStack(AbstractFilter* filter, IDataArray::Pointer output
   // Read the image from the file system. The functio
   ItkReadImagePrivate<T, AbstractFilter>::Execute(filter, imageFName, fileImage);
 
-  //typename DataArrayType::Pointer fileImage = boost::dynamic_pointer_cast<DataArrayType>(iDataArray);
+  //typename DataArrayType::Pointer fileImage = std::dynamic_pointer_cast<DataArrayType>(iDataArray);
 
   T* sourcePtr = fileImage->getPointer(0);
   T* destPtr = imageStack->getTuplePointer(targetSlice * height * width);

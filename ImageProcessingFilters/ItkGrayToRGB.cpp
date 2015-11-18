@@ -69,7 +69,7 @@ class GrayToRGBPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
     }
 
     // -----------------------------------------------------------------------------
@@ -77,10 +77,10 @@ class GrayToRGBPrivate
     // -----------------------------------------------------------------------------
     void static Execute(ItkGrayToRGB* filter, IDataArray::Pointer redInputIDataArray, IDataArray::Pointer greenInputIDataArray, IDataArray::Pointer blueInputIDataArray, IDataArray::Pointer outputIDataArray, DataContainer::Pointer m, QString attrMatName)
     {
-      typename DataArrayType::Pointer redInputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(redInputIDataArray);
-      typename DataArrayType::Pointer greenInputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(greenInputIDataArray);
-      typename DataArrayType::Pointer blueInputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(blueInputIDataArray);
-      typename DataArrayType::Pointer outputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+      typename DataArrayType::Pointer redInputDataPtr = std::dynamic_pointer_cast<DataArrayType>(redInputIDataArray);
+      typename DataArrayType::Pointer greenInputDataPtr = std::dynamic_pointer_cast<DataArrayType>(greenInputIDataArray);
+      typename DataArrayType::Pointer blueInputDataPtr = std::dynamic_pointer_cast<DataArrayType>(blueInputIDataArray);
+      typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
 
       //convert arrays to correct type
       PixelType* redData = static_cast<PixelType*>(redInputDataPtr->getPointer(0));

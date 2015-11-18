@@ -311,7 +311,7 @@ QVector<float> ItkDetermineStitchingCoordinatesGeneric::extractFloatValues(QStri
   {
     std::stringstream str;
     IDataArray::Pointer iDataArray = getDataContainerArray()->getPrereqIDataArrayFromPath<DataArray<int8_t>, AbstractFilter>(this, tempPath);
-    Int8ArrayType::Pointer MetaDataPtr = boost::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
+    Int8ArrayType::Pointer MetaDataPtr = std::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
     int8_t* MetaData = MetaDataPtr->getPointer(0);
     dims = MetaDataPtr->getComponentDimensions();
     for (size_t i = 0; i < m_PointerList.size(); i++)
@@ -377,7 +377,7 @@ QVector<qint32> ItkDetermineStitchingCoordinatesGeneric::extractIntegerValues(QS
   {
     std::stringstream str;
     IDataArray::Pointer iDataArray = getDataContainerArray()->getPrereqIDataArrayFromPath<DataArray<int8_t>, AbstractFilter>(this, tempPath);
-    Int8ArrayType::Pointer MetaDataPtr = boost::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
+    Int8ArrayType::Pointer MetaDataPtr = std::dynamic_pointer_cast<DataArray<int8_t> >(iDataArray);
     int8_t* MetaData = MetaDataPtr->getPointer(0);
     dims = MetaDataPtr->getComponentDimensions();
     for (size_t i = 0; i < m_PointerList.size(); i++)

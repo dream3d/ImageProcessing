@@ -68,7 +68,7 @@ class itkKdTreeKMeansTemplate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
     }
 
     // -----------------------------------------------------------------------------
@@ -76,7 +76,7 @@ class itkKdTreeKMeansTemplate
     // -----------------------------------------------------------------------------
     void Execute(IDataArray::Pointer inputIDataArray, Int32ArrayType::Pointer classLabelsArray, int32_t numClasses)
     {
-      typename DataArrayType::Pointer inputDataPtr = boost::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
+      typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
 
       DataType* inputData = inputDataPtr->getPointer(0);
       int32_t* classLabels = classLabelsArray->getPointer(0);

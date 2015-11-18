@@ -175,7 +175,7 @@ void ItkStitchImages::dataCheck()
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
     iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType, AbstractFilter>(this, tempPath, dims);
 
-    imagePtr = boost::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
+    imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
     if(NULL == imagePtr)
     {
       setErrorCondition(-76001);
@@ -357,7 +357,7 @@ void ItkStitchImages::execute()
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
     iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType, AbstractFilter>(this, tempPath, cDims);
 
-    imagePtr = boost::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
+    imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
 
     if(NULL != imagePtr.get())
     {
