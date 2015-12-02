@@ -41,7 +41,6 @@
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
-
 #include "SIMPLib/FilterParameters/FloatVec3FilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/FileListInfoFilterParameter.h"
@@ -51,9 +50,12 @@
 #include "SIMPLib/Utilities/FilePathGenerator.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/Geometry/RectGridGeom.h"
+#include "SIMPLib/SIMPLibVersion.h"
+
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
+#include "ImageProcessing/ImageProcessingVersion.h"
 
 // Include the MOC generated file for this class
 #include "moc_ItkImportImageStack.cpp"
@@ -799,8 +801,28 @@ AbstractFilter::Pointer ItkImportImageStack::newFilterInstance(bool copyFilterPa
 //
 // -----------------------------------------------------------------------------
 const QString ItkImportImageStack::getCompiledLibraryName()
-{ return ImageProcessingConstants::ImageProcessingBaseName; }
+{
+  return ImageProcessingConstants::ImageProcessingBaseName;
+}
 
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+const QString ItkImportImageStack::getBrandingString()
+{
+  return "ImageProcessing";
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+const QString ItkImportImageStack::getFilterVersion()
+{
+  QString version;
+  QTextStream vStream(&version);
+  vStream <<  ImageProcessing::Version::Major() << "." << ImageProcessing::Version::Minor() << "." << ImageProcessing::Version::Patch();
+  return version;
+}
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------

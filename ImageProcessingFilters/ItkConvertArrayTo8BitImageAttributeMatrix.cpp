@@ -43,8 +43,9 @@
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/SIMPLibVersion.h"
 
-
+#include "ImageProcessing/ImageProcessingVersion.h"
 
 // Include the MOC generated file for this class
 #include "moc_ItkConvertArrayTo8BitImageAttributeMatrix.cpp"
@@ -329,8 +330,28 @@ AbstractFilter::Pointer ItkConvertArrayTo8BitImageAttributeMatrix::newFilterInst
 //
 // -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName()
-{ return ImageProcessingConstants::ImageProcessingBaseName; }
+{
+  return ImageProcessingConstants::ImageProcessingBaseName;
+}
 
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getBrandingString()
+{
+  return "ImageProcessing";
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getFilterVersion()
+{
+  QString version;
+  QTextStream vStream(&version);
+  vStream <<  ImageProcessing::Version::Major() << "." << ImageProcessing::Version::Minor() << "." << ImageProcessing::Version::Patch();
+  return version;
+}
 
 // -----------------------------------------------------------------------------
 //
