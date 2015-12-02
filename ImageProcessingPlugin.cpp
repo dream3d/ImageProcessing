@@ -33,7 +33,6 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-
 #include "ImageProcessingPlugin.h"
 
 #include <QtCore/QFile>
