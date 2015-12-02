@@ -45,7 +45,6 @@
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
 #include "SIMPLib/Common/AbstractFilter.h"
-
 #include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"

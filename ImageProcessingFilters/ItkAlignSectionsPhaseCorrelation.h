@@ -38,7 +38,6 @@
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Common/AbstractFilter.h"
-
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 
 /**
