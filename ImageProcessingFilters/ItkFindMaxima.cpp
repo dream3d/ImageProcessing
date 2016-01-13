@@ -85,7 +85,7 @@ class FindMaximaPrivate
 
       //size_t numVoxels = inputArrayPtr->getNumberOfTuples();
 
-      typedef ItkBridge<PixelType> ItkBridgeType;
+//      typedef ItkBridge<PixelType> ItkBridgeType;
 
       //wrap input and output as itk image
       typedef itk::Image<PixelType, ImageProcessingConstants::ImageDimension> ImageType;

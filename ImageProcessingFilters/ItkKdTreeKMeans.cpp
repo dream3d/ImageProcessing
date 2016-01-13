@@ -128,11 +128,11 @@ class itkKdTreeKMeansTemplate
 
       typedef typename ClassifierType::ClassLabelVectorObjectType ClassLabelVectorObjectType;
       typedef typename ClassifierType::ClassLabelVectorType ClassLabelVectorType;
-      typedef typename ClassifierType::MembershipFunctionVectorObjectType MembershipFunctionVectorObjectType;
-      typedef typename ClassifierType::MembershipFunctionVectorType MembershipFunctionVectorType;
-      typedef itk::Statistics::DistanceToCentroidMembershipFunction<MeasurementVectorType> MembershipFunctionType;
-      typedef typename MembershipFunctionType::Pointer MembershipFunctionPointer;
-      typedef std::vector<MembershipFunctionPointer> MembershipFunctionVectorPointer;
+//      typedef typename ClassifierType::MembershipFunctionVectorObjectType MembershipFunctionVectorObjectType;
+//      typedef typename ClassifierType::MembershipFunctionVectorType MembershipFunctionVectorType;
+      //typedef itk::Statistics::DistanceToCentroidMembershipFunction<MeasurementVectorType> MembershipFunctionType;
+      //typedef typename MembershipFunctionType::Pointer MembershipFunctionPointer;
+//      typedef std::vector<MembershipFunctionPointer> MembershipFunctionVectorPointer;
 
       const typename EstimatorType::MembershipFunctionVectorObjectType* kMeansMembershipFunctions = estimator->GetOutput();
       classifier->SetMembershipFunctions(kMeansMembershipFunctions);

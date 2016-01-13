@@ -179,11 +179,6 @@ void ItkManualThreshold::execute()
   //get dims
   size_t udims[3] = {0, 0, 0};
   m->getGeometryAs<ImageGeom>()->getDimensions(udims);
-#if (CMP_SIZEOF_SIZE_T == 4)
-  typedef int32_t DimType;
-#else
-  typedef int64_t DimType;
-#endif
 
   //wrap input as itk image
   ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
