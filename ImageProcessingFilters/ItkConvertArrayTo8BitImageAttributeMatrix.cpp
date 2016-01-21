@@ -135,14 +135,8 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     for(int i = 0; i < names.size(); i++)
     {
       tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-      IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);
-      if (NULL == inputData.get())
-      {
-        QString ss = QObject::tr("Data array '%1' does not exist in the DataContainer. Was it spelled correctly?").arg(names[i]);
-        setErrorCondition(-11001);
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-        return;
-      }
+      IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath);
+      if (getErrorCondition() < 0) { return; }
       else
       {
         if(inputData->getNumberOfComponents() > 1)
