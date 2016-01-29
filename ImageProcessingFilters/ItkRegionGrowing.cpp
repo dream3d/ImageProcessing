@@ -238,7 +238,7 @@ const QString RegionGrowing::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString RegionGrowing::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

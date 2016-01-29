@@ -413,7 +413,7 @@ const QString ItkWriteImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkWriteImage::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

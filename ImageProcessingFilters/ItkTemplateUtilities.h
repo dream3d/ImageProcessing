@@ -76,97 +76,97 @@ class TemplateUtilities
     {
       if(TemplateConstants::Bool == type)
       {
-        return DREAM3D::TypeNames::Bool;
+        return SIMPL::TypeNames::Bool;
       }
       else if(TemplateConstants::Int8 == type)
       {
-        return DREAM3D::TypeNames::Int8;
+        return SIMPL::TypeNames::Int8;
       }
       else if(TemplateConstants::UInt8 == type)
       {
-        return DREAM3D::TypeNames::UInt8;
+        return SIMPL::TypeNames::UInt8;
       }
       else if(TemplateConstants::Int16 == type)
       {
-        return DREAM3D::TypeNames::Int16;
+        return SIMPL::TypeNames::Int16;
       }
       else if(TemplateConstants::UInt16 == type)
       {
-        return DREAM3D::TypeNames::UInt16;
+        return SIMPL::TypeNames::UInt16;
       }
       else if(TemplateConstants::Int32 == type)
       {
-        return DREAM3D::TypeNames::Int32;
+        return SIMPL::TypeNames::Int32;
       }
       else if(TemplateConstants::UInt32 == type)
       {
-        return DREAM3D::TypeNames::UInt32;
+        return SIMPL::TypeNames::UInt32;
       }
       else if(TemplateConstants::Int64 == type)
       {
-        return DREAM3D::TypeNames::Int64;
+        return SIMPL::TypeNames::Int64;
       }
       else if(TemplateConstants::UInt64 == type)
       {
-        return DREAM3D::TypeNames::UInt64;
+        return SIMPL::TypeNames::UInt64;
       }
       else if(TemplateConstants::Float == type)
       {
-        return DREAM3D::TypeNames::Float;
+        return SIMPL::TypeNames::Float;
       }
       else if(TemplateConstants::Double == type)
       {
-        return DREAM3D::TypeNames::Double;
+        return SIMPL::TypeNames::Double;
       }
       else
       {
-        return DREAM3D::Defaults::Any;
+        return SIMPL::Defaults::Any;
       }
     }
 
     static int getTypeFromTypeName(QString type)
     {
-      if(0 == type.compare(DREAM3D::TypeNames::Bool))
+      if(0 == type.compare(SIMPL::TypeNames::Bool))
       {
         return TemplateConstants::Bool;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Int8))
+      else if(0 == type.compare(SIMPL::TypeNames::Int8))
       {
         return TemplateConstants::Int8;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::UInt8))
+      else if(0 == type.compare(SIMPL::TypeNames::UInt8))
       {
         return TemplateConstants::UInt8;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Int16))
+      else if(0 == type.compare(SIMPL::TypeNames::Int16))
       {
         return TemplateConstants::Int16;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::UInt16))
+      else if(0 == type.compare(SIMPL::TypeNames::UInt16))
       {
         return TemplateConstants::UInt16;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Int32))
+      else if(0 == type.compare(SIMPL::TypeNames::Int32))
       {
         return TemplateConstants::Int32;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::UInt32))
+      else if(0 == type.compare(SIMPL::TypeNames::UInt32))
       {
         return TemplateConstants::UInt32;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Int64))
+      else if(0 == type.compare(SIMPL::TypeNames::Int64))
       {
         return TemplateConstants::Int64;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::UInt64))
+      else if(0 == type.compare(SIMPL::TypeNames::UInt64))
       {
         return TemplateConstants::UInt64;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Float))
+      else if(0 == type.compare(SIMPL::TypeNames::Float))
       {
         return TemplateConstants::Float;
       }
-      else if(0 == type.compare(DREAM3D::TypeNames::Double))
+      else if(0 == type.compare(SIMPL::TypeNames::Double))
       {
         return TemplateConstants::Double;
       }

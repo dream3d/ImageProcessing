@@ -80,7 +80,7 @@ void TestDream3DtoITKImportFilter()
 
 
   DataContainer::Pointer m = DataContainer::New();
-  ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
+  ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m->setGeometry(image);
   QString attrMatName("CellData");
   ImageProcessingConstants::DefaultPixelType* data = NULL;
@@ -97,7 +97,7 @@ void TestCreateItkWrapperForDataPointer()
 {
   ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
   DataContainer::Pointer m = DataContainer::New();
-  ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
+  ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m->setGeometry(image);
   QString attrMatName("CellData");
 

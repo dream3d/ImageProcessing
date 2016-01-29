@@ -131,7 +131,7 @@ const QString ImageRegistration::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ImageRegistration::getGroupName()
 {
-  return DREAM3D::FilterGroups::Unsupported;
+  return SIMPL::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

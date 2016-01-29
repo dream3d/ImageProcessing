@@ -57,9 +57,9 @@
 ItkReadImage::ItkReadImage() :
   AbstractFilter(),
   m_InputFileName(""),
-  m_DataContainerName(DREAM3D::Defaults::ImageDataContainerName),
-  m_CellAttributeMatrixName(DREAM3D::Defaults::CellAttributeMatrixName),
-  m_ImageDataArrayName(DREAM3D::CellData::ImageData),
+  m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
+  m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
+  m_ImageDataArrayName(SIMPL::CellData::ImageData),
   m_ImageData(NULL)
 {
   setupFilterParameters();
@@ -176,7 +176,7 @@ void ItkReadImage::dataCheck()
   if(NULL == m.get()) //datacontainer doesn't exist->create
   {
     m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
-    ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
+    ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
     m->setGeometry(image);
     m->getGeometryAs<ImageGeom>()->setDimensions(xdim, ydim, zdim);
     double zRes = 1;
@@ -263,7 +263,7 @@ void ItkReadImage::dataCheck()
   if(createAttributeMatrix)
   {
     //create attribute matrix
-    cellAttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::Cell);
+    cellAttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell);
     if(getErrorCondition() < 0) { return; }
   }
 
@@ -480,7 +480,7 @@ const QString ItkReadImage::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkReadImage::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
