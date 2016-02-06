@@ -87,12 +87,12 @@ void ItkGaussianBlur::setupFilterParameters()
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(DREAM3D::Defaults::AnyPrimitive, 1, DREAM3D::Defaults::AnyAttributeMatrix, DREAM3D::Defaults::AnyGeometry);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::Defaults::AnyPrimitive, 1, SIMPL::Defaults::AnyAttributeMatrix, SIMPL::Defaults::AnyGeometry);
     QVector<QString> vec;
-    vec.push_back(DREAM3D::TypeNames::Int8);
-    vec.push_back(DREAM3D::TypeNames::Int16);
-    vec.push_back(DREAM3D::TypeNames::Int32);
-    vec.push_back(DREAM3D::TypeNames::Int64);
+    vec.push_back(SIMPL::TypeNames::Int8);
+    vec.push_back(SIMPL::TypeNames::Int16);
+    vec.push_back(SIMPL::TypeNames::Int32);
+    vec.push_back(SIMPL::TypeNames::Int64);
     req.daTypes = vec;
     parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
@@ -245,7 +245,7 @@ const QString ItkGaussianBlur::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkGaussianBlur::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

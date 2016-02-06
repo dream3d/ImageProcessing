@@ -80,7 +80,7 @@ void ItkConvertArrayTo8BitImage::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::Defaults::AnyPrimitive, 3, DREAM3D::AttributeMatrixObjectType::Any);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, SIMPL::AttributeMatrixObjectType::Any);
     parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", getSelectedArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
@@ -308,7 +308,7 @@ const QString ItkConvertArrayTo8BitImage::getFilterVersion()
 //
 // -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImage::getGroupName()
-{ return DREAM3D::FilterGroups::Unsupported; }
+{ return SIMPL::FilterGroups::Unsupported; }
 
 
 // -----------------------------------------------------------------------------

@@ -260,7 +260,7 @@ const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString AlignSectionsPhaseCorrelation::getGroupName()
 {
-  return DREAM3D::FilterGroups::Unsupported;
+  return SIMPL::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

@@ -63,8 +63,8 @@
 // -----------------------------------------------------------------------------
 ItkStitchImages::ItkStitchImages() :
   AbstractFilter(),
-  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellFeatureAttributeMatrixName, ""),
-  m_StitchedCoordinatesArrayPath(DREAM3D::Defaults::ImageDataContainerName, "", ""),
+  m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, ""),
+  m_StitchedCoordinatesArrayPath(SIMPL::Defaults::ImageDataContainerName, "", ""),
   m_AttributeArrayNamesPath(),
   m_StitchedVolumeDataContainerName("MontagedImageDataContainer"),
   m_StitchedImagesArrayName("Montage"),
@@ -96,7 +96,7 @@ void ItkStitchImages::setupFilterParameters()
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    req.daTypes = QVector<QString>(1, DREAM3D::TypeNames::Float);
+    req.daTypes = QVector<QString>(1, SIMPL::TypeNames::Float);
     parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, req));
   }
   {
@@ -206,7 +206,7 @@ void ItkStitchImages::dataCheck()
   DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
   if(getErrorCondition() < 0) { return; }
 
-  ImageGeom::Pointer image = ImageGeom::CreateGeometry(DREAM3D::Geometry::ImageGeometry);
+  ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m2->setGeometry(image);
 
   //Keep Resolution the same as original images
@@ -218,7 +218,7 @@ void ItkStitchImages::dataCheck()
 
   QVector<size_t> tDims(1, 0);
 
-  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::Cell);
+  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell);
   if(getErrorCondition() < 0) { return; }
   dims[0] = 1;
 
@@ -423,7 +423,7 @@ const QString ItkStitchImages::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkStitchImages::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

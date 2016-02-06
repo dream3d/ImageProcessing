@@ -58,7 +58,7 @@
 ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMatrix() :
   AbstractFilter(),
 //  m_SelectedArrayPath("", "", ""),
-  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellAttributeMatrixName, ""),
+  m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""),
   m_NewArrayArrayName(""),
   m_NewArray(NULL)
 {
@@ -351,7 +351,7 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getFilterVersion()
 //
 // -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImageAttributeMatrix::getGroupName()
-{ return DREAM3D::FilterGroups::Unsupported; }
+{ return SIMPL::FilterGroups::Unsupported; }
 
 
 // -----------------------------------------------------------------------------

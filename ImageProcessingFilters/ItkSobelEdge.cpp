@@ -310,7 +310,7 @@ const QString ItkSobelEdge::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkSobelEdge::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

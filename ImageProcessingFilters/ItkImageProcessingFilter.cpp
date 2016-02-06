@@ -147,7 +147,7 @@ const QString ImageProcessingFilter::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ImageProcessingFilter::getGroupName()
 {
-  return DREAM3D::FilterGroups::Unsupported;
+  return SIMPL::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------

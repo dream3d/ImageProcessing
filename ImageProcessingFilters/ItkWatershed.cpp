@@ -60,7 +60,7 @@
 ItkWatershed::ItkWatershed() :
   AbstractFilter(),
   m_SelectedCellArrayPath("", "", ""),
-  m_FeatureIdsArrayName(DREAM3D::CellData::FeatureIds),
+  m_FeatureIdsArrayName(SIMPL::CellData::FeatureIds),
   m_Threshold(0.005f),
   m_Level(0.5f),
   m_SelectedCellArray(NULL),
@@ -84,7 +84,7 @@ void ItkWatershed::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(DREAM3D::TypeNames::UInt8, 1, DREAM3D::AttributeMatrixObjectType::Any);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
     parameters.push_back(DataArraySelectionFilterParameter::New("Image Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
@@ -245,7 +245,7 @@ const QString ItkWatershed::getCompiledLibraryName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkWatershed::getGroupName()
-{return DREAM3D::FilterGroups::Unsupported;}
+{return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------

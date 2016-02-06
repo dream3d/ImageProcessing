@@ -29,7 +29,7 @@
 // -----------------------------------------------------------------------------
 ItkDetermineStitchingCoordinatesGeneric::ItkDetermineStitchingCoordinatesGeneric() :
   AbstractFilter(),
-  m_AttributeMatrixName(DREAM3D::Defaults::ImageDataContainerName, DREAM3D::Defaults::CellAttributeMatrixName, ""),
+  m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""),
   m_UseZeissMetaData(false),
   m_MetaDataAttributeMatrixName("TileAttributeMatrix"),
   m_TileCalculatedInfoAttributeMatrixName("TileInfoAttrMat"),
@@ -169,7 +169,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   if(getErrorCondition() < 0 || NULL == m) { return; }
 
   QVector<size_t> tDims(1, m_PointerList.size());
-  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getTileCalculatedInfoAttributeMatrixName(), tDims, DREAM3D::AttributeMatrixType::CellFeature);
+  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getTileCalculatedInfoAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::CellFeature);
   if(getErrorCondition() < 0) { return; }
 
   dims[0] = 2;
@@ -436,7 +436,7 @@ const QString ItkDetermineStitchingCoordinatesGeneric::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 const QString ItkDetermineStitchingCoordinatesGeneric::getGroupName()
 {
-  return DREAM3D::FilterGroups::Unsupported;
+  return SIMPL::FilterGroups::Unsupported;
 }
 
 // -----------------------------------------------------------------------------
