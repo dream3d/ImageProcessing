@@ -73,16 +73,12 @@ class AlignSectionsPhaseCorrelationPrivate
       //get volume dimensions
       size_t udims[3] = {0, 0, 0};
       m->getGeometryAs<ImageGeom>()->getDimensions(udims);
-#if (CMP_SIZEOF_SIZE_T == 4)
-      typedef int32_t DimType;
-#else
-      typedef int64_t DimType;
-#endif
-      DimType dims[3] =
+
+      int64_t dims[3] =
       {
-        static_cast<DimType>(udims[0]),
-        static_cast<DimType>(udims[1]),
-        static_cast<DimType>(udims[2]),
+        static_cast<int64_t>(udims[0]),
+        static_cast<int64_t>(udims[1]),
+        static_cast<int64_t>(udims[2]),
       };
       int voxelsPerSlice = dims[0] * dims[1];
 
@@ -110,7 +106,7 @@ class AlignSectionsPhaseCorrelationPrivate
       }
 
       //loop over slices computing shifts
-      for (DimType iter = 1; iter < dims[2]; iter++)
+      for (int64_t iter = 1; iter < dims[2]; iter++)
       {
         //update progress
         QString ss = QObject::tr("Aligning Sections - Determining Shifts - %1 Percent Complete").arg(((float)iter / dims[2]) * 100);
