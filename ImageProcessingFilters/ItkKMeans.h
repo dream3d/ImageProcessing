@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkKMeans_H_
-#define _ItkKMeans_H_
+#ifndef _itkkmeans_h_
+#define _itkkmeans_h_
 
 #include <vector>
 #include <QtCore/QString>

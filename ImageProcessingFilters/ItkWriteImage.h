@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkWriteImage_H_
-#define _ItkWriteImage_H_
+#ifndef _itkwriteimage_h_
+#define _itkwriteimage_h_
 
 
 #include "SIMPLib/SIMPLib.h"

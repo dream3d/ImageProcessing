@@ -35,8 +35,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkConvertArrayTo8BitImageAttributeMatrix_H_
-#define _ItkConvertArrayTo8BitImageAttributeMatrix_H_
+#ifndef _itkconvertarrayto8bitimageattributematrix_h_
+#define _itkconvertarrayto8bitimageattributematrix_h_
 
 #include <QtCore/QString>
 #include <set>

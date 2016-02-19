@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkImageMath_H_
-#define _ItkImageMath_H_
+#ifndef _itkimagemath_h_
+#define _itkimagemath_h_
 
 #include <QtCore/QString>
 

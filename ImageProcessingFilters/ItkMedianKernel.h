@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkMedianKernel_H_
-#define _ItkMedianKernel_H_
+#ifndef _itkmediankernel_h_
+#define _itkmediankernel_h_
 
 
 #include "SIMPLib/SIMPLib.h"

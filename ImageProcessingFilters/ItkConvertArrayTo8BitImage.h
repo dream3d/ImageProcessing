@@ -35,8 +35,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkConvertArrayTo8BitImage_H_
-#define _ItkConvertArrayTo8BitImage_H_
+#ifndef _itkconvertarrayto8bitimage_h_
+#define _itkconvertarrayto8bitimage_h_
 
 #include <QtCore/QString>
 #include <set>

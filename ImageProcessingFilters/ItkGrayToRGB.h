@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkGrayToRGB_H_
-#define _ItkGrayToRGB_H_
+#ifndef _itkgraytorgb_h_
+#define _itkgraytorgb_h_
 
 //#include <vector>
 #include <QtCore/QString>

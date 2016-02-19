@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkManualThresholdTemplate_H_
-#define _ItkManualThresholdTemplate_H_
+#ifndef _itkmanualthresholdtemplate_h_
+#define _itkmanualthresholdtemplate_h_
 
 //#include <vector>
 #include <QtCore/QString>

@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkHoughCircles_H_
-#define _ItkHoughCircles_H_
+#ifndef _itkhoughcircles_h_
+#define _itkhoughcircles_h_
 
 
 #include "SIMPLib/SIMPLib.h"

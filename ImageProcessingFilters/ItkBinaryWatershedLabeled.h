@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkBinaryWatershedLabeled_H_
-#define _ItkBinaryWatershedLabeled_H_
+#ifndef _itkbinarywatershedlabeled_h_
+#define _itkbinarywatershedlabeled_h_
 
 //#include <vector>
 #include <QtCore/QString>

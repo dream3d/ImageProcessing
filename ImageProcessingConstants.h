@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ImageProcessingConstants_H_
-#define _ImageProcessingConstants_H_
+#ifndef _imageprocessingconstants_h_
+#define _imageprocessingconstants_h_
 
 
 #include "itkImage.h"

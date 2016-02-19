@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkMultiOtsuThreshold_H_
-#define _ItkMultiOtsuThreshold_H_
+#ifndef _itkmultiotsuthreshold_h_
+#define _itkmultiotsuthreshold_h_
 
 #include <QtCore/QString>
 

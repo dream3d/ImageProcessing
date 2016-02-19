@@ -32,8 +32,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkRegionGrowing_H_
-#define _ItkRegionGrowing_H_
+#ifndef _itkregiongrowing_h_
+#define _itkregiongrowing_h_
 
 #include <vector>
 #include <QtCore/QString>

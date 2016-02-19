@@ -31,8 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkKdTreeKMeans_H_
-#define _ItkKdTreeKMeans_H_
+#ifndef _itkkdtreekmeans_h_
+#define _itkkdtreekmeans_h_
 
 #include <vector>
 #include <QtCore/QString>

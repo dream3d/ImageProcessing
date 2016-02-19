@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkMeanKernel_H_
-#define _ItkMeanKernel_H_
+#ifndef _itkmeankernel_h_
+#define _itkmeankernel_h_
 
 
 #include "SIMPLib/SIMPLib.h"

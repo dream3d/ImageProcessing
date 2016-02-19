@@ -2,8 +2,8 @@
  * Your License or Copyright Information can go here
  */
 
-#ifndef _ItkDetermineStitchingCoordinatesGeneric_H_
-#define _ItkDetermineStitchingCoordinatesGeneric_H_
+#ifndef _itkdeterminestitchingcoordinatesgeneric_h_
+#define _itkdeterminestitchingcoordinatesgeneric_h_
 
 
 #include "SIMPLib/SIMPLib.h"

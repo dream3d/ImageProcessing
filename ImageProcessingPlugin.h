@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ImageProcessing_H_
-#define _ImageProcessing_H_
+#ifndef _imageprocessingplugin_h_
+#define _imageprocessingplugin_h_
 
 #include <QtCore/QObject>
 #include <QtCore/QSettings>

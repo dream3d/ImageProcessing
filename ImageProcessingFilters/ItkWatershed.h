@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkWatershed_H_
-#define _ItkWatershed_H_
+#ifndef _itkwatershed_h_
+#define _itkwatershed_h_
 
 #include <QtCore/QString>
 

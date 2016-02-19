@@ -35,8 +35,8 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-#ifndef _ItkItkImportImageStack_H_
-#define _ItkItkImportImageStack_H_
+#ifndef _itkimportimagestack_h_
+#define _itkimportimagestack_h_
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/AbstractFilter.h"

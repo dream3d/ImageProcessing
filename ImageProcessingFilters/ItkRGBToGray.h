@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkRGBToGray_H_
-#define _ItkRGBToGray_H_
+#ifndef _itkrgbtogray_h_
+#define _itkrgbtogray_h_
 
 #include <QtCore/QString>
 

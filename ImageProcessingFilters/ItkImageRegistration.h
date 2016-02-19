@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkImageRegistration_H_
-#define _ItkImageRegistration_H_
+#ifndef _itkimageregistration_h_
+#define _itkimageregistration_h_
 
 
 #include "SIMPLib/SIMPLib.h"

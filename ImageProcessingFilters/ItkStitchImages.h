@@ -31,8 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkStitchImages_H_
-#define _ItkStitchImages_H_
+#ifndef _itkstitchimages_h_
+#define _itkstitchimages_h_
 
 #include <QtCore/QString>
 

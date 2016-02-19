@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkManualThreshold_H_
-#define _ItkManualThreshold_H_
+#ifndef _itkmanualthreshold_h_
+#define _itkmanualthreshold_h_
 
 #include <vector>
 #include <QtCore/QString>

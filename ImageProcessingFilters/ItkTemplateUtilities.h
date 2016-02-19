@@ -33,8 +33,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _ItkTemplateUtilities_H_
-#define _ItkTemplateUtilities_H_
+#ifndef _itktemplateutilities_h_
+#define _itktemplateutilities_h_
 
 #if 0
 

@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkFindMaxima_H_
-#define _ItkFindMaxima_H_
+#ifndef _itkfindmaxima_h_
+#define _itkfindmaxima_h_
 
 //#include <vector>
 #include <QtCore/QString>

@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkAutoThreshold_H_
-#define _ItkAutoThreshold_H_
+#ifndef _itkautothreshold_h_
+#define _itkautothreshold_h_
 
 #include <vector>
 #include <QtCore/QString>

@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkSobelEdge_H_
-#define _ItkSobelEdge_H_
+#ifndef _itksobeledge_h_
+#define _itksobeledge_h_
 
 
 #include "SIMPLib/SIMPLib.h"

@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkImageCalculator_H_
-#define _ItkImageCalculator_H_
+#ifndef _itkimagecalculator_h_
+#define _itkimagecalculator_h_
 
 #include <QtCore/QString>
 

@@ -2,8 +2,8 @@
  * Your License or Copyright Information can go here
  */
 
-#ifndef _ItkImageProcessingFilter_H_
-#define _ItkImageProcessingFilter_H_
+#ifndef _itkimageprocessingfilter_h_
+#define _itkimageprocessingfilter_h_
 
 
 #include "SIMPLib/SIMPLib.h"

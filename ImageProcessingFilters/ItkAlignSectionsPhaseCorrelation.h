@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkAlignSectionsPhaseCorrelation_H_
-#define _ItkAlignSectionsPhaseCorrelation_H_
+#ifndef _itkalignsectionsphasecorrelation_h_
+#define _itkalignsectionsphasecorrelation_h_
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"

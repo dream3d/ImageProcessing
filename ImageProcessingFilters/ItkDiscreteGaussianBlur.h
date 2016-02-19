@@ -32,8 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _ItkDiscreteGaussianBlur_H_
-#define _ItkDiscreteGaussianBlur_H_
+#ifndef _itkdiscretegaussianblur_h_
+#define _itkdiscretegaussianblur_h_
 
 
 #include "SIMPLib/SIMPLib.h"
