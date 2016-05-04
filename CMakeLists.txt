@@ -266,15 +266,8 @@ endif()
 
 add_library(${PLUGIN_NAME} ${LIB_TYPE} ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
-                        # hdf5
-                        # Qt5::Core
-                        # SIMPLib
-                        # Qt5::Gui
-                        # Qt5::Widgets
-                        # QtSupportLib
-                        SIMPLViewWidgetsLib
+                        SVWidgetsLib
                         SimpleITKExplicit
-                     #   ${ITK_LIBRARIES}
                         )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 qt5_use_modules(${PLUGIN_NAME} Core Gui Widgets)
