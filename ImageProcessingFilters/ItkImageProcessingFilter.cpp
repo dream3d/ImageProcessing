@@ -81,6 +81,14 @@ int ImageProcessingFilter::writeFilterParameters(AbstractFilterParametersWriter*
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ImageProcessingFilter::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ImageProcessingFilter::dataCheck()
 {
   setErrorCondition(0);

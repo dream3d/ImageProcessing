@@ -134,9 +134,15 @@ class ImageProcessingFilter : public AbstractFilter
     ImageProcessingFilter();
 
     /**
-    * @brief Checks for the appropriate parameter values and availability of arrays in the data container
-    */
+     * @brief dataCheck Checks for the appropriate parameter values and availability of arrays
+     */
     void dataCheck();
+
+    /**
+     * @brief Initializes all the private instance variables.
+     */
+    void initialize();
+
 
   private:
     /* Your private class instance variables go here. You can use several preprocessor macros to help

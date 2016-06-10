@@ -166,9 +166,15 @@ class ItkBinaryWatershedLabeled : public AbstractFilter
     ItkBinaryWatershedLabeled();
 
     /**
-    * @brief Checks for the appropriate parameter values and availability of arrays in the data container
-    */
+     * @brief dataCheck Checks for the appropriate parameter values and availability of arrays
+     */
     void dataCheck();
+
+    /**
+     * @brief Initializes all the private instance variables.
+     */
+    void initialize();
+
 
   private:
     DEFINE_DATAARRAY_VARIABLE(bool, SelectedCellArray)

@@ -211,6 +211,14 @@ int AlignSectionsPhaseCorrelation::writeFilterParameters(AbstractFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void AlignSectionsPhaseCorrelation::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void AlignSectionsPhaseCorrelation::dataCheck()
 {
   setErrorCondition(0);

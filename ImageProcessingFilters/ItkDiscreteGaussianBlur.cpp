@@ -132,6 +132,14 @@ int ItkDiscreteGaussianBlur::writeFilterParameters(AbstractFilterParametersWrite
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkDiscreteGaussianBlur::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkDiscreteGaussianBlur::dataCheck()
 {
   setErrorCondition(0);

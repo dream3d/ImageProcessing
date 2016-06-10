@@ -114,6 +114,14 @@ int ItkConvertArrayTo8BitImage::writeFilterParameters(AbstractFilterParametersWr
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkConvertArrayTo8BitImage::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImage::dataCheck()
 {
   DataArrayPath tempPath;

@@ -133,6 +133,14 @@ int ItkMultiOtsuThreshold::writeFilterParameters(AbstractFilterParametersWriter*
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkMultiOtsuThreshold::dataCheck()
 {
   setErrorCondition(0);

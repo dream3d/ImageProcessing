@@ -201,6 +201,14 @@ int ItkManualThresholdTemplate::writeFilterParameters(AbstractFilterParametersWr
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkManualThresholdTemplate::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::dataCheck()
 {
   setErrorCondition(0);

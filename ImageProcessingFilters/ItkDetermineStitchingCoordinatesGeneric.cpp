@@ -109,6 +109,14 @@ int ItkDetermineStitchingCoordinatesGeneric::writeFilterParameters(AbstractFilte
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkDetermineStitchingCoordinatesGeneric::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 {
   setErrorCondition(0);

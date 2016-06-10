@@ -97,6 +97,14 @@ int ItkBinaryWatershedLabeled::writeFilterParameters(AbstractFilterParametersWri
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+void ItkBinaryWatershedLabeled::initialize()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 void ItkBinaryWatershedLabeled::dataCheck()
 {
   setErrorCondition(0);
