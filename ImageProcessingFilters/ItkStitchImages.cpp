@@ -92,22 +92,22 @@ void ItkStitchImages::setupFilterParameters()
 
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req));
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkStitchImages, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkStitchImages, this, AttributeMatrixName)));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
     req.daTypes = QVector<QString>(1, SIMPL::TypeNames::Float);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedCoordinatesArrayPath), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedCoordinatesArrayPath)));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", getAttributeArrayNamesPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", getAttributeArrayNamesPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkStitchImages, this, AttributeArrayNamesPath), SIMPL_BIND_GETTER(ItkStitchImages, this, AttributeArrayNamesPath)));
   }
 
-  parameters.push_back(StringFilterParameter::New("Stitched Image Data Container", "StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Stitched Image Data Container", "StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedVolumeDataContainerName), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedVolumeDataContainerName)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", getStitchedAttributeMatrixName(), FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Montage", "StitchedImagesArrayName", getStitchedImagesArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Montage Attribute Matrix", "StitchedAttributeMatrixName", getStitchedAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedAttributeMatrixName), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedAttributeMatrixName)));
+  parameters.push_back(StringFilterParameter::New("Montage", "StitchedImagesArrayName", getStitchedImagesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedImagesArrayName), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedImagesArrayName)));
 
   setFilterParameters(parameters);
 }

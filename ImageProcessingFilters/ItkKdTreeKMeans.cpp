@@ -196,10 +196,10 @@ ItkKdTreeKMeans::~ItkKdTreeKMeans()
 void ItkKdTreeKMeans::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter));
+  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKdTreeKMeans, this, Classes), SIMPL_BIND_GETTER(ItkKdTreeKMeans, this, Classes)));
   DataArraySelectionFilterParameter::RequirementType req;
-  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Classify", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
-  parameters.push_back(StringFilterParameter::New("Class Labels", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Classify", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkKdTreeKMeans, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkKdTreeKMeans, this, SelectedCellArrayPath)));
+  parameters.push_back(StringFilterParameter::New("Class Labels", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkKdTreeKMeans, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkKdTreeKMeans, this, NewCellArrayName)));
   setFilterParameters(parameters);
 }
 

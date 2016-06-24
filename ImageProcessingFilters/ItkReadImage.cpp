@@ -79,10 +79,10 @@ void ItkReadImage::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(InputFileFilterParameter::New("Input File", "InputFileName", getInputFileName(), FilterParameter::Parameter, "*.tif *.jpeg *.png *.bmp", "Image"));
-  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkReadImage, this, DataContainerName), SIMPL_BIND_GETTER(ItkReadImage, this, DataContainerName)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Image Data", "ImageDataArrayName", getImageDataArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkReadImage, this, CellAttributeMatrixName), SIMPL_BIND_GETTER(ItkReadImage, this, CellAttributeMatrixName)));
+  parameters.push_back(StringFilterParameter::New("Image Data", "ImageDataArrayName", getImageDataArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkReadImage, this, ImageDataArrayName), SIMPL_BIND_GETTER(ItkReadImage, this, ImageDataArrayName)));
   setFilterParameters(parameters);
 }
 

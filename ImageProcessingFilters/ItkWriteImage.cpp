@@ -204,9 +204,9 @@ void ItkWriteImage::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Color Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Color Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkWriteImage, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkWriteImage, this, SelectedCellArrayPath)));
   }
-  parameters.push_back(OutputFileFilterParameter::New("Output File Name", "OutputFileName", getOutputFileName(), FilterParameter::Parameter, "*.tif", "TIFF"));
+  parameters.push_back(OutputFileFilterParameter::New("Output File Name", "OutputFileName", getOutputFileName(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWriteImage, this, OutputFileName), SIMPL_BIND_GETTER(ItkWriteImage, this, OutputFileName), "*.tif", "TIFF"));
   setFilterParameters(parameters);
 }
 

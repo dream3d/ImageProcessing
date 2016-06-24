@@ -154,11 +154,11 @@ void ItkFindMaxima::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Input Attribute Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkFindMaxima, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkFindMaxima, this, SelectedCellArrayPath)));
   }
-  parameters.push_back(DoubleFilterParameter::New("Noise Tolerance", "Tolerance", getTolerance(), FilterParameter::Parameter));
+  parameters.push_back(DoubleFilterParameter::New("Noise Tolerance", "Tolerance", getTolerance(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkFindMaxima, this, Tolerance), SIMPL_BIND_GETTER(ItkFindMaxima, this, Tolerance)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkFindMaxima, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkFindMaxima, this, NewCellArrayName)));
   setFilterParameters(parameters);
 }
 

@@ -96,7 +96,7 @@ void ItkImageCalculator::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("First Attribute Array to Process", "SelectedCellArrayPath1", getSelectedCellArrayPath1(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkImageCalculator, this, SelectedCellArrayPath1), SIMPL_BIND_GETTER(ItkImageCalculator, this, SelectedCellArrayPath1)));
   }
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
@@ -121,10 +121,10 @@ void ItkImageCalculator::setupFilterParameters()
   }
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Second Array to Process", "SelectedCellArrayPath2", getSelectedCellArrayPath2(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkImageCalculator, this, SelectedCellArrayPath2), SIMPL_BIND_GETTER(ItkImageCalculator, this, SelectedCellArrayPath2)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImageCalculator, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkImageCalculator, this, NewCellArrayName)));
   setFilterParameters(parameters);
 }
 

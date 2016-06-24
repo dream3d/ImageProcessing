@@ -88,16 +88,16 @@ void ItkDiscreteGaussianBlur::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, SaveAsNewArray)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, SelectedCellArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Blurred Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Blurred Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, NewCellArrayName)));
 
-  parameters.push_back(DoubleFilterParameter::New("Standard Deviation", "Stdev", getStdev(), FilterParameter::Parameter));
+  parameters.push_back(DoubleFilterParameter::New("Standard Deviation", "Stdev", getStdev(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, Stdev), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, Stdev)));
 
   setFilterParameters(parameters);
 }
