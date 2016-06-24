@@ -119,9 +119,9 @@ void ItkImportImageStack::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, 0));
-  parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, 0));
-  parameters.push_back(InputFileFilterParameter::New("Bounds File", "BoundsFile", getBoundsFile(), FilterParameter::Parameter, "*.txt", "", 1));
+  parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, Origin), SIMPL_BIND_GETTER(ItkImportImageStack, this, Origin), 0));
+  parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, Resolution), SIMPL_BIND_GETTER(ItkImportImageStack, this, Resolution), 0));
+  parameters.push_back(InputFileFilterParameter::New("Bounds File", "BoundsFile", getBoundsFile(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, BoundsFile), SIMPL_BIND_GETTER(ItkImportImageStack, this, BoundsFile), "*.txt", "", 1));
   parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImportImageStack, this, DataContainerName), SIMPL_BIND_GETTER(ItkImportImageStack, this, DataContainerName)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImportImageStack, this, CellAttributeMatrixName), SIMPL_BIND_GETTER(ItkImportImageStack, this, CellAttributeMatrixName)));
