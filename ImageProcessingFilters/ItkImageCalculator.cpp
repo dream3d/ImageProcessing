@@ -102,6 +102,8 @@ void ItkImageCalculator::setupFilterParameters()
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
     parameter->setPropertyName("Operator");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImageCalculator, this, Operator));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImageCalculator, this, Operator));
 
     QVector<QString> choices;
     choices.push_back("Add");

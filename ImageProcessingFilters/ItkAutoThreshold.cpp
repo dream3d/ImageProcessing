@@ -110,6 +110,8 @@ void ItkAutoThreshold::setupFilterParameters()
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Threshold Method");
     parameter->setPropertyName("Method");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkAutoThreshold, this, Method));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkAutoThreshold, this, Method));
 
     QVector<QString> choices;
     choices.push_back("Huang");

@@ -107,6 +107,8 @@ void ItkImportImageStack::setupFilterParameters()
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
     parameter->setHumanLabel("Geometry Type");
     parameter->setPropertyName("GeometryType");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImportImageStack, this, GeometryType));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImportImageStack, this, GeometryType));
 
     QVector<QString> choices;
     choices.push_back("Image");
