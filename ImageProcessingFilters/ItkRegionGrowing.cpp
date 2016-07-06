@@ -102,20 +102,6 @@ void RegionGrowing::readFilterParameters(AbstractFilterParametersReader* reader,
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int RegionGrowing::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(ManualParameter)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void RegionGrowing::initialize()
 {
 

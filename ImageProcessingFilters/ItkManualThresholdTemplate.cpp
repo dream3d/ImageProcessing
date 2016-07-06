@@ -187,20 +187,6 @@ void ItkManualThresholdTemplate::readFilterParameters(AbstractFilterParametersRe
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkManualThresholdTemplate::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(ManualParameter)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::initialize()
 {
 

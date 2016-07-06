@@ -117,19 +117,6 @@ void ItkGaussianBlur::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkGaussianBlur::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkGaussianBlur::initialize()
 {
 

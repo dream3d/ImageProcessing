@@ -93,22 +93,6 @@ void ItkDetermineStitchingCoordinatesGeneric::readFilterParameters(AbstractFilte
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkDetermineStitchingCoordinatesGeneric::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(UseZeissMetaData)
-  SIMPL_FILTER_WRITE_PARAMETER(MetaDataAttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(TileCalculatedInfoAttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedArrayNames)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::initialize()
 {
 

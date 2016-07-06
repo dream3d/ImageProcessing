@@ -102,18 +102,6 @@ void ItkConvertArrayTo8BitImage::readFilterParameters(AbstractFilterParametersRe
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkConvertArrayTo8BitImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(NewArrayArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedArrayPath)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImage::initialize()
 {
 

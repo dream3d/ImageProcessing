@@ -118,21 +118,6 @@ void ItkMultiOtsuThreshold::readFilterParameters(AbstractFilterParametersReader*
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkMultiOtsuThreshold::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(Slice)
-  SIMPL_FILTER_WRITE_PARAMETER(Levels)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkMultiOtsuThreshold::initialize()
 {
 

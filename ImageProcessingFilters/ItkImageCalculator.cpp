@@ -146,20 +146,6 @@ void ItkImageCalculator::readFilterParameters(AbstractFilterParametersReader* re
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkImageCalculator::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath1)
-  SIMPL_FILTER_WRITE_PARAMETER(Operator)
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath2)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  writer->closeFilterGroup();
-  return ++index;
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkImageCalculator::initialize()
 {
 

@@ -193,20 +193,6 @@ void ItkGrayToRGB::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkGrayToRGB::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(RedArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(GreenArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(BlueArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkGrayToRGB::initialize()
 {
 

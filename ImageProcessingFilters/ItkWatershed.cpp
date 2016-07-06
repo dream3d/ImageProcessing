@@ -110,20 +110,6 @@ void ItkWatershed::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkWatershed::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  writer->writeValue( "SelectedCellArrayPath", getSelectedCellArrayPath() );
-  writer->writeValue( "FeatureIdsArrayName", getFeatureIdsArrayName() );
-  writer->writeValue( "Threshold", getThreshold() );
-  writer->writeValue( "Level", getLevel() );
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkWatershed::initialize()
 {
 

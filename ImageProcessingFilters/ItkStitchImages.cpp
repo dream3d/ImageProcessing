@@ -131,22 +131,6 @@ void ItkStitchImages::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkStitchImages::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedVolumeDataContainerName)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedCoordinatesArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedImagesArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(StitchedAttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(AttributeArrayNamesPath)
-  writer->closeFilterGroup();
-  return ++index;
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkStitchImages::initialize()
 {
 

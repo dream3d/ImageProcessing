@@ -161,21 +161,6 @@ void ItkAutoThreshold::readFilterParameters(AbstractFilterParametersReader* read
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkAutoThreshold::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(Slice)
-  SIMPL_FILTER_WRITE_PARAMETER(Method)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 void ItkAutoThreshold::initialize()
 {
 
