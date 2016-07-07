@@ -52,12 +52,23 @@ cmpRevisionString( GENERATED_HEADER_FILE_PATH "${VERSION_HEADER_FILE_NAME}"
                     EXPORT_MACRO "")
 
 
+set(${PLUGIN_NAME}_Project_SRCS "")
+
+include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
+
 ## YOU MUST INCLUDE THIS FILE TO USE ITK !!!
 ## Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
+# --------------------------------------------------------------------
+# ITK Include
 if(SIMPLib_USE_ITK)
+  set(DREAM3D_ADDITIONAL_ITK_MODULES SCIFIO)
+  set_property(GLOBAL APPEND PROPERTY DREAM3D_ADDITIONAL_ITK_MODULES ${DREAM3D_ADDITIONAL_ITK_MODULES})
+
   include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
   include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
   include_directories(${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
+else()
+  message( FATAL_ERROR "${PLUGIN_NAME} needs ITK. Please turn SIMPLib_USE_ITK ON.")
 endif()
 
 # --------------------------------------------------------------------
@@ -72,11 +83,9 @@ endif()
 
 CONFIGURE_FILE(${${PLUGIN_NAME}_SOURCE_DIR}/${PLUGIN_NAME}Config.h.in
         ${${PLUGIN_NAME}_BINARY_DIR}/${PLUGIN_NAME}Config.h
-        )
+)
 
-set(${PLUGIN_NAME}_Project_SRCS "")
 
-include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
 #-------
 # Start writing this header file
 set(AllFiltersHeaderFile ${${PLUGIN_NAME}_BINARY_DIR}/${PLUGIN_NAME}Filters/${PLUGIN_NAME}Filters.h_tmp)
@@ -92,12 +101,7 @@ file(APPEND ${RegisterKnownFiltersFile} "/* This file will be directly included 
 file(APPEND ${RegisterKnownFiltersFile} "#include \"${PLUGIN_NAME}Filters.h\"\n\n")
 file(APPEND ${RegisterKnownFiltersFile} "\nvoid ${PLUGIN_NAME}Plugin::registerFilters(FilterManager* fm)\n{\n")
 
-# --------------------------------------------------------------------
-# Generate a file with all of our MOC'ed sources and  headers
-set(FilterWidget_GEN_HDRS_File ${${PLUGIN_NAME}_BINARY_DIR}/FilterWidget_GEN_HDRS_File.cmake)
-set(FilterWidget_GEN_SRCS_File ${${PLUGIN_NAME}_BINARY_DIR}/FilterWidget_GEN_SRCS_File.cmake)
-file(WRITE ${FilterWidget_GEN_HDRS_File})
-file(WRITE ${FilterWidget_GEN_SRCS_File})
+
 
 set(Project_SRCS "")
 
@@ -156,9 +160,7 @@ include_directories( ${SIMPLViewProj_SOURCE_DIR}/Source)
 include_directories( ${SIMPLProj_BINARY_DIR})
 include_directories( ${SIMPLViewProj_BINARY_DIR})
 
-# Remove the temp files that we no longer need
-file(REMOVE ${FilterWidget_GEN_HDRS_File})
-file(REMOVE ${FilterWidget_GEN_SRCS_File})
+
 
 
 set(FILTER_HEADERS "#include \"${AllFiltersHeaderFile}\"")
@@ -251,6 +253,7 @@ set(${PLUGIN_NAME}_MODULE_SRCS
   ${${PLUGIN_NAME}_Widgets_Generated_UI_HDRS}
   ${${PLUGIN_NAME}_GEN_HDRS}
   # -- Add in the miscellaneous resources (license, plugin info, ...)
+  ${${PLUGIN_NAME}_Generated_RC_SRCS}
   # -- Add in our Generated Version Files
   ${${PLUGIN_NAME}_BINARY_DIR}/${VERSION_HEADER_FILE_NAME}
   ${${PLUGIN_NAME}_BINARY_DIR}/${VERSION_SOURCE_FILE_NAME}
@@ -269,6 +272,7 @@ add_library(${PLUGIN_NAME} ${LIB_TYPE} ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
                         SVWidgetsLib
                         SimpleITKExplicit
+                        ${SCIFIO_LIBRARIES}
                         )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 qt5_use_modules(${PLUGIN_NAME} Core Gui Widgets)
