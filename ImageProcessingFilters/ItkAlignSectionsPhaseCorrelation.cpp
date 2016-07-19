@@ -183,7 +183,7 @@ AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation()
 void AlignSectionsPhaseCorrelation::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath)));
   setFilterParameters(parameters);
 }
 
@@ -195,17 +195,6 @@ void AlignSectionsPhaseCorrelation::readFilterParameters(AbstractFilterParameter
   reader->openFilterGroup(this, index);
   setSelectedCellArrayPath( reader->readDataArrayPath( "SelectedCellArrayPath", getSelectedCellArrayPath() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int AlignSectionsPhaseCorrelation::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

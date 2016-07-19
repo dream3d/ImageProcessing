@@ -39,7 +39,7 @@ void ImageProcessingFilter::setupFilterParameters()
   * options for each class type. The programmer can put the entire invocation into
   * a single line if they want. For example:
   *
-  *   parameters.push_back(FloatVec3FilterParameter::New("Reference Direction", "ReferenceDir", getReferenceDir(), FilterParameter::Uncategorized));
+  *   parameters.push_back(FloatVec3FilterParameter::New("Reference Direction", "ReferenceDir", getReferenceDir(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkImageProcessingFilter, this, ReferenceDir), SIMPL_BIND_GETTER(ItkImageProcessingFilter, this, ReferenceDir)));
   * or the programmer can create a FilterParameter like usual C++ codes:
   * {
   *  FilterParameter::Pointer parameter = FilterParameter::New();
@@ -64,18 +64,6 @@ void ImageProcessingFilter::readFilterParameters(AbstractFilterParametersReader*
    setOutputFile( reader->readValue("OutputFile", getOutputFile() ) );
    */
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ImageProcessingFilter::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  /* Place code that will write the inputs values into a file. reference the AbstractFilterParametersWriter class for the proper API to use. */
-  /*  SIMPL_FILTER_WRITE_PARAMETER(OutputFile) */
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

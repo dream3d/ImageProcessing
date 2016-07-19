@@ -110,6 +110,8 @@ void ItkAutoThreshold::setupFilterParameters()
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Threshold Method");
     parameter->setPropertyName("Method");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkAutoThreshold, this, Method));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkAutoThreshold, this, Method));
 
     QVector<QString> choices;
     choices.push_back("Huang");
@@ -128,17 +130,17 @@ void ItkAutoThreshold::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter));
+  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkAutoThreshold, this, Slice), SIMPL_BIND_GETTER(ItkAutoThreshold, this, Slice)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkAutoThreshold, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkAutoThreshold, this, SaveAsNewArray)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkAutoThreshold, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkAutoThreshold, this, SelectedCellArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Threshold Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Threshold Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkAutoThreshold, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkAutoThreshold, this, NewCellArrayName)));
   setFilterParameters(parameters);
 }
 
@@ -154,21 +156,6 @@ void ItkAutoThreshold::readFilterParameters(AbstractFilterParametersReader* read
   setSlice( reader->readValue( "Slice", getSlice() ) );
   setMethod( reader->readValue( "Method", getMethod() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkAutoThreshold::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(Slice)
-  SIMPL_FILTER_WRITE_PARAMETER(Method)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

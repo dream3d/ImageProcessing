@@ -102,11 +102,13 @@ ItkImportImageStack::~ItkImportImageStack()
 void ItkImportImageStack::setupFilterParameters()
 {
   QVector<FilterParameter::Pointer> parameters;
-  parameters.push_back(FileListInfoFilterParameter::New("Input File List", "InputFileListInfo", getInputFileListInfo(), FilterParameter::Parameter));
+  parameters.push_back(FileListInfoFilterParameter::New("Input File List", "InputFileListInfo", getInputFileListInfo(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, InputFileListInfo), SIMPL_BIND_GETTER(ItkImportImageStack, this, InputFileListInfo)));
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
     parameter->setHumanLabel("Geometry Type");
     parameter->setPropertyName("GeometryType");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImportImageStack, this, GeometryType));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImportImageStack, this, GeometryType));
 
     QVector<QString> choices;
     choices.push_back("Image");
@@ -119,13 +121,13 @@ void ItkImportImageStack::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, 0));
-  parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, 0));
-  parameters.push_back(InputFileFilterParameter::New("Bounds File", "BoundsFile", getBoundsFile(), FilterParameter::Parameter, "*.txt", "", 1));
-  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray));
+  parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, Origin), SIMPL_BIND_GETTER(ItkImportImageStack, this, Origin), 0));
+  parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, Resolution), SIMPL_BIND_GETTER(ItkImportImageStack, this, Resolution), 0));
+  parameters.push_back(InputFileFilterParameter::New("Bounds File", "BoundsFile", getBoundsFile(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImportImageStack, this, BoundsFile), SIMPL_BIND_GETTER(ItkImportImageStack, this, BoundsFile), "*.txt", "", 1));
+  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImportImageStack, this, DataContainerName), SIMPL_BIND_GETTER(ItkImportImageStack, this, DataContainerName)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Image Data", "ImageDataArrayName", getImageDataArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImportImageStack, this, CellAttributeMatrixName), SIMPL_BIND_GETTER(ItkImportImageStack, this, CellAttributeMatrixName)));
+  parameters.push_back(StringFilterParameter::New("Image Data", "ImageDataArrayName", getImageDataArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImportImageStack, this, ImageDataArrayName), SIMPL_BIND_GETTER(ItkImportImageStack, this, ImageDataArrayName)));
   setFilterParameters(parameters);
 }
 
@@ -144,25 +146,6 @@ void ItkImportImageStack::readFilterParameters(AbstractFilterParametersReader* r
   setGeometryType(reader->readValue("GeometryType", getGeometryType()));
   setBoundsFile(reader->readString("BoundsFile", getBoundsFile()));
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkImportImageStack::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(FilterVersion)
-  SIMPL_FILTER_WRITE_PARAMETER(DataContainerName)
-  SIMPL_FILTER_WRITE_PARAMETER(CellAttributeMatrixName)
-  SIMPL_FILTER_WRITE_PARAMETER(ImageDataArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(InputFileListInfo)
-  SIMPL_FILTER_WRITE_PARAMETER(Origin)
-  SIMPL_FILTER_WRITE_PARAMETER(Resolution)
-  SIMPL_FILTER_WRITE_PARAMETER(GeometryType)
-  SIMPL_FILTER_WRITE_PARAMETER(BoundsFile)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

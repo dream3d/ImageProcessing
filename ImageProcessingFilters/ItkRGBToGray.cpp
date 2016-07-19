@@ -171,11 +171,12 @@ void ItkRGBToGray::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("RGB Array to Flatten", "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("RGB Array to Flatten", "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkRGBToGray, this, SelectedCellArrayArrayPath), SIMPL_BIND_GETTER(ItkRGBToGray, this, SelectedCellArrayArrayPath)));
   }
-  parameters.push_back(FloatVec3FilterParameter::New("Color Weighting", "ColorWeights", getColorWeights(), FilterParameter::Parameter));
+  parameters.push_back(FloatVec3FilterParameter::New("Color Weighting", "ColorWeights", getColorWeights(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkRGBToGray, this, ColorWeights), SIMPL_BIND_GETTER(ItkRGBToGray, this, ColorWeights)));
+
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Grayscale Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Grayscale Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkRGBToGray, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRGBToGray, this, NewCellArrayName)));
   setFilterParameters(parameters);
 }
 
@@ -189,19 +190,6 @@ void ItkRGBToGray::readFilterParameters(AbstractFilterParametersReader* reader, 
   setColorWeights( reader->readFloatVec3("ColorWeights", getColorWeights() ) );
   setNewCellArrayName( reader->readString( "NewCellArrayName", getNewCellArrayName() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkRGBToGray::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(ColorWeights)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

@@ -85,12 +85,12 @@ void ItkWatershed::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Image Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Image Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkWatershed, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkWatershed, this, SelectedCellArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Feature Ids", "FeatureIdsArrayName", getFeatureIdsArrayName(), FilterParameter::CreatedArray));
-  parameters.push_back(DoubleFilterParameter::New("Threshold", "Threshold", getThreshold(), FilterParameter::Parameter));
-  parameters.push_back(DoubleFilterParameter::New("Level", "Level", getLevel(), FilterParameter::Parameter));
+  parameters.push_back(StringFilterParameter::New("Feature Ids", "FeatureIdsArrayName", getFeatureIdsArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkWatershed, this, FeatureIdsArrayName), SIMPL_BIND_GETTER(ItkWatershed, this, FeatureIdsArrayName)));
+  parameters.push_back(DoubleFilterParameter::New("Threshold", "Threshold", getThreshold(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWatershed, this, Threshold), SIMPL_BIND_GETTER(ItkWatershed, this, Threshold)));
+  parameters.push_back(DoubleFilterParameter::New("Level", "Level", getLevel(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWatershed, this, Level), SIMPL_BIND_GETTER(ItkWatershed, this, Level)));
   setFilterParameters(parameters);
 }
 
@@ -105,20 +105,6 @@ void ItkWatershed::readFilterParameters(AbstractFilterParametersReader* reader, 
   setThreshold( reader->readValue( "Threshold", getThreshold() ) );
   setLevel( reader->readValue( "Level", getLevel() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkWatershed::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  writer->writeValue( "SelectedCellArrayPath", getSelectedCellArrayPath() );
-  writer->writeValue( "FeatureIdsArrayName", getFeatureIdsArrayName() );
-  writer->writeValue( "Threshold", getThreshold() );
-  writer->writeValue( "Level", getLevel() );
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

@@ -204,9 +204,9 @@ void ItkWriteImage::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Color Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Color Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkWriteImage, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkWriteImage, this, SelectedCellArrayPath)));
   }
-  parameters.push_back(OutputFileFilterParameter::New("Output File Name", "OutputFileName", getOutputFileName(), FilterParameter::Parameter, "*.tif", "TIFF"));
+  parameters.push_back(OutputFileFilterParameter::New("Output File Name", "OutputFileName", getOutputFileName(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWriteImage, this, OutputFileName), SIMPL_BIND_GETTER(ItkWriteImage, this, OutputFileName), "*.tif", "TIFF"));
   setFilterParameters(parameters);
 }
 
@@ -219,18 +219,6 @@ void ItkWriteImage::readFilterParameters(AbstractFilterParametersReader* reader,
   setSelectedCellArrayPath( reader->readDataArrayPath( "SelectedCellArrayPath", getSelectedCellArrayPath() ) );
   setOutputFileName( reader->readString( "OutputFileName", getOutputFileName() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkWriteImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  writer->writeValue( "SelectedCellArrayPath", getSelectedCellArrayPath() );
-  writer->writeValue( "OutputFileName", getOutputFileName() );
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

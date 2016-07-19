@@ -77,12 +77,12 @@ RegionGrowing::~RegionGrowing()
 void RegionGrowing::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(DataArraySelectionFilterParameter::New("Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized));
+  parameters.push_back(DataArraySelectionFilterParameter::New("Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SelectedCellArrayPath)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Uncategorized));
-  parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized));
-  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Uncategorized));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SaveAsNewArray)));
+  parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRegionGrowing, this, NewCellArrayName)));
+  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, ManualParameter), SIMPL_BIND_GETTER(ItkRegionGrowing, this, ManualParameter)));
   setFilterParameters(parameters);
 }
 
@@ -97,20 +97,6 @@ void RegionGrowing::readFilterParameters(AbstractFilterParametersReader* reader,
   setSaveAsNewArray( reader->readValue( "SaveAsNewArray", getSaveAsNewArray() ) );
   setManualParameter( reader->readValue( "ManualParameter", getManualParameter() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int RegionGrowing::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(ManualParameter)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

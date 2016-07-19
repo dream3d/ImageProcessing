@@ -85,18 +85,18 @@ void ItkKMeans::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter));
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter));
+  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Classes), SIMPL_BIND_GETTER(ItkKMeans, this, Classes)));
+  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Slice), SIMPL_BIND_GETTER(ItkKMeans, this, Slice)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkKMeans, this, SaveAsNewArray)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Cluster", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Cluster", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkKMeans, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkKMeans, this, SelectedCellArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Clustered Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Clustered Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkKMeans, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkKMeans, this, NewCellArrayName)));
 
   setFilterParameters(parameters);
 }
@@ -113,21 +113,6 @@ void ItkKMeans::readFilterParameters(AbstractFilterParametersReader* reader, int
   setSlice( reader->readValue( "Slice", getSlice() ) );
   setClasses( reader->readValue( "Classes", getClasses() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkKMeans::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(Slice)
-  SIMPL_FILTER_WRITE_PARAMETER(Classes)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

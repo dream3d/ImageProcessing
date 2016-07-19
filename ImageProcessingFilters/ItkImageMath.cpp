@@ -99,16 +99,18 @@ void ItkImageMath::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImageMath, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkImageMath, this, SaveAsNewArray)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkImageMath, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkImageMath, this, SelectedCellArrayPath)));
   }
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Operator");
     parameter->setPropertyName("Operator");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImageMath, this, Operator));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImageMath, this, Operator));
 
     QVector<QString> choices;
     choices.push_back("Add");
@@ -127,9 +129,9 @@ void ItkImageMath::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(DoubleFilterParameter::New("Value", "Value", getValue(), FilterParameter::Parameter));
+  parameters.push_back(DoubleFilterParameter::New("Value", "Value", getValue(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkImageMath, this, Value), SIMPL_BIND_GETTER(ItkImageMath, this, Value)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImageMath, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkImageMath, this, NewCellArrayName)));
 
   setFilterParameters(parameters);
 }
@@ -147,21 +149,6 @@ void ItkImageMath::readFilterParameters(AbstractFilterParametersReader* reader, 
   setNewCellArrayName( reader->readString( "NewCellArrayName", getNewCellArrayName() ) );
   reader->closeFilterGroup();
 
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkImageMath::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(Operator)
-  SIMPL_FILTER_WRITE_PARAMETER(Value)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  writer->closeFilterGroup();
-  return ++index;
 }
 
 // -----------------------------------------------------------------------------

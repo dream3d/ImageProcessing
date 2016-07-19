@@ -81,10 +81,10 @@ void ItkConvertArrayTo8BitImage::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", getSelectedArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array To Convert", "SelectedArrayPath", getSelectedArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkConvertArrayTo8BitImage, this, SelectedArrayPath), SIMPL_BIND_GETTER(ItkConvertArrayTo8BitImage, this, SelectedArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Converted Attribute Array", "NewArrayArrayName", getNewArrayArrayName(), FilterParameter::CreatedArray));
+  parameters.push_back(StringFilterParameter::New("Converted Attribute Array", "NewArrayArrayName", getNewArrayArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkConvertArrayTo8BitImage, this, NewArrayArrayName), SIMPL_BIND_GETTER(ItkConvertArrayTo8BitImage, this, NewArrayArrayName)));
   setFilterParameters(parameters);
 }
 
@@ -97,18 +97,6 @@ void ItkConvertArrayTo8BitImage::readFilterParameters(AbstractFilterParametersRe
   setNewArrayArrayName(reader->readString("NewArrayArrayName", getNewArrayArrayName() ) );
   setSelectedArrayPath( reader->readDataArrayPath( "SelectedArrayPath", getSelectedArrayPath() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkConvertArrayTo8BitImage::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(NewArrayArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedArrayPath)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

@@ -88,17 +88,17 @@ void ItkHoughCircles::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkHoughCircles, this, SaveAsNewArray)));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Int8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkHoughCircles, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkHoughCircles, this, SelectedCellArrayPath)));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray));
-  parameters.push_back(DoubleFilterParameter::New("Minimum Radius", "MinRadius", getMinRadius(), FilterParameter::Parameter));
-  parameters.push_back(DoubleFilterParameter::New("Maximum Radius", "MaxRadius", getMinRadius(), FilterParameter::Parameter));
-  parameters.push_back(IntFilterParameter::New("Number of Circles", "NumberCircles", getNumberCircles(), FilterParameter::Parameter));
+  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkHoughCircles, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkHoughCircles, this, NewCellArrayName)));
+  parameters.push_back(DoubleFilterParameter::New("Minimum Radius", "MinRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MinRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MinRadius)));
+  parameters.push_back(DoubleFilterParameter::New("Maximum Radius", "MaxRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MaxRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MaxRadius)));
+  parameters.push_back(IntFilterParameter::New("Number of Circles", "NumberCircles", getNumberCircles(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, NumberCircles), SIMPL_BIND_GETTER(ItkHoughCircles, this, NumberCircles)));
 
   setFilterParameters(parameters);
 }
@@ -116,22 +116,6 @@ void ItkHoughCircles::readFilterParameters(AbstractFilterParametersReader* reade
   setMaxRadius( reader->readValue( "MaxRadius", getMaxRadius() ) );
   setNumberCircles( reader->readValue( "NumberCircles", getNumberCircles() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkHoughCircles::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(SelectedCellArrayPath)
-  SIMPL_FILTER_WRITE_PARAMETER(NewCellArrayName)
-  SIMPL_FILTER_WRITE_PARAMETER(SaveAsNewArray)
-  SIMPL_FILTER_WRITE_PARAMETER(MinRadius)
-  SIMPL_FILTER_WRITE_PARAMETER(MaxRadius)
-  SIMPL_FILTER_WRITE_PARAMETER(NumberCircles)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------

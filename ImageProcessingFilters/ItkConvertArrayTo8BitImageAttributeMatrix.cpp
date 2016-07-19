@@ -81,7 +81,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req));
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkConvertArrayTo8BitImageAttributeMatrix, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkConvertArrayTo8BitImageAttributeMatrix, this, AttributeMatrixName)));
   }
   setFilterParameters(parameters);
 }
@@ -96,19 +96,6 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::readFilterParameters(AbstractFil
 //  setNewArrayArrayName(reader->readString("NewArrayArrayName", getNewArrayArrayName() ) );
 //  setSelectedArrayPath( reader->readDataArrayPath( "SelectedArrayPath", getSelectedArrayPath() ) );
   reader->closeFilterGroup();
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-int ItkConvertArrayTo8BitImageAttributeMatrix::writeFilterParameters(AbstractFilterParametersWriter* writer, int index)
-{
-  writer->openFilterGroup(this, index);
-  SIMPL_FILTER_WRITE_PARAMETER(AttributeMatrixName)
-//  SIMPL_FILTER_WRITE_PARAMETER(NewArrayArrayName)
-//  SIMPL_FILTER_WRITE_PARAMETER(SelectedArrayPath)
-  writer->closeFilterGroup();
-  return ++index; // we want to return the next index that was just written to
 }
 
 // -----------------------------------------------------------------------------
