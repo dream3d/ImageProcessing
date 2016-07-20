@@ -40,7 +40,6 @@
 #include "itkUnaryFunctorImageFilter.h"
 
 #include "SIMPLib/Common/TemplateHelpers.hpp"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatVec3FilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"

@@ -44,7 +44,6 @@
 
 
 #include "SIMPLib/Common/TemplateHelpers.hpp"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/OutputFileFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"

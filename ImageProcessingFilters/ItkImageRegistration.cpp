@@ -36,7 +36,6 @@
 
 #include <QtCore/QString>
 
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 
 

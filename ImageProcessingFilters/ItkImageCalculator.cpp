@@ -48,7 +48,6 @@
 #include "itkAbsoluteValueDifferenceImageFilter.h"
 #include "itkUnaryFunctorImageFilter.h"
 
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"

@@ -9,7 +9,6 @@
 #include "ImageProcessing/ImageProcessingFilters/util/DetermineStitching.h"
 
 #include "SIMPLib/DataArrays/StringDataArray.hpp"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"

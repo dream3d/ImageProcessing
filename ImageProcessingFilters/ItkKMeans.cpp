@@ -38,7 +38,6 @@
 #include "itkMinimumMaximumImageCalculator.h"
 
 #include "SIMPLib/Common/Constants.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersWriter.h"
 #include "SIMPLib/FilterParameters/IntFilterParameter.h"
 #include "SIMPLib/FilterParameters/BooleanFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
