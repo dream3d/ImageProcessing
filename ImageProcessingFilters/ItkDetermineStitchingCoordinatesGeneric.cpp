@@ -8,10 +8,14 @@
 
 #include "ImageProcessing/ImageProcessingFilters/util/DetermineStitching.h"
 
+
+#include "SIMPLib/Common/TemplateHelpers.hpp"
 #include "SIMPLib/DataArrays/StringDataArray.hpp"
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/FilterParameters/IntFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/LinkedChoicesFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -27,7 +31,11 @@
 //
 // -----------------------------------------------------------------------------
 ItkDetermineStitchingCoordinatesGeneric::ItkDetermineStitchingCoordinatesGeneric() :
-  AbstractFilter(),
+AbstractFilter(),
+  m_ImportMode(0),
+  m_xTileDim(3),
+  m_yTileDim(3),
+  m_OverlapPer(50),
   m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""),
   m_UseZeissMetaData(false),
   m_MetaDataAttributeMatrixName("TileAttributeMatrix"),
@@ -39,7 +47,7 @@ ItkDetermineStitchingCoordinatesGeneric::ItkDetermineStitchingCoordinatesGeneric
 }
 
 // -----------------------------------------------------------------------------
-//
+// Class Destructor
 // -----------------------------------------------------------------------------
 ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneric()
 {
@@ -50,27 +58,58 @@ ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneri
 // -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+	FilterParameterVector parameters;
+	/*{
+		QStringList linkedProps;
+		linkedProps << "MetaDataAttributeMatrixName";
+		parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter));
+	}*/
 
-  QStringList linkedProps;
-  linkedProps << "MetaDataAttributeMatrixName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, UseZeissMetaData), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, UseZeissMetaData)));
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  {
-    AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName)));
-  }
-  {
-    AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName)));
-  }
+	{
+		LinkedChoicesFilterParameter::Pointer combobox = LinkedChoicesFilterParameter::New();
+		combobox->setHumanLabel("Import Mode");
+		combobox->setPropertyName("ImportMode");
+		QVector<QString> choices;
+		choices.push_back("Row-By-Row (Comb Order)");
+		choices.push_back("Column-By-Column");
+		choices.push_back("Snake-By-Row");
+		choices.push_back("Snake-By-Column");
+		choices.push_back("Zeiss Data (Legacy)");
+		combobox->setChoices(choices);
+		QStringList linkedProps;
+		linkedProps << "MetaDataAttributeMatrixName";
+		combobox->setLinkedProperties(linkedProps);
+		combobox->setEditable(false);
+		combobox->setCategory(FilterParameter::Parameter);
+		parameters.push_back(combobox);
+	}
+	 
 
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates", "StitchedCoordinatesArrayName", getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates Names", "StitchedArrayNames", getStitchedArrayNames(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames)));
+	parameters.push_back(SeparatorFilterParameter::New("Dimensions", FilterParameter::RequiredArray));
+	parameters.push_back(IntFilterParameter::New("Tile Dimensions X", "xTileDim", getxTileDim(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, xTileDim), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, xTileDim)));
+	parameters.push_back(IntFilterParameter::New("Tile Dimensions Y", "yTileDim", getyTileDim(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, yTileDim), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, yTileDim)));
+	parameters.push_back(IntFilterParameter::New("Overlap Percentage (Estimate):", "OverlapPer", getOverlapPer(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, OverlapPer), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, OverlapPer)));
 
-  setFilterParameters(parameters);
+	parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+	
+
+	{
+		AttributeMatrixSelectionFilterParameter::RequirementType req;
+		parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName)));
+	}
+
+
+	{
+		AttributeMatrixSelectionFilterParameter::RequirementType req;
+		parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), 5));
+	}
+
+	parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
+	parameters.push_back(StringFilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName)));
+	parameters.push_back(StringFilterParameter::New("Stitched Coordinates", "StitchedCoordinatesArrayName", getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName)));
+	parameters.push_back(StringFilterParameter::New("Stitched Coordinates Names", "StitchedArrayNames", getStitchedArrayNames(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames)));
+
+	setFilterParameters(parameters);
 }
 
 // -----------------------------------------------------------------------------
@@ -79,6 +118,10 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 void ItkDetermineStitchingCoordinatesGeneric::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
+  setImportMode(reader->readValue("ImportMode", getImportMode()));
+  setxTileDim(reader->readValue("xTileDim", getxTileDim()));
+  setyTileDim(reader->readValue("yTileDim", getyTileDim()));
+  setOverlapPer(reader->readValue("OverlapPer", getOverlapPer()));
   setAttributeMatrixName(reader->readDataArrayPath("AttributeMatrixName", getAttributeMatrixName()));
   setUseZeissMetaData(reader->readValue("UseZeissMetaData", getUseZeissMetaData()));
   setMetaDataAttributeMatrixName(reader->readDataArrayPath("MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName()));
@@ -86,19 +129,12 @@ void ItkDetermineStitchingCoordinatesGeneric::readFilterParameters(AbstractFilte
   setTileCalculatedInfoAttributeMatrixName(reader->readString("TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName()));
   setStitchedCoordinatesArrayName(reader->readString("StitchedCoordinatesArrayName", getStitchedCoordinatesArrayName()));
   setStitchedArrayNames(reader->readString("DataArrayNamesForStitchedCoordinates", getStitchedArrayNames()));
+  
   reader->closeFilterGroup();
 }
 
 // -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-void ItkDetermineStitchingCoordinatesGeneric::initialize()
-{
-
-}
-
-// -----------------------------------------------------------------------------
-//
+// This runs to make sure all of the data you have inputed is at least valid. This information is shown in the current structure tab
 // -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 {
@@ -107,8 +143,11 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   QString ss;
 
+  // Get a pointer to the start of the attribute matrix 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
+
+  // If it's null, then it's not good throw an error
   if (am.get() == NULL)
   {
     setErrorCondition(-76000);
@@ -116,20 +155,25 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
     return;
   }
 
+  // Getting the names of whatever is stored in the metadata attribute array names
   QList<QString> names = am->getAttributeArrayNames();
 
 
   QVector<size_t> dims(1, 1);
 
+  // Get a pointer to the first image to make sure that there are images on the stack currently
+  // If there isn't then we have a problem; throw an error
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
   if(getErrorCondition() < 0 || NULL == image.get()) { return; }
 
+  // Populate the m_PointerList with (Something)(Maybe the images?)
   m_PointerList.resize(names.size());
 
   for(int i = 0; i < names.size(); i++)
   {
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-    m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, tempPath, dims);
+
+	m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, tempPath, dims);
 
     if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
     { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
@@ -138,6 +182,8 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   }
 
+  // Zeiss Data things. I won't be using this because I won't be givin the Zeiss Data
+  // Which is unfortunete
   if(m_UseZeissMetaData == true)
   {
     AttributeMatrix::Pointer MetaDataAm = getDataContainerArray()->getAttributeMatrix(m_MetaDataAttributeMatrixName);
@@ -156,9 +202,11 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   }
 
+  // Get current data container because we're not making a new one
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
   if(getErrorCondition() < 0 || NULL == m) { return; }
 
+  // Create a new attribute matrix
   QVector<size_t> tDims(1, m_PointerList.size());
   AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getTileCalculatedInfoAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::CellFeature);
   if(getErrorCondition() < 0) { return; }
@@ -174,11 +222,16 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
 
 
-  tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedArrayNames() );
-  m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this,  tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  //tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedArrayNames() );
+  //m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+
+  StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumTuples(), getStitchedArrayNames());
+  AttrMat->addAttributeArray(getStitchedArrayNames(), StrongDataArrayNames);
+  m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
+  
   if( NULL != m_DataArrayNamesForStitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
   {
-    //   m_DataArrayNamesForStitchedCoordinates = m_DataArrayNamesForStitchedCoordinatesPtr.lock()->getPointer(0);  /* Now assign the raw pointer to data from the DataArray<T> object */
+    // m_DataArrayNamesForStitchedCoordinates = m_DataArrayNamesForStitchedCoordinatesPtr.lock()->getPointer(0);  /* Now assign the raw pointer to data from the DataArray<T> object */
   }
 
   return;
@@ -208,59 +261,76 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   if(getErrorCondition() < 0) { return; }
   setErrorCondition(0);
 
-  DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
+  DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName()); // M is CellData basically? or maybe it's the meta data? I don't know what 'm' means; // Wait it's a 'DataContainer' object. So it's just the data container?
   QString attrMatName = getAttributeMatrixName().getAttributeMatrixName();
+  // Set up some preliminary variables
+  AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(attrMatName);;
+  FloatArrayType::Pointer temp;
 
-  QString XTileIndexName = "ImageIndexU";
-  QString YTileIndexName = "ImageIndexV";
-  QString XGlobalIndexName = "StagePositionX";
-  QString YGlobalIndexName = "StagePositionY";
-  QString XScale = "ScaleFactorForX";
-  QString YScale = "ScaleFactorForY";
-
-  QVector<qint32> xTileList(m_PointerList.size());
-  QVector<qint32> yTileList(m_PointerList.size());
-  QVector<float> xGlobCoordsList(m_PointerList.size());
-  QVector<float> yGlobCoordsList(m_PointerList.size());
-
-  AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(attrMatName);
-
-  xTileList = extractIntegerValues(XTileIndexName);
-  if(getErrorCondition() < 0) { return; }
-  yTileList = extractIntegerValues(YTileIndexName);
-  if(getErrorCondition() < 0) { return; }
-
-  QVector<float> scaleFactors = extractFloatValues(XScale);
-  xGlobCoordsList = extractFloatValues(XGlobalIndexName);
-  for(qint32 i = 0; i < xGlobCoordsList.size(); i++)
-  {
-    xGlobCoordsList[i] /= scaleFactors[i];
-  }
-
-  scaleFactors = extractFloatValues(YScale);
-  yGlobCoordsList = extractFloatValues(YGlobalIndexName);
-  for(qint32 i = 0; i < yGlobCoordsList.size(); i++)
-  {
-    yGlobCoordsList[i] /= scaleFactors[i];
-  }
-
+  // Set up the origins and resolutions (some of this data is used in legacy, some of it's used in non-legacy, some of it's used in both; for now we're including it up here; consider moving it where it's cleanest)
   float sampleOrigin[3];
   float voxelResolution[3];
 
   m->getGeometryAs<ImageGeom>()->getOrigin(sampleOrigin);
   m->getGeometryAs<ImageGeom>()->getResolution(voxelResolution);
-  QVector<size_t> udims = attrMat->getTupleDimensions();
+  QVector<size_t> udims = attrMat->getTupleDimensions(); // The udims variable is filled with information about the size of each image (provided they were imported correctly) [0] = x; [1] = y; [2] = z;
   size_t totalPoints = attrMat->getNumTuples();
 
+  // If mode is equal to the max value then we're using the legacy zeiss data (which we can't really use too well)
+  // This code doesn't really work and I don't know how to fix it because I'm not using zeiss data. For now we'll just do this
+  if (m_ImportMode == 5)
+  {
+	  // Get all the information that is specific to the zeiss data
+	  // Zeiss
+	  QString XTileIndexName = "ImageIndexU";
+	  QString YTileIndexName = "ImageIndexV";
+	  QString XGlobalIndexName = "StagePositionX";
+	  QString YGlobalIndexName = "StagePositionY";
+	  QString XScale = "ScaleFactorForX";
+	  QString YScale = "ScaleFactorForY";
 
-  // Use the helper class to do the actual stitching of the images. There are a lot
-  // of parameters so make sure we understand all of them
-  FloatArrayType::Pointer temp = DetermineStitching::FindGlobalOrigins(totalPoints, udims,
-                                 sampleOrigin, voxelResolution,
-                                 m_PointerList,
-                                 xGlobCoordsList, yGlobCoordsList,
-                                 xTileList, yTileList,
-                                 this);
+	  // Information you can get from the Zeiss metadata
+	  QVector<qint32> xTileList(m_PointerList.size());
+	  QVector<qint32> yTileList(m_PointerList.size());
+	  QVector<float> xGlobCoordsList(m_PointerList.size());
+	  QVector<float> yGlobCoordsList(m_PointerList.size());
+
+	  xTileList = extractIntegerValues(XTileIndexName);
+	  if (getErrorCondition() < 0) { return; }
+	  yTileList = extractIntegerValues(YTileIndexName);
+	  if (getErrorCondition() < 0) { return; }
+
+	  QVector<float> scaleFactors = extractFloatValues(XScale);
+	  xGlobCoordsList = extractFloatValues(XGlobalIndexName);
+	  for (qint32 i = 0; i < xGlobCoordsList.size(); i++)
+	  {
+		  xGlobCoordsList[i] /= scaleFactors[i];
+	  }
+
+	  scaleFactors = extractFloatValues(YScale);
+	  yGlobCoordsList = extractFloatValues(YGlobalIndexName);
+	  for (qint32 i = 0; i < yGlobCoordsList.size(); i++)
+	  {
+		  yGlobCoordsList[i] /= scaleFactors[i];
+	  }
+
+
+	  // Use the helper class to do the actual stitching of the images. There are a lot
+	  // of parameters so make sure we understand all of them
+	  temp = DetermineStitching::FindGlobalOriginsLegacy(totalPoints, udims,
+		  sampleOrigin, voxelResolution,
+		  m_PointerList,
+		  xGlobCoordsList, yGlobCoordsList,
+		  xTileList, yTileList,
+		  this);
+
+  }
+  else
+  {
+	  // Otherwise, we're not using the zeiss data method so call this and let everything work itself out
+	  temp = DetermineStitching::FindGlobalOrigins(m_xTileDim, m_yTileDim, m_ImportMode, m_OverlapPer, m_PointerList, udims, sampleOrigin, voxelResolution);
+  }
+
 #if 1
   temp->copyIntoArray(m_StitchedCoordinatesPtr.lock());
 #else
@@ -284,7 +354,7 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
 }
 
 // -----------------------------------------------------------------------------
-//
+// For Zeiss Data
 // -----------------------------------------------------------------------------
 QVector<float> ItkDetermineStitchingCoordinatesGeneric::extractFloatValues(QString arrayName)
 {
@@ -351,7 +421,7 @@ QVector<float> ItkDetermineStitchingCoordinatesGeneric::extractFloatValues(QStri
 }
 
 // -----------------------------------------------------------------------------
-//
+// For Zeiss Data
 // -----------------------------------------------------------------------------
 QVector<qint32> ItkDetermineStitchingCoordinatesGeneric::extractIntegerValues(QString arrayName)
 {

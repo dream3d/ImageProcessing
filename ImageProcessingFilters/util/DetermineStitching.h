@@ -67,7 +67,7 @@ class DetermineStitching
    * @param obs
    * @return
    */
-    static FloatArrayType::Pointer FindGlobalOrigins(size_t totalPoints,
+    static FloatArrayType::Pointer FindGlobalOriginsLegacy(size_t totalPoints,
                                                      QVector<size_t> udims,
                                                      float sampleOrigin[],
                                                      float voxelResolution[],
@@ -78,6 +78,14 @@ class DetermineStitching
                                                      QVector<qint32> yTileList,
                                                      AbstractFilter *filter = NULL);
 
+	static FloatArrayType::Pointer FindGlobalOrigins(int xTileCount, int yTileCount,
+		int ImportMode,
+		float overlapPer,
+		QVector<ImageProcessingConstants::DefaultPixelType*> dataArrayList,
+		QVector<size_t> udims,
+		float sampleOrigin[],
+		float voxelResolution[]);
+
     /**
    * @brief ReturnIndexForCombOrder
    * @param xTileList
@@ -87,6 +95,14 @@ class DetermineStitching
    * @return
    */
     static QVector<size_t> ReturnIndexForCombOrder(QVector<qint32> xTileList, QVector<qint32> yTileList, size_t numXtiles, size_t numYtiles);
+
+
+	/**
+	* @brief ReturnProperIndex
+	* @param InputMode
+	* @param Numtiles
+	*/
+	static QVector<size_t> DetermineStitching::ReturnProperIndex(int InputMode, int xDims, int yDims);
 
     /**
    * @brief CropAndCrossCorrelate
