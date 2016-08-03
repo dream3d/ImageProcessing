@@ -158,7 +158,7 @@ void ItkManualThresholdTemplate::setupFilterParameters()
   parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, ManualParameter), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, ManualParameter)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, SaveAsNewArray)));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);

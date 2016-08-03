@@ -86,7 +86,7 @@ void ItkSobelEdge::setupFilterParameters()
   parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkSobelEdge, this, Slice), SIMPL_BIND_GETTER(ItkSobelEdge, this, Slice)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkSobelEdge, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkSobelEdge, this, SaveAsNewArray)));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkSobelEdge, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkSobelEdge, this, SaveAsNewArray), linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req;

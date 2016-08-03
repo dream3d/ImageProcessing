@@ -88,7 +88,7 @@ void ItkMultiOtsuThreshold::setupFilterParameters()
   parameters.push_back(IntFilterParameter::New("Number of Levels", "Levels", getLevels(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, Levels), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, Levels)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray)));
+  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray), linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
