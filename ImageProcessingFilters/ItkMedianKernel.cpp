@@ -93,7 +93,7 @@ void ItkMedianKernel::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkMedianKernel, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkMedianKernel, this, SelectedCellArrayPath)));
+    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkMedianKernel, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkMedianKernel, this, SelectedCellArrayPath), req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkMedianKernel, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkMedianKernel, this, NewCellArrayName)));
