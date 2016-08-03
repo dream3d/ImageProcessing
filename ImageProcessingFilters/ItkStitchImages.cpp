@@ -91,7 +91,7 @@ void ItkStitchImages::setupFilterParameters()
 
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkStitchImages, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkStitchImages, this, AttributeMatrixName)));
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Image Tile Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkStitchImages, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkStitchImages, this, AttributeMatrixName), req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;

@@ -58,11 +58,11 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName)));
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), req));
   }
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName)));
+    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), req));
   }
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
