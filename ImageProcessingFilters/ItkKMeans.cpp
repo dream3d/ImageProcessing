@@ -84,7 +84,7 @@ void ItkKMeans::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Classes), SIMPL_BIND_GETTER(ItkKMeans, this, Classes)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKMeans));
   parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Slice), SIMPL_BIND_GETTER(ItkKMeans, this, Slice)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

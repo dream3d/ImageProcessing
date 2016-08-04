@@ -82,7 +82,7 @@ void RegionGrowing::setupFilterParameters()
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SaveAsNewArray), linkedProps));
   parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRegionGrowing, this, NewCellArrayName)));
-  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, ManualParameter), SIMPL_BIND_GETTER(ItkRegionGrowing, this, ManualParameter)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Uncategorized, ItkRegionGrowing));
   setFilterParameters(parameters);
 }
 

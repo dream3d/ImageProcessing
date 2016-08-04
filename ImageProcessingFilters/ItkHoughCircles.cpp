@@ -97,7 +97,7 @@ void ItkHoughCircles::setupFilterParameters()
   parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkHoughCircles, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkHoughCircles, this, NewCellArrayName)));
   parameters.push_back(DoubleFilterParameter::New("Minimum Radius", "MinRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MinRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MinRadius)));
   parameters.push_back(DoubleFilterParameter::New("Maximum Radius", "MaxRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MaxRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MaxRadius)));
-  parameters.push_back(IntFilterParameter::New("Number of Circles", "NumberCircles", getNumberCircles(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, NumberCircles), SIMPL_BIND_GETTER(ItkHoughCircles, this, NumberCircles)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Circles", NumberCircles, FilterParameter::Parameter, ItkHoughCircles));
 
   setFilterParameters(parameters);
 }

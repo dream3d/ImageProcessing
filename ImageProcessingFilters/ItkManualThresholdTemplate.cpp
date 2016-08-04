@@ -155,7 +155,7 @@ void ItkManualThresholdTemplate::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, ManualParameter), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, ManualParameter)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Parameter, ItkManualThresholdTemplate));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), linkedProps));
