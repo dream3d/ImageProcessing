@@ -88,8 +88,8 @@ void ItkWatershed::setupFilterParameters()
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Feature Ids", "FeatureIdsArrayName", getFeatureIdsArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkWatershed, this, FeatureIdsArrayName), SIMPL_BIND_GETTER(ItkWatershed, this, FeatureIdsArrayName)));
-  parameters.push_back(DoubleFilterParameter::New("Threshold", "Threshold", getThreshold(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWatershed, this, Threshold), SIMPL_BIND_GETTER(ItkWatershed, this, Threshold)));
-  parameters.push_back(DoubleFilterParameter::New("Level", "Level", getLevel(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkWatershed, this, Level), SIMPL_BIND_GETTER(ItkWatershed, this, Level)));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Threshold", Threshold, FilterParameter::Parameter, ItkWatershed));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Level", Level, FilterParameter::Parameter, ItkWatershed));
   setFilterParameters(parameters);
 }
 

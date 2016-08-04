@@ -96,7 +96,7 @@ void ItkDiscreteGaussianBlur::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Blurred Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, NewCellArrayName)));
 
-  parameters.push_back(DoubleFilterParameter::New("Standard Deviation", "Stdev", getStdev(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkDiscreteGaussianBlur, this, Stdev), SIMPL_BIND_GETTER(ItkDiscreteGaussianBlur, this, Stdev)));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Standard Deviation", Stdev, FilterParameter::Parameter, ItkDiscreteGaussianBlur));
 
   setFilterParameters(parameters);
 }
