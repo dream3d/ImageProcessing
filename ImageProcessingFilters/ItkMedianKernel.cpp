@@ -86,7 +86,7 @@ void ItkMedianKernel::setupFilterParameters()
   FilterParameterVector parameters;
 
   parameters.push_back(IntVec3FilterParameter::New("Kernel Size", "KernelSize", getKernelSize(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMedianKernel, this, KernelSize), SIMPL_BIND_GETTER(ItkMedianKernel, this, KernelSize)));
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMedianKernel, this, Slice), SIMPL_BIND_GETTER(ItkMedianKernel, this, Slice)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMedianKernel));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMedianKernel, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkMedianKernel, this, SaveAsNewArray), linkedProps));

@@ -129,7 +129,7 @@ void ItkAutoThreshold::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkAutoThreshold, this, Slice), SIMPL_BIND_GETTER(ItkAutoThreshold, this, Slice)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkAutoThreshold));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkAutoThreshold, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkAutoThreshold, this, SaveAsNewArray), linkedProps));

@@ -84,7 +84,7 @@ void ItkMultiOtsuThreshold::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, Slice), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, Slice)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMultiOtsuThreshold));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Levels", Levels, FilterParameter::Parameter, ItkMultiOtsuThreshold));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

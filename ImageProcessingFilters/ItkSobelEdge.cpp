@@ -83,7 +83,7 @@ void ItkSobelEdge::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkSobelEdge, this, Slice), SIMPL_BIND_GETTER(ItkSobelEdge, this, Slice)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkSobelEdge));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkSobelEdge, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkSobelEdge, this, SaveAsNewArray), linkedProps));

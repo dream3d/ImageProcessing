@@ -88,7 +88,7 @@ void ItkMeanKernel::setupFilterParameters()
   FilterParameterVector parameters;
 
   parameters.push_back(IntVec3FilterParameter::New("Kernel Size", "KernelSize", getKernelSize(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMeanKernel, this, KernelSize), SIMPL_BIND_GETTER(ItkMeanKernel, this, KernelSize)));
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMeanKernel, this, Slice), SIMPL_BIND_GETTER(ItkMeanKernel, this, Slice)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMeanKernel));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMeanKernel, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkMeanKernel, this, SaveAsNewArray), linkedProps));
