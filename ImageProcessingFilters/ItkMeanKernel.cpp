@@ -87,7 +87,7 @@ void ItkMeanKernel::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntVec3FilterParameter::New("Kernel Size", "KernelSize", getKernelSize(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMeanKernel, this, KernelSize), SIMPL_BIND_GETTER(ItkMeanKernel, this, KernelSize)));
+  parameters.push_back(SIMPL_NEW_INT_VEC3_FP("Kernel Size", KernelSize, FilterParameter::Parameter, ItkMeanKernel));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMeanKernel));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
