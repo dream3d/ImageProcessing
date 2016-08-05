@@ -84,7 +84,7 @@ void ItkWatershed::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Image Data", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkWatershed, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkWatershed, this, SelectedCellArrayPath), req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Data", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkWatershed, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Feature Ids", "FeatureIdsArrayName", getFeatureIdsArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkWatershed, this, FeatureIdsArrayName), SIMPL_BIND_GETTER(ItkWatershed, this, FeatureIdsArrayName)));

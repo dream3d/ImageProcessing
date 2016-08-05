@@ -93,7 +93,7 @@ void ItkGaussianBlur::setupFilterParameters()
     vec.push_back(SIMPL::TypeNames::Int32);
     vec.push_back(SIMPL::TypeNames::Int64);
     req.daTypes = vec;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkGaussianBlur, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkGaussianBlur, this, SelectedCellArrayPath), req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Blur", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkGaussianBlur, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(StringFilterParameter::New("Blurred Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkGaussianBlur, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkGaussianBlur, this, NewCellArrayName)));

@@ -96,11 +96,11 @@ void ItkStitchImages::setupFilterParameters()
   {
     DataArraySelectionFilterParameter::RequirementType req;
     req.daTypes = QVector<QString>(1, SIMPL::TypeNames::Float);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Image Tile Origins", "StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedCoordinatesArrayPath), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedCoordinatesArrayPath), req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Tile Origins", StitchedCoordinatesArrayPath, FilterParameter::RequiredArray, ItkStitchImages, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Stitched Coordinates Names", "AttributeArrayNamesPath", getAttributeArrayNamesPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkStitchImages, this, AttributeArrayNamesPath), SIMPL_BIND_GETTER(ItkStitchImages, this, AttributeArrayNamesPath), req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Stitched Coordinates Names", AttributeArrayNamesPath, FilterParameter::RequiredArray, ItkStitchImages, req));
   }
 
   parameters.push_back(StringFilterParameter::New("Stitched Image Data Container", "StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkStitchImages, this, StitchedVolumeDataContainerName), SIMPL_BIND_GETTER(ItkStitchImages, this, StitchedVolumeDataContainerName)));

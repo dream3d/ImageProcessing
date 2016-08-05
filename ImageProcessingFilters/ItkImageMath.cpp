@@ -102,7 +102,7 @@ void ItkImageMath::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkImageMath, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkImageMath, this, SelectedCellArrayPath), req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkImageMath, req));
   }
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
