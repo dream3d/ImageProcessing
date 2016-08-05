@@ -80,7 +80,7 @@ void RegionGrowing::setupFilterParameters()
   parameters.push_back(DataArraySelectionFilterParameter::New("Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SelectedCellArrayPath)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save As New Array", "SaveAsNewArray", getSaveAsNewArray(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SaveAsNewArray), linkedProps));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save As New Array", SaveAsNewArray, FilterParameter::Uncategorized, ItkRegionGrowing, linkedProps));
   parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRegionGrowing, this, NewCellArrayName)));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Uncategorized, ItkRegionGrowing));
   setFilterParameters(parameters);

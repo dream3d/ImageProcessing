@@ -54,7 +54,7 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "MetaDataAttributeMatrixName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, UseZeissMetaData), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, UseZeissMetaData), linkedProps));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
