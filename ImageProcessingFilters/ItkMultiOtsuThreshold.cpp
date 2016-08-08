@@ -95,7 +95,7 @@ void ItkMultiOtsuThreshold::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkMultiOtsuThreshold, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkMultiOtsuThreshold));
 
   setFilterParameters(parameters);
 }

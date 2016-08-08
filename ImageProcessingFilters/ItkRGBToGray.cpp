@@ -175,7 +175,7 @@ void ItkRGBToGray::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Grayscale Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkRGBToGray, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRGBToGray, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Grayscale Array", NewCellArrayName, FilterParameter::CreatedArray, ItkRGBToGray));
   setFilterParameters(parameters);
 }
 

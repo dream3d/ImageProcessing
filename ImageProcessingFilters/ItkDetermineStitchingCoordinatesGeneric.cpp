@@ -103,9 +103,9 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
   }
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates", "StitchedCoordinatesArrayName", getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates Names", "StitchedArrayNames", getStitchedArrayNames(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Attribute Matrix", TileCalculatedInfoAttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates", StitchedCoordinatesArrayName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates Names", StitchedArrayNames, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
 
   setFilterParameters(parameters);
 }

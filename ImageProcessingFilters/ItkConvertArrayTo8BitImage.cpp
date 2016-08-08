@@ -83,7 +83,7 @@ void ItkConvertArrayTo8BitImage::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array To Convert", SelectedArrayPath, FilterParameter::RequiredArray, ItkConvertArrayTo8BitImage, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Converted Attribute Array", "NewArrayArrayName", getNewArrayArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkConvertArrayTo8BitImage, this, NewArrayArrayName), SIMPL_BIND_GETTER(ItkConvertArrayTo8BitImage, this, NewArrayArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Converted Attribute Array", NewArrayArrayName, FilterParameter::CreatedArray, ItkConvertArrayTo8BitImage));
   setFilterParameters(parameters);
 }
 

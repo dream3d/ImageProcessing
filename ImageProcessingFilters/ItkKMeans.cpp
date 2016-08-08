@@ -95,7 +95,7 @@ void ItkKMeans::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Cluster", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkKMeans, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Clustered Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkKMeans, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkKMeans, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Clustered Array", NewCellArrayName, FilterParameter::CreatedArray, ItkKMeans));
 
   setFilterParameters(parameters);
 }

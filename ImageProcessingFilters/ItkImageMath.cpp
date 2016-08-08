@@ -130,7 +130,7 @@ void ItkImageMath::setupFilterParameters()
   }
   parameters.push_back(SIMPL_NEW_DOUBLE_FP("Value", Value, FilterParameter::Parameter, ItkImageMath));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkImageMath, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkImageMath, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkImageMath));
 
   setFilterParameters(parameters);
 }

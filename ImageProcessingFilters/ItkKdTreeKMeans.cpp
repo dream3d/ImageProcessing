@@ -198,7 +198,7 @@ void ItkKdTreeKMeans::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKdTreeKMeans));
   DataArraySelectionFilterParameter::RequirementType req;
   parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Classify", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkKdTreeKMeans, req));
-  parameters.push_back(StringFilterParameter::New("Class Labels", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkKdTreeKMeans, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkKdTreeKMeans, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Class Labels", NewCellArrayName, FilterParameter::CreatedArray, ItkKdTreeKMeans));
   setFilterParameters(parameters);
 }
 

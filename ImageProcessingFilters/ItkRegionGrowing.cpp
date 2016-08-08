@@ -81,7 +81,7 @@ void RegionGrowing::setupFilterParameters()
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save As New Array", SaveAsNewArray, FilterParameter::Uncategorized, ItkRegionGrowing, linkedProps));
-  parameters.push_back(StringFilterParameter::New("Created Array Name", "NewCellArrayName", getNewCellArrayName(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRegionGrowing, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Created Array Name", NewCellArrayName, FilterParameter::Uncategorized, ItkRegionGrowing));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Uncategorized, ItkRegionGrowing));
   setFilterParameters(parameters);
 }

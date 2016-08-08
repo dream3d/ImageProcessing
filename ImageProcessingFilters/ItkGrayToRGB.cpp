@@ -172,7 +172,7 @@ void ItkGrayToRGB::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Blue Channel", BlueArrayPath, FilterParameter::RequiredArray, ItkGrayToRGB, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("RGB Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkGrayToRGB, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkGrayToRGB, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("RGB Array", NewCellArrayName, FilterParameter::CreatedArray, ItkGrayToRGB));
   setFilterParameters(parameters);
 }
 

@@ -80,13 +80,13 @@ void ImportRegisteredImageMontage::setupFilterParameters()
   parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Origin), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Origin)));
   parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Resolution), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Resolution)));
   //parameters.push_back(InputFileFilterParameter::New("Registration File", "RegistrationFile", getRegistrationFile(), FilterParameter::Parameter, "", "*.txt"));
-  parameters.push_back(StringFilterParameter::New("Data Container", "DataContainerName", getDataContainerName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, DataContainerName), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, DataContainerName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Cell Attribute Matrix", "CellAttributeMatrixName", getCellAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, CellAttributeMatrixName), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, CellAttributeMatrixName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Meta Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, MetaDataAttributeMatrixName)));
-  parameters.push_back(StringFilterParameter::New("Registration Coordinates", "RegistrationCoordinatesArrayName", getRegistrationCoordinatesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, RegistrationCoordinatesArrayName), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, RegistrationCoordinatesArrayName)));
-  parameters.push_back(StringFilterParameter::New("Image Array Names", "AttributeArrayNamesArrayName", getAttributeArrayNamesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, AttributeArrayNamesArrayName), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, AttributeArrayNamesArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Meta Data Attribute Matrix", MetaDataAttributeMatrixName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Registration Coordinates", RegistrationCoordinatesArrayName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Image Array Names", AttributeArrayNamesArrayName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   setFilterParameters(parameters);
 }
 
