@@ -6,39 +6,24 @@ ProcessModeling (Input)
 
 
 ## Description ##
-This filter does the following...
+Imports a slew of images for the main purpose of montage assembly.
 
+Utilizes the *itkReadImage* filter
+
+Images must be 8 bit and the same size dimensionally.
 ## Parameters ##
-| Name             | Type |
-|------------------|------|
-| Feature Array Name | String |
+Files Source Directory - Where the files you're trying to import 
 
-## Required Arrays ##
+Origin - Where in space these images you're importing are supposed to come from
 
-| Type | Default Array Name | Description | Comment |
-|------|--------------------|-------------|---------|
-| Int  | SomeName           | ....        | other   |
+Resolution - If you want to change the resolution of the images you're importing
 
 
 ## Created Arrays ##
 
-| Type | Default Array Name | Description | Comment |
-|------|--------------------|-------------|---------|
-| Int  | SomeName           | ....        | other   |
+Data Container - The name of the data container where everything from this filter will be created
 
-
-
-## Authors: ##
-
-
-
-
-
-
-
-
-
-
+Cell Attribute Matrix - The name of the attribute matrix where these images will be stored
 
 
 ## License & Copyright ##
