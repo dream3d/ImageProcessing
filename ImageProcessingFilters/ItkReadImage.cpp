@@ -389,49 +389,50 @@ void ItkReadImage::execute()
   //const char* fileNameCStr = fileNameString.c_str();
 
 
-  //execute type dependant portion using a Private Implementation that takes care of figuring out if
+  // execute type dependant portion using a Private Implementation that takes care of figuring out if
   // we can work on the correct type and actually handling the algorithm execution. We pass in "this" so
   // that the private implementation can get access to the current object to pass up status notifications,
   // progress or handle "cancel" if needed.
-  if(ItkReadImagePrivate<int8_t, AbstractFilter>()(imageData))
-  {
-    ItkReadImagePrivate<int8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<uint8_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<uint8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<int16_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<int16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<uint16_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<uint16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<int32_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<int32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<uint32_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<uint32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<int64_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<int64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<uint64_t, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<uint64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<float, AbstractFilter>()(imageData) )
-  {
-    ItkReadImagePrivate<float, AbstractFilter>::Execute(this, getInputFileName(), imageData);
-  }
-  else if(ItkReadImagePrivate<double, AbstractFilter>()(imageData) )
+
+  if(ItkReadImagePrivate<double, AbstractFilter>()(imageData) )
   {
     ItkReadImagePrivate<double, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<float, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<float, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<uint64_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<uint64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<int64_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<int64_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<uint32_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<uint32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<int32_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<int32_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<uint16_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<uint16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<int16_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<int16_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<uint8_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<uint8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
+  }
+  else if (ItkReadImagePrivate<int8_t, AbstractFilter>()(imageData))
+  {
+	  ItkReadImagePrivate<int8_t, AbstractFilter>::Execute(this, getInputFileName(), imageData);
   }
   else
   {

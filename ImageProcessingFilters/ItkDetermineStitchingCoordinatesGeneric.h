@@ -45,6 +45,18 @@ class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
     SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
+    SIMPL_FILTER_PARAMETER(int, ImportMode)
+    Q_PROPERTY(int ImportMode READ getImportMode WRITE setImportMode)
+
+    SIMPL_FILTER_PARAMETER(int, xTileDim)
+    Q_PROPERTY(int xTileDim READ getxTileDim WRITE setxTileDim)
+
+    SIMPL_FILTER_PARAMETER(int, yTileDim)
+    Q_PROPERTY(int yTileDim READ getyTileDim WRITE setyTileDim)
+
+    SIMPL_FILTER_PARAMETER(float, OverlapPer)
+    Q_PROPERTY(float OverlapPer READ getOverlapPer WRITE setOverlapPer)
+
     SIMPL_FILTER_PARAMETER(bool, UseZeissMetaData)
     Q_PROPERTY(bool UseZeissMetaData READ getUseZeissMetaData WRITE setUseZeissMetaData)
 
@@ -163,10 +175,11 @@ class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
 //    DEFINE_DATAARRAY_VARIABLE(QVector<IDataArray::Pointer>, PointerList)
 
     QVector<ImageProcessingConstants::DefaultPixelType* > m_PointerList;
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
-    StringDataArray::WeakPointer m_DataArrayNamesForStitchedCoordinatesPtr;
-
+  DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+  DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
+  StringDataArray::WeakPointer m_DataArrayNamesForStitchedCoordinatesPtr;
+  //DEFINE_DATAARRAY_VARIABLE(StringDataArray::WeakPointer, DataArrayNamesForStichedCoordinates);
+  //DEFINE_DATAARRAY_VARIABLE(QString, DataArrayNamesForStitchedCoordinates);
 
     ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&); // Copy Constructor Not Implemented
     void operator=(const ItkDetermineStitchingCoordinatesGeneric&); // Operator '=' Not Implemented
