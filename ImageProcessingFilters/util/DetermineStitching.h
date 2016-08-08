@@ -102,7 +102,7 @@ class DetermineStitching
 	* @param InputMode
 	* @param Numtiles
 	*/
-	static QVector<size_t> DetermineStitching::ReturnProperIndex(int InputMode, int xDims, int yDims);
+  static QVector<size_t> ReturnProperIndex(int InputMode, int xDims, int yDims);
 
     /**
    * @brief CropAndCrossCorrelate
