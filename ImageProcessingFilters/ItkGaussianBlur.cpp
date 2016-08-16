@@ -83,7 +83,7 @@ void ItkGaussianBlur::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkGaussianBlur, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkGaussianBlur, this, SaveAsNewArray)));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkGaussianBlur, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::Defaults::AnyPrimitive, 1, SIMPL::Defaults::AnyAttributeMatrix, SIMPL::Defaults::AnyGeometry);
@@ -93,10 +93,10 @@ void ItkGaussianBlur::setupFilterParameters()
     vec.push_back(SIMPL::TypeNames::Int32);
     vec.push_back(SIMPL::TypeNames::Int64);
     req.daTypes = vec;
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Blur", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkGaussianBlur, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkGaussianBlur, this, SelectedCellArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Blur", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkGaussianBlur, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Blurred Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkGaussianBlur, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkGaussianBlur, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Blurred Array", NewCellArrayName, FilterParameter::CreatedArray, ItkGaussianBlur));
 
   setFilterParameters(parameters);
 }

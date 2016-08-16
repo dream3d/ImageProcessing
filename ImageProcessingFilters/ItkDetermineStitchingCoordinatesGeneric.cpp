@@ -59,11 +59,11 @@ ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneri
 void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  /*{
-    QStringList linkedProps;
-    linkedProps << "MetaDataAttributeMatrixName";
-    parameters.push_back(LinkedBooleanFilterParameter::New("Use Zeiss Meta Data", "UseZeissMetaData", getUseZeissMetaData(), linkedProps, FilterParameter::Parameter));
-  }*/
+//  {
+//    QStringList linkedProps;
+//    linkedProps << "MetaDataAttributeMatrixName";
+//    parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
+//  }
 
   {
     LinkedChoicesFilterParameter::Pointer combobox = LinkedChoicesFilterParameter::New();
@@ -84,30 +84,28 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
     parameters.push_back(combobox);
   }
 
-
   parameters.push_back(SeparatorFilterParameter::New("Dimensions", FilterParameter::RequiredArray));
-  parameters.push_back(IntFilterParameter::New("Tile Dimensions X", "xTileDim", getxTileDim(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, xTileDim), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, xTileDim)));
-  parameters.push_back(IntFilterParameter::New("Tile Dimensions Y", "yTileDim", getyTileDim(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, yTileDim), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, yTileDim)));
-  parameters.push_back(IntFilterParameter::New("Overlap Percentage (Estimate):", "OverlapPer", getOverlapPer(), FilterParameter::RequiredArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, OverlapPer), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, OverlapPer)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Tile Dimensions X", xTileDim, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Tile Dimensions Y", yTileDim, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Overlap Percentage (Estimate):", OverlapPer, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
 
-
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, AttributeMatrixName)));
+    parameters.push_back(SIMPL_NEW_AM_SELECTION_FP("Cell Attribute Matrix", AttributeMatrixName, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric, req));
   }
 
 
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Zeiss Meta Data Attribute Matrix", "MetaDataAttributeMatrixName", getMetaDataAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, MetaDataAttributeMatrixName), 5));
+    parameters.push_back(SIMPL_NEW_AM_SELECTION_FP("Zeiss Meta Data Attribute Matrix", MetaDataAttributeMatrixName, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric, req, 5));
   }
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Stitched Attribute Matrix", "TileCalculatedInfoAttributeMatrixName", getTileCalculatedInfoAttributeMatrixName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, TileCalculatedInfoAttributeMatrixName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates", "StitchedCoordinatesArrayName", getStitchedCoordinatesArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedCoordinatesArrayName)));
-  parameters.push_back(StringFilterParameter::New("Stitched Coordinates Names", "StitchedArrayNames", getStitchedArrayNames(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames), SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, StitchedArrayNames)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Attribute Matrix", TileCalculatedInfoAttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates", StitchedCoordinatesArrayName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates Names", StitchedArrayNames, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
 
   setFilterParameters(parameters);
 }

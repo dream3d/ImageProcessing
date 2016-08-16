@@ -84,18 +84,18 @@ void ItkKMeans::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntFilterParameter::New("Number of Classes", "Classes", getClasses(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Classes), SIMPL_BIND_GETTER(ItkKMeans, this, Classes)));
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, Slice), SIMPL_BIND_GETTER(ItkKMeans, this, Slice)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKMeans));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkKMeans));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkKMeans, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkKMeans, this, SaveAsNewArray)));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkKMeans, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Cluster", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkKMeans, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkKMeans, this, SelectedCellArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Cluster", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkKMeans, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Clustered Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkKMeans, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkKMeans, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Clustered Array", NewCellArrayName, FilterParameter::CreatedArray, ItkKMeans));
 
   setFilterParameters(parameters);
 }

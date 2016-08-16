@@ -170,12 +170,12 @@ void ItkRGBToGray::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("RGB Array to Flatten", "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkRGBToGray, this, SelectedCellArrayArrayPath), SIMPL_BIND_GETTER(ItkRGBToGray, this, SelectedCellArrayArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("RGB Array to Flatten", SelectedCellArrayArrayPath, FilterParameter::RequiredArray, ItkRGBToGray, req));
   }
-  parameters.push_back(FloatVec3FilterParameter::New("Color Weighting", "ColorWeights", getColorWeights(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkRGBToGray, this, ColorWeights), SIMPL_BIND_GETTER(ItkRGBToGray, this, ColorWeights)));
+  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Grayscale Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkRGBToGray, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkRGBToGray, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Grayscale Array", NewCellArrayName, FilterParameter::CreatedArray, ItkRGBToGray));
   setFilterParameters(parameters);
 }
 

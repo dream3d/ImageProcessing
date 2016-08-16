@@ -60,11 +60,11 @@ void ItkBinaryWatershedLabeled::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Bool, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Watershed", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkBinaryWatershedLabeled, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkBinaryWatershedLabeled, this, SelectedCellArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Watershed", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkBinaryWatershedLabeled, req));
   }
-  parameters.push_back(DoubleFilterParameter::New("Peak Noise Tolerance", "PeakTolerance", getPeakTolerance(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkBinaryWatershedLabeled, this, PeakTolerance), SIMPL_BIND_GETTER(ItkBinaryWatershedLabeled, this, PeakTolerance)));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Peak Noise Tolerance", PeakTolerance, FilterParameter::Parameter, ItkBinaryWatershedLabeled));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Watershed Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkBinaryWatershedLabeled, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkBinaryWatershedLabeled, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Watershed Array", NewCellArrayName, FilterParameter::CreatedArray, ItkBinaryWatershedLabeled));
   setFilterParameters(parameters);
 }
 

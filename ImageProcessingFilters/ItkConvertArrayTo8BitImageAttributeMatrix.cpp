@@ -80,7 +80,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(AttributeMatrixSelectionFilterParameter::New("Cell Attribute Matrix", "AttributeMatrixName", getAttributeMatrixName(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkConvertArrayTo8BitImageAttributeMatrix, this, AttributeMatrixName), SIMPL_BIND_GETTER(ItkConvertArrayTo8BitImageAttributeMatrix, this, AttributeMatrixName)));
+    parameters.push_back(SIMPL_NEW_AM_SELECTION_FP("Cell Attribute Matrix", AttributeMatrixName, FilterParameter::RequiredArray, ItkConvertArrayTo8BitImageAttributeMatrix, req));
   }
   setFilterParameters(parameters);
 }

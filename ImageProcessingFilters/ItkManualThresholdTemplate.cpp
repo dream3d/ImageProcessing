@@ -155,17 +155,17 @@ void ItkManualThresholdTemplate::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(IntFilterParameter::New("Threshold Value", "ManualParameter", getManualParameter(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, ManualParameter), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, ManualParameter)));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Parameter, ItkManualThresholdTemplate));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, SaveAsNewArray)));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkManualThresholdTemplate, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Threshold", "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, SelectedCellArrayArrayPath), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, SelectedCellArrayArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Threshold", SelectedCellArrayArrayPath, FilterParameter::RequiredArray, ItkManualThresholdTemplate, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Threshold Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkManualThresholdTemplate, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkManualThresholdTemplate, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Threshold Array", NewCellArrayName, FilterParameter::CreatedArray, ItkManualThresholdTemplate));
 
   setFilterParameters(parameters);
 }

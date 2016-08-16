@@ -84,18 +84,18 @@ void ItkMultiOtsuThreshold::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(BooleanFilterParameter::New("Slice at a Time", "Slice", getSlice(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, Slice), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, Slice)));
-  parameters.push_back(IntFilterParameter::New("Number of Levels", "Levels", getLevels(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, Levels), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, Levels)));
+  parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMultiOtsuThreshold));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Levels", Levels, FilterParameter::Parameter, ItkMultiOtsuThreshold));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, SaveAsNewArray)));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkMultiOtsuThreshold, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, SelectedCellArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkMultiOtsuThreshold, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkMultiOtsuThreshold, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkMultiOtsuThreshold, this, NewCellArrayName)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkMultiOtsuThreshold));
 
   setFilterParameters(parameters);
 }

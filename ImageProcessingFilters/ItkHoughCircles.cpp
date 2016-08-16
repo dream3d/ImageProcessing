@@ -87,17 +87,17 @@ void ItkHoughCircles::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(LinkedBooleanFilterParameter::New("Save as New Array", "SaveAsNewArray", getSaveAsNewArray(), linkedProps, FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, SaveAsNewArray), SIMPL_BIND_GETTER(ItkHoughCircles, this, SaveAsNewArray)));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkHoughCircles, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Int8, 1, SIMPL::AttributeMatrixObjectType::Any);
-    parameters.push_back(DataArraySelectionFilterParameter::New("Attribute Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::RequiredArray, req, SIMPL_BIND_SETTER(ItkHoughCircles, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkHoughCircles, this, SelectedCellArrayPath)));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkHoughCircles, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(StringFilterParameter::New("Output Attribute Array", "NewCellArrayName", getNewCellArrayName(), FilterParameter::CreatedArray, SIMPL_BIND_SETTER(ItkHoughCircles, this, NewCellArrayName), SIMPL_BIND_GETTER(ItkHoughCircles, this, NewCellArrayName)));
-  parameters.push_back(DoubleFilterParameter::New("Minimum Radius", "MinRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MinRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MinRadius)));
-  parameters.push_back(DoubleFilterParameter::New("Maximum Radius", "MaxRadius", getMinRadius(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, MaxRadius), SIMPL_BIND_GETTER(ItkHoughCircles, this, MaxRadius)));
-  parameters.push_back(IntFilterParameter::New("Number of Circles", "NumberCircles", getNumberCircles(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ItkHoughCircles, this, NumberCircles), SIMPL_BIND_GETTER(ItkHoughCircles, this, NumberCircles)));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Minimum Radius", MinRadius, FilterParameter::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Maximum Radius", MaxRadius, FilterParameter::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Circles", NumberCircles, FilterParameter::Parameter, ItkHoughCircles));
 
   setFilterParameters(parameters);
 }
