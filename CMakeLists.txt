@@ -60,7 +60,7 @@ include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
 ## Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
 # --------------------------------------------------------------------
 # ITK Include
-if(SIMPLib_USE_ITK)
+if(DREAM3D_USE_ITK)
   set(DREAM3D_ADDITIONAL_ITK_MODULES SCIFIO)
   set_property(GLOBAL APPEND PROPERTY DREAM3D_ADDITIONAL_ITK_MODULES ${DREAM3D_ADDITIONAL_ITK_MODULES})
 
@@ -68,7 +68,7 @@ if(SIMPLib_USE_ITK)
   include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
   include_directories(${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
 else()
-  message( FATAL_ERROR "${PLUGIN_NAME} needs ITK. Please turn SIMPLib_USE_ITK ON.")
+  message( FATAL_ERROR "${PLUGIN_NAME} needs ITK. Please turn DREAM3D_USE_ITK ON.")
 endif()
 
 # --------------------------------------------------------------------
