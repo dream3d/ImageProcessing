@@ -67,7 +67,7 @@ class GrayToRGBPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -137,10 +137,10 @@ ItkGrayToRGB::ItkGrayToRGB() :
   m_GreenArrayPath("", "", ""),
   m_BlueArrayPath("", "", ""),
   m_NewCellArrayName(""),
-  m_Red(NULL),
-  m_Green(NULL),
-  m_Blue(NULL),
-  m_NewCellArray(NULL)
+  m_Red(nullptr),
+  m_Green(nullptr),
+  m_Blue(nullptr),
+  m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -208,17 +208,17 @@ void ItkGrayToRGB::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_RedPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getRedArrayPath(), compDims);
-  if(NULL != m_RedPtr.lock().get())
+  if(nullptr != m_RedPtr.lock().get())
   {
     m_Red = m_RedPtr.lock().get();
   }
   m_GreenPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getGreenArrayPath(), compDims);
-  if(NULL != m_GreenPtr.lock().get())
+  if(nullptr != m_GreenPtr.lock().get())
   {
     m_Green = m_GreenPtr.lock().get();
   }
   m_BluePtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getBlueArrayPath(), compDims);
-  if(NULL != m_BluePtr.lock().get())
+  if(nullptr != m_BluePtr.lock().get())
   {
     m_Blue = m_BluePtr.lock().get();
   }
@@ -234,12 +234,12 @@ void ItkGrayToRGB::dataCheck()
   IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getRedArrayPath().getDataArrayName(), 80000);
   if(getErrorCondition() < 0) { return; }
   ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
   //create new array of same type
   compDims[0] = 3;
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, redArrayptr);
-  if( NULL != m_NewCellArrayPtr.lock().get() )
+  if( nullptr != m_NewCellArrayPtr.lock().get() )
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }

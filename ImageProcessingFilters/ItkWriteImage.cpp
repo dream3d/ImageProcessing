@@ -71,7 +71,7 @@ class WriteImagePrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -182,7 +182,7 @@ ItkWriteImage::ItkWriteImage() :
   AbstractFilter(),
   m_SelectedCellArrayPath("", "", ""),
   m_OutputFileName(""),
-  m_SelectedCellArray(NULL)
+  m_SelectedCellArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -256,7 +256,7 @@ void ItkWriteImage::dataCheck()
   //pass empty dimensions to allow any size
   QVector<size_t> compDims;
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(NULL != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock().get())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
@@ -266,7 +266,7 @@ void ItkWriteImage::dataCheck()
   // Ignore returning from the dataCheck if this errors out. We are just trying to
   // ensure an ImageGeometry is selected. If code is added below that starts depending
   // on the image geometry, then the next line should be uncommented.
-  //if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  //if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
 
   //make sure dims of selected array are appropriate

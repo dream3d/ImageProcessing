@@ -68,7 +68,7 @@ class itkKdTreeKMeansTemplate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -176,8 +176,8 @@ ItkKdTreeKMeans::ItkKdTreeKMeans() :
   m_SelectedCellArrayPath("", "", ""),
   m_NewCellArrayName("ClassLabels"),
   m_Classes(2),
-  m_SelectedCellArray(NULL),
-  m_NewCellArray(NULL)
+  m_SelectedCellArray(nullptr),
+  m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -253,7 +253,7 @@ void ItkKdTreeKMeans::dataCheck()
   DataArrayPath tempPath(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName());
 
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<int32_t>, AbstractFilter, int32_t>(this, tempPath, 0, cDims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
 

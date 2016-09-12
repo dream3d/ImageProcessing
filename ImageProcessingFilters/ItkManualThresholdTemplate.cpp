@@ -70,7 +70,7 @@ class ManualThresholdTemplatePrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -135,8 +135,8 @@ ItkManualThresholdTemplate::ItkManualThresholdTemplate() :
   m_NewCellArrayName(""),
   m_SaveAsNewArray(true),
   m_ManualParameter(128),
-  m_SelectedCellArray(NULL),
-  m_NewCellArray(NULL)
+  m_SelectedCellArray(nullptr),
+  m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -203,7 +203,7 @@ void ItkManualThresholdTemplate::dataCheck()
   QVector<size_t> compDims(1, 1);
 
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayArrayPath(), compDims);
-  if(NULL != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock().get())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
@@ -213,15 +213,15 @@ void ItkManualThresholdTemplate::dataCheck()
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayArrayPath().getDataContainerName(), getSelectedCellArrayArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
-  // We can safely just get the pointers without checking if they are NULL because that was effectively done above in the GetPrereqArray call
+  // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
   DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataContainerName() );
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix<AbstractFilter>(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
   IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, data);
-  if( NULL != m_NewCellArrayPtr.lock().get() )
+  if( nullptr != m_NewCellArrayPtr.lock().get() )
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }

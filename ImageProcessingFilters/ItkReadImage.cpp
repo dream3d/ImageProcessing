@@ -59,7 +59,7 @@ ItkReadImage::ItkReadImage() :
   m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
   m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
   m_ImageDataArrayName(SIMPL::CellData::ImageData),
-  m_ImageData(NULL)
+  m_ImageData(nullptr)
 {
   setupFilterParameters();
 }
@@ -123,7 +123,7 @@ void ItkReadImage::dataCheck()
 
   //read image metadata
   itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(getInputFileName().toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
-  if(NULL == imageIO)
+  if(nullptr == imageIO)
   {
     setErrorCondition(-2);
     QString message = QObject::tr("Unable to read image '%1'").arg(getInputFileName());
@@ -166,7 +166,7 @@ void ItkReadImage::dataCheck()
   m = getDataContainerArray()->getDataContainer(getDataContainerName());
   bool createAttributeMatrix = false;
 
-  if(NULL == m.get()) //datacontainer doesn't exist->create
+  if(nullptr == m.get()) //datacontainer doesn't exist->create
   {
     m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
     ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
@@ -197,7 +197,7 @@ void ItkReadImage::dataCheck()
     image->getResolution(iRes);
     image->getOrigin(iOrigin);
 
-    if(dcExists &&  NULL != image.get())//attribute matrix exists, check compatibility
+    if(dcExists &&  nullptr != image.get())//attribute matrix exists, check compatibility
     {
       //get matrix
       cellAttrMat = m->getPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), false);
@@ -345,7 +345,7 @@ void ItkReadImage::dataCheck()
   if(getErrorCondition() < 0) { return; }
 
   m_ImageDataPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, createdPath, componentDims, data);
-  if( NULL != m_ImageDataPtr.lock().get() )
+  if( nullptr != m_ImageDataPtr.lock().get() )
   {
     m_ImageData = m_ImageDataPtr.lock()->getVoidPointer(0);
   }

@@ -70,7 +70,7 @@ class RGBToGrayPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -145,8 +145,8 @@ ItkRGBToGray::ItkRGBToGray() :
   AbstractFilter(),
   m_SelectedCellArrayArrayPath("", "", ""),
   m_NewCellArrayName(""),
-  m_SelectedCellArray(NULL),
-  m_NewCellArray(NULL)
+  m_SelectedCellArray(nullptr),
+  m_NewCellArray(nullptr)
 {
   m_ColorWeights.x = 0.2125f;
   m_ColorWeights.y = 0.7154f;
@@ -210,7 +210,7 @@ void ItkRGBToGray::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 3);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, tempPath, compDims);
-  if(NULL != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock().get())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
@@ -237,13 +237,13 @@ void ItkRGBToGray::dataCheck()
   IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   if(getErrorCondition() < 0) { return; }
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
   compDims[0] = 1;
   //configured created name / location
 
   tempPath.setDataArrayName(getNewCellArrayName());
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, data);
-  if( NULL != m_NewCellArrayPtr.lock().get() )
+  if( nullptr != m_NewCellArrayPtr.lock().get() )
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }

@@ -174,7 +174,7 @@ void ItkImportImageStack::dataCheck()
   }
 
   DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
-  if(getErrorCondition() < 0 || NULL == m.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == m.get()) { return; }
 
   if (m_GeometryType == 0)
   {
@@ -227,7 +227,7 @@ void ItkImportImageStack::dataCheck()
   {
     //read image metadata
     itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(fileList.at(0).toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
-    if(NULL == imageIO)
+    if(nullptr == imageIO)
     {
       setErrorCondition(-2);
       QString message = QObject::tr("Unable to read image '%1'").arg(fileList.at(0));
@@ -367,7 +367,7 @@ void ItkImportImageStack::dataCheck()
     if(getErrorCondition() < 0) { return; }
 
     m_ImageDataPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, createdPath, componentDims, data);
-    if( NULL != m_ImageDataPtr.lock().get() )
+    if( nullptr != m_ImageDataPtr.lock().get() )
     {
       m_ImageData = m_ImageDataPtr.lock()->getVoidPointer(0);
     }

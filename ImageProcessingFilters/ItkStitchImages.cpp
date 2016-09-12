@@ -68,8 +68,8 @@ ItkStitchImages::ItkStitchImages() :
   m_StitchedVolumeDataContainerName("MontagedImageDataContainer"),
   m_StitchedImagesArrayName("Montage"),
   m_StitchedAttributeMatrixName("MontageAttributeMatrix"),
-  m_StitchedCoordinates(NULL),
-  m_StitchedImageArray(NULL)
+  m_StitchedCoordinates(nullptr),
+  m_StitchedImageArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -146,7 +146,7 @@ void ItkStitchImages::dataCheck()
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
-  if (am.get() == NULL)
+  if (am.get() == nullptr)
   {
     setErrorCondition(-76000);
     notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
@@ -166,7 +166,7 @@ void ItkStitchImages::dataCheck()
     iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType, AbstractFilter>(this, tempPath, dims);
 
     imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
-    if(NULL == imagePtr)
+    if(nullptr == imagePtr)
     {
       setErrorCondition(-76001);
       notifyErrorMessage(getHumanLabel(), "The data was not found", getErrorCondition());
@@ -175,7 +175,7 @@ void ItkStitchImages::dataCheck()
 
 
   m_AttributeArrayNamesPtr = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, getAttributeArrayNamesPath(), dims);
-  if( NULL != m_StitchedCoordinatesPtr.lock().get() )
+  if( nullptr != m_StitchedCoordinatesPtr.lock().get() )
   {
     if(names.size() != m_StitchedCoordinatesPtr.lock()->getNumberOfTuples() )
     {
@@ -187,11 +187,11 @@ void ItkStitchImages::dataCheck()
 
   dims[0] = 2;
   m_StitchedCoordinatesPtr = getDataContainerArray()->getPrereqArrayFromPath<FloatArrayType, AbstractFilter>(this, getStitchedCoordinatesArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( NULL != m_StitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_StitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
-  if(getErrorCondition() < 0 || NULL == m) { return; }
+  if(getErrorCondition() < 0 || nullptr == m) { return; }
 
 
   DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
@@ -216,7 +216,7 @@ void ItkStitchImages::dataCheck()
 
   tempPath.update(getStitchedVolumeDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
   m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( NULL != m_StitchedImageArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_StitchedImageArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
 
@@ -278,7 +278,7 @@ void ItkStitchImages::execute()
 
   UInt8ArrayType::Pointer imagePtr = UInt8ArrayType::NullPointer();
   IDataArray::Pointer iDataArray = IDataArray::NullPointer();
-  uint8_t* image = NULL;
+  uint8_t* image = nullptr;
 
   DataArrayPath tempPath;
 
@@ -349,7 +349,7 @@ void ItkStitchImages::execute()
 
     imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
 
-    if(NULL != imagePtr.get())
+    if(nullptr != imagePtr.get())
     {
       image = imagePtr->getPointer(0);
       ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter = ITKUtilitiesType::Dream3DtoITKImportFilter<ImageProcessingConstants::DefaultPixelType>(m, getAttributeMatrixName().getAttributeMatrixName(), image);

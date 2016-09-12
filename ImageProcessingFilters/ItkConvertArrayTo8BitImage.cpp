@@ -59,7 +59,7 @@ ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage() :
   AbstractFilter(),
   m_SelectedArrayPath("", "", ""),
   m_NewArrayArrayName(""),
-  m_NewArray(NULL)
+  m_NewArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -135,12 +135,12 @@ void ItkConvertArrayTo8BitImage::dataCheck()
       QVector<size_t> dims(1, 1);
       tempPath.update(m_SelectedArrayPath.getDataContainerName(), m_SelectedArrayPath.getAttributeMatrixName(), getNewArrayArrayName() );
       m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-      if( NULL != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+      if( nullptr != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
       { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
       if(getErrorCondition() < 0) { return; }
 
       ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-      if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+      if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
     }
   }
 }
@@ -165,7 +165,7 @@ template<typename T>
 void scaleArray(IDataArray::Pointer inputData, uint8_t* newArray)
 {
   DataArray<T>* inputArray = DataArray<T>::SafePointerDownCast(inputData.get());
-  if (NULL == inputArray)
+  if (nullptr == inputArray)
   {
     return;
   }

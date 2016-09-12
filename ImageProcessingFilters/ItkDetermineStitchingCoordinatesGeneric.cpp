@@ -146,7 +146,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
 
   // If it's null, then it's not good throw an error
-  if (am.get() == NULL)
+  if (am.get() == nullptr)
   {
     setErrorCondition(-76000);
     notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
@@ -162,7 +162,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   // Get a pointer to the first image to make sure that there are images on the stack currently
   // If there isn't then we have a problem; throw an error
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
   // Populate the m_PointerList with (Something)(Maybe the images?)
   m_PointerList.resize(names.size());
@@ -173,7 +173,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, tempPath, dims);
 
-    if( NULL != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+    if( nullptr != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
     { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
     m_PointerList[i] = m_SelectedCellArray;
@@ -185,7 +185,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   if(m_UseZeissMetaData == true)
   {
     AttributeMatrix::Pointer MetaDataAm = getDataContainerArray()->getAttributeMatrix(m_MetaDataAttributeMatrixName);
-    if(NULL == MetaDataAm.get())
+    if(nullptr == MetaDataAm.get())
     {
       notifyErrorMessage(getHumanLabel(), "The Attribute Matrix was not found", -76001);
       return;
@@ -202,7 +202,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   // Get current data container because we're not making a new one
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
-  if(getErrorCondition() < 0 || NULL == m) { return; }
+  if(getErrorCondition() < 0 || nullptr == m) { return; }
 
   // Create a new attribute matrix
   QVector<size_t> tDims(1, m_PointerList.size());
@@ -213,7 +213,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedCoordinatesArrayName());
   m_StitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<float>, AbstractFilter, float>(this,  tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( NULL != m_StitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_StitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   dims[0] = 1;
@@ -227,7 +227,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   AttrMat->addAttributeArray(getStitchedArrayNames(), StrongDataArrayNames);
   m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
 
-  if( NULL != m_DataArrayNamesForStitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_DataArrayNamesForStitchedCoordinatesPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   {
     // m_DataArrayNamesForStitchedCoordinates = m_DataArrayNamesForStitchedCoordinatesPtr.lock()->getPointer(0);  /* Now assign the raw pointer to data from the DataArray<T> object */
   }

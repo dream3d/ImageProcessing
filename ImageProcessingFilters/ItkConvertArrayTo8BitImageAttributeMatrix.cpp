@@ -59,7 +59,7 @@ ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMa
 //  m_SelectedArrayPath("", "", ""),
   m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""),
   m_NewArrayArrayName(""),
-  m_NewArray(NULL)
+  m_NewArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -115,7 +115,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
-  if (am.get() == NULL)
+  if (am.get() == nullptr)
   {
     setErrorCondition(-76000);
     notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
@@ -146,7 +146,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 
 
     ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-    if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+    if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
   }
 }
 
@@ -170,7 +170,7 @@ template<typename T>
 void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
 {
   DataArray<T>* inputArray = DataArray<T>::SafePointerDownCast(inputData.get());
-  if (NULL == inputArray)
+  if (nullptr == inputArray)
   {
     return;
   }
@@ -235,7 +235,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
     m_NewArrayArrayName = names[i] + "8bit";
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), getNewArrayArrayName() );
     m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-    if( NULL != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+    if( nullptr != m_NewArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
     { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
     IDataArray::Pointer inputData = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getAttributeMatrix(getAttributeMatrixName().getAttributeMatrixName())->getAttributeArray(names[i]);

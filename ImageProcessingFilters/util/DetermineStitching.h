@@ -76,7 +76,7 @@ class DetermineStitching
                                                      QVector<float> yGlobCoordsList,
                                                      QVector<qint32> xTileList,
                                                      QVector<qint32> yTileList,
-                                                     AbstractFilter *filter = NULL);
+                                                     AbstractFilter *filter = nullptr);
 
 	static FloatArrayType::Pointer FindGlobalOrigins(int xTileCount, int yTileCount,
 		int ImportMode,
