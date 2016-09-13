@@ -81,7 +81,7 @@ class Dream3DToItkImageConversion
 
       //get size+dimensions of dataset
       QVector<size_t> udims = attrMat->getTupleDimensions();
-      size_t totalPoints = attrMat->getNumTuples();
+      size_t totalPoints = attrMat->getNumberOfTuples();
 
       //create and setup import filter
 
@@ -159,7 +159,7 @@ class ItkBridge2
 
       //get size+dimensions of dataset
       QVector<size_t> udims = attrMat->getTupleDimensions();
-      size_t totalPoints = attrMat->getNumTuples();
+      size_t totalPoints = attrMat->getNumberOfTuples();
 
       //create and setup import filter
 
@@ -226,7 +226,7 @@ class CreateItkWrapperForDataPointer
 
       //get size+dimensions of dataset
       QVector<size_t> udims = attrMat->getTupleDimensions();
-      size_t totalPoints = attrMat->getNumTuples();
+      size_t totalPoints = attrMat->getNumberOfTuples();
 
       //create and setup import filter
       typedef itk::ImportImageFilter<ComponentType, ImageProcessingConstants::ImageDimension> ImportImageFilterType;
@@ -333,7 +333,7 @@ class ItkBridge
 
       //get size+dimensions of dataset
       QVector<size_t> udims = attrMat->getTupleDimensions();
-      size_t totalPoints = attrMat->getNumTuples();
+      size_t totalPoints = attrMat->getNumberOfTuples();
 
       //create and setup import filter
       typedef itk::ImportImageFilter<TPixel, ImageProcessingConstants::ImageDimension> ImportImageFilterType;
@@ -387,7 +387,7 @@ class ItkBridge
 
       //get size+dimensions of dataset
 //      QVector<size_t> udims = attrMat->getTupleDimensions();
-//      size_t totalPoints = attrMat->getNumTuples();
+//      size_t totalPoints = attrMat->getNumberOfTuples();
 
       //create and setup import filter
       typedef itk::ImportImageFilter<TPixel, ImageProcessingConstants::ImageDimension> ImportImageFilterType;

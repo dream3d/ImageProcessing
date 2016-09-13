@@ -223,7 +223,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   //tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedArrayNames() );
   //m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
 
-  StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumTuples(), getStitchedArrayNames());
+  StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumberOfTuples(), getStitchedArrayNames());
   AttrMat->addAttributeArray(getStitchedArrayNames(), StrongDataArrayNames);
   m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
 
@@ -272,7 +272,7 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   m->getGeometryAs<ImageGeom>()->getOrigin(sampleOrigin);
   m->getGeometryAs<ImageGeom>()->getResolution(voxelResolution);
   QVector<size_t> udims = attrMat->getTupleDimensions(); // The udims variable is filled with information about the size of each image (provided they were imported correctly) [0] = x; [1] = y; [2] = z;
-  size_t totalPoints = attrMat->getNumTuples();
+  size_t totalPoints = attrMat->getNumberOfTuples();
 
   // If mode is equal to the max value then we're using the legacy zeiss data (which we can't really use too well)
   // This code doesn't really work and I don't know how to fix it because I'm not using zeiss data. For now we'll just do this
