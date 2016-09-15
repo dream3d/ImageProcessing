@@ -64,7 +64,7 @@ class FindMaximaPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -133,8 +133,8 @@ FindMaxima::FindMaxima() :
   m_SelectedCellArrayPath("", "", ""),
   m_NewCellArrayName("Maxima"),
   m_MinValue(1.0),
-  m_SelectedCellArray(NULL),
-  m_NewCellArray(NULL)
+  m_SelectedCellArray(nullptr),
+  m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }
@@ -189,14 +189,14 @@ void FindMaxima::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(NULL != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock().get())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
   if(getErrorCondition() < 0) { return; }
 
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
   //configured created name / location
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
@@ -208,7 +208,7 @@ void FindMaxima::dataCheck()
   //create new boolean array
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(this, tempPath, 0, compDims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( NULL != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-NULL pointer to a DataArray<T> object */
+  if( nullptr != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
 }

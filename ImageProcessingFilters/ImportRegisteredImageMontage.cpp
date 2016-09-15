@@ -43,7 +43,7 @@ ImportRegisteredImageMontage::ImportRegisteredImageMontage() :
 //  m_RegistrationFile(""),
   m_RegistrationCoordinatesArrayName("RegistrationCoordinates"),
   m_AttributeArrayNamesArrayName("AttributeArrayNames"),
-  m_RegistrationCoordinates(NULL)
+  m_RegistrationCoordinates(nullptr)
 {
   m_Origin.x = 0.0;
   m_Origin.y = 0.0;
@@ -222,7 +222,7 @@ void ImportRegisteredImageMontage::dataCheck()
 
 		// read image metadata
 		itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(imageFName.toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
-		if (NULL == imageIO)
+		if (nullptr == imageIO)
 		{
 			setErrorCondition(-2);
 			QString message = QObject::tr("Unable to read image '%1'").arg(imageFName);

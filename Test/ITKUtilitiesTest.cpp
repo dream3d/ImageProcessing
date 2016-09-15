@@ -57,7 +57,7 @@
 /**
 * These functions are just here to make sure the templated static functions in the ItkBridge class
 *  will properly compile. If these are actually executed the program would surely crash
-* due to the use of the NULL pointers every where.
+* due to the use of the nullptr pointers every where.
 */
 
 // -----------------------------------------------------------------------------
@@ -83,7 +83,7 @@ void TestDream3DtoITKImportFilter()
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m->setGeometry(image);
   QString attrMatName("CellData");
-  ImageProcessingConstants::DefaultPixelType* data = NULL;
+  ImageProcessingConstants::DefaultPixelType* data = nullptr;
 
   ImageProcessingConstants::ImportUInt8FilterType::Pointer importFilter = ItkBridge<ImageProcessingConstants::DefaultPixelType>::Dream3DtoITKImportFilter<ImageProcessingConstants::DefaultPixelType>(m, attrMatName, data);
 
@@ -101,7 +101,7 @@ void TestCreateItkWrapperForDataPointer()
   m->setGeometry(image);
   QString attrMatName("CellData");
 
-  ImageProcessingConstants::DefaultPixelType* data = NULL;
+  ImageProcessingConstants::DefaultPixelType* data = nullptr;
 
   imagePtr = (ImageProcessingConstants::DefaultImageType::Pointer)ItkBridge<ImageProcessingConstants::DefaultPixelType>::CreateItkWrapperForDataPointer(m, attrMatName, data);
 }
@@ -113,7 +113,7 @@ void TestSetITKOutput()
 {
 
   ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
-// ImageProcessingConstants::DefaultPixelType* output = NULL;
+// ImageProcessingConstants::DefaultPixelType* output = nullptr;
 // unsigned int totalPoints = 0;
   ImageProcessingConstants::DefaultArrayType::Pointer array;
   ItkBridge<ImageProcessingConstants::DefaultPixelType>::SetITKFilterOutput(imagePtr, array);
@@ -128,7 +128,7 @@ void TestCopyITKtoDream3D()
 {
 
   ImageProcessingConstants::DefaultImageType::Pointer imagePtr;
-  ImageProcessingConstants::DefaultPixelType* data = NULL;
+  ImageProcessingConstants::DefaultPixelType* data = nullptr;
   ItkBridge<ImageProcessingConstants::DefaultPixelType>::CopyITKtoDream3D(imagePtr, data);
 
 }

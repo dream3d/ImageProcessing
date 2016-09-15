@@ -62,7 +62,7 @@ class AlignSectionsPhaseCorrelationPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != NULL);
+      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -164,7 +164,7 @@ class AlignSectionsPhaseCorrelationPrivate
 AlignSectionsPhaseCorrelation::AlignSectionsPhaseCorrelation() :
   AlignSections(),
   m_SelectedCellArrayPath("", "", ""),
-  m_SelectedCellArray(NULL)
+  m_SelectedCellArray(nullptr)
   /* DO NOT FORGET TO INITIALIZE ALL YOUR DREAM3D Filter Parameters HERE */
 {
   setupFilterParameters();
@@ -216,14 +216,14 @@ void AlignSectionsPhaseCorrelation::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(NULL != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock().get())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
   if(getErrorCondition() < 0) { return; }
 
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || NULL == image.get()) { return; }
+  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 }
 
 // -----------------------------------------------------------------------------
