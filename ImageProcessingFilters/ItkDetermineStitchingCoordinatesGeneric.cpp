@@ -66,22 +66,24 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 //  }
 
   {
-    LinkedChoicesFilterParameter::Pointer combobox = LinkedChoicesFilterParameter::New();
-    combobox->setHumanLabel("Import Mode");
-    combobox->setPropertyName("ImportMode");
+    LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
+    parameter->setHumanLabel("Import Mode");
+    parameter->setPropertyName("ImportMode");
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkDetermineStitchingCoordinatesGeneric, this, ImportMode));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkDetermineStitchingCoordinatesGeneric, this, ImportMode));
     QVector<QString> choices;
     choices.push_back("Row-By-Row (Comb Order)");
     choices.push_back("Column-By-Column");
     choices.push_back("Snake-By-Row");
     choices.push_back("Snake-By-Column");
     choices.push_back("Zeiss Data (Legacy)");
-    combobox->setChoices(choices);
+    parameter->setChoices(choices);
     QStringList linkedProps;
     linkedProps << "MetaDataAttributeMatrixName";
-    combobox->setLinkedProperties(linkedProps);
-    combobox->setEditable(false);
-    combobox->setCategory(FilterParameter::Parameter);
-    parameters.push_back(combobox);
+    parameter->setLinkedProperties(linkedProps);
+    parameter->setEditable(false);
+    parameter->setCategory(FilterParameter::Parameter);
+    parameters.push_back(parameter);
   }
 
   parameters.push_back(SeparatorFilterParameter::New("Dimensions", FilterParameter::RequiredArray));
