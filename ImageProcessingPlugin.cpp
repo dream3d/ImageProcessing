@@ -45,6 +45,12 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+
+#include <itkPNGImageIOFactory.h>
+#include <itkBMPImageIOFactory.h>
+#include <itkJPEGImageIOFactory.h>
+#include <itkTIFFImageIOFactory.h>
+
 // Include the MOC generated CPP file which has all the QMetaObject methods/data
 #include "moc_ImageProcessingPlugin.cpp"
 
@@ -61,7 +67,10 @@ ImageProcessingPlugin::ImageProcessingPlugin() :
   m_Filters(QList<QString>()),
   m_DidLoad(false)
 {
-
+    itk::PNGImageIOFactory::RegisterOneFactory();
+    itk::TIFFImageIOFactory::RegisterOneFactory();
+    itk::JPEGImageIOFactory::RegisterOneFactory();
+    itk::BMPImageIOFactory::RegisterOneFactory();
 }
 
 // -----------------------------------------------------------------------------

@@ -268,7 +268,7 @@ void ItkGrayToRGB::execute()
   dataCheck();
   if(getErrorCondition() < 0)
   {
-    setErrorCondition(-10000);
+    setErrorCondition(-13000);
     ss = QObject::tr("DataCheck did not pass during execute");
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
