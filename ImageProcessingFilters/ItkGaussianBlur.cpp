@@ -86,7 +86,7 @@ void ItkGaussianBlur::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkGaussianBlur, linkedProps));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::Defaults::AnyPrimitive, 1, SIMPL::Defaults::AnyAttributeMatrix, SIMPL::Defaults::AnyGeometry);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Type::Any, SIMPL::Defaults::AnyGeometry);
     QVector<QString> vec;
     vec.push_back(SIMPL::TypeNames::Int8);
     vec.push_back(SIMPL::TypeNames::Int16);

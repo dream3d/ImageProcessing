@@ -209,7 +209,7 @@ void ItkStitchImages::dataCheck()
 
   QVector<size_t> tDims(1, 0);
 
-  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell);
+  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix<AbstractFilter>(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
   if(getErrorCondition() < 0) { return; }
   dims[0] = 1;
 

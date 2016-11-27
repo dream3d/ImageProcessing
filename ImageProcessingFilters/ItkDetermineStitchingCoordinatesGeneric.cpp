@@ -208,7 +208,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   // Create a new attribute matrix
   QVector<size_t> tDims(1, m_PointerList.size());
-  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getTileCalculatedInfoAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::CellFeature);
+  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getTileCalculatedInfoAttributeMatrixName(), tDims, AttributeMatrix::Type::CellFeature);
   if(getErrorCondition() < 0) { return; }
 
   dims[0] = 2;

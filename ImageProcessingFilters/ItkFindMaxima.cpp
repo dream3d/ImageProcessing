@@ -152,7 +152,7 @@ void ItkFindMaxima::setupFilterParameters()
   FilterParameterVector parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, SIMPL::AttributeMatrixObjectType::Any);
+    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Input Attribute Array", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkFindMaxima, req));
   }
   parameters.push_back(SIMPL_NEW_DOUBLE_FP("Noise Tolerance", Tolerance, FilterParameter::Parameter, ItkFindMaxima));
