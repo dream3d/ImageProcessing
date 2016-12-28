@@ -1,6 +1,6 @@
 /* ============================================================================
  * Copyright (c) 2014 William Lenthe
- * Copyright (c) 2014 DREAM3D Consortium
+ * Copyright (c) 2016 BlueQuartz Software, LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,117 +36,115 @@
 
 #include <string>
 
-//thresholding filter
+// thresholding filter
 #include "itkUnaryFunctorImageFilter.h"
 
 #include "SIMPLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatVec3FilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/MultiDataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
-
 // ImageProcessing Plugin
-#include "ItkBridge.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
+#include "ItkBridge.h"
 
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
  * for us like figuring out if we can use this private implementation with the data array that is assigned.
  */
-template<typename T>
-class RGBToGrayPrivate
+template <typename T> class RGBToGrayPrivate
 {
-  public:
-    typedef DataArray<T> DataArrayType;
+public:
+  typedef DataArray<T> DataArrayType;
 
-    RGBToGrayPrivate() {}
-    virtual ~RGBToGrayPrivate() {}
+  RGBToGrayPrivate()
+  {
+  }
+  virtual ~RGBToGrayPrivate()
+  {
+  }
 
-    // -----------------------------------------------------------------------------
-    // Determine if this is the proper type of an array to downcast from the IDataArray
-    // -----------------------------------------------------------------------------
-    bool operator()(IDataArray::Pointer p)
+  // -----------------------------------------------------------------------------
+  // Determine if this is the proper type of an array to downcast from the IDataArray
+  // -----------------------------------------------------------------------------
+  bool operator()(IDataArray::Pointer p)
+  {
+    return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
+  }
+
+  // -----------------------------------------------------------------------------
+  // This is the actual templated algorithm
+  // -----------------------------------------------------------------------------
+  void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3_t weights, DataContainer::Pointer m, QString attrMatName)
+  {
+    typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
+    typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
+
+    // Get the Raw Pointer to the Allocated Memory region (array) for the input and output arrays
+    T* inputData = static_cast<T*>(inputDataPtr->getPointer(0));
+    T* outputData = static_cast<T*>(outputDataPtr->getPointer(0));
+
+    size_t numVoxels = inputDataPtr->getNumberOfTuples();
+
+    // set weighting
+    double mag = weights.x + weights.y + weights.z;
+
+    // Define all the typedefs that are needed
+    typedef ItkBridge<T> ItkBridgeType;
+    typedef typename ItkBridgeType::RGBImageType RGBImageType;
+    typedef typename RGBImageType::Pointer RGBImagePointerType;
+    typedef typename RGBImageType::PixelType RGBImagePixelType;
+    typedef typename ItkBridgeType::ScalarImageType ScalarImageType;
+    typedef typename ScalarImageType::PixelType ScalarImagePixelType;
+    // define Fucntor Typedef
+    typedef ImageProcessing::Functor::Luminance<RGBImagePixelType, ScalarImagePixelType> LuminanceFunctorType;
+    // define filters typedef
+    typedef itk::UnaryFunctorImageFilter<RGBImageType, ScalarImageType, LuminanceFunctorType> RGBToGrayType;
+
+    // wrap input as itk image
+    RGBImagePointerType inputImage = ItkBridgeType::template Dream3DtoITKImportFilter<RGBImagePixelType>(m, attrMatName, inputData)->GetOutput();
+
+    // convert to gray
+    typename RGBToGrayType::Pointer itkFilter = RGBToGrayType::New();
+    itkFilter->GetFunctor().SetRWeight(weights.x / mag);
+    itkFilter->GetFunctor().SetGWeight(weights.y / mag);
+    itkFilter->GetFunctor().SetBWeight(weights.z / mag);
+    itkFilter->SetInput(inputImage);
+    itkFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
+    try
     {
-      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
-    }
-
-    // -----------------------------------------------------------------------------
-    // This is the actual templated algorithm
-    // -----------------------------------------------------------------------------
-    void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3_t weights, DataContainer::Pointer m, QString attrMatName)
+      itkFilter->Update();
+    } catch(itk::ExceptionObject& err)
     {
-      typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
-      typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
-
-
-
-      // Get the Raw Pointer to the Allocated Memory region (array) for the input and output arrays
-      T* inputData = static_cast<T*>(inputDataPtr->getPointer(0));
-      T* outputData = static_cast<T*>(outputDataPtr->getPointer(0));
-
-      size_t numVoxels = inputDataPtr->getNumberOfTuples();
-
-      //set weighting
-      double mag = weights.x + weights.y + weights.z;
-
-      // Define all the typedefs that are needed
-      typedef ItkBridge<T>                                              ItkBridgeType;
-      typedef typename ItkBridgeType::RGBImageType                   RGBImageType;
-      typedef typename RGBImageType::Pointer                            RGBImagePointerType;
-      typedef typename RGBImageType::PixelType                          RGBImagePixelType;
-      typedef typename ItkBridgeType::ScalarImageType                ScalarImageType;
-      typedef typename ScalarImageType::PixelType                       ScalarImagePixelType;
-      //define Fucntor Typedef
-      typedef ImageProcessing::Functor::Luminance<RGBImagePixelType, ScalarImagePixelType>                       LuminanceFunctorType;
-      //define filters typedef
-      typedef itk::UnaryFunctorImageFilter<RGBImageType, ScalarImageType, LuminanceFunctorType> RGBToGrayType;
-
-
-      //wrap input as itk image
-      RGBImagePointerType inputImage = ItkBridgeType::template Dream3DtoITKImportFilter<RGBImagePixelType>(m, attrMatName, inputData)->GetOutput();
-
-      //convert to gray
-      typename RGBToGrayType::Pointer itkFilter = RGBToGrayType::New();
-      itkFilter->GetFunctor().SetRWeight(weights.x / mag);
-      itkFilter->GetFunctor().SetGWeight(weights.y / mag);
-      itkFilter->GetFunctor().SetBWeight(weights.z / mag);
-      itkFilter->SetInput(inputImage);
-      itkFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
-      try
-      {
-        itkFilter->Update();
-      }
-      catch( itk::ExceptionObject& err )
-      {
-        filter->setErrorCondition(-5);
-        QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
-      }
-
+      filter->setErrorCondition(-5);
+      QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
+      filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
     }
-  private:
-    RGBToGrayPrivate(const RGBToGrayPrivate&); // Copy Constructor Not Implemented
-    void operator=(const RGBToGrayPrivate&); // Operator '=' Not Implemented
+  }
+
+private:
+  RGBToGrayPrivate(const RGBToGrayPrivate&); // Copy Constructor Not Implemented
+  void operator=(const RGBToGrayPrivate&);   // Operator '=' Not Implemented
 };
-
 
 // Include the MOC generated file for this class
 #include "moc_ItkRGBToGray.cpp"
 
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkRGBToGray::ItkRGBToGray() :
-  AbstractFilter(),
-  m_SelectedCellArrayArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkRGBToGray::ItkRGBToGray()
+: AbstractFilter()
+//  m_SelectedCellArrayArrayPath("", "", ""),
+//  m_NewCellArrayName(""),
+, m_OutputAttributeMatrixName("")
+, m_OutputArrayPrefix("GrayScale_")
+//, m_SelectedCellArray(nullptr)
+//, m_NewCellArray(nullptr)
 {
   m_ColorWeights.x = 0.2125f;
   m_ColorWeights.y = 0.7154f;
@@ -167,15 +165,14 @@ ItkRGBToGray::~ItkRGBToGray()
 void ItkRGBToGray::setupFilterParameters()
 {
   FilterParameterVector parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
-  {
-    DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("RGB Array to Flatten", SelectedCellArrayArrayPath, FilterParameter::RequiredArray, ItkRGBToGray, req));
-  }
-  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
 
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Grayscale Array", NewCellArrayName, FilterParameter::CreatedArray, ItkRGBToGray));
+  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Array Prefix", OutputArrayPrefix, FilterParameter::Parameter, ItkRGBToGray));
+  MultiDataArraySelectionFilterParameter::RequirementType req;
+  req.dcGeometryTypes = IGeometry::Types(1, IGeometry::Type::Image);
+  req.amTypes = AttributeMatrix::Types(1, AttributeMatrix::Type::Cell);
+  parameters.push_back(SIMPL_NEW_MDA_SELECTION_FP("Input Attribute Arrays", InputDataArrayVector, FilterParameter::RequiredArray, ItkRGBToGray, req));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Output Cell Attribute Matrix", OutputAttributeMatrixName, FilterParameter::CreatedArray, ItkRGBToGray));
   setFilterParameters(parameters);
 }
 
@@ -185,9 +182,11 @@ void ItkRGBToGray::setupFilterParameters()
 void ItkRGBToGray::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
-  setSelectedCellArrayArrayPath( reader->readDataArrayPath( "SelectedCellArrayArrayPath", getSelectedCellArrayArrayPath() ) );
-  setColorWeights( reader->readFloatVec3("ColorWeights", getColorWeights() ) );
-  setNewCellArrayName( reader->readString( "NewCellArrayName", getNewCellArrayName() ) );
+  setColorWeights(reader->readFloatVec3("ColorWeights", getColorWeights()));
+  setInputDataArrayVector(reader->readDataArrayPathVector("InputDataArrayVector", getInputDataArrayVector()));
+  setOutputAttributeMatrixName(reader->readString("OutputAttributeMatrixName", getOutputAttributeMatrixName()));
+  setOutputArrayPrefix(reader->readString("OutputArrayPrefix", getOutputArrayPrefix()));
+
   reader->closeFilterGroup();
 }
 
@@ -196,7 +195,6 @@ void ItkRGBToGray::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkRGBToGray::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------
@@ -205,47 +203,63 @@ void ItkRGBToGray::initialize()
 void ItkRGBToGray::dataCheck()
 {
   setErrorCondition(0);
-  DataArrayPath tempPath = getSelectedCellArrayArrayPath();
-
-  //check for required arrays
-  QVector<size_t> compDims(1, 3);
-  m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, tempPath, compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(DataArrayPath::ValidateVector(getInputDataArrayVector()) == false)
   {
-    m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
+    setErrorCondition(-62000);
+    QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
-  else // Something went wrong because that should have worked. Bail out now.
+
+  if(getOutputArrayPrefix().isEmpty())
+  {
+    setErrorCondition(-62002);
+    QString message = QObject::tr("Using a prefix (even a single alphanumeric value) is required so that the output Xdmf files can be written correctly");
+    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+  }
+
+  if(getInputDataArrayVector().isEmpty())
+  {
+    setErrorCondition(-62003);
+    QString message = QObject::tr("At least one Attribute Array must be selected");
+    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    return;
+  }
+
+  DataArrayPath inputAMPath = DataArrayPath::GetAttributeMatrixPath(getInputDataArrayVector());
+
+  AttributeMatrix::Pointer inAM = getDataContainerArray()->getPrereqAttributeMatrixFromPath<AbstractFilter>(this, inputAMPath, -301);
+  if(getErrorCondition() < 0 || nullptr == inAM.get())
   {
     return;
   }
 
-
-#if 0
-  //get type
-  QString typeName = getDataContainerArray()->getDataContainer(getSelectedCellArrayArrayPath().getDataContainerName())->getAttributeMatrix(getSelectedCellArrayArrayPath().getAttributeMatrixName())->getAttributeArray(getSelectedCellArrayArrayPath().getDataArrayName())->getTypeAsString();;
-  int type = TemplateUtilities::getTypeFromTypeName(typeName);
-
-  //create new array of same type
-  dims[0] = 1;
-  TEMPLATE_CREATE_NONPREREQ_ARRAY(NewCellArray, tempPath, dims, type);
-#endif
-
-  DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataContainerName() );
-  if(getErrorCondition() < 0) { return; }
-  AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix<AbstractFilter>(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
-  if(getErrorCondition() < 0) { return; }
-  IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
-  if(getErrorCondition() < 0) { return; }
-  ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
-  compDims[0] = 1;
-  //configured created name / location
-
-  tempPath.setDataArrayName(getNewCellArrayName());
-  m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, data);
-  if( nullptr != m_NewCellArrayPtr.lock().get() )
+  // Now create our output attributeMatrix which will contain all of our segmented images
+  QVector<size_t> tDims = inAM->getTupleDimensions();
+  DataContainerArray::Pointer dca = getDataContainerArray();
+  DataContainer::Pointer dc = dca->getDataContainer(inputAMPath.getDataContainerName());
+  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix<AbstractFilter>(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+  if(getErrorCondition() < 0 || nullptr == outAM.get())
   {
-    m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
+    return;
+  }
+
+  // Get the list of checked array names from the input m_Data arrays list
+  QList<QString> arrayNames = DataArrayPath::GetDataArrayNames(getInputDataArrayVector());
+
+  for(int32_t i = 0; i < arrayNames.size(); i++)
+  {
+    QString daName = arrayNames.at(i);
+    QString newName = getOutputArrayPrefix() + arrayNames.at(i);
+    inputAMPath.setDataArrayName(daName);
+
+    // getDataContainerArray()->getPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter>(this, inputAMPath, cDims);
+    IDataArray::Pointer iDatArray = dca->getPrereqIDataArrayFromPath<IDataArray, ItkRGBToGray>(this, inputAMPath);
+    if(getErrorCondition() < 0)
+    {
+      return;
+    }
+    QVector<size_t> outCDims(1, 1);
+    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims);
   }
 }
 
@@ -255,12 +269,12 @@ void ItkRGBToGray::dataCheck()
 void ItkRGBToGray::preflight()
 {
   // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
-  setInPreflight(true); // Set the fact that we are preflighting.
-  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
+  setInPreflight(true);              // Set the fact that we are preflighting.
+  emit preflightAboutToExecute();    // Emit this signal so that other widgets can do one file update
   emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
-  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted(); // We are done preflighting this filter
-  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
+  dataCheck();                       // Run our DataCheck to make sure everthing is setup correctly
+  emit preflightExecuted();          // We are done preflighting this filter
+  setInPreflight(false);             // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------
@@ -277,70 +291,88 @@ void ItkRGBToGray::execute()
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
+  initialize();
 
-  //get volume container
-  DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getSelectedCellArrayArrayPath().getDataContainerName());
-  QString attrMatName = getSelectedCellArrayArrayPath().getAttributeMatrixName();
+  DataArrayPath inputAMPath = DataArrayPath::GetAttributeMatrixPath(getInputDataArrayVector());
 
-  //get input and output data
-  IDataArray::Pointer inputData = m_SelectedCellArrayPtr.lock();
-  IDataArray::Pointer outputData = m_NewCellArrayPtr.lock();
+  QList<QString> arrayNames = DataArrayPath::GetDataArrayNames(getInputDataArrayVector());
+  QListIterator<QString> iter(arrayNames);
 
-  //execute type dependant portion using a Private Implementation that takes care of figuring out if
-  // we can work on the correct type and actually handling the algorithm execution. We pass in "this" so
-  // that the private implementation can get access to the current object to pass up status notifications,
-  // progress or handle "cancel" if needed.
-  if(RGBToGrayPrivate<int8_t>()(inputData))
+  while(iter.hasNext())
   {
-    RGBToGrayPrivate<int8_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<uint8_t>()(inputData) )
-  {
-    RGBToGrayPrivate<uint8_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<int16_t>()(inputData) )
-  {
-    RGBToGrayPrivate<int16_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<uint16_t>()(inputData) )
-  {
-    RGBToGrayPrivate<uint16_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<int32_t>()(inputData) )
-  {
-    RGBToGrayPrivate<int32_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<uint32_t>()(inputData) )
-  {
-    RGBToGrayPrivate<uint32_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<int64_t>()(inputData) )
-  {
-    RGBToGrayPrivate<int64_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<uint64_t>()(inputData) )
-  {
-    RGBToGrayPrivate<uint64_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<float>()(inputData) )
-  {
-    RGBToGrayPrivate<float>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else if(RGBToGrayPrivate<double>()(inputData) )
-  {
-    RGBToGrayPrivate<double>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
-  }
-  else
-  {
-    setErrorCondition(-10001);
-    ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
+    DataArrayPath arrayPath = inputAMPath;
+    QString name = iter.next();
+    arrayPath.setDataArrayName(name);
 
-  //array name changing/cleanup
-  AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
-  attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+    // get volume container
+    DataContainer::Pointer m = getDataContainerArray()->getDataContainer(arrayPath.getDataContainerName());
+    QString attrMatName = arrayPath.getAttributeMatrixName();
+    AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(arrayPath);
+
+    // get input and output data
+    IDataArray::Pointer inputData = attrMat->getAttributeArray(arrayPath.getDataArrayName());
+
+    AttributeMatrix::Pointer outAttrMat = m->getAttributeMatrix(getOutputAttributeMatrixName());
+
+    QString newName = getOutputArrayPrefix() + name;
+    IDataArray::Pointer outputData = outAttrMat->getAttributeArray(newName);
+
+    // execute type dependant portion using a Private Implementation that takes care of figuring out if
+    // we can work on the correct type and actually handling the algorithm execution. We pass in "this" so
+    // that the private implementation can get access to the current object to pass up status notifications,
+    // progress or handle "cancel" if needed.
+    if(RGBToGrayPrivate<int8_t>()(inputData))
+    {
+      RGBToGrayPrivate<int8_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<uint8_t>()(inputData))
+    {
+      RGBToGrayPrivate<uint8_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<int16_t>()(inputData))
+    {
+      RGBToGrayPrivate<int16_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<uint16_t>()(inputData))
+    {
+      RGBToGrayPrivate<uint16_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<int32_t>()(inputData))
+    {
+      RGBToGrayPrivate<int32_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<uint32_t>()(inputData))
+    {
+      RGBToGrayPrivate<uint32_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<int64_t>()(inputData))
+    {
+      RGBToGrayPrivate<int64_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<uint64_t>()(inputData))
+    {
+      RGBToGrayPrivate<uint64_t>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<float>()(inputData))
+    {
+      RGBToGrayPrivate<float>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else if(RGBToGrayPrivate<double>()(inputData))
+    {
+      RGBToGrayPrivate<double>::Execute(this, inputData, outputData, getColorWeights(), m, attrMatName);
+    }
+    else
+    {
+      setErrorCondition(-10001);
+      ss = QObject::tr("A Supported DataArray type was not used for an input array.");
+      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      return;
+    }
+
+    // array name changing/cleanup
+    //    AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
+    //    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+  }
 
   /* Let the GUI know we are done with this filter */
   notifyStatusMessage(getHumanLabel(), "Complete");
@@ -359,31 +391,34 @@ AbstractFilter::Pointer ItkRGBToGray::newFilterInstance(bool copyFilterParameter
   return filter;
 }
 
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 const QString ItkRGBToGray::getCompiledLibraryName()
-{return ImageProcessingConstants::ImageProcessingBaseName;}
-
+{
+  return ImageProcessingConstants::ImageProcessingBaseName;
+}
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 const QString ItkRGBToGray::getGroupName()
-{return SIMPL::FilterGroups::Unsupported;}
-
+{
+  return SIMPL::FilterGroups::Unsupported;
+}
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 const QString ItkRGBToGray::getSubGroupName()
-{return "Misc";}
-
+{
+  return "Misc";
+}
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 const QString ItkRGBToGray::getHumanLabel()
-{return "ITK: Convert RGB to Grayscale";}
-
+{
+  return "ITK: Convert RGB to Grayscale";
+}

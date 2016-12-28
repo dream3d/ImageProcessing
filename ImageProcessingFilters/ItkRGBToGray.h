@@ -64,14 +64,24 @@ class ItkRGBToGray : public AbstractFilter
 
     virtual ~ItkRGBToGray();
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
-    Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
+//    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
+//    Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
 
     SIMPL_FILTER_PARAMETER(FloatVec3_t, ColorWeights)
     Q_PROPERTY(FloatVec3_t ColorWeights READ getColorWeights WRITE setColorWeights)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
-    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+//    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+//    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+
+    SIMPL_FILTER_PARAMETER(QVector<DataArrayPath>, InputDataArrayVector)
+    Q_PROPERTY(QVector<DataArrayPath> InputDataArrayVector READ getInputDataArrayVector WRITE setInputDataArrayVector)
+
+    SIMPL_FILTER_PARAMETER(QString, OutputAttributeMatrixName)
+    Q_PROPERTY(QString OutputAttributeMatrixName READ getOutputAttributeMatrixName WRITE setOutputAttributeMatrixName)
+
+    SIMPL_FILTER_PARAMETER(QString, OutputArrayPrefix)
+    Q_PROPERTY(QString OutputArrayPrefix READ getOutputArrayPrefix WRITE setOutputArrayPrefix)
+
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
@@ -170,8 +180,8 @@ class ItkRGBToGray : public AbstractFilter
 
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
+//    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+//    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
 
     ItkRGBToGray(const ItkRGBToGray&); // Copy Constructor Not Implemented
