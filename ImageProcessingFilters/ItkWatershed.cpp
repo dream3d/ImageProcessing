@@ -52,7 +52,7 @@
 
 // Include the MOC generated file for this class
 #include "moc_ItkWatershed.cpp"
- 
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -194,10 +194,10 @@ void ItkWatershed::execute()
   }
 
   //get output and copy to grainids
-  typedef itk::Image<unsigned long, ImageProcessingConstants::ImageDimension>   WatershedImageType;
+  typedef itk::Image<ImageProcessingConstants::UInt64PixelType, ImageProcessingConstants::ImageDimension>   WatershedImageType;
   WatershedImageType::Pointer output = watershed->GetOutput();
   WatershedImageType::RegionType filterRegion = output->GetLargestPossibleRegion();
-  typedef itk::ImageRegionConstIterator<itk::Image<unsigned long, ImageProcessingConstants::ImageDimension> > WatershedIteratorType;
+  typedef itk::ImageRegionConstIterator<itk::Image<ImageProcessingConstants::UInt64PixelType, ImageProcessingConstants::ImageDimension> > WatershedIteratorType;
   WatershedIteratorType it(output, filterRegion);
   it.GoToBegin();
   int index = 0;
