@@ -317,5 +317,5 @@ const QString ItkConvertArrayTo8BitImage::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImage::getHumanLabel()
-{ return "ITK: Convert Array to 8 Bit Image"; }
+{ return "Convert Array to 8 Bit Image (ImageProcessing)"; }
 

@@ -410,5 +410,5 @@ const QString ItkImageMath::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkImageMath::getHumanLabel()
-{return "ITK: Image Math";}
+{ return "Image Math (ImageProcessing)"; }
 

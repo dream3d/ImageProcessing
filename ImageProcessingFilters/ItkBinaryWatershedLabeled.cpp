@@ -266,5 +266,5 @@ const QString ItkBinaryWatershedLabeled::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkBinaryWatershedLabeled::getHumanLabel()
-{return "ITK: Binary Watershed Labeled";}
+{ return "Binary Watershed Labeled (ImageProcessing)"; }
 

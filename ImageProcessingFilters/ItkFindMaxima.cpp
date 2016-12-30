@@ -347,5 +347,5 @@ const QString ItkFindMaxima::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkFindMaxima::getHumanLabel()
-{return "ITK: Find Maxima";}
+{ return "Find Maxima (ImageProcessing)"; }
 

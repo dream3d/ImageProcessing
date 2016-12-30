@@ -277,5 +277,5 @@ const QString ItkMeanKernel::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkMeanKernel::getHumanLabel()
-{return "ITK: Mean (Kernel)";}
+{ return "Mean (Kernel) (ImageProcessing)"; }
 

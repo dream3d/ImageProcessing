@@ -325,5 +325,5 @@ const QString ItkKdTreeKMeans::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkKdTreeKMeans::getHumanLabel()
-{return "ITK: K-d Tree K Means";}
+{ return "K-d Tree K Means (ImageProcessing)"; }
 

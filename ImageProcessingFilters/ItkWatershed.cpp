@@ -252,5 +252,5 @@ const QString ItkWatershed::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkWatershed::getHumanLabel()
-{return "ITK: Watershed Filter";}
+{ return "Watershed Filter (ImageProcessing)"; }
 

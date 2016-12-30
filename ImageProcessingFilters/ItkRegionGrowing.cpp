@@ -242,5 +242,5 @@ const QString RegionGrowing::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString RegionGrowing::getHumanLabel()
-{return "ITK: Region Growing";}
+{ return "Region Growing (ImageProcessing)"; }
 

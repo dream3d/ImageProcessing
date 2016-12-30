@@ -829,4 +829,4 @@ const QString ItkImportImageStack::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkImportImageStack::getHumanLabel()
-{ return "ITK: Import Images (3D Stack)"; }
+{ return "Import 3D Image Stack (ImageProcessing)"; }

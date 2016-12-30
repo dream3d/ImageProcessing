@@ -316,5 +316,5 @@ const QString ItkHoughCircles::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkHoughCircles::getHumanLabel()
-{return "ITK: Hough Circle Detection";}
+{ return "Hough Circle Detection (ImageProcessing)"; }
 

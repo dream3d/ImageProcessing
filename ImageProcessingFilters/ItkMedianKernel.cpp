@@ -255,5 +255,5 @@ const QString ItkMedianKernel::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkMedianKernel::getHumanLabel()
-{return "ITK: Median (Kernel)";}
+{ return "Median (Kernel) (ImageProcessing)"; }
 

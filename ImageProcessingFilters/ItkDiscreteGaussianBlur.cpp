@@ -253,5 +253,5 @@ const QString ItkDiscreteGaussianBlur::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkDiscreteGaussianBlur::getHumanLabel()
-{return "ITK: Discrete Gaussian Blur";}
+{ return "Discrete Gaussian Blur (ImageProcessing)"; }
 

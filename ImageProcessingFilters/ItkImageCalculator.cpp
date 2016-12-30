@@ -407,5 +407,5 @@ const QString ItkImageCalculator::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkImageCalculator::getHumanLabel()
-{return "ITK: Image Calculator";}
+{ return "Image Calculator (ImageProcessing)"; }
 

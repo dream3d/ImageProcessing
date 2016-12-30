@@ -359,5 +359,5 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImageAttributeMatrix::getHumanLabel()
-{ return "ITK: Convert Array to 8 Bit Image Attribute Matrix"; }
+{ return "Convert Array to 8 Bit Image Attribute Matrix (ImageProcessing)"; }
 

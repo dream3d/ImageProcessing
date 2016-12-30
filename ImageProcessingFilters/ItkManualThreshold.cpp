@@ -250,5 +250,5 @@ const QString ItkManualThreshold::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkManualThreshold::getHumanLabel()
-{return "ITK: Threshold Image (Manual - Single Level)";}
+{ return "Threshold Image (Manual - Single Level) (ImageProcessing)"; }
 

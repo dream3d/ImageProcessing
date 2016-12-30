@@ -347,5 +347,5 @@ const QString ItkKMeans::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkKMeans::getHumanLabel()
-{return "ITK: K Means";}
+{ return "K Means (ImageProcessing)"; }
 

@@ -313,5 +313,5 @@ const QString ItkSobelEdge::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkSobelEdge::getHumanLabel()
-{return "ITK: Sobel Edge Detector";}
+{ return "Sobel Edge Detector (ImageProcessing)"; }
 

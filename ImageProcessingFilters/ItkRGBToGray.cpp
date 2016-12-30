@@ -420,5 +420,5 @@ const QString ItkRGBToGray::getSubGroupName()
 // -----------------------------------------------------------------------------
 const QString ItkRGBToGray::getHumanLabel()
 {
-  return "ITK: Convert RGB to Grayscale";
+  return "Convert RGB to Grayscale (ImageProcessing)";
 }
