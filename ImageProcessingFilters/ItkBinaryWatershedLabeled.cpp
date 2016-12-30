@@ -13,7 +13,7 @@
 
 
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "SIMPLib/FilterParameters/DoubleFilterParameter.h"
+#include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
@@ -62,7 +62,7 @@ void ItkBinaryWatershedLabeled::setupFilterParameters()
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Bool, 1, AttributeMatrix::Category::Any);
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Watershed", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkBinaryWatershedLabeled, req));
   }
-  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Peak Noise Tolerance", PeakTolerance, FilterParameter::Parameter, ItkBinaryWatershedLabeled));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Peak Noise Tolerance", PeakTolerance, FilterParameter::Parameter, ItkBinaryWatershedLabeled));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Watershed Array", NewCellArrayName, FilterParameter::CreatedArray, ItkBinaryWatershedLabeled));
   setFilterParameters(parameters);

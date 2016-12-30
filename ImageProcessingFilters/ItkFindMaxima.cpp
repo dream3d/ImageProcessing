@@ -45,7 +45,7 @@
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
 
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "SIMPLib/FilterParameters/DoubleFilterParameter.h"
+#include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
@@ -155,7 +155,7 @@ void ItkFindMaxima::setupFilterParameters()
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Input Attribute Array", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkFindMaxima, req));
   }
-  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Noise Tolerance", Tolerance, FilterParameter::Parameter, ItkFindMaxima));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Noise Tolerance", Tolerance, FilterParameter::Parameter, ItkFindMaxima));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkFindMaxima));
   setFilterParameters(parameters);

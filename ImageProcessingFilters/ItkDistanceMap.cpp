@@ -153,7 +153,7 @@ void FindMaxima::setupFilterParameters()
 {
   FilterParameterVector parameters;
   parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkDistanceMap, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkDistanceMap, this, SelectedCellArrayPath)));
-  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Minimum Peak Intensity", MinValue, FilterParameter::Uncategorized, ItkDistanceMap));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Minimum Peak Intensity", MinValue, FilterParameter::Uncategorized, ItkDistanceMap));
   parameters.push_back(SIMPL_NEW_STRING_FP("Created Array Name", NewCellArrayName, FilterParameter::Uncategorized, ItkDistanceMap));
   setFilterParameters(parameters);
 }

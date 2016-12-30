@@ -40,7 +40,7 @@
 
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
-#include "SIMPLib/FilterParameters/DoubleFilterParameter.h"
+#include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/IntFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
@@ -95,8 +95,8 @@ void ItkHoughCircles::setupFilterParameters()
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkHoughCircles));
-  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Minimum Radius", MinRadius, FilterParameter::Parameter, ItkHoughCircles));
-  parameters.push_back(SIMPL_NEW_DOUBLE_FP("Maximum Radius", MaxRadius, FilterParameter::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Minimum Radius", MinRadius, FilterParameter::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Maximum Radius", MaxRadius, FilterParameter::Parameter, ItkHoughCircles));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Circles", NumberCircles, FilterParameter::Parameter, ItkHoughCircles));
 
   setFilterParameters(parameters);
