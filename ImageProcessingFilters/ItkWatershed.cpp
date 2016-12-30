@@ -195,9 +195,9 @@ void ItkWatershed::execute()
 
   //get output and copy to grainids
   typedef itk::Image<ImageProcessingConstants::UInt64PixelType, ImageProcessingConstants::ImageDimension>   WatershedImageType;
-  WatershedImageType::Pointer output = watershed->GetOutput();
+  WatershedFilterType::OutputImageType* output = watershed->GetOutput();
   WatershedImageType::RegionType filterRegion = output->GetLargestPossibleRegion();
-  typedef itk::ImageRegionConstIterator<itk::Image<ImageProcessingConstants::UInt64PixelType, ImageProcessingConstants::ImageDimension> > WatershedIteratorType;
+  typedef itk::ImageRegionConstIterator< WatershedFilterType::OutputImageType > WatershedIteratorType;
   WatershedIteratorType it(output, filterRegion);
   it.GoToBegin();
   int index = 0;
