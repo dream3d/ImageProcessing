@@ -95,7 +95,7 @@ foreach(f ${${PLUGIN_NAME}_TEST_SRCS})
   set_source_files_properties( ${f} PROPERTIES HEADER_FILE_ONLY TRUE)
 endforeach()
 
-set(${PLUGIN_NAME}_Link_Libs Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets SimpleITKExplicit)
+set(${PLUGIN_NAME}_Link_Libs Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets)
 
 
 AddSIMPLUnitTest(TESTNAME ${PLUGIN_NAME}UnitTest
