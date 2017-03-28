@@ -422,5 +422,5 @@ const QString ItkWriteImage::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkWriteImage::getHumanLabel()
-{ return "Write Tiff Image Stack (ImageProcessing)"; }
+{ return "Export Tiff Image Stack (ImageProcessing)"; }
 

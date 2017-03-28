@@ -488,5 +488,5 @@ const QString ItkReadImage::getSubGroupName()
 //
 // -----------------------------------------------------------------------------
 const QString ItkReadImage::getHumanLabel()
-{ return "Read Image (ImageProcessing)"; }
+{ return "Import Image (ImageProcessing)"; }
 
