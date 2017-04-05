@@ -1,4 +1,4 @@
-DiscreteGaussianBlur {#itkdiscretegaussianblur}
+Discrete Gaussian Blur (ImageProcessing) {#itkdiscretegaussianblur}
 =====
 
 ## Group (Subgroup) ##

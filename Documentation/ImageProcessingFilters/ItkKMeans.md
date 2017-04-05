@@ -1,4 +1,4 @@
-K-Means Clustering {#itkkmeans}
+K Means (ImageProcessing) {#itkkmeans}
 =====
 
 ## Group (Subgroup) ##

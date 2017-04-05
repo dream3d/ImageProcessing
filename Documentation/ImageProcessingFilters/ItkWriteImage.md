@@ -1,4 +1,4 @@
-Write Array to Image {#itkwriteimage}
+Export Tiff Image Stack (ImageProcessing) {#itkwriteimage}
 =====
 
 ## Group (Subgroup) ##

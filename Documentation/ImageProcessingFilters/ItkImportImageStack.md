@@ -1,4 +1,4 @@
-Itk - Import Images (3D Stack) {#itkimportimagestack}
+Import 3D Image Stack (ImageProcessing) {#itkimportimagestack}
 =============
 
 ## Group (Subgroup) ##
