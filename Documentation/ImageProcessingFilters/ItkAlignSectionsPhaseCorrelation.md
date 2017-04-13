@@ -2,7 +2,7 @@ Align Sections Phase Correlation {#itkalignsectionsphasecorrelation}
 =====
 
 ## Group (Subgroup) ##
-ImageProcessing (ImageProcessing)
+Unsupported (Misc)
 
 ## Description ##
 Aligns sections using phase correlation:
@@ -15,12 +15,12 @@ Aligns sections using phase correlation:
 ## Parameters ##
 | Name             | Type |
 |------------------|------|
-| Selected Array | String |
+| Input Array | String |
 
 
 ## Required Arrays ##
 
-| Type | Default Array Name | 
+| Type | Default Array Name |
 |------|--------------------|
 | UInt8  | ImageData     |
 
@@ -31,16 +31,6 @@ None
 
 
 ## Authors: ##
-
-
-
-
-
-
-
-
-
-
 
 
 
