@@ -60,11 +60,16 @@ include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
 ## Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
 # --------------------------------------------------------------------
 # ITK Include
-set(DREAM3D_ADDITIONAL_ITK_MODULES SCIFIO)
-set_property(GLOBAL APPEND PROPERTY DREAM3D_ADDITIONAL_ITK_MODULES ${DREAM3D_ADDITIONAL_ITK_MODULES})
+if(DREAM3D_USE_ITK)
+  set(DREAM3D_ADDITIONAL_ITK_MODULES SCIFIO)
+  set_property(GLOBAL APPEND PROPERTY DREAM3D_ADDITIONAL_ITK_MODULES ${DREAM3D_ADDITIONAL_ITK_MODULES})
 
-include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
-
+  include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
+  include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
+  include_directories(${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
+else()
+  message( FATAL_ERROR "${PLUGIN_NAME} needs ITK. Please turn DREAM3D_USE_ITK ON.")
+endif()
 
 # --------------------------------------------------------------------
 # What image bit depth should be used
@@ -131,6 +136,7 @@ cmpReplaceFileIfDifferent(OLD_FILE_PATH  ${${PLUGIN_NAME}_BINARY_DIR}/${PLUGIN_N
 
 set(AllFiltersHeaderFile ${${PLUGIN_NAME}_BINARY_DIR}/${PLUGIN_NAME}Filters/${PLUGIN_NAME}Filters.h)
 set(RegisterKnownFiltersFile ${${PLUGIN_NAME}_BINARY_DIR}/${PLUGIN_NAME}Filters/RegisterKnownFilters.cpp)
+
 
 #-- Compute some directories
 get_filename_component(PLUGINS_SOURCE_DIR  ${${PLUGIN_NAME}_SOURCE_DIR} DIRECTORY)
@@ -253,8 +259,8 @@ endif()
 add_library(${PLUGIN_NAME} ${LIB_TYPE} ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
                         SVWidgetsLib
-                        ${ITK_LIBRARIES}
-                        ${SCIFIO_LIBRARIES}
+                        SimpleITKExplicit
+                        #${SCIFIO_LIBRARIES}
                         )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 target_include_directories(${PLUGIN_NAME}
