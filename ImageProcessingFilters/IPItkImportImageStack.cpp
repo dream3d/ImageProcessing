@@ -33,7 +33,7 @@
 *    United States Prime Contract Navy N00173-07-C-2068
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#include "ItkImportImageStack.h"
+#include "IPItkImportImageStack.h"
 
 #include <QtCore/QFile>
 
@@ -57,14 +57,14 @@
 #include "ImageProcessing/ImageProcessingVersion.h"
 
 // Include the MOC generated file for this class
-#include "moc_ItkImportImageStack.cpp"
+#include "moc_IPItkImportImageStack.cpp"
 
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkImportImageStack::ItkImportImageStack() :
+IPItkImportImageStack::IPItkImportImageStack() :
   AbstractFilter(),
   m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
   m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
@@ -91,23 +91,23 @@ ItkImportImageStack::ItkImportImageStack() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkImportImageStack::~ItkImportImageStack()
+IPItkImportImageStack::~IPItkImportImageStack()
 {
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::setupFilterParameters()
+void IPItkImportImageStack::setupFilterParameters()
 {
   QVector<FilterParameter::Pointer> parameters;
-  parameters.push_back(SIMPL_NEW_FILELISTINFO_FP("Input File List", InputFileListInfo, FilterParameter::Parameter, ItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_FILELISTINFO_FP("Input File List", InputFileListInfo, FilterParameter::Parameter, IPItkImportImageStack));
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
     parameter->setHumanLabel("Geometry Type");
     parameter->setPropertyName("GeometryType");
-    parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImportImageStack, this, GeometryType));
-    parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImportImageStack, this, GeometryType));
+    parameter->setSetterCallback(SIMPL_BIND_SETTER(IPItkImportImageStack, this, GeometryType));
+    parameter->setGetterCallback(SIMPL_BIND_GETTER(IPItkImportImageStack, this, GeometryType));
 
     QVector<QString> choices;
     choices.push_back("Image");
@@ -120,20 +120,20 @@ void ItkImportImageStack::setupFilterParameters()
     parameter->setCategory(FilterParameter::Parameter);
     parameters.push_back(parameter);
   }
-  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Origin", Origin, FilterParameter::Parameter, ItkImportImageStack, 0));
-  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Resolution", Resolution, FilterParameter::Parameter, ItkImportImageStack, 0));
-  parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Bounds File", BoundsFile, FilterParameter::Parameter, ItkImportImageStack, "*.txt", "", 1));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Origin", Origin, FilterParameter::Parameter, IPItkImportImageStack, 0));
+  parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Resolution", Resolution, FilterParameter::Parameter, IPItkImportImageStack, 0));
+  parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Bounds File", BoundsFile, FilterParameter::Parameter, IPItkImportImageStack, "*.txt", "", 1));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, IPItkImportImageStack));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, ItkImportImageStack));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Image Data", ImageDataArrayName, FilterParameter::CreatedArray, ItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, IPItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_STRING_FP("Image Data", ImageDataArrayName, FilterParameter::CreatedArray, IPItkImportImageStack));
   setFilterParameters(parameters);
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::readFilterParameters(AbstractFilterParametersReader* reader, int index)
+void IPItkImportImageStack::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
   setDataContainerName(reader->readString("DataContainerName", getDataContainerName() ) );
@@ -150,7 +150,7 @@ void ItkImportImageStack::readFilterParameters(AbstractFilterParametersReader* r
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::initialize()
+void IPItkImportImageStack::initialize()
 {
 
 }
@@ -158,7 +158,7 @@ void ItkImportImageStack::initialize()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::dataCheck()
+void IPItkImportImageStack::dataCheck()
 {
   setErrorCondition(0);
 
@@ -378,7 +378,7 @@ void ItkImportImageStack::dataCheck()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::preflight()
+void IPItkImportImageStack::preflight()
 {
   setInPreflight(true);
   emit preflightAboutToExecute();
@@ -418,7 +418,7 @@ void copySingleImageIntoStack(AbstractFilter* filter, IDataArray::Pointer output
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void ItkImportImageStack::execute()
+void IPItkImportImageStack::execute()
 {
   QString ss;
   dataCheck();
@@ -555,7 +555,7 @@ void ItkImportImageStack::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-int ItkImportImageStack::readBounds()
+int IPItkImportImageStack::readBounds()
 {
   size_t dims[3];
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getDataContainerName());
@@ -756,9 +756,9 @@ int ItkImportImageStack::readBounds()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkImportImageStack::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer IPItkImportImageStack::newFilterInstance(bool copyFilterParameters)
 {
-  ItkImportImageStack::Pointer filter = ItkImportImageStack::New();
+  IPItkImportImageStack::Pointer filter = IPItkImportImageStack::New();
   if(true == copyFilterParameters)
   {
     filter->setFilterParameters(getFilterParameters() );
@@ -790,7 +790,7 @@ AbstractFilter::Pointer ItkImportImageStack::newFilterInstance(bool copyFilterPa
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getCompiledLibraryName()
+const QString IPItkImportImageStack::getCompiledLibraryName()
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -798,7 +798,7 @@ const QString ItkImportImageStack::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getBrandingString()
+const QString IPItkImportImageStack::getBrandingString()
 {
   return "ImageProcessing";
 }
@@ -806,7 +806,7 @@ const QString ItkImportImageStack::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getFilterVersion()
+const QString IPItkImportImageStack::getFilterVersion()
 {
   QString version;
   QTextStream vStream(&version);
@@ -816,17 +816,17 @@ const QString ItkImportImageStack::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getGroupName()
+const QString IPItkImportImageStack::getGroupName()
 { return SIMPL::FilterGroups::IOFilters; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getSubGroupName()
+const QString IPItkImportImageStack::getSubGroupName()
 { return SIMPL::FilterSubGroups::InputFilters; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImportImageStack::getHumanLabel()
-{ return "Import 3D Image Stack (ImageProcessing)"; }
+const QString IPItkImportImageStack::getHumanLabel()
+{ return "Import Image Stack (ImageProcessing)"; }

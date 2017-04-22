@@ -35,8 +35,8 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-#ifndef _itkimportimagestack_h_
-#define _itkimportimagestack_h_
+#ifndef _IPItkImportImageStack_h_
+#define _IPItkImportImageStack_h_
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/AbstractFilter.h"
@@ -45,17 +45,17 @@
 #include "SIMPLib/FilterParameters/FileListInfoFilterParameter.h"
 
 /**
- * @brief The ItkImportImageStack class. See [Filter documentation](@ref ItkImportImageStack) for details.
+ * @brief The IPItkImportImageStack class. See [Filter documentation](@ref IPItkImportImageStack) for details.
  */
-class ItkImportImageStack : public AbstractFilter
+class IPItkImportImageStack : public AbstractFilter
 {
     Q_OBJECT
   public:
-    SIMPL_SHARED_POINTERS(ItkImportImageStack)
-    SIMPL_STATIC_NEW_MACRO(ItkImportImageStack)
-    SIMPL_TYPE_MACRO_SUPER(ItkImportImageStack, AbstractFilter)
+    SIMPL_SHARED_POINTERS(IPItkImportImageStack)
+    SIMPL_STATIC_NEW_MACRO(IPItkImportImageStack)
+    SIMPL_TYPE_MACRO_SUPER(IPItkImportImageStack, AbstractFilter)
 
-    virtual ~ItkImportImageStack();
+    virtual ~IPItkImportImageStack();
 
     SIMPL_FILTER_PARAMETER(QString, DataContainerName)
     Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
@@ -167,7 +167,7 @@ class ItkImportImageStack : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ItkImportImageStack();
+    IPItkImportImageStack();
     /**
      * @brief dataCheck Checks for the appropriate parameter values and availability of arrays
      */
@@ -187,8 +187,8 @@ class ItkImportImageStack : public AbstractFilter
   private:
     DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
-    ItkImportImageStack(const ItkImportImageStack&); // Copy Constructor Not Implemented
-    void operator=(const ItkImportImageStack&); // Operator '=' Not Implemented
+    IPItkImportImageStack(const IPItkImportImageStack&); // Copy Constructor Not Implemented
+    void operator=(const IPItkImportImageStack&); // Operator '=' Not Implemented
 };
 
-#endif /* ItkImportImageStack_H_ */
+#endif /* IPItkImportImageStack_H_ */

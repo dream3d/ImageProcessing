@@ -95,13 +95,19 @@ foreach(f ${${PLUGIN_NAME}_TEST_SRCS})
   set_source_files_properties( ${f} PROPERTIES HEADER_FILE_ONLY TRUE)
 endforeach()
 
-set(${PLUGIN_NAME}_Link_Libs Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets SimpleITKExplicit)
 
+list(APPEND ${PLUGIN_NAME}_LINK_LIBS Qt5::Core H5Support SIMPLib Qt5::Gui Qt5::Widgets)
+
+if(APPLE)
+ list(APPEND ${PLUGIN_NAME}_LINK_LIBS SimpleITKExplicit)
+else()
+  list(APPEND ${PLUGIN_NAME}_LINK_LIBS ${ITK_LIBRARIES})
+endif()
 
 AddSIMPLUnitTest(TESTNAME ${PLUGIN_NAME}UnitTest
-  SOURCES ${${PLUGIN_NAME}Test_BINARY_DIR}/${PLUGIN_NAME}UnitTest.cpp ${${PLUGIN_NAME}_TEST_SRCS}
-  FOLDER "${PLUGIN_NAME}Plugin/Test"
-  LINK_LIBRARIES ${${PLUGIN_NAME}_Link_Libs})
+                  SOURCES ${${PLUGIN_NAME}Test_BINARY_DIR}/${PLUGIN_NAME}UnitTest.cpp ${${PLUGIN_NAME}_TEST_SRCS}
+                  FOLDER "${PLUGIN_NAME}Plugin/Test"
+                  LINK_LIBRARIES ${${PLUGIN_NAME}_LINK_LIBS} )
 
 
 target_include_directories(${PLUGIN_NAME}UnitTest

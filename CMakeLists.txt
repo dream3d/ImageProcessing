@@ -67,8 +67,6 @@ if(SIMPL_USE_ITK)
   include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
   include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
   include_directories(${SimpleITKExplicit_SOURCE_DIR}/Explicit/include)
-else()
-  message( FATAL_ERROR "${PLUGIN_NAME} needs ITK. Please turn SIMPL_USE_ITK ON.")
 endif()
 
 # --------------------------------------------------------------------
@@ -259,8 +257,7 @@ endif()
 add_library(${PLUGIN_NAME} ${LIB_TYPE} ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
                         SVWidgetsLib
-                        SimpleITKExplicit
-                        #${SCIFIO_LIBRARIES}
+                        ${ITK_LIBRARIES}
                         )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
 target_include_directories(${PLUGIN_NAME}

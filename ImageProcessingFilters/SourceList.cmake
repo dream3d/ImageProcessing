@@ -31,7 +31,7 @@ set(_PublicFilters
   ItkHoughCircles
   ItkImageCalculator
   ItkImageMath
-  ItkImportImageStack
+  IPItkImportImageStack
   #ItkImageRegistration
   ItkKdTreeKMeans
   ItkKMeans
