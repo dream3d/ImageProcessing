@@ -1,5 +1,4 @@
-
-Convert Array To 8 Bit Image Attribute Matrix{#itkconvertarrayto8bitimageattributematrix}
+Convert Array To 8 Bit Image Attribute Matrix {#itkconvertarrayto8bitimageattributematrix}
 =====
 
 ## Group (Subgroup) ##

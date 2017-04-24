@@ -1,4 +1,4 @@
-Watershed {#itkwatershed}
+Watershed Filter (ImageProcessing) {#itkwatershed}
 =====
 
 ## Group (Subgroup) ##

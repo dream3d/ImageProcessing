@@ -2,7 +2,7 @@ ImageRegistration {#itkimageregistration}
 =====
 
 ## Group (Subgroup) ##
-ImageProcessing (ImageProcessing)
+ImageProcessing (Misc)
 
 
 ## Description ##
@@ -23,19 +23,19 @@ Uses itk's rigid translation image registration to calculate slice alignments us
 |------------------|------|
 | Selected Array | String |
 | Similarity Metric | String |
-| Optimizer| String |
-| Optimizer Parameter 1| float |
-| Optimizer Parameter 2 | float |
-| Maximum Iterations | float |
-| Apply Shifts | bool |
-| Write Alignment Shift File | bool |
-| Alignment File | string |
+| Optimizer | String |
+| Optimizer Parameter 1 | Float |
+| Optimizer Parameter 2 | Float |
+| Maximum Iterations | Float |
+| Apply Shifts | Bool |
+| Write Alignment Shift File | Bool |
+| Alignment File | String |
 
 ## Required Arrays ##
 
-| Type | Default Array Name | 
+| Type | Default Array Name |
 |------|--------------------|
-| UInt8  | ImageData     |
+| UInt8 | ImageData |
 
 
 ## Created Arrays ##

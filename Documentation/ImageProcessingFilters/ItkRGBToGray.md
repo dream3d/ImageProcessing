@@ -1,4 +1,4 @@
-RGB to Gray {#itkrgbtogray}
+Convert RGB to Grayscale (ImageProcessing) {#itkrgbtogray}
 =====
 
 ## Group (Subgroup) ##

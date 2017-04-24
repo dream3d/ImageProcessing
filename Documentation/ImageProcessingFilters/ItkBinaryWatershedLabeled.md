@@ -1,4 +1,4 @@
-Binary Watershed Labeled {#itkbinarywatershedlabeled}
+Binary Watershed Labeled (ImageProcessing) {#itkbinarywatershedlabeled}
 =====
 
 ## Group (Subgroup) ##

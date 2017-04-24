@@ -1,4 +1,4 @@
-Median Kernel {#itkmediankernel}
+Median (Kernel) (ImageProcessing) {#itkmediankernel}
 =====
 
 ## Group (Subgroup) ##

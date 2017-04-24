@@ -1,4 +1,4 @@
-Manual Threshold Image {#itkmanualthreshold}
+Threshold Image (Manual - Single Level) (ImageProcessing) {#itkmanualthreshold}
 =====
 
 ## Group (Subgroup) ##
