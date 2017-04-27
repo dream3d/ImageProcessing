@@ -64,7 +64,7 @@ class FindMaximaPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -72,7 +72,7 @@ class FindMaximaPrivate
     // -----------------------------------------------------------------------------
     void static Execute(FindMaxima* filter, IDataArray::Pointer inputArray, double MinValue, bool* outputData, DataContainer::Pointer m, QString attrMatName)
     {
-      typename DataArrayType::Pointer inputArrayPtr = boost::dynamic_pointer_cast<DataArrayType>(inputArray);
+      typename DataArrayType::Pointer inputArrayPtr = std::dynamic_pointer_cast<DataArrayType>(inputArray);
 
       //convert array to correct type
       PixelType* inputData = static_cast<PixelType*>(inputArrayPtr->getPointer(0));

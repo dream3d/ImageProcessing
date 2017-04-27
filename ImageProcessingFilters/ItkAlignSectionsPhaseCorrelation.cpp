@@ -62,7 +62,7 @@ class AlignSectionsPhaseCorrelationPrivate
     // -----------------------------------------------------------------------------
     bool operator()(IDataArray::Pointer p)
     {
-      return (boost::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
+      return (std::dynamic_pointer_cast<DataArrayType>(p).get() != nullptr);
     }
 
     // -----------------------------------------------------------------------------
@@ -83,7 +83,7 @@ class AlignSectionsPhaseCorrelationPrivate
       int voxelsPerSlice = dims[0] * dims[1];
 
       //convert array to correct type
-      typename DataArrayType::Pointer inputArrayPtr = boost::dynamic_pointer_cast<DataArrayType>(inputArray);
+      typename DataArrayType::Pointer inputArrayPtr = std::dynamic_pointer_cast<DataArrayType>(inputArray);
       PixelType* inputData = static_cast<PixelType*>(inputArrayPtr->getPointer(0));
 
       //define types
