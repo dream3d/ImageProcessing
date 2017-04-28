@@ -61,7 +61,7 @@ include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
 # --------------------------------------------------------------------
 # ITK Include
 if(SIMPL_USE_ITK)
-  include( ${DREAM3D_SUPPORT_DIR}/ITKSupport/IncludeITK.cmake)
+  include( ${CMP_SOURCE_DIR}/ITKSupport/IncludeITK.cmake)
 endif()
 if(APPLE)
   include_directories(${SimpleITKExplicit_BINARY_DIR}/Common/include)
