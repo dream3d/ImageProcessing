@@ -31,7 +31,7 @@ set(_PublicFilters
   ItkHoughCircles
   ItkImageCalculator
   ItkImageMath
-  IPItkImportImageStack
+  #IPItkImportImageStack
   #ItkImageRegistration
   ItkKdTreeKMeans
   ItkKMeans
@@ -41,7 +41,7 @@ set(_PublicFilters
   ItkMultiOtsuThreshold
   #ItkRegionGrowing
   ItkRGBToGray
-  ItkReadImage
+  #ItkReadImage
   ItkSobelEdge
   ItkStitchImages
   ItkWatershed
