@@ -27,7 +27,7 @@ The user has the option to read the images in as an **Image Geometry** or a **Re
 	
 -----
 
-![Import Image Stack User Interface](ExampleGUI.png)
+![Import Image Stack User Interface](Images/ExampleGUI.png)
 @image latex ExampleGUI.png "Import Image Stack User Interface" width=6in
 
 
