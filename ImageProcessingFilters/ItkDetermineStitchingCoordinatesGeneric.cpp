@@ -14,6 +14,7 @@
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/IntFilterParameter.h"
+#include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/LinkedChoicesFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
@@ -89,7 +90,7 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Dimensions", FilterParameter::RequiredArray));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Tile Dimensions X", xTileDim, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Tile Dimensions Y", yTileDim, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
-  parameters.push_back(SIMPL_NEW_INTEGER_FP("Overlap Percentage (Estimate):", OverlapPer, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Overlap Percentage (Estimate):", OverlapPer, FilterParameter::RequiredArray, ItkDetermineStitchingCoordinatesGeneric));
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
 
