@@ -278,15 +278,17 @@ void ItkWriteImage::dataCheck()
     }
     else if (3 == compDims[0])//rgb
     {
-      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)", 0);
+      setWarningCondition(-100);
+      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
     }
     else if (4 == compDims[0])//rgba
     {
-      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)", 0);
+      setWarningCondition(-101);
+      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
     }
     else  //vector
     {
-      //notifyWarningMessage(getHumanLabel(), "Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)", 0);
+      //notifyWarningMessage(getHumanLabel(), "Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
       setErrorCondition(-102);
       notifyErrorMessage(getHumanLabel(), "Error: writing of vector images is currently not supported", getErrorCondition());
     }
@@ -294,7 +296,7 @@ void ItkWriteImage::dataCheck()
   else
   {
     QString message = QObject::tr("The selected array '%1' has unsupported dimensionality (%2)").arg(m_SelectedCellArrayPath.getDataArrayName()).arg(compDims.size());
-    setErrorCondition(-101);
+    setErrorCondition(-103);
     notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
   }
 
