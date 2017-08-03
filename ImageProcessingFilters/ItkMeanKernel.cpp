@@ -131,6 +131,7 @@ void ItkMeanKernel::initialize()
 void ItkMeanKernel::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);

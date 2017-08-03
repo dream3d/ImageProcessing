@@ -115,6 +115,7 @@ void ImportRegisteredImageMontage::readFilterParameters(AbstractFilterParameters
 void ImportRegisteredImageMontage::dataCheck()
 {
 	setErrorCondition(0);
+  setWarningCondition(0);
 
   QString ss;
   int32_t err = 0;
@@ -365,6 +366,7 @@ void ImportRegisteredImageMontage::preflight()
 void ImportRegisteredImageMontage::execute()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   dataCheck();
   if(getErrorCondition() < 0) { return; }
 

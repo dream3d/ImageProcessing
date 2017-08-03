@@ -203,6 +203,7 @@ void ItkGrayToRGB::initialize()
 void ItkGrayToRGB::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   DataArrayPath tempPath;
 
   //check for required arrays

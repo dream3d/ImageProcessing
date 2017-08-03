@@ -80,6 +80,7 @@ void ImageProcessingFilter::initialize()
 void ImageProcessingFilter::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
 
   /* Example code for preflighting looking for a valid string for the output file
    * but not necessarily the fact that the file exists: Example code to make sure
@@ -174,6 +175,7 @@ void ImageProcessingFilter::execute()
   // happens to fail in the dataCheck() then we simply return
   if(getErrorCondition() < 0) { return; }
   setErrorCondition(0);
+  setWarningCondition(0);
 
   /* Place all your code to execute your filter here. */
 

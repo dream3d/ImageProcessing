@@ -113,6 +113,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
 {
   DataArrayPath tempPath;
   setErrorCondition(0);
+  setWarningCondition(0);
 
   if(m_SelectedArrayPath.isEmpty() == true)
   {
@@ -200,6 +201,7 @@ void scaleArray(IDataArray::Pointer inputData, uint8_t* newArray)
 void ItkConvertArrayTo8BitImage::execute()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   dataCheck();
   if(getErrorCondition() < 0) { return; }
 

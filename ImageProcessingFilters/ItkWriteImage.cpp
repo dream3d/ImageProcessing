@@ -234,6 +234,7 @@ void ItkWriteImage::initialize()
 void ItkWriteImage::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
 
 
   if(m_OutputFileName.isEmpty())

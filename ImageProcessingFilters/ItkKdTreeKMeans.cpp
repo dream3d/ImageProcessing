@@ -228,6 +228,7 @@ void ItkKdTreeKMeans::initialize()
 void ItkKdTreeKMeans::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
 
   getDataContainerArray()->getPrereqGeometryFromDataContainer<ImageGeom, AbstractFilter>(this, getSelectedCellArrayPath().getDataContainerName());
 
@@ -277,6 +278,7 @@ void ItkKdTreeKMeans::preflight()
 void ItkKdTreeKMeans::execute()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   dataCheck();
   if(getErrorCondition() < 0) { return; }
 

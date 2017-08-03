@@ -203,6 +203,7 @@ void ItkRGBToGray::initialize()
 void ItkRGBToGray::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
   if(DataArrayPath::ValidateVector(getInputDataArrayVector()) == false)
   {
     setErrorCondition(-62000);

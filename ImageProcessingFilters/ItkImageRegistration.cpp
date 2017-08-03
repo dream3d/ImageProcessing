@@ -97,6 +97,7 @@ void ImageRegistration::initialize()
 void ImageRegistration::dataCheck()
 {
   setErrorCondition(0);
+  setWarningCondition(0);
 }
 
 // -----------------------------------------------------------------------------
@@ -156,6 +157,7 @@ void ImageRegistration::execute()
   // happens to fail in the dataCheck() then we simply return
   if(getErrorCondition() < 0) { return; }
   setErrorCondition(0);
+  setWarningCondition(0);
 
 
   /* Let the GUI know we are done with this filter */
