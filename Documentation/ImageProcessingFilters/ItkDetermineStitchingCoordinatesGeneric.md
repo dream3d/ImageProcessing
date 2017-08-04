@@ -13,16 +13,16 @@ This filter takes a series of tiled gray-scale images (8bit) and calculates the 
 
 When it comes to montage assembly the order that the images are compared is important. For that reason the imported images must be in a certain order when this filter is run. The filter currently supports Row-By-Row, Column-By-Column,and Snake-By-Row. Snake-By-Column is also included but can be buggy, it is recommended that you choose a different option.
 
-The images are then manually re-ordered as though they were captured in a row-by-row comb of the data ![](images/RowWiseComb.png)
+The images are then manually re-ordered as though they were captured in a row-by-row comb of the data ![](Images/RowWiseComb.png)
 
 This re-ordering is still only done locally for the filter, any output data will correspond to how the images were originally ordered.
 
 
-The first image is given coordinates of (0,0). The second is by placed by taking the overlap window between the first image and the second image and using cross correlation to find the location of maximum overlap of the image data. ![](images/LeftXC.png) The overlap window is found from the global stage positions of the tiles in the meta data. All images in the first row are placed by comparing a shared window on the left of the image with a shared window on the right of the previously placed image. 
+The first image is given coordinates of (0,0). The second is by placed by taking the overlap window between the first image and the second image and using cross correlation to find the location of maximum overlap of the image data. ![](Images/LeftXC.png) The overlap window is found from the global stage positions of the tiles in the meta data. All images in the first row are placed by comparing a shared window on the left of the image with a shared window on the right of the previously placed image. 
 
-For images in the first column, the overlap window is found by taking the top of the image to be placed with the bottom of the image that is already placed. ![](images/TopXC.png)
+For images in the first column, the overlap window is found by taking the top of the image to be placed with the bottom of the image that is already placed. ![](Images/TopXC.png)
 
-For all other images, both a top and left window are taken, and the best position is averaged. ![](images/TopAndLeftXC.png)
+For all other images, both a top and left window are taken, and the best position is averaged. ![](Images/TopAndLeftXC.png)
 
 When running the cross-correlation, a requirement of at least 50% overlap of the two windows is placed on the operation. 
 
