@@ -35,10 +35,10 @@
 #ifndef _itkalignsectionsphasecorrelation_h_
 #define _itkalignsectionsphasecorrelation_h_
 
-#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 /**
  * @class AlignSectionsPhaseCorrelation AlignSectionsPhaseCorrelation.h ImageProcessing/ImageProcessingFilters/AlignSectionsPhaseCorrelation.h

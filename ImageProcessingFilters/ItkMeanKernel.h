@@ -36,11 +36,10 @@
 #ifndef _itkmeankernel_h_
 #define _itkmeankernel_h_
 
-
-#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
 #include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 

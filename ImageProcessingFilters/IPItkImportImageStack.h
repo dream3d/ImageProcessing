@@ -38,11 +38,11 @@
 #ifndef _IPItkImportImageStack_h_
 #define _IPItkImportImageStack_h_
 
-#include "SIMPLib/SIMPLib.h"
-#include "SIMPLib/Common/AbstractFilter.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/FilterParameters/FloatVec3FilterParameter.h"
 #include "SIMPLib/FilterParameters/FileListInfoFilterParameter.h"
+#include "SIMPLib/FilterParameters/FloatVec3FilterParameter.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 /**
  * @brief The IPItkImportImageStack class. See [Filter documentation](@ref IPItkImportImageStack) for details.

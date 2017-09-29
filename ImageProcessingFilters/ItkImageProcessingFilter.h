@@ -5,11 +5,9 @@
 #ifndef _itkimageprocessingfilter_h_
 #define _itkimageprocessingfilter_h_
 
-
-#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
-
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 /**
  * @class ImageProcessingFilter ImageProcessingFilter.h ImageProcessing/ImageProcessingFilters/ImageProcessingFilter.h

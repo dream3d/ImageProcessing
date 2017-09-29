@@ -5,13 +5,11 @@
 #ifndef _itkdeterminestitchingcoordinatesgeneric_h_
 #define _itkdeterminestitchingcoordinatesgeneric_h_
 
-
-#include "SIMPLib/SIMPLib.h"
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
-#include "SIMPLib/DataArrays/StringDataArray.hpp"
 #include "ImageProcessing/ImageProcessingConstants.h"
-
+#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/DataArrays/StringDataArray.hpp"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 /**
  * @class DetermineStitchingCoordinatesGeneric DetermineStitchingCoordinatesGeneric.h ZeissImport/ZeissImportFilters/DetermineStitchingCoordinatesGeneric.h

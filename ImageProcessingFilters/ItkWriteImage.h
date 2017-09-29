@@ -35,11 +35,10 @@
 #ifndef _itkwriteimage_h_
 #define _itkwriteimage_h_
 
-
-#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 

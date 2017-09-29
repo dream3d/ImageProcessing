@@ -36,12 +36,9 @@
 #ifndef _itkimageregistration_h_
 #define _itkimageregistration_h_
 
-
-#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Common/AbstractFilter.h"
-
-
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/SIMPLib.h"
 
 /**
  * @class ImageRegistration ImageRegistration.h ImageProcessing/ImageProcessingFilters/ImageRegistration.h
