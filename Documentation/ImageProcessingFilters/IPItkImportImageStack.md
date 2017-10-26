@@ -70,7 +70,7 @@ DREAM.3D contains numerous tools to modify, analyze and segment generic image da
 The regions of the image that represent an **Ensemble** or **Feature** each have a unique identifier such as a grayscale value or unique RGB value.
 
 ![Category 1 Image](Images/Type1.png)
-@image latex images/Type1.png "Category 1 Image" width=6in
+@image latex Images/Type1.png "Category 1 Image" width=6in
 
 -----
 
@@ -79,7 +79,7 @@ The regions of the image that represent an **Ensemble** or **Feature** each have
 There are regions in the image that represent **Features**, where each region has a unique identifier but there are multiple regions with the same identifier.
 
 ![Category 2 Image](Images/Type2.png)
-@image latex images/Type2.png "Category 2 Image" width=6in
+@image latex Images/Type2.png "Category 2 Image" width=6in
 
 -----
 
@@ -88,7 +88,7 @@ There are regions in the image that represent **Features**, where each region ha
 Each **Feature** is traced out via another pixel identifier so that **Feature** boundaries are "black" and each **Feature** is "white". This type of image is commonly referred to as a *binary* image.
 
 ![Category 3 Image](Images/Type3.png)
-@image latex images/Type3.png "Category 3 Image" width=6in
+@image latex Images/Type3.png "Category 3 Image" width=6in
 
 -----
 
