@@ -165,7 +165,7 @@ void ItkConvertArrayTo8BitImage::preflight()
 template<typename T>
 void scaleArray(IDataArray::Pointer inputData, uint8_t* newArray)
 {
-  DataArray<T>* inputArray = DataArray<T>::SafePointerDownCast(inputData.get());
+  typename DataArray<T>::Pointer inputArray = std::dynamic_pointer_cast<DataArray<T>>(inputData);
   if (nullptr == inputArray)
   {
     return;
