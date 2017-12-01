@@ -166,8 +166,8 @@ class ItkWriteImage : public AbstractFilter
 
     DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
 
-    ItkWriteImage(const ItkWriteImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkWriteImage&); // Operator '=' Not Implemented
+    ItkWriteImage(const ItkWriteImage&) = delete;  // Copy Constructor Not Implemented
+    void operator=(const ItkWriteImage&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _WriteImage_H_ */

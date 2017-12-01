@@ -45,11 +45,6 @@
 
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 
-// Include the MOC generated file for this class
-#include "moc_ItkReadImage.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -67,9 +62,7 @@ ItkReadImage::ItkReadImage() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkReadImage::~ItkReadImage()
-{
-}
+ItkReadImage::~ItkReadImage() = default;
 
 // -----------------------------------------------------------------------------
 //

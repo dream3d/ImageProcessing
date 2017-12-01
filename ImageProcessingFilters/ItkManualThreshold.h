@@ -174,8 +174,8 @@ class ItkManualThreshold : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkManualThreshold(const ItkManualThreshold&); // Copy Constructor Not Implemented
-    void operator=(const ItkManualThreshold&); // Operator '=' Not Implemented
+    ItkManualThreshold(const ItkManualThreshold&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkManualThreshold&) = delete;     // Operator '=' Not Implemented
 };
 
 #endif /* _ManualThreshold_H_ */

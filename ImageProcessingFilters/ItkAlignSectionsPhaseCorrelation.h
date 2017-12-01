@@ -90,8 +90,8 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
     void dataCheck();
 
-    AlignSectionsPhaseCorrelation(const AlignSectionsPhaseCorrelation&); // Copy Constructor Not Implemented
-    void operator=(const AlignSectionsPhaseCorrelation&); // Operator '=' Not Implemented
+    AlignSectionsPhaseCorrelation(const AlignSectionsPhaseCorrelation&) = delete; // Copy Constructor Not Implemented
+    void operator=(const AlignSectionsPhaseCorrelation&) = delete;                // Operator '=' Not Implemented
 };
 
 #endif /* _AlignSectionsPhaseCorrelation_H_ */

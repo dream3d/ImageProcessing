@@ -179,8 +179,8 @@ class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
   //DEFINE_DATAARRAY_VARIABLE(StringDataArray::WeakPointer, DataArrayNamesForStichedCoordinates);
   //DEFINE_DATAARRAY_VARIABLE(QString, DataArrayNamesForStitchedCoordinates);
 
-    ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&); // Copy Constructor Not Implemented
-    void operator=(const ItkDetermineStitchingCoordinatesGeneric&); // Operator '=' Not Implemented
+  ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Constructor Not Implemented
+  void operator=(const ItkDetermineStitchingCoordinatesGeneric&) = delete;                          // Operator '=' Not Implemented
 };
 
 #endif /* _DetermineStitchingCoordinatesGeneric_H_ */

@@ -174,8 +174,8 @@ class ItkHoughCircles : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkHoughCircles(const ItkHoughCircles&); // Copy Constructor Not Implemented
-    void operator=(const ItkHoughCircles&); // Operator '=' Not Implemented
+    ItkHoughCircles(const ItkHoughCircles&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkHoughCircles&) = delete;  // Operator '=' Not Implemented
 };
 
 #endif /* _HoughCircles_H_ */

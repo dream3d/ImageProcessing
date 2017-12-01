@@ -21,13 +21,6 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
-
-
-// Include the MOC generated file for this class
-#include "moc_ItkDetermineStitchingCoordinatesGeneric.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -50,9 +43,7 @@ AbstractFilter(),
 // -----------------------------------------------------------------------------
 // Class Destructor
 // -----------------------------------------------------------------------------
-ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneric()
-{
-}
+ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneric() = default;
 
 // -----------------------------------------------------------------------------
 //

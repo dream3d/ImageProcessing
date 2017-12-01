@@ -173,9 +173,7 @@ AlignSectionsPhaseCorrelation::AlignSectionsPhaseCorrelation() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation()
-{
-}
+AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation() = default;
 
 // -----------------------------------------------------------------------------
 //

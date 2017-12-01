@@ -50,9 +50,6 @@
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkWatershedImageFilter.h"
 
-// Include the MOC generated file for this class
-#include "moc_ItkWatershed.cpp"
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -71,9 +68,7 @@ ItkWatershed::ItkWatershed() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkWatershed::~ItkWatershed()
-{
-}
+ItkWatershed::~ItkWatershed() = default;
 
 // -----------------------------------------------------------------------------
 //

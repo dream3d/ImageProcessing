@@ -117,12 +117,6 @@ class FindMaximaPrivate
     void operator=(const FindMaximaPrivate&); // Operator '=' Not Implemented
 };
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkFindMaxima.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -140,9 +134,7 @@ ItkFindMaxima::ItkFindMaxima() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkFindMaxima::~ItkFindMaxima()
-{
-}
+ItkFindMaxima::~ItkFindMaxima() = default;
 
 // -----------------------------------------------------------------------------
 //

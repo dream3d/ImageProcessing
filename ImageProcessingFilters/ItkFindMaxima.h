@@ -173,8 +173,8 @@ class ItkFindMaxima : public AbstractFilter
     DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(bool, NewCellArray)
 
-    ItkFindMaxima(const ItkFindMaxima&); // Copy Constructor Not Implemented
-    void operator=(const ItkFindMaxima&); // Operator '=' Not Implemented
+    ItkFindMaxima(const ItkFindMaxima&) = delete;  // Copy Constructor Not Implemented
+    void operator=(const ItkFindMaxima&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _FindMaxima_H_ */

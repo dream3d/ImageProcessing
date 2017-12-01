@@ -178,9 +178,8 @@ class ItkReadImage : public AbstractFilter
   private:
     DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
-
-    ItkReadImage(const ItkReadImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImage&); // Operator '=' Not Implemented
+    ItkReadImage(const ItkReadImage&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkReadImage&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _ItkReadImage_H_ */

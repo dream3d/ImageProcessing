@@ -155,8 +155,8 @@ class ItkConvertArrayTo8BitImage : public AbstractFilter
   private:
     DEFINE_DATAARRAY_VARIABLE(uint8_t, NewArray)
 
-    ItkConvertArrayTo8BitImage(const ItkConvertArrayTo8BitImage&); // Copy Constructor Not Implemented
-    void operator=(const ItkConvertArrayTo8BitImage&); // Operator '=' Not Implemented
+    ItkConvertArrayTo8BitImage(const ItkConvertArrayTo8BitImage&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkConvertArrayTo8BitImage&) = delete;             // Operator '=' Not Implemented
 };
 
 #endif /* ConvertArrayTo8BitImage_H_ */

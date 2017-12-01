@@ -174,8 +174,8 @@ class ItkMeanKernel : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkMeanKernel(const ItkMeanKernel&); // Copy Constructor Not Implemented
-    void operator=(const ItkMeanKernel&); // Operator '=' Not Implemented
+    ItkMeanKernel(const ItkMeanKernel&) = delete;  // Copy Constructor Not Implemented
+    void operator=(const ItkMeanKernel&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _MeanKernel_H_ */

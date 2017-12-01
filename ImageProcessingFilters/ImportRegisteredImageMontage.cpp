@@ -24,9 +24,6 @@
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
-// Include the MOC generated file for this class
-#include "moc_ImportRegisteredImageMontage.cpp"
-
 // Get ITKReadImage so you can properly read in 16 bit images
 #include "ItkReadImage.h"
 
@@ -66,9 +63,7 @@ ImportRegisteredImageMontage::ImportRegisteredImageMontage() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ImportRegisteredImageMontage::~ImportRegisteredImageMontage()
-{
-}
+ImportRegisteredImageMontage::~ImportRegisteredImageMontage() = default;
 
 // -----------------------------------------------------------------------------
 //

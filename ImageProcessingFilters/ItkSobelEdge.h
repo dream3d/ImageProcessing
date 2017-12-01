@@ -170,8 +170,8 @@ class ItkSobelEdge : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkSobelEdge(const ItkSobelEdge&); // Copy Constructor Not Implemented
-    void operator=(const ItkSobelEdge&); // Operator '=' Not Implemented
+    ItkSobelEdge(const ItkSobelEdge&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkSobelEdge&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _SobelEdge_H_ */

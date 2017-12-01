@@ -172,8 +172,8 @@ class ItkWatershed : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(int32_t, FeatureIds)
 
-    ItkWatershed(const ItkWatershed&); // Copy Constructor Not Implemented
-    void operator=(const ItkWatershed&); // Operator '=' Not Implemented
+    ItkWatershed(const ItkWatershed&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkWatershed&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _Watershed_H_ */

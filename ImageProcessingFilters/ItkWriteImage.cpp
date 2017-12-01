@@ -169,12 +169,6 @@ class WriteImagePrivate
     void operator=(const WriteImagePrivate&); // Operator '=' Not Implemented
 };
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkWriteImage.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -190,9 +184,7 @@ ItkWriteImage::ItkWriteImage() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkWriteImage::~ItkWriteImage()
-{
-}
+ItkWriteImage::~ItkWriteImage() = default;
 
 // -----------------------------------------------------------------------------
 //

@@ -49,13 +49,6 @@
 
 #include "ItkBridge.h"
 
-
-
-// Include the MOC generated file for this class
-#include "moc_ItkDiscreteGaussianBlur.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -74,9 +67,7 @@ ItkDiscreteGaussianBlur::ItkDiscreteGaussianBlur() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkDiscreteGaussianBlur::~ItkDiscreteGaussianBlur()
-{
-}
+ItkDiscreteGaussianBlur::~ItkDiscreteGaussianBlur() = default;
 
 // -----------------------------------------------------------------------------
 //

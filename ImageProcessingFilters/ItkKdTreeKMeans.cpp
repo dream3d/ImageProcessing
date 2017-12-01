@@ -163,11 +163,6 @@ class itkKdTreeKMeansTemplate
     }
 };
 
-// Include the MOC generated file for this class
-#include "moc_ItkKdTreeKMeans.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -176,7 +171,6 @@ ItkKdTreeKMeans::ItkKdTreeKMeans() :
   m_SelectedCellArrayPath("", "", ""),
   m_NewCellArrayName("ClassLabels"),
   m_Classes(2),
-  m_SelectedCellArray(nullptr),
   m_NewCellArray(nullptr)
 {
   setupFilterParameters();
@@ -185,9 +179,7 @@ ItkKdTreeKMeans::ItkKdTreeKMeans() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkKdTreeKMeans::~ItkKdTreeKMeans()
-{
-}
+ItkKdTreeKMeans::~ItkKdTreeKMeans() = default;
 
 // -----------------------------------------------------------------------------
 //

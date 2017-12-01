@@ -48,11 +48,6 @@
 #include "ItkBridge.h"
 #include "itkMedianImageFilter.h"
 
-// Include the MOC generated file for this class
-#include "moc_ItkMedianKernel.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -74,9 +69,7 @@ ItkMedianKernel::ItkMedianKernel() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkMedianKernel::~ItkMedianKernel()
-{
-}
+ItkMedianKernel::~ItkMedianKernel() = default;
 
 // -----------------------------------------------------------------------------
 //

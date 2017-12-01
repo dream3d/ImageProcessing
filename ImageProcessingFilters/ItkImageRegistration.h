@@ -158,8 +158,8 @@ class ImageRegistration : public AbstractFilter
      * and  DEFINE_DATAARRAY_VARIABLE() which are defined in DREAM3DGetSetMacros.h
      */
 
-    ImageRegistration(const ImageRegistration&); // Copy Constructor Not Implemented
-    void operator=(const ImageRegistration&); // Operator '=' Not Implemented
+    ImageRegistration(const ImageRegistration&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ImageRegistration&) = delete;    // Operator '=' Not Implemented
 };
 
 #endif /* _ImageRegistration_H_ */

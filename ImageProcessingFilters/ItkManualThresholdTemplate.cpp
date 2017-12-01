@@ -120,12 +120,6 @@ class ManualThresholdTemplatePrivate
     void operator=(const ManualThresholdTemplatePrivate&); // Operator '=' Not Implemented
 };
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkManualThresholdTemplate.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -144,9 +138,7 @@ ItkManualThresholdTemplate::ItkManualThresholdTemplate() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkManualThresholdTemplate::~ItkManualThresholdTemplate()
-{
-}
+ItkManualThresholdTemplate::~ItkManualThresholdTemplate() = default;
 
 // -----------------------------------------------------------------------------
 //

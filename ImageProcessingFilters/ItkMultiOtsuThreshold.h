@@ -173,8 +173,8 @@ class ItkMultiOtsuThreshold : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkMultiOtsuThreshold(const ItkMultiOtsuThreshold&); // Copy Constructor Not Implemented
-    void operator=(const ItkMultiOtsuThreshold&); // Operator '=' Not Implemented
+    ItkMultiOtsuThreshold(const ItkMultiOtsuThreshold&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkMultiOtsuThreshold&) = delete;        // Operator '=' Not Implemented
 };
 
 #endif /* _MultiOtsuThreshold_H_ */

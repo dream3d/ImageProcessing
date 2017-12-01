@@ -173,8 +173,8 @@ class ItkImageMath : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkImageMath(const ItkImageMath&); // Copy Constructor Not Implemented
-    void operator=(const ItkImageMath&); // Operator '=' Not Implemented
+    ItkImageMath(const ItkImageMath&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkImageMath&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _ImageMath_H_ */

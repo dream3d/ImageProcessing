@@ -167,11 +167,11 @@ class ItkKdTreeKMeans : public AbstractFilter
 
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    DEFINE_IDATAARRAY_WEAKPTR(SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(int32_t, NewCellArray)
 
-    ItkKdTreeKMeans(const ItkKdTreeKMeans&); // Copy Constructor Not Implemented
-    void operator=(const ItkKdTreeKMeans&); // Operator '=' Not Implemented
+    ItkKdTreeKMeans(const ItkKdTreeKMeans&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkKdTreeKMeans&) = delete;  // Operator '=' Not Implemented
 };
 
 #endif /* _KMeans_H_ */

@@ -140,8 +140,8 @@ class ImageProcessingFilter : public AbstractFilter
      * and  DEFINE_DATAARRAY_VARIABLE() which are defined in DREAM3DGetSetMacros.h
      */
 
-    ImageProcessingFilter(const ImageProcessingFilter&); // Copy Constructor Not Implemented
-    void operator=(const ImageProcessingFilter&); // Operator '=' Not Implemented
+    ImageProcessingFilter(const ImageProcessingFilter&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ImageProcessingFilter&) = delete;        // Operator '=' Not Implemented
 };
 
 #endif /* _ImageProcessingFilter_H_ */

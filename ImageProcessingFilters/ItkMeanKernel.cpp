@@ -49,12 +49,6 @@
 #include "itkMeanImageFilter.h"
 #include "itkRescaleIntensityImageFilter.h"
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkMeanKernel.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -76,9 +70,7 @@ ItkMeanKernel::ItkMeanKernel() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkMeanKernel::~ItkMeanKernel()
-{
-}
+ItkMeanKernel::~ItkMeanKernel() = default;
 
 // -----------------------------------------------------------------------------
 //

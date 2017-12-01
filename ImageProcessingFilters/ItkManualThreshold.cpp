@@ -48,12 +48,6 @@
 //thresholding filter
 #include "itkBinaryThresholdImageFilter.h"
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkManualThreshold.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -72,9 +66,7 @@ ItkManualThreshold::ItkManualThreshold() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkManualThreshold::~ItkManualThreshold()
-{
-}
+ItkManualThreshold::~ItkManualThreshold() = default;
 
 // -----------------------------------------------------------------------------
 //

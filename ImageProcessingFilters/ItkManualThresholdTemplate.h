@@ -178,9 +178,8 @@ class ItkManualThresholdTemplate : public AbstractFilter
     DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
     DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
-
-    ItkManualThresholdTemplate(const ItkManualThresholdTemplate&); // Copy Constructor Not Implemented
-    void operator=(const ItkManualThresholdTemplate&); // Operator '=' Not Implemented
+    ItkManualThresholdTemplate(const ItkManualThresholdTemplate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkManualThresholdTemplate&) = delete;             // Operator '=' Not Implemented
 };
 
 #endif /* _ManualThresholdTemplate_H_ */

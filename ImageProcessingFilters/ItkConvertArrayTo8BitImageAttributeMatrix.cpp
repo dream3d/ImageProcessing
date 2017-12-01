@@ -46,11 +46,6 @@
 
 #include "ImageProcessing/ImageProcessingVersion.h"
 
-// Include the MOC generated file for this class
-#include "moc_ItkConvertArrayTo8BitImageAttributeMatrix.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -67,9 +62,7 @@ ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMa
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkConvertArrayTo8BitImageAttributeMatrix::~ItkConvertArrayTo8BitImageAttributeMatrix()
-{
-}
+ItkConvertArrayTo8BitImageAttributeMatrix::~ItkConvertArrayTo8BitImageAttributeMatrix() = default;
 
 // -----------------------------------------------------------------------------
 //

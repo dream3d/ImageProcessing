@@ -56,11 +56,6 @@
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
-// Include the MOC generated file for this class
-#include "moc_IPItkImportImageStack.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -91,9 +86,7 @@ IPItkImportImageStack::IPItkImportImageStack() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-IPItkImportImageStack::~IPItkImportImageStack()
-{
-}
+IPItkImportImageStack::~IPItkImportImageStack() = default;
 
 // -----------------------------------------------------------------------------
 //

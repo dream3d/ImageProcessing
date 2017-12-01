@@ -172,8 +172,8 @@ class ItkBinaryWatershedLabeled : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(bool, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
 
-    ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&); // Copy Constructor Not Implemented
-    void operator=(const ItkBinaryWatershedLabeled&); // Operator '=' Not Implemented
+    ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkBinaryWatershedLabeled&) = delete;            // Operator '=' Not Implemented
 };
 
 #endif /* _BinaryWatershedLabeled_H_ */

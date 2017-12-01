@@ -183,9 +183,8 @@ class ItkRGBToGray : public AbstractFilter
 //    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
 //    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
-
-    ItkRGBToGray(const ItkRGBToGray&); // Copy Constructor Not Implemented
-    void operator=(const ItkRGBToGray&); // Operator '=' Not Implemented
+    ItkRGBToGray(const ItkRGBToGray&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkRGBToGray&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _RGBToGray_H_ */

@@ -187,8 +187,8 @@ class IPItkImportImageStack : public AbstractFilter
   private:
     DEFINE_IDATAARRAY_VARIABLE(ImageData)
 
-    IPItkImportImageStack(const IPItkImportImageStack&); // Copy Constructor Not Implemented
-    void operator=(const IPItkImportImageStack&); // Operator '=' Not Implemented
+    IPItkImportImageStack(const IPItkImportImageStack&) = delete; // Copy Constructor Not Implemented
+    void operator=(const IPItkImportImageStack&) = delete;        // Operator '=' Not Implemented
 };
 
 #endif /* IPItkImportImageStack_H_ */

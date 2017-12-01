@@ -41,10 +41,6 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
-// Include the MOC generated file for this class
-#include "moc_ImageRegistration.cpp"
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -57,9 +53,7 @@ ImageRegistration::ImageRegistration() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ImageRegistration::~ImageRegistration()
-{
-}
+ImageRegistration::~ImageRegistration() = default;
 
 // -----------------------------------------------------------------------------
 //

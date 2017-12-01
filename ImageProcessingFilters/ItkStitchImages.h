@@ -174,15 +174,13 @@ class ItkStitchImages : public AbstractFilter
 
 
   private:
-
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
+    DEFINE_DATAARRAY_WEAKPTR(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
     StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, StitchedImageArray)
 
-
-    ItkStitchImages(const ItkStitchImages&); // Copy Constructor Not Implemented
-    void operator=(const ItkStitchImages&); // Operator '=' Not Implemented
+    ItkStitchImages(const ItkStitchImages&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkStitchImages&) = delete;  // Operator '=' Not Implemented
 };
 
 #endif /* _StitchImages_H_ */

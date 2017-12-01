@@ -117,8 +117,8 @@ class DetermineStitching
     DetermineStitching();
 
   private:
-    DetermineStitching(const DetermineStitching&); // Copy Constructor Not Implemented
-    void operator=(const DetermineStitching&); // Operator '=' Not Implemented
+    DetermineStitching(const DetermineStitching&) = delete; // Copy Constructor Not Implemented
+    void operator=(const DetermineStitching&) = delete;     // Operator '=' Not Implemented
 };
 
 

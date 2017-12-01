@@ -42,12 +42,6 @@
 #include "itkBinaryThresholdImageFilter.h"
 #include "itkConfidenceConnectedImageFilter.h"
 
-
-// Include the MOC generated file for this class
-#include "moc_RegionGrowing.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -67,9 +61,7 @@ RegionGrowing::RegionGrowing() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-RegionGrowing::~RegionGrowing()
-{
-}
+RegionGrowing::~RegionGrowing() = default;
 
 // -----------------------------------------------------------------------------
 //

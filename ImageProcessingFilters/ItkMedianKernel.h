@@ -173,8 +173,8 @@ class ItkMedianKernel : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkMedianKernel(const ItkMedianKernel&); // Copy Constructor Not Implemented
-    void operator=(const ItkMedianKernel&); // Operator '=' Not Implemented
+    ItkMedianKernel(const ItkMedianKernel&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkMedianKernel&) = delete;  // Operator '=' Not Implemented
 };
 
 #endif /* _MedianKernel_H_ */

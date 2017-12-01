@@ -165,8 +165,8 @@ class ImageProcessingPlugin : public QObject, public ISIMPLibPlugin
     QList<QString>      m_Filters;
     bool				m_DidLoad;
 
-    ImageProcessingPlugin(const ImageProcessingPlugin&); // Copy Constructor Not Implemented
-    void operator=(const ImageProcessingPlugin&); // Operator '=' Not Implemented
+    ImageProcessingPlugin(const ImageProcessingPlugin&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ImageProcessingPlugin&) = delete;        // Operator '=' Not Implemented
 };
 
 #endif /* _ImageProcessing_H_ */

@@ -122,12 +122,6 @@ class GrayToRGBPrivate
     void operator=(const GrayToRGBPrivate&); // Operator '=' Not Implemented
 };
 
-
-// Include the MOC generated file for this class
-#include "moc_ItkGrayToRGB.cpp"
-
-
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -148,9 +142,7 @@ ItkGrayToRGB::ItkGrayToRGB() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkGrayToRGB::~ItkGrayToRGB()
-{
-}
+ItkGrayToRGB::~ItkGrayToRGB() = default;
 
 // -----------------------------------------------------------------------------
 //

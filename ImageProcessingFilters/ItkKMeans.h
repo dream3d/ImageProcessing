@@ -177,8 +177,8 @@ class ItkKMeans : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkKMeans(const ItkKMeans&); // Copy Constructor Not Implemented
-    void operator=(const ItkKMeans&); // Operator '=' Not Implemented
+    ItkKMeans(const ItkKMeans&) = delete;      // Copy Constructor Not Implemented
+    void operator=(const ItkKMeans&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _KMeans_H_ */

@@ -155,8 +155,8 @@ class ItkConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
   private:
     DEFINE_DATAARRAY_VARIABLE(uint8_t, NewArray)
 
-    ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&); // Copy Constructor Not Implemented
-    void operator=(const ItkConvertArrayTo8BitImageAttributeMatrix&); // Operator '=' Not Implemented
+    ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete;                            // Operator '=' Not Implemented
 };
 
 #endif /* ConvertArrayTo8BitImageAttributeMatrix_H_ */

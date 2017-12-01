@@ -181,9 +181,8 @@ class ItkGrayToRGB : public AbstractFilter
 
     DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
-
-    ItkGrayToRGB(const ItkGrayToRGB&); // Copy Constructor Not Implemented
-    void operator=(const ItkGrayToRGB&); // Operator '=' Not Implemented
+    ItkGrayToRGB(const ItkGrayToRGB&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const ItkGrayToRGB&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _GrayToRGB_H_ */

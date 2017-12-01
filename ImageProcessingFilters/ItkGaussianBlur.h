@@ -168,8 +168,8 @@ class ItkGaussianBlur : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
-    ItkGaussianBlur(const ItkGaussianBlur&); // Copy Constructor Not Implemented
-    void operator=(const ItkGaussianBlur&); // Operator '=' Not Implemented
+    ItkGaussianBlur(const ItkGaussianBlur&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ItkGaussianBlur&) = delete;  // Operator '=' Not Implemented
 };
 
 #endif /* _GaussianBlur_H_ */
