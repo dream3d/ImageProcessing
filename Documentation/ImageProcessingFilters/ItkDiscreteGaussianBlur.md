@@ -2,12 +2,15 @@ Discrete Gaussian Blur (ImageProcessing) {#itkdiscretegaussianblur}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 ## Description ##
+
 Applies a 3d guassian kernel of the specified standard deviation to the selected array
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

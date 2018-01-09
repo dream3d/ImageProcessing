@@ -2,13 +2,16 @@ Import Image (ImageProcessing) {#itkreadimage}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Reads any type of image supported by itk and creates a data array of the corresponding type
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Input File| String |

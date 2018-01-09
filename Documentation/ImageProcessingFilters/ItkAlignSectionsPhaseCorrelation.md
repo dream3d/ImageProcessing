@@ -2,9 +2,11 @@ Align Sections Phase Correlation {#itkalignsectionsphasecorrelation}
 =====
 
 ## Group (Subgroup) ##
+
 Unsupported (Misc)
 
 ## Description ##
+
 Aligns sections using phase correlation:
    1. Adjacent slices are fourier transformed
    2. Fourier transform of the reference slice is multiplied by the complex conjugate of the moving slice
@@ -13,6 +15,7 @@ Aligns sections using phase correlation:
 
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Input Array | String |

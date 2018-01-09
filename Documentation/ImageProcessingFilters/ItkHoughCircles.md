@@ -2,13 +2,16 @@ Hough Circle Detection (ImageProcessing) {#itkhoughcircles}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Finds the top [Number of Circles] circle candidtates between [Minimum Radius] and [Maximum Radius] using a 2D hough circle transform (slice at a time).
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

@@ -2,13 +2,16 @@ Watershed Filter (ImageProcessing) {#itkwatershed}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 This filter segments grayscale images into grains using ITK's watershed segmentation
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

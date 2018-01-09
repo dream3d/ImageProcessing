@@ -2,13 +2,16 @@ Region Growing (ImageProcessing) {#itkregiongrowing}
 =====
 
 ## Group (Subgroup) ##
+
 Unsupported (Misc)
 
 
 ## Description ##
+
 Grows a region based on seed points.
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | DataArray |

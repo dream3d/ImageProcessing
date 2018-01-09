@@ -2,13 +2,16 @@ Convert Array To 8 Bit Image Attribute Matrix {#itkconvertarrayto8bitimageattrib
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Converts all data arrays in an attribute Matrix to 8 bit arrays.
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

@@ -2,13 +2,16 @@ K-d Tree K-Means Clustering {#itkkdtreekmeans}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Splits an image into (Classes) classes using k-means clustering. Initial cluster means are evenly spaced between minimum and maximum image values.
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

@@ -2,13 +2,16 @@ Multi Level Otsu Threshold (ImageProcessing) {#itkmultiotsuthreshold}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Splits an image into (levels+1) classes with (levels) threshold levels using the mutiple otsu threshold method
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

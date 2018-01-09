@@ -2,12 +2,15 @@ Mean (Kernel) (ImageProcessing) {#itkmeankernel}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 ## Description ##
+
 Applies a mean kernel filter
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

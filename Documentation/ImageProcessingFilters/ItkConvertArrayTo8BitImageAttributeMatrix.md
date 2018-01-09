@@ -2,13 +2,16 @@ Convert Array To 8 Bit Image {#itkconvertarrayto8bitimage}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Converts a color images to grayscal with the specified weigtings
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

@@ -2,13 +2,16 @@ Image Math {#itkimagemath}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Performs the selected intensity operation on the selected array (with the specified value where appropriate)
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Selected Array 1 | String |
@@ -22,6 +25,7 @@ Performs the selected intensity operation on the selected array (with the specif
 | UInt8  | ImageData     |
 
 ## Created Arrays ##
+
 | Type | Default Array Name | 
 |------|--------------------|
 | UInt8  | ImageData     |

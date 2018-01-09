@@ -2,12 +2,15 @@ Median (Kernel) (ImageProcessing) {#itkmediankernel}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 ## Description ##
+
 Applies a median kernel filter
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

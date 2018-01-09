@@ -2,13 +2,16 @@ ImageProcessingFilter {#itkimageprocessingfilter}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 This filter does the following...
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Feature Array Name | String |

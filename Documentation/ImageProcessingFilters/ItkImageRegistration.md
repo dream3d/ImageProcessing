@@ -2,13 +2,16 @@ ImageRegistration {#itkimageregistration}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (Misc)
 
 
 ## Description ##
+
 Uses itk's rigid translation image registration to calculate slice alignments using the specified image comparison metric and optimizer on the selected array. If apply shifts is selected subpixel shifts well be applied with linear interpolation. More information on comparison metrics and optimizers can be found in itk's documentation: http://www.itk.org/Doxygen/html/RegistrationPage.html
 
 ## Optimizer Parameters ##
+
 | Optimizer | Parameter 1 | Suggested Value | Parameter 2 | Suggested Value | Suggested Iterations |
 |-----------|-------------|-----------------|-------------|-----------------|----------------------|
 | Gradient Descent | Learning Rate | 0.001-5.0 | Not Used | - | 200 |
@@ -19,6 +22,7 @@ Uses itk's rigid translation image registration to calculate slice alignments us
 
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Selected Array | String |

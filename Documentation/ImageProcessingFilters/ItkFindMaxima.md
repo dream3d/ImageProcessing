@@ -2,10 +2,12 @@ Find Maxima (ImageProcessing) {#itkfindmaxima}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Finds local peaks:
 -all voxels/groups of same valued voxels surrounded by voxels of lower value are peak candidates
 -for each peak candidate the surrounding region is flood filled through any voxels with a value > (peak value - noise tolerance)
@@ -13,6 +15,7 @@ Finds local peaks:
 -the average x, y, and z position of each peak region is the peak voxel
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |

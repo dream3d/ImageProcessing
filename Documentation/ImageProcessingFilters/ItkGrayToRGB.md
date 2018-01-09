@@ -2,13 +2,16 @@ Convert Grayscale to RGB (Merge Channels) (ImageProcessing) {#itkgraytorgb}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 
 ## Description ##
+
 Merges 3 scalar images of the same type into a color image.
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Red Array | String |

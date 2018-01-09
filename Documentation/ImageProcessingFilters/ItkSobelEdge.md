@@ -2,12 +2,15 @@ Sobel Edge Detector (ImageProcessing) {#itksobeledge}
 =====
 
 ## Group (Subgroup) ##
+
 ImageProcessing (ImageProcessing)
 
 ## Description ##
+
 Finds edges with a sobel filter
 
 ## Parameters ##
+
 | Name             | Type |
 |------------------|------|
 | Array to Process | String |
