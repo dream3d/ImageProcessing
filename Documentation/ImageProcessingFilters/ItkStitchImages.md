@@ -37,6 +37,10 @@ This filter stitches together images using the data array containing the stitche
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

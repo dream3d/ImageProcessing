@@ -34,6 +34,10 @@ Converts a color images to grayscal with the specified weigtings
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

@@ -34,6 +34,10 @@ Finds edges with a sobel filter
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

@@ -33,6 +33,10 @@ Converts arrays that represent color images (RGB or RGBA) to grayscale with the 
 | UInt8 | GrayScale | 1 component image data |  |
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

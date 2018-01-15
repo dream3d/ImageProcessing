@@ -39,6 +39,10 @@ value will be set to 0 (black) and above will be set to 255 (white). Manual Para
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

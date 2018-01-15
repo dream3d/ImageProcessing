@@ -37,6 +37,10 @@ Merges 3 scalar images of the same type into a color image.
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

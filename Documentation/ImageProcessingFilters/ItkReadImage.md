@@ -24,6 +24,10 @@ Reads any type of image supported by itk and creates a data array of the corresp
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

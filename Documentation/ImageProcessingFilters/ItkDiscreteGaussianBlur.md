@@ -35,6 +35,10 @@ Applies a 3d guassian kernel of the specified standard deviation to the selected
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

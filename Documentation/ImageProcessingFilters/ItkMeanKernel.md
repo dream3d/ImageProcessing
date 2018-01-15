@@ -35,6 +35,10 @@ Applies a mean kernel filter
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

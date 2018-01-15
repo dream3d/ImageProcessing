@@ -36,6 +36,10 @@ Splits an image into (levels+1) classes with (levels) threshold levels using the
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

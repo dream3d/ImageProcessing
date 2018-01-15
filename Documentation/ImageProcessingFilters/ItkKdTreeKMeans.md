@@ -36,6 +36,10 @@ Splits an image into (Classes) classes using k-means clustering. Initial cluster
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

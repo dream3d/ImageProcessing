@@ -54,6 +54,10 @@ An attribute matrix to hold the above arrays is also created. The default name i
  This holds the coordinate data, as well as the names of the corresponding images.
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.

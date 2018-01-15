@@ -33,6 +33,10 @@ Converts all data arrays in an attribute Matrix to 8 bit arrays.
 
 
 
+## Example Pipelines ##
+
+
+
 ## License & Copyright ##
 
 Please see the description file distributed with this plugin.
