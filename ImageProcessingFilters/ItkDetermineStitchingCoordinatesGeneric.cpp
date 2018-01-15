@@ -505,6 +505,14 @@ const QString ItkDetermineStitchingCoordinatesGeneric::getHumanLabel()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkDetermineStitchingCoordinatesGeneric::getUuid()
+{
+  return QUuid("{49b5feb1-ec05-5a26-af25-00053151d944}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString ItkDetermineStitchingCoordinatesGeneric::getSubGroupName()
 {
   return "Misc";

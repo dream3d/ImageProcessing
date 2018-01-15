@@ -346,6 +346,14 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkConvertArrayTo8BitImageAttributeMatrix::getUuid()
+{
+  return QUuid("{cd075a60-93a9-52b4-ace6-84342b742c0a}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString ItkConvertArrayTo8BitImageAttributeMatrix::getSubGroupName()
 { return "Misc"; }
 

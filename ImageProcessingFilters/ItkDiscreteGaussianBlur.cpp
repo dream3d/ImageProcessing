@@ -237,6 +237,14 @@ const QString ItkDiscreteGaussianBlur::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkDiscreteGaussianBlur::getUuid()
+{
+  return QUuid("{73ad993e-a36e-5978-bda2-ccee69d36186}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString ItkDiscreteGaussianBlur::getSubGroupName()
 {return "Misc";}
 

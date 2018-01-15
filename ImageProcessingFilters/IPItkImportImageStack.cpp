@@ -816,6 +816,14 @@ const QString IPItkImportImageStack::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid IPItkImportImageStack::getUuid()
+{
+  return QUuid("{e4211f4e-d9df-543e-9e80-8936950640b5}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString IPItkImportImageStack::getSubGroupName()
 { return SIMPL::FilterSubGroups::InputFilters; }
 

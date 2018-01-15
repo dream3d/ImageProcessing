@@ -266,6 +266,14 @@ const QString AlignSectionsPhaseCorrelation::getHumanLabel()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkAlignSectionsPhaseCorrelation::getUuid()
+{
+  return QUuid("{b71888cb-b877-5522-b0f1-49ae49c6e695}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString AlignSectionsPhaseCorrelation::getSubGroupName()
 {
   return "Misc";

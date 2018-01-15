@@ -53,7 +53,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
   public:
     SIMPL_SHARED_POINTERS(AlignSectionsPhaseCorrelation)
     SIMPL_STATIC_NEW_MACRO(AlignSectionsPhaseCorrelation)
-    SIMPL_TYPE_MACRO_SUPER(AlignSectionsPhaseCorrelation, AlignSections)
+     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(AlignSectionsPhaseCorrelation, AlignSections)
 
     SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
@@ -63,18 +63,24 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     SIMPL_FILTER_PARAMETER(QString, InputFile)
     Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
 
-    virtual const QString getCompiledLibraryName();
-    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
-    virtual const QString getGroupName();
-    virtual const QString getSubGroupName();
-    virtual const QString getHumanLabel();
+    virtual const QString getCompiledLibraryName() override;
+    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) override;
+    virtual const QString getGroupName() override;
+    virtual const QString getSubGroupName() override;
+
+    /**
+     * @brief getUuid Return the unique identifier for this filter.
+     * @return A QUuid object.
+     */
+    virtual const QUuid getUuid() override;
+    virtual const QString getHumanLabel() override;
     virtual const QString getBrandingString() { return "DREAM3D Reconstruction Plugin"; }
 
     /**
      * @brief Reimplemented from @see AbstractFilter class
      */
-    virtual void execute();
-    virtual void preflight();
+    virtual void execute() override;
+    virtual void preflight() override;
 
 
   protected:
@@ -82,7 +88,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
 
     virtual void find_shifts(QVector<int>& xshifts, QVector<int>& yshifts);
 
-    virtual void setupFilterParameters();
+    virtual void setupFilterParameters() override;
     virtual int writeFilterParameters(AbstractFilterParametersWriter* writer, int index);
     virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index);
 

@@ -252,6 +252,14 @@ const QString ItkBinaryWatershedLabeled::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkBinaryWatershedLabeled::getUuid()
+{
+  return QUuid("{76fd1b13-5feb-5338-8d7f-b3b935ff3f22}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString ItkBinaryWatershedLabeled::getSubGroupName()
 {return "Misc";}
 

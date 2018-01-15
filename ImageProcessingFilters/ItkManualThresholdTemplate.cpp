@@ -417,6 +417,14 @@ const QString ItkManualThresholdTemplate::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+const QUuid ItkManualThresholdTemplate::getUuid()
+{
+  return QUuid("{35de8117-cd91-5971-bc3a-73320cb9f37c}");
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
 const QString ItkManualThresholdTemplate::getSubGroupName()
 {return "Misc";}
 

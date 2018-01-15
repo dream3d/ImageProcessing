@@ -61,7 +61,7 @@ class ItkManualThreshold : public AbstractFilter
   public:
     SIMPL_SHARED_POINTERS(ItkManualThreshold)
     SIMPL_STATIC_NEW_MACRO(ItkManualThreshold)
-    SIMPL_TYPE_MACRO_SUPER(ItkManualThreshold, AbstractFilter)
+     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkManualThreshold, AbstractFilter)
 
     virtual ~ItkManualThreshold();
 
@@ -80,32 +80,38 @@ class ItkManualThreshold : public AbstractFilter
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    virtual const QString getCompiledLibraryName();
+    virtual const QString getCompiledLibraryName() override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    virtual const QString getHumanLabel();
+    virtual const QString getHumanLabel() override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    virtual const QString getGroupName();
+    virtual const QString getGroupName() override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    virtual const QString getSubGroupName();
+    virtual const QString getSubGroupName() override;
+
+    /**
+     * @brief getUuid Return the unique identifier for this filter.
+     * @return A QUuid object.
+     */
+    virtual const QUuid getUuid() override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
     * for this filter
     */
-    virtual void setupFilterParameters();
+    virtual void setupFilterParameters() override;
 
     /**
     * @brief This method will read the options from a file
@@ -117,13 +123,13 @@ class ItkManualThreshold : public AbstractFilter
     /**
      * @brief Reimplemented from @see AbstractFilter class
      */
-    virtual void execute();
+    virtual void execute() override;
 
     /**
     * @brief This function runs some sanity checks on the DataContainer and inputs
     * in an attempt to ensure the filter can process the inputs.
     */
-    virtual void preflight();
+    virtual void preflight() override;
 
     /**
      * @brief newFilterInstance Returns a new instance of the filter optionally copying the filter parameters from the
@@ -131,7 +137,7 @@ class ItkManualThreshold : public AbstractFilter
      * @param copyFilterParameters
      * @return
      */
-    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters);
+    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) override;
 
   signals:
     /**
