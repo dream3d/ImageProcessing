@@ -79,10 +79,27 @@ ImageProcessingPlugin::~ImageProcessingPlugin() = default;
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-QString ImageProcessingPlugin::getPluginName()
+QString ImageProcessingPlugin::getPluginFileName()
 {
-  return (ImageProcessingConstants::ImageProcessingPluginDisplayName);
+  return ImageProcessingConstants::ImageProcessingPluginFile;
 }
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString ImageProcessingPlugin::getPluginDisplayName()
+{
+  return ImageProcessingConstants::ImageProcessingPluginDisplayName;
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString ImageProcessingPlugin::getPluginBaseName()
+{
+  return ImageProcessingConstants::ImageProcessingBaseName;
+}
+
 
 // -----------------------------------------------------------------------------
 //
