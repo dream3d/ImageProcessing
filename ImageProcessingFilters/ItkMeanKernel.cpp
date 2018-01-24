@@ -234,7 +234,7 @@ void ItkMeanKernel::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkMeanKernel::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkMeanKernel::newFilterInstance(bool copyFilterParameters) const
 {
   ItkMeanKernel::Pointer filter = ItkMeanKernel::New();
   if(true == copyFilterParameters)
@@ -248,14 +248,14 @@ AbstractFilter::Pointer ItkMeanKernel::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getCompiledLibraryName()
+const QString ItkMeanKernel::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getGroupName()
+const QString ItkMeanKernel::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -270,13 +270,13 @@ const QUuid ItkMeanKernel::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getSubGroupName()
+const QString ItkMeanKernel::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getHumanLabel()
+const QString ItkMeanKernel::getHumanLabel() const
 { return "Mean (Kernel) (ImageProcessing)"; }
 

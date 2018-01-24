@@ -381,7 +381,7 @@ void ItkWriteImage::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkWriteImage::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkWriteImage::newFilterInstance(bool copyFilterParameters) const
 {
   ItkWriteImage::Pointer filter = ItkWriteImage::New();
   if(true == copyFilterParameters)
@@ -395,14 +395,14 @@ AbstractFilter::Pointer ItkWriteImage::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWriteImage::getCompiledLibraryName()
+const QString ItkWriteImage::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWriteImage::getGroupName()
+const QString ItkWriteImage::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -417,13 +417,13 @@ const QUuid ItkWriteImage::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWriteImage::getSubGroupName()
+const QString ItkWriteImage::getSubGroupName() const
 {return "IO";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWriteImage::getHumanLabel()
+const QString ItkWriteImage::getHumanLabel() const
 { return "Export Tiff Image Stack (ImageProcessing)"; }
 

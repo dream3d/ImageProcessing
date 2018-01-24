@@ -224,7 +224,7 @@ void ItkBinaryWatershedLabeled::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkBinaryWatershedLabeled::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkBinaryWatershedLabeled::newFilterInstance(bool copyFilterParameters) const
 {
   ItkBinaryWatershedLabeled::Pointer filter = ItkBinaryWatershedLabeled::New();
   if(true == copyFilterParameters)
@@ -238,14 +238,14 @@ AbstractFilter::Pointer ItkBinaryWatershedLabeled::newFilterInstance(bool copyFi
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getCompiledLibraryName()
+const QString ItkBinaryWatershedLabeled::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getGroupName()
+const QString ItkBinaryWatershedLabeled::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -260,13 +260,13 @@ const QUuid ItkBinaryWatershedLabeled::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getSubGroupName()
+const QString ItkBinaryWatershedLabeled::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getHumanLabel()
+const QString ItkBinaryWatershedLabeled::getHumanLabel() const
 { return "Binary Watershed Labeled (ImageProcessing)"; }
 

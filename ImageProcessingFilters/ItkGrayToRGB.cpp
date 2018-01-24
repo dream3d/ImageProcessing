@@ -341,7 +341,7 @@ void ItkGrayToRGB::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkGrayToRGB::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkGrayToRGB::newFilterInstance(bool copyFilterParameters) const
 {
   ItkGrayToRGB::Pointer filter = ItkGrayToRGB::New();
   if(true == copyFilterParameters)
@@ -355,14 +355,14 @@ AbstractFilter::Pointer ItkGrayToRGB::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getCompiledLibraryName()
+const QString ItkGrayToRGB::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getGroupName()
+const QString ItkGrayToRGB::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -377,13 +377,13 @@ const QUuid ItkGrayToRGB::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getSubGroupName()
+const QString ItkGrayToRGB::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getHumanLabel()
+const QString ItkGrayToRGB::getHumanLabel() const
 { return "Convert Grayscale to RGB (Merge Channels) (ImageProcessing)"; }
 

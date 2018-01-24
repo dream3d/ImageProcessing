@@ -213,7 +213,7 @@ void ItkMedianKernel::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkMedianKernel::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkMedianKernel::newFilterInstance(bool copyFilterParameters) const
 {
   ItkMedianKernel::Pointer filter = ItkMedianKernel::New();
   if(true == copyFilterParameters)
@@ -227,14 +227,14 @@ AbstractFilter::Pointer ItkMedianKernel::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getCompiledLibraryName()
+const QString ItkMedianKernel::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getGroupName()
+const QString ItkMedianKernel::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -249,13 +249,13 @@ const QUuid ItkMedianKernel::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getSubGroupName()
+const QString ItkMedianKernel::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getHumanLabel()
+const QString ItkMedianKernel::getHumanLabel() const
 { return "Median (Kernel) (ImageProcessing)"; }
 

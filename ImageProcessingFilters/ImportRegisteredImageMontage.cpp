@@ -454,7 +454,7 @@ void ImportRegisteredImageMontage::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ImportRegisteredImageMontage::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ImportRegisteredImageMontage::newFilterInstance(bool copyFilterParameters) const
 {
   ImportRegisteredImageMontage::Pointer filter = ImportRegisteredImageMontage::New();
   if(true == copyFilterParameters)
@@ -478,7 +478,7 @@ AbstractFilter::Pointer ImportRegisteredImageMontage::newFilterInstance(bool cop
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getCompiledLibraryName()
+const QString ImportRegisteredImageMontage::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -486,7 +486,7 @@ const QString ImportRegisteredImageMontage::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getBrandingString()
+const QString ImportRegisteredImageMontage::getBrandingString() const
 {
   return "ImageProcessing";
 }
@@ -494,7 +494,7 @@ const QString ImportRegisteredImageMontage::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getFilterVersion()
+const QString ImportRegisteredImageMontage::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -504,17 +504,17 @@ const QString ImportRegisteredImageMontage::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getGroupName()
+const QString ImportRegisteredImageMontage::getGroupName() const
 { return SIMPL::FilterGroups::IOFilters; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getSubGroupName()
+const QString ImportRegisteredImageMontage::getSubGroupName() const
 { return SIMPL::FilterSubGroups::InputFilters; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImportRegisteredImageMontage::getHumanLabel()
+const QString ImportRegisteredImageMontage::getHumanLabel() const
 { return "Import Registered Image Montage"; }

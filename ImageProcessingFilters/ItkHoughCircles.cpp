@@ -274,7 +274,7 @@ void ItkHoughCircles::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkHoughCircles::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkHoughCircles::newFilterInstance(bool copyFilterParameters) const
 {
   ItkHoughCircles::Pointer filter = ItkHoughCircles::New();
   if(true == copyFilterParameters)
@@ -288,14 +288,14 @@ AbstractFilter::Pointer ItkHoughCircles::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getCompiledLibraryName()
+const QString ItkHoughCircles::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getGroupName()
+const QString ItkHoughCircles::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -310,13 +310,13 @@ const QUuid ItkHoughCircles::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getSubGroupName()
+const QString ItkHoughCircles::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getHumanLabel()
+const QString ItkHoughCircles::getHumanLabel() const
 { return "Hough Circle Detection (ImageProcessing)"; }
 

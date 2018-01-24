@@ -209,7 +209,7 @@ void ItkDiscreteGaussianBlur::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkDiscreteGaussianBlur::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkDiscreteGaussianBlur::newFilterInstance(bool copyFilterParameters) const
 {
   ItkDiscreteGaussianBlur::Pointer filter = ItkDiscreteGaussianBlur::New();
   if(true == copyFilterParameters)
@@ -223,14 +223,14 @@ AbstractFilter::Pointer ItkDiscreteGaussianBlur::newFilterInstance(bool copyFilt
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getCompiledLibraryName()
+const QString ItkDiscreteGaussianBlur::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getGroupName()
+const QString ItkDiscreteGaussianBlur::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -245,13 +245,13 @@ const QUuid ItkDiscreteGaussianBlur::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getSubGroupName()
+const QString ItkDiscreteGaussianBlur::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getHumanLabel()
+const QString ItkDiscreteGaussianBlur::getHumanLabel() const
 { return "Discrete Gaussian Blur (ImageProcessing)"; }
 

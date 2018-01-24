@@ -301,7 +301,7 @@ void FindMaxima::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters) const
 {
   FindMaxima::Pointer filter = FindMaxima::New();
   if(true == copyFilterParameters)
@@ -315,27 +315,27 @@ AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters)
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getCompiledLibraryName()
+const QString FindMaxima::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getGroupName()
+const QString FindMaxima::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getSubGroupName()
+const QString FindMaxima::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getHumanLabel()
+const QString FindMaxima::getHumanLabel() const
 { return "Find Maxima (ImageProcessing)"; }
 

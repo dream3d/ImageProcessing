@@ -387,7 +387,7 @@ void ItkStitchImages::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkStitchImages::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkStitchImages::newFilterInstance(bool copyFilterParameters) const
 {
   ItkStitchImages::Pointer filter = ItkStitchImages::New();
   if(true == copyFilterParameters)
@@ -401,14 +401,14 @@ AbstractFilter::Pointer ItkStitchImages::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getCompiledLibraryName()
+const QString ItkStitchImages::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getGroupName()
+const QString ItkStitchImages::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -423,13 +423,13 @@ const QUuid ItkStitchImages::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getSubGroupName()
+const QString ItkStitchImages::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getHumanLabel()
+const QString ItkStitchImages::getHumanLabel() const
 { return "Stitch Images (ImageProcessing)"; }
 

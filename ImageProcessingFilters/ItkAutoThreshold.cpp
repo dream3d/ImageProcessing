@@ -426,7 +426,7 @@ void ItkAutoThreshold::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkAutoThreshold::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkAutoThreshold::newFilterInstance(bool copyFilterParameters) const
 {
   ItkAutoThreshold::Pointer filter = ItkAutoThreshold::New();
   if(true == copyFilterParameters)
@@ -440,14 +440,14 @@ AbstractFilter::Pointer ItkAutoThreshold::newFilterInstance(bool copyFilterParam
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getCompiledLibraryName()
+const QString ItkAutoThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getGroupName()
+const QString ItkAutoThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -462,13 +462,13 @@ const QUuid ItkAutoThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getSubGroupName()
+const QString ItkAutoThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getHumanLabel()
+const QString ItkAutoThreshold::getHumanLabel() const
 { return "Threshold Image (Auto) (ImageProcessing)"; }
 

@@ -210,7 +210,7 @@ void ItkGaussianBlur::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkGaussianBlur::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkGaussianBlur::newFilterInstance(bool copyFilterParameters) const
 {
   ItkGaussianBlur::Pointer filter = ItkGaussianBlur::New();
   if(true == copyFilterParameters)
@@ -224,14 +224,14 @@ AbstractFilter::Pointer ItkGaussianBlur::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getCompiledLibraryName()
+const QString ItkGaussianBlur::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getGroupName()
+const QString ItkGaussianBlur::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -246,13 +246,13 @@ const QUuid ItkGaussianBlur::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getSubGroupName()
+const QString ItkGaussianBlur::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getHumanLabel()
+const QString ItkGaussianBlur::getHumanLabel() const
 { return "Gaussian Blur (ImageProcessing)"; }
 

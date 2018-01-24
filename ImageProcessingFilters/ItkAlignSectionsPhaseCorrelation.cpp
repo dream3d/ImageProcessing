@@ -242,7 +242,7 @@ void AlignSectionsPhaseCorrelation::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
+const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -250,7 +250,7 @@ const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getGroupName()
+const QString AlignSectionsPhaseCorrelation::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -258,7 +258,7 @@ const QString AlignSectionsPhaseCorrelation::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getHumanLabel()
+const QString AlignSectionsPhaseCorrelation::getHumanLabel() const
 {
   return "AlignSectionsPhaseCorrelation";
 }
@@ -274,7 +274,7 @@ const QUuid ItkAlignSectionsPhaseCorrelation::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getSubGroupName()
+const QString AlignSectionsPhaseCorrelation::getSubGroupName() const
 {
   return "Misc";
 }
@@ -375,7 +375,7 @@ void AlignSectionsPhaseCorrelation::find_shifts(QVector<int>& xshifts, QVector<i
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer AlignSectionsPhaseCorrelation::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer AlignSectionsPhaseCorrelation::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance

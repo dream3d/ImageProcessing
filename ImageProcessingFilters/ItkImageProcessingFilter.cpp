@@ -128,7 +128,7 @@ void ImageProcessingFilter::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageProcessingFilter::getCompiledLibraryName()
+const QString ImageProcessingFilter::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -136,7 +136,7 @@ const QString ImageProcessingFilter::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageProcessingFilter::getGroupName()
+const QString ImageProcessingFilter::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -144,7 +144,7 @@ const QString ImageProcessingFilter::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageProcessingFilter::getHumanLabel()
+const QString ImageProcessingFilter::getHumanLabel() const
 {
   return "ImageProcessingFilter";
 }
@@ -160,7 +160,7 @@ const QUuid ItkImageProcessingFilter::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageProcessingFilter::getSubGroupName()
+const QString ImageProcessingFilter::getSubGroupName() const
 {
   return "Misc";
 }
@@ -197,7 +197,7 @@ void ImageProcessingFilter::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ImageProcessingFilter::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ImageProcessingFilter::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance

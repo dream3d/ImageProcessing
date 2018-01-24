@@ -750,7 +750,7 @@ int IPItkImportImageStack::readBounds()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer IPItkImportImageStack::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer IPItkImportImageStack::newFilterInstance(bool copyFilterParameters) const
 {
   IPItkImportImageStack::Pointer filter = IPItkImportImageStack::New();
   if(true == copyFilterParameters)
@@ -784,7 +784,7 @@ AbstractFilter::Pointer IPItkImportImageStack::newFilterInstance(bool copyFilter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getCompiledLibraryName()
+const QString IPItkImportImageStack::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -792,7 +792,7 @@ const QString IPItkImportImageStack::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getBrandingString()
+const QString IPItkImportImageStack::getBrandingString() const
 {
   return "ImageProcessing";
 }
@@ -800,7 +800,7 @@ const QString IPItkImportImageStack::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getFilterVersion()
+const QString IPItkImportImageStack::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -810,7 +810,7 @@ const QString IPItkImportImageStack::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getGroupName()
+const QString IPItkImportImageStack::getGroupName() const
 { return SIMPL::FilterGroups::IOFilters; }
 
 // -----------------------------------------------------------------------------
@@ -824,11 +824,11 @@ const QUuid IPItkImportImageStack::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getSubGroupName()
+const QString IPItkImportImageStack::getSubGroupName() const
 { return SIMPL::FilterSubGroups::InputFilters; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString IPItkImportImageStack::getHumanLabel()
+const QString IPItkImportImageStack::getHumanLabel() const
 { return "Import Image Stack (ImageProcessing)"; }

@@ -368,7 +368,7 @@ void ItkImageMath::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkImageMath::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkImageMath::newFilterInstance(bool copyFilterParameters) const
 {
   ItkImageMath::Pointer filter = ItkImageMath::New();
   if(true == copyFilterParameters)
@@ -382,14 +382,14 @@ AbstractFilter::Pointer ItkImageMath::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getCompiledLibraryName()
+const QString ItkImageMath::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getGroupName()
+const QString ItkImageMath::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -404,13 +404,13 @@ const QUuid ItkImageMath::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getSubGroupName()
+const QString ItkImageMath::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getHumanLabel()
+const QString ItkImageMath::getHumanLabel() const
 { return "Image Math (ImageProcessing)"; }
 

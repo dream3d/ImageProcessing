@@ -63,17 +63,17 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     SIMPL_FILTER_PARAMETER(QString, InputFile)
     Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
 
-    virtual const QString getCompiledLibraryName() override;
-    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) override;
-    virtual const QString getGroupName() override;
-    virtual const QString getSubGroupName() override;
+    virtual const QString getCompiledLibraryName() const override;
+    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
+    virtual const QString getGroupName() const override;
+    virtual const QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
     virtual const QUuid getUuid() override;
-    virtual const QString getHumanLabel() override;
+    virtual const QString getHumanLabel() const override;
     virtual const QString getBrandingString() { return "DREAM3D Reconstruction Plugin"; }
 
     /**

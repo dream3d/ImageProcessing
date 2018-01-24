@@ -349,7 +349,7 @@ void ItkImageCalculator::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkImageCalculator::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkImageCalculator::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance
@@ -378,14 +378,14 @@ AbstractFilter::Pointer ItkImageCalculator::newFilterInstance(bool copyFilterPar
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getCompiledLibraryName()
+const QString ItkImageCalculator::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getGroupName()
+const QString ItkImageCalculator::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -400,13 +400,13 @@ const QUuid ItkImageCalculator::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getSubGroupName()
+const QString ItkImageCalculator::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getHumanLabel()
+const QString ItkImageCalculator::getHumanLabel() const
 { return "Image Calculator (ImageProcessing)"; }
 

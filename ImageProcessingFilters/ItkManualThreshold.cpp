@@ -207,7 +207,7 @@ void ItkManualThreshold::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkManualThreshold::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkManualThreshold::newFilterInstance(bool copyFilterParameters) const
 {
   ItkManualThreshold::Pointer filter = ItkManualThreshold::New();
   if(true == copyFilterParameters)
@@ -221,14 +221,14 @@ AbstractFilter::Pointer ItkManualThreshold::newFilterInstance(bool copyFilterPar
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getCompiledLibraryName()
+const QString ItkManualThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getGroupName()
+const QString ItkManualThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -243,13 +243,13 @@ const QUuid ItkManualThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getSubGroupName()
+const QString ItkManualThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getHumanLabel()
+const QString ItkManualThreshold::getHumanLabel() const
 { return "Threshold Image (Manual - Single Level) (ImageProcessing)"; }
 

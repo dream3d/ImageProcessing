@@ -290,7 +290,7 @@ void ItkKMeans::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance
@@ -319,14 +319,14 @@ AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters)
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getCompiledLibraryName()
+const QString ItkKMeans::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getGroupName()
+const QString ItkKMeans::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -341,13 +341,13 @@ const QUuid ItkKMeans::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getSubGroupName()
+const QString ItkKMeans::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getHumanLabel()
+const QString ItkKMeans::getHumanLabel() const
 { return "K Means (ImageProcessing)"; }
 

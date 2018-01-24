@@ -299,7 +299,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkConvertArrayTo8BitImageAttributeMatrix::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkConvertArrayTo8BitImageAttributeMatrix::newFilterInstance(bool copyFilterParameters) const
 {
   ItkConvertArrayTo8BitImageAttributeMatrix::Pointer filter = ItkConvertArrayTo8BitImageAttributeMatrix::New();
   if(true == copyFilterParameters)
@@ -312,7 +312,7 @@ AbstractFilter::Pointer ItkConvertArrayTo8BitImageAttributeMatrix::newFilterInst
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -320,7 +320,7 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getCompiledLibraryName(
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getBrandingString()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getBrandingString() const
 {
   return "ImageProcessing";
 }
@@ -328,7 +328,7 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getFilterVersion()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -339,7 +339,7 @@ const QString ItkConvertArrayTo8BitImageAttributeMatrix::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getGroupName()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getGroupName() const
 { return SIMPL::FilterGroups::Unsupported; }
 
 
@@ -354,13 +354,13 @@ const QUuid ItkConvertArrayTo8BitImageAttributeMatrix::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getSubGroupName()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getSubGroupName() const
 { return "Misc"; }
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImageAttributeMatrix::getHumanLabel()
+const QString ItkConvertArrayTo8BitImageAttributeMatrix::getHumanLabel() const
 { return "Convert Array to 8 Bit Image Attribute Matrix (ImageProcessing)"; }
 

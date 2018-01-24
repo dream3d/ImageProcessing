@@ -446,7 +446,7 @@ void ItkReadImage::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkReadImage::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkReadImage::newFilterInstance(bool copyFilterParameters) const
 {
   ItkReadImage::Pointer filter = ItkReadImage::New();
   if(true == copyFilterParameters)
@@ -460,14 +460,14 @@ AbstractFilter::Pointer ItkReadImage::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkReadImage::getCompiledLibraryName()
+const QString ItkReadImage::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkReadImage::getGroupName()
+const QString ItkReadImage::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -482,13 +482,13 @@ const QUuid ItkReadImage::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkReadImage::getSubGroupName()
+const QString ItkReadImage::getSubGroupName() const
 {return "IO";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkReadImage::getHumanLabel()
+const QString ItkReadImage::getHumanLabel() const
 { return "Import Image (ImageProcessing)"; }
 

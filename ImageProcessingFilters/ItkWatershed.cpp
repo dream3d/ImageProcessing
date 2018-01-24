@@ -212,7 +212,7 @@ void ItkWatershed::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkWatershed::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkWatershed::newFilterInstance(bool copyFilterParameters) const
 {
   ItkWatershed::Pointer filter = ItkWatershed::New();
   if(true == copyFilterParameters)
@@ -226,14 +226,14 @@ AbstractFilter::Pointer ItkWatershed::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getCompiledLibraryName()
+const QString ItkWatershed::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getGroupName()
+const QString ItkWatershed::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -248,13 +248,13 @@ const QUuid ItkWatershed::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getSubGroupName()
+const QString ItkWatershed::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getHumanLabel()
+const QString ItkWatershed::getHumanLabel() const
 { return "Watershed Filter (ImageProcessing)"; }
 

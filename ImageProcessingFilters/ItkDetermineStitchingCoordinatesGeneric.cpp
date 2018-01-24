@@ -481,7 +481,7 @@ QVector<qint32> ItkDetermineStitchingCoordinatesGeneric::extractIntegerValues(QS
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDetermineStitchingCoordinatesGeneric::getCompiledLibraryName()
+const QString ItkDetermineStitchingCoordinatesGeneric::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -489,7 +489,7 @@ const QString ItkDetermineStitchingCoordinatesGeneric::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDetermineStitchingCoordinatesGeneric::getGroupName()
+const QString ItkDetermineStitchingCoordinatesGeneric::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -497,7 +497,7 @@ const QString ItkDetermineStitchingCoordinatesGeneric::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDetermineStitchingCoordinatesGeneric::getHumanLabel()
+const QString ItkDetermineStitchingCoordinatesGeneric::getHumanLabel() const
 {
   return "Determine Stitching Coordinates (Generic)";
 }
@@ -513,7 +513,7 @@ const QUuid ItkDetermineStitchingCoordinatesGeneric::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDetermineStitchingCoordinatesGeneric::getSubGroupName()
+const QString ItkDetermineStitchingCoordinatesGeneric::getSubGroupName() const
 {
   return "Misc";
 }
@@ -521,7 +521,7 @@ const QString ItkDetermineStitchingCoordinatesGeneric::getSubGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkDetermineStitchingCoordinatesGeneric::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkDetermineStitchingCoordinatesGeneric::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance

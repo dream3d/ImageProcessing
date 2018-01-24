@@ -377,7 +377,7 @@ void ItkRGBToGray::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkRGBToGray::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkRGBToGray::newFilterInstance(bool copyFilterParameters) const
 {
   ItkRGBToGray::Pointer filter = ItkRGBToGray::New();
   if(true == copyFilterParameters)
@@ -390,7 +390,7 @@ AbstractFilter::Pointer ItkRGBToGray::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkRGBToGray::getCompiledLibraryName()
+const QString ItkRGBToGray::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -398,7 +398,7 @@ const QString ItkRGBToGray::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkRGBToGray::getGroupName()
+const QString ItkRGBToGray::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -414,7 +414,7 @@ const QUuid ItkRGBToGray::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkRGBToGray::getSubGroupName()
+const QString ItkRGBToGray::getSubGroupName() const
 {
   return "Misc";
 }
@@ -422,7 +422,7 @@ const QString ItkRGBToGray::getSubGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkRGBToGray::getHumanLabel()
+const QString ItkRGBToGray::getHumanLabel() const
 {
   return "Convert RGB to Grayscale (ImageProcessing)";
 }

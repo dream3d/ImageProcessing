@@ -111,7 +111,7 @@ void ImageRegistration::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageRegistration::getCompiledLibraryName()
+const QString ImageRegistration::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -119,7 +119,7 @@ const QString ImageRegistration::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageRegistration::getGroupName()
+const QString ImageRegistration::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -127,7 +127,7 @@ const QString ImageRegistration::getGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageRegistration::getHumanLabel()
+const QString ImageRegistration::getHumanLabel() const
 {
   return "ImageRegistration";
 }
@@ -143,7 +143,7 @@ const QUuid ItkImageRegistration::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ImageRegistration::getSubGroupName()
+const QString ImageRegistration::getSubGroupName() const
 {
   return "Misc";
 }
@@ -169,7 +169,7 @@ void ImageRegistration::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ImageRegistration::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ImageRegistration::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance

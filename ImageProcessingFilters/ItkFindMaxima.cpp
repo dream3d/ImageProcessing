@@ -304,7 +304,7 @@ void ItkFindMaxima::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkFindMaxima::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkFindMaxima::newFilterInstance(bool copyFilterParameters) const
 {
   ItkFindMaxima::Pointer filter = ItkFindMaxima::New();
   if(true == copyFilterParameters)
@@ -318,14 +318,14 @@ AbstractFilter::Pointer ItkFindMaxima::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getCompiledLibraryName()
+const QString ItkFindMaxima::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getGroupName()
+const QString ItkFindMaxima::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -340,13 +340,13 @@ const QUuid ItkFindMaxima::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getSubGroupName()
+const QString ItkFindMaxima::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getHumanLabel()
+const QString ItkFindMaxima::getHumanLabel() const
 { return "Find Maxima (ImageProcessing)"; }
 

@@ -252,7 +252,7 @@ void ItkMultiOtsuThreshold::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkMultiOtsuThreshold::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkMultiOtsuThreshold::newFilterInstance(bool copyFilterParameters) const
 {
   /*
   * write code to optionally copy the filter parameters from the current filter into the new instance
@@ -281,14 +281,14 @@ AbstractFilter::Pointer ItkMultiOtsuThreshold::newFilterInstance(bool copyFilter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getCompiledLibraryName()
+const QString ItkMultiOtsuThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getGroupName()
+const QString ItkMultiOtsuThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -303,13 +303,13 @@ const QUuid ItkMultiOtsuThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getSubGroupName()
+const QString ItkMultiOtsuThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getHumanLabel()
+const QString ItkMultiOtsuThreshold::getHumanLabel() const
 { return "Multi Level Otsu Threshold (ImageProcessing)"; }
 

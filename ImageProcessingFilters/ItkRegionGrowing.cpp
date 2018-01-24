@@ -199,7 +199,7 @@ void RegionGrowing::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer RegionGrowing::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer RegionGrowing::newFilterInstance(bool copyFilterParameters) const
 {
   RegionGrowing::Pointer filter = RegionGrowing::New();
   if(true == copyFilterParameters)
@@ -213,14 +213,14 @@ AbstractFilter::Pointer RegionGrowing::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString RegionGrowing::getCompiledLibraryName()
+const QString RegionGrowing::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString RegionGrowing::getGroupName()
+const QString RegionGrowing::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -235,13 +235,13 @@ const QUuid ItkRegionGrowing::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString RegionGrowing::getSubGroupName()
+const QString RegionGrowing::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString RegionGrowing::getHumanLabel()
+const QString RegionGrowing::getHumanLabel() const
 { return "Region Growing (ImageProcessing)"; }
 

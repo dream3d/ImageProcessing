@@ -389,7 +389,7 @@ void ItkManualThresholdTemplate::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkManualThresholdTemplate::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkManualThresholdTemplate::newFilterInstance(bool copyFilterParameters) const
 {
   ItkManualThresholdTemplate::Pointer filter = ItkManualThresholdTemplate::New();
   if(true == copyFilterParameters)
@@ -403,14 +403,14 @@ AbstractFilter::Pointer ItkManualThresholdTemplate::newFilterInstance(bool copyF
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThresholdTemplate::getCompiledLibraryName()
+const QString ItkManualThresholdTemplate::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThresholdTemplate::getGroupName()
+const QString ItkManualThresholdTemplate::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -425,13 +425,13 @@ const QUuid ItkManualThresholdTemplate::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThresholdTemplate::getSubGroupName()
+const QString ItkManualThresholdTemplate::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThresholdTemplate::getHumanLabel()
+const QString ItkManualThresholdTemplate::getHumanLabel() const
 { return "Threshold Image Template (Manual - Single Level) (ImageProcessing)"; }
 

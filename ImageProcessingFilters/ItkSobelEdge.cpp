@@ -270,7 +270,7 @@ void ItkSobelEdge::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkSobelEdge::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkSobelEdge::newFilterInstance(bool copyFilterParameters) const
 {
   ItkSobelEdge::Pointer filter = ItkSobelEdge::New();
   if(true == copyFilterParameters)
@@ -284,14 +284,14 @@ AbstractFilter::Pointer ItkSobelEdge::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getCompiledLibraryName()
+const QString ItkSobelEdge::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getGroupName()
+const QString ItkSobelEdge::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -306,13 +306,13 @@ const QUuid ItkSobelEdge::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getSubGroupName()
+const QString ItkSobelEdge::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getHumanLabel()
+const QString ItkSobelEdge::getHumanLabel() const
 { return "Sobel Edge Detector (ImageProcessing)"; }
 

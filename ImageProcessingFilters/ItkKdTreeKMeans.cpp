@@ -283,7 +283,7 @@ void ItkKdTreeKMeans::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer ItkKdTreeKMeans::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer ItkKdTreeKMeans::newFilterInstance(bool copyFilterParameters) const
 {
   ItkKdTreeKMeans::Pointer filter = ItkKdTreeKMeans::New();
   if(true == copyFilterParameters)
@@ -297,14 +297,14 @@ AbstractFilter::Pointer ItkKdTreeKMeans::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getCompiledLibraryName()
+const QString ItkKdTreeKMeans::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getGroupName()
+const QString ItkKdTreeKMeans::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
@@ -319,13 +319,13 @@ const QUuid ItkKdTreeKMeans::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getSubGroupName()
+const QString ItkKdTreeKMeans::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getHumanLabel()
+const QString ItkKdTreeKMeans::getHumanLabel() const
 { return "K-d Tree K Means (ImageProcessing)"; }
 
