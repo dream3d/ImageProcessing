@@ -1,4 +1,4 @@
-Image Calculator {#itkimagecalculator}
+Image Calculator 
 =====
 
 ## Group (Subgroup) ##

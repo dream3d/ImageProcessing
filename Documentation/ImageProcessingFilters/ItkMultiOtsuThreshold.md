@@ -1,4 +1,4 @@
-Multi Level Otsu Threshold (ImageProcessing) {#itkmultiotsuthreshold}
+Multi Level Otsu Threshold (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

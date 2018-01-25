@@ -1,4 +1,4 @@
-Determine Stitching Coordinates Generic {#itkdeterminestitchingcoordinatesgeneric}
+Determine Stitching Coordinates Generic 
 =====
 
 

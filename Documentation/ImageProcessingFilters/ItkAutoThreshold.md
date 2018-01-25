@@ -1,4 +1,4 @@
-Threshold Image (Auto) (Image Processing) {#itkautothreshold}
+Threshold Image (Auto) (Image Processing) 
 =====
 
 ## Group (Subgroup) ##

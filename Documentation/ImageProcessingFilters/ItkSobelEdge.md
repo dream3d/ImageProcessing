@@ -1,4 +1,4 @@
-Sobel Edge Detector (ImageProcessing) {#itksobeledge}
+Sobel Edge Detector (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

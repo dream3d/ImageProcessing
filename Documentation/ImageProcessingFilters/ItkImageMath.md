@@ -1,4 +1,4 @@
-Image Math {#itkimagemath}
+Image Math 
 =====
 
 ## Group (Subgroup) ##

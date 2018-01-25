@@ -1,4 +1,4 @@
-Stitch Images (ImageProcessing) {#itkstitchimages}
+Stitch Images (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

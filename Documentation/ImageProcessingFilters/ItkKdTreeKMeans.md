@@ -1,4 +1,4 @@
-K-d Tree K-Means Clustering {#itkkdtreekmeans}
+K-d Tree K-Means Clustering 
 =====
 
 ## Group (Subgroup) ##

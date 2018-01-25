@@ -1,4 +1,4 @@
-Export Tiff Image Stack (ImageProcessing) {#itkwriteimage}
+Export Tiff Image Stack (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

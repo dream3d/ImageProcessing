@@ -1,4 +1,4 @@
-Find Maxima (ImageProcessing) {#itkfindmaxima}
+Find Maxima (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

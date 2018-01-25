@@ -1,4 +1,4 @@
-Hough Circle Detection (ImageProcessing) {#itkhoughcircles}
+Hough Circle Detection (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

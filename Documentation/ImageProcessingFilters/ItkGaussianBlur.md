@@ -1,4 +1,4 @@
-Gaussian Blur (ImageProcessing) {#itkgaussianblur}
+Gaussian Blur (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

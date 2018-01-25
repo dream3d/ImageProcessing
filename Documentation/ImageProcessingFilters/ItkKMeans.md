@@ -1,4 +1,4 @@
-K Means (ImageProcessing) {#itkkmeans}
+K Means (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

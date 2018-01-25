@@ -1,4 +1,4 @@
-Convert Grayscale to RGB (Merge Channels) (ImageProcessing) {#itkgraytorgb}
+Convert Grayscale to RGB (Merge Channels) (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##

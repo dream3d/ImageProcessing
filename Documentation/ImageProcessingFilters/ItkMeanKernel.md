@@ -1,4 +1,4 @@
-Mean (Kernel) (ImageProcessing) {#itkmeankernel}
+Mean (Kernel) (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##
