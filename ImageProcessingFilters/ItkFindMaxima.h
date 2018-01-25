@@ -117,7 +117,7 @@ class ItkFindMaxima : public AbstractFilter
     * @param reader The reader that is used to read the options from a file
     * @param index The index to read the information from
     */
-    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index);
+    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
 
     /**
      * @brief Reimplemented from @see AbstractFilter class

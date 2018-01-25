@@ -90,7 +90,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
 
     virtual void setupFilterParameters() override;
     virtual int writeFilterParameters(AbstractFilterParametersWriter* writer, int index);
-    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index);
+    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
 
   private:
     DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
