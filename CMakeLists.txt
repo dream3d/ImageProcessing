@@ -272,15 +272,6 @@ else()
   message( WARNING "unsupported ${PLUGIN_NAME}_BitDepth (default bitdepth will be used)" )
 endif()
 
-if(APPLE)
-  target_include_directories(${PLUGIN_NAME}
-                              PUBLIC
-                                ${SimpleITKExplicit_BINARY_DIR}/Common/include
-                                ${SimpleITKExplicit_SOURCE_DIR}/Explicit/include
-  )
-endif()
-
-
 # --------------------------------------------------------------------
 # Set some additional properties of the plugin like its output name
 PluginProperties(${PLUGIN_NAME} "_debug" "${DREAM3D_VERSION}"
