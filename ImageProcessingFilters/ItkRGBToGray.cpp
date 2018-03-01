@@ -233,7 +233,7 @@ void ItkRGBToGray::dataCheck()
   QVector<size_t> tDims = inAM->getTupleDimensions();
   DataContainerArray::Pointer dca = getDataContainerArray();
   DataContainer::Pointer dc = dca->getDataContainer(inputAMPath.getDataContainerName());
-  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix<AbstractFilter>(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
   if(getErrorCondition() < 0 || nullptr == outAM.get())
   {
     return;

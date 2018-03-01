@@ -258,7 +258,7 @@ void ImportRegisteredImageMontage::dataCheck()
 		tDims[2] = zdim;
 
 		if (!m->doesAttributeMatrixExist(getCellAttributeMatrixName()))
-		{ m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell); }
+		{ m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell); }
 		if (getErrorCondition() < 0) { return; }
 
 		// Set up the component dimmensions

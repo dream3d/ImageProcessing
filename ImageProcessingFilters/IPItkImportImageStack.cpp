@@ -274,7 +274,7 @@ void IPItkImportImageStack::dataCheck()
     tDims[1] = ydim;
     tDims[2] = zdim;
 
-    m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
 
     //check pixel type (scalar, vector, etc) for support
     QVector<size_t> componentDims(1, 0);

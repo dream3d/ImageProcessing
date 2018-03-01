@@ -250,7 +250,7 @@ void ItkReadImage::dataCheck()
   if(createAttributeMatrix)
   {
     //create attribute matrix
-    cellAttrMat = m->createNonPrereqAttributeMatrix<AbstractFilter>(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    cellAttrMat = m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
     if(getErrorCondition() < 0) { return; }
   }
 

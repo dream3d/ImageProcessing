@@ -222,7 +222,7 @@ void ItkGrayToRGB::dataCheck()
 
   DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getRedArrayPath().getDataContainerName() );
   if(getErrorCondition() < 0) { return; }
-  AttributeMatrix::Pointer redAM = redDC->getPrereqAttributeMatrix<AbstractFilter>(this, getRedArrayPath().getAttributeMatrixName(), 80000);
+  AttributeMatrix::Pointer redAM = redDC->getPrereqAttributeMatrix(this, getRedArrayPath().getAttributeMatrixName(), 80000);
   if(getErrorCondition() < 0) { return; }
   IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getRedArrayPath().getDataArrayName(), 80000);
   if(getErrorCondition() < 0) { return; }

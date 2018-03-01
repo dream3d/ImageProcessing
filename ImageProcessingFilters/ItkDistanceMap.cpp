@@ -194,8 +194,7 @@ void FindMaxima::dataCheck()
   //configured created name / location
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
-  DataContainer::Pointer dataContiner = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayPath().getDataContainerName() );
-  AttributeMatrix::Pointer attrMatrix = dataContiner->getPrereqAttributeMatrix<AbstractFilter>(this, getSelectedCellArrayPath().getAttributeMatrixName(), 80000);
+  DataContainer::Pointer dataContiner = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayPath().getDataContainerName() );
   IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
 
   //create new boolean array

@@ -193,9 +193,9 @@ void ItkFindMaxima::dataCheck()
   //configured created name / location
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
-  DataContainer::Pointer dataContiner = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayPath().getDataContainerName() );
+  DataContainer::Pointer dataContiner = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayPath().getDataContainerName() );
   if(getErrorCondition() < 0) { return; }
-  AttributeMatrix::Pointer attrMatrix = dataContiner->getPrereqAttributeMatrix<AbstractFilter>(this, getSelectedCellArrayPath().getAttributeMatrixName(), 80000);
+  AttributeMatrix::Pointer attrMatrix = dataContiner->getPrereqAttributeMatrix(this, getSelectedCellArrayPath().getAttributeMatrixName(), 80000);
   if(getErrorCondition() < 0) { return; }
   IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
   if(getErrorCondition() < 0 || nullptr == redArrayptr.get()) { return; }
