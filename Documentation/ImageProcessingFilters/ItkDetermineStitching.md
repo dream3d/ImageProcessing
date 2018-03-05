@@ -1,4 +1,4 @@
-Image Math {#itkdeterminestitching}
+Image Math 
 =====
 
 ## Group (Subgroup) ##

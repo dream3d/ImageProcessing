@@ -1,4 +1,4 @@
-Align Sections Phase Correlation {#itkalignsectionsphasecorrelation}
+Align Sections Phase Correlation 
 =====
 
 ## Group (Subgroup) ##

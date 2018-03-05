@@ -1,4 +1,4 @@
-Convert Array To 8 Bit Image {#itkconvertarrayto8bitimage}
+Convert Array To 8 Bit Image 
 =====
 
 ## Group (Subgroup) ##
