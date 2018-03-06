@@ -100,7 +100,7 @@ class ManualThresholdTemplatePrivate
       typename BinaryThresholdImageFilterType::Pointer thresholdFilter = BinaryThresholdImageFilterType::New();
       thresholdFilter->SetInput(inputImage);
       thresholdFilter->SetLowerThreshold(manParameter);
-      thresholdFilter->SetUpperThreshold(255);
+      thresholdFilter->SetUpperThreshold(0xFF);
       thresholdFilter->SetInsideValue(255);
       thresholdFilter->SetOutsideValue(0);
       thresholdFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
