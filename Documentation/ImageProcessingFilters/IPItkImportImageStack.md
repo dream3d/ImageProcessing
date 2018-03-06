@@ -1,4 +1,4 @@
-Import 3D Image Stack (ImageProcessing) {#ipitkimportimagestack}
+Import 3D Image Stack (ImageProcessing) 
 =============
 
 ## Group (Subgroup) ##

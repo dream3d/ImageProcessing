@@ -1,4 +1,4 @@
-ImageProcessingFilter {#itkimageprocessingfilter}
+ImageProcessingFilter 
 =====
 
 ## Group (Subgroup) ##

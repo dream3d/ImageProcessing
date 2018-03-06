@@ -1,4 +1,4 @@
-Region Growing (ImageProcessing) {#itkregiongrowing}
+Region Growing (ImageProcessing) 
 =====
 
 ## Group (Subgroup) ##
