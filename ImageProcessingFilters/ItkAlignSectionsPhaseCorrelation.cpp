@@ -72,7 +72,7 @@ class AlignSectionsPhaseCorrelationPrivate
     {
       //get volume dimensions
       size_t udims[3] = {0, 0, 0};
-      m->getGeometryAs<ImageGeom>()->getDimensions(udims);
+      std::tie(udims[0], udims[1], udims[2]) = m->getGeometryAs<ImageGeom>()->getDimensions();
 
       int64_t dims[3] =
       {
