@@ -187,7 +187,7 @@ void ItkReadImage::dataCheck()
     size_t iDims[3] = { 0, 0, 0 };
     float iRes[3] = { 0.0f, 0.0f, 0.0f };
     float iOrigin[4] = { 0.0f, 0.0f, 0.0f };
-    image->getDimensions(iDims);
+    std::tie(iDims[0], iDims[1], iDims[2]) = image->getDimensions();
     image->getResolution(iRes);
     image->getOrigin(iOrigin);
 

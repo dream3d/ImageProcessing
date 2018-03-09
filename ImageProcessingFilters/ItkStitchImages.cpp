@@ -195,7 +195,12 @@ void ItkStitchImages::dataCheck()
   m2->setGeometry(image);
 
   //Keep Resolution the same as original images
-  m2->getGeometryAs<ImageGeom>()->setResolution(m->getGeometryAs<ImageGeom>()->getXRes(), m->getGeometryAs<ImageGeom>()->getYRes(), m->getGeometryAs<ImageGeom>()->getZRes());
+  float xRes = 0.0f;
+  float yRes = 0.0f;
+  float zRes = 0.0f;
+  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getResolution();
+
+  m2->getGeometryAs<ImageGeom>()->setResolution(xRes, yRes, zRes);
   //Set origin to zero
   m2->getGeometryAs<ImageGeom>()->setOrigin(0, 0, 0);
 

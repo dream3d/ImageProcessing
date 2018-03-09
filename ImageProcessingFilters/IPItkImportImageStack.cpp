@@ -435,11 +435,11 @@ void IPItkImportImageStack::execute()
   {
     m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
     m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
-    m->getGeometryAs<ImageGeom>()->getDimensions(width, height, depth);
+    std::tie(width, height, depth) = m->getGeometryAs<ImageGeom>()->getDimensions();
   }
   else if (m_GeometryType == 1)
   {
-    m->getGeometryAs<RectGridGeom>()->getDimensions(width, height, depth);
+    std::tie(width, height, depth) = m->getGeometryAs<RectGridGeom>()->getDimensions();
     int err = readBounds();
     if (err < 0) return;
   }
@@ -553,7 +553,7 @@ int IPItkImportImageStack::readBounds()
 {
   size_t dims[3];
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getDataContainerName());
-  m->getGeometryAs<RectGridGeom>()->getDimensions(dims);
+  m->getGeometryAs<RectGridGeom>() std::tie(dims[0], dims[1], dims[2]) =->getDimensions();
 
   FloatArrayType::Pointer xbounds = FloatArrayType::CreateArray(dims[0] + 1, SIMPL::Geometry::xBoundsList);
   FloatArrayType::Pointer ybounds = FloatArrayType::CreateArray(dims[1] + 1, SIMPL::Geometry::yBoundsList);
