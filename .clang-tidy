@@ -1,0 +1,15 @@
+---
+Checks:          'modernize-use-using'
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+AnalyzeTemporaryDtors: false
+FormatStyle:     file
+User:            mjackson
+CheckOptions:    
+  - key:             modernize-use-nullptr.NullMacros
+    value:           'NULL'
+  - key:             clang-analyzer-optin.cplusplus.VirtualCall
+    value:           'False' 
+
+
+

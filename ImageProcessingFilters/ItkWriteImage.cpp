@@ -249,7 +249,7 @@ void ItkWriteImage::dataCheck()
   //pass empty dimensions to allow any size
   QVector<size_t> compDims;
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }

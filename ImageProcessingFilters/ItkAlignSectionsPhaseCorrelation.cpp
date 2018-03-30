@@ -215,7 +215,7 @@ void AlignSectionsPhaseCorrelation::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }

@@ -59,7 +59,7 @@
 template <typename T> class RGBToGrayPrivate
 {
 public:
-  typedef DataArray<T> DataArrayType;
+  using DataArrayType = DataArray<T>;
 
   RGBToGrayPrivate()
   {
@@ -135,13 +135,8 @@ private:
 //
 // -----------------------------------------------------------------------------
 ItkRGBToGray::ItkRGBToGray()
-: AbstractFilter()
-//  m_SelectedCellArrayArrayPath("", "", ""),
-//  m_NewCellArrayName(""),
-, m_OutputAttributeMatrixName("")
+: m_OutputAttributeMatrixName("")
 , m_OutputArrayPrefix("GrayScale_")
-//, m_SelectedCellArray(nullptr)
-//, m_NewCellArray(nullptr)
 {
   m_ColorWeights.x = 0.2125f;
   m_ColorWeights.y = 0.7154f;

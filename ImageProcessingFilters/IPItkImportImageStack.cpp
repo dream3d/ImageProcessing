@@ -361,7 +361,7 @@ void IPItkImportImageStack::dataCheck()
     if(getErrorCondition() < 0) { return; }
 
     m_ImageDataPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, createdPath, componentDims, data);
-    if( nullptr != m_ImageDataPtr.lock().get() )
+    if(nullptr != m_ImageDataPtr.lock())
     {
       m_ImageData = m_ImageDataPtr.lock()->getVoidPointer(0);
     }
