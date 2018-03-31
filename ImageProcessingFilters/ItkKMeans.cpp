@@ -52,17 +52,15 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkKMeans::ItkKMeans() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Slice(false),
-  m_Classes(2),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkKMeans::ItkKMeans()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Slice(false)
+, m_Classes(2)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

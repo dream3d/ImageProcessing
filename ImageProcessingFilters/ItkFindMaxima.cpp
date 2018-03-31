@@ -120,15 +120,13 @@ class FindMaximaPrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkFindMaxima::ItkFindMaxima() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_Tolerance(1.0),
-  m_NewCellArrayName("Maxima"),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkFindMaxima::ItkFindMaxima()
+: m_SelectedCellArrayPath("", "", "")
+, m_Tolerance(1.0)
+, m_NewCellArrayName("Maxima")
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

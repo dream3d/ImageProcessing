@@ -48,15 +48,13 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkReadImage::ItkReadImage() :
-  AbstractFilter(),
-  m_InputFileName(""),
-  m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
-  m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
-  m_ImageDataArrayName(SIMPL::CellData::ImageData),
-  m_ImageData(nullptr)
+ItkReadImage::ItkReadImage()
+: m_InputFileName("")
+, m_DataContainerName(SIMPL::Defaults::ImageDataContainerName)
+, m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName)
+, m_ImageDataArrayName(SIMPL::CellData::ImageData)
+, m_ImageData(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

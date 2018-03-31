@@ -125,18 +125,16 @@ class GrayToRGBPrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkGrayToRGB::ItkGrayToRGB() :
-  AbstractFilter(),
-  m_RedArrayPath("", "", ""),
-  m_GreenArrayPath("", "", ""),
-  m_BlueArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_Red(nullptr),
-  m_Green(nullptr),
-  m_Blue(nullptr),
-  m_NewCellArray(nullptr)
+ItkGrayToRGB::ItkGrayToRGB()
+: m_RedArrayPath("", "", "")
+, m_GreenArrayPath("", "", "")
+, m_BlueArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_Red(nullptr)
+, m_Green(nullptr)
+, m_Blue(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

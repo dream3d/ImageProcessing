@@ -123,16 +123,14 @@ class ManualThresholdTemplatePrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkManualThresholdTemplate::ItkManualThresholdTemplate() :
-  AbstractFilter(),
-  m_SelectedCellArrayArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_ManualParameter(128),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkManualThresholdTemplate::ItkManualThresholdTemplate()
+: m_SelectedCellArrayArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_ManualParameter(128)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

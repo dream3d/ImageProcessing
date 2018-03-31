@@ -52,18 +52,16 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkHoughCircles::ItkHoughCircles() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_MinRadius(0),
-  m_MaxRadius(0),
-  m_NumberCircles(0),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkHoughCircles::ItkHoughCircles()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_MinRadius(0)
+, m_MaxRadius(0)
+, m_NumberCircles(0)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

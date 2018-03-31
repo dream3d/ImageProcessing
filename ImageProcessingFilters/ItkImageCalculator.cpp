@@ -60,17 +60,15 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkImageCalculator::ItkImageCalculator() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath1("", "", ""),
-  m_SelectedCellArrayPath2("", "", ""),
-  m_NewCellArrayName(""),
-  m_Operator(0),
-  m_SelectedCellArray1(nullptr),
-  m_SelectedCellArray2(nullptr),
-  m_NewCellArray(nullptr)
+ItkImageCalculator::ItkImageCalculator()
+: m_SelectedCellArrayPath1("", "", "")
+, m_SelectedCellArrayPath2("", "", "")
+, m_NewCellArrayName("")
+, m_Operator(0)
+, m_SelectedCellArray1(nullptr)
+, m_SelectedCellArray2(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

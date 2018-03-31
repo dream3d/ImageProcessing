@@ -55,18 +55,16 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkStitchImages::ItkStitchImages() :
-  AbstractFilter(),
-  m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, ""),
-  m_StitchedCoordinatesArrayPath(SIMPL::Defaults::ImageDataContainerName, "", ""),
-  m_AttributeArrayNamesPath(),
-  m_StitchedVolumeDataContainerName("MontagedImageDataContainer"),
-  m_StitchedImagesArrayName("Montage"),
-  m_StitchedAttributeMatrixName("MontageAttributeMatrix"),
-  m_StitchedCoordinates(nullptr),
-  m_StitchedImageArray(nullptr)
+ItkStitchImages::ItkStitchImages()
+: m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, "")
+, m_StitchedCoordinatesArrayPath(SIMPL::Defaults::ImageDataContainerName, "", "")
+, m_AttributeArrayNamesPath()
+, m_StitchedVolumeDataContainerName("MontagedImageDataContainer")
+, m_StitchedImagesArrayName("Montage")
+, m_StitchedAttributeMatrixName("MontageAttributeMatrix")
+, m_StitchedCoordinates(nullptr)
+, m_StitchedImageArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

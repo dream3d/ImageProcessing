@@ -71,18 +71,16 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkAutoThreshold::ItkAutoThreshold() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Slice(false),
-  m_Method(7),
-  m_ManualParameter(128),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkAutoThreshold::ItkAutoThreshold()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Slice(false)
+, m_Method(7)
+, m_ManualParameter(128)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

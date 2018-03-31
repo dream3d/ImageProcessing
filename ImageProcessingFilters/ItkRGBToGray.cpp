@@ -141,7 +141,6 @@ ItkRGBToGray::ItkRGBToGray()
   m_ColorWeights.x = 0.2125f;
   m_ColorWeights.y = 0.7154f;
   m_ColorWeights.z = 0.0721f;
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

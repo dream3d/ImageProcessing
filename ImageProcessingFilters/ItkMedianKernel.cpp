@@ -51,19 +51,17 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkMedianKernel::ItkMedianKernel() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Slice(false),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkMedianKernel::ItkMedianKernel()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Slice(false)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
   m_KernelSize.x = 1;
   m_KernelSize.y = 1;
   m_KernelSize.z = 1;
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

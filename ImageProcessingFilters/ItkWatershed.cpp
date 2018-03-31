@@ -53,16 +53,14 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkWatershed::ItkWatershed() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_FeatureIdsArrayName(SIMPL::CellData::FeatureIds),
-  m_Threshold(0.005f),
-  m_Level(0.5f),
-  m_SelectedCellArray(nullptr),
-  m_FeatureIds(nullptr)
+ItkWatershed::ItkWatershed()
+: m_SelectedCellArrayPath("", "", "")
+, m_FeatureIdsArrayName(SIMPL::CellData::FeatureIds)
+, m_Threshold(0.005f)
+, m_Level(0.5f)
+, m_SelectedCellArray(nullptr)
+, m_FeatureIds(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

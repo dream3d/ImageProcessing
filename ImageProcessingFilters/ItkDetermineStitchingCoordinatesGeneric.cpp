@@ -25,7 +25,6 @@
 //
 // -----------------------------------------------------------------------------
 ItkDetermineStitchingCoordinatesGeneric::ItkDetermineStitchingCoordinatesGeneric() :
-AbstractFilter(),
   m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""),
   m_ImportMode(0),
   m_xTileDim(3),
@@ -37,7 +36,6 @@ AbstractFilter(),
   m_StitchedCoordinatesArrayName("StitchedCoordinates"),
   m_StitchedArrayNames("StitchedArrayNames")
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

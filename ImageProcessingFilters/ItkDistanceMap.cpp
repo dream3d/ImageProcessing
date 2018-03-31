@@ -122,13 +122,12 @@ class FindMaximaPrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-FindMaxima::FindMaxima() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName("Maxima"),
-  m_MinValue(1.0),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+FindMaxima::FindMaxima()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("Maxima")
+, m_MinValue(1.0)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }

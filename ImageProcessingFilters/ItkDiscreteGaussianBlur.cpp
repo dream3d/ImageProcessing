@@ -52,16 +52,14 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkDiscreteGaussianBlur::ItkDiscreteGaussianBlur() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Stdev(2.0),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkDiscreteGaussianBlur::ItkDiscreteGaussianBlur()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Stdev(2.0)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

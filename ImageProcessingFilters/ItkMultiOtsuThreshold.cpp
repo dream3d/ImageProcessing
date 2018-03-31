@@ -52,17 +52,15 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkMultiOtsuThreshold::ItkMultiOtsuThreshold() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Slice(false),
-  m_Levels(1),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkMultiOtsuThreshold::ItkMultiOtsuThreshold()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Slice(false)
+, m_Levels(1)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

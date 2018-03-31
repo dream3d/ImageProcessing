@@ -45,15 +45,14 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-RegionGrowing::RegionGrowing() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_ManualParameter(128),
-  m_SelectedCellArrayArrayName(""),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+RegionGrowing::RegionGrowing()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_ManualParameter(128)
+, m_SelectedCellArrayArrayName("")
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
   setupFilterParameters();
 }

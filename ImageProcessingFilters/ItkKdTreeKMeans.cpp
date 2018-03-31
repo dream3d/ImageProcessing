@@ -166,14 +166,12 @@ class itkKdTreeKMeansTemplate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkKdTreeKMeans::ItkKdTreeKMeans() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName("ClassLabels"),
-  m_Classes(2),
-  m_NewCellArray(nullptr)
+ItkKdTreeKMeans::ItkKdTreeKMeans()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("ClassLabels")
+, m_Classes(2)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

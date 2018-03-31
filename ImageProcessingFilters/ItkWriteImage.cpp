@@ -172,13 +172,11 @@ class WriteImagePrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkWriteImage::ItkWriteImage() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_OutputFileName(""),
-  m_SelectedCellArray(nullptr)
+ItkWriteImage::ItkWriteImage()
+: m_SelectedCellArrayPath("", "", "")
+, m_OutputFileName("")
+, m_SelectedCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

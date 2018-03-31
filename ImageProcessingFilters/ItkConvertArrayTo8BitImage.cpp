@@ -50,13 +50,11 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage() :
-  AbstractFilter(),
-  m_SelectedArrayPath("", "", ""),
-  m_NewArrayArrayName(""),
-  m_NewArray(nullptr)
+ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage()
+: m_SelectedArrayPath("", "", "")
+, m_NewArrayArrayName("")
+, m_NewArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

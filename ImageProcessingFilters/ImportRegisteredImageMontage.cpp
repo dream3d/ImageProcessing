@@ -32,15 +32,15 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ImportRegisteredImageMontage::ImportRegisteredImageMontage() :
-  AbstractFilter(),
-  m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
-  m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
-  m_MetaDataAttributeMatrixName("MetaDataAttributeMatrix"),
-//  m_RegistrationFile(""),
-  m_RegistrationCoordinatesArrayName("RegistrationCoordinates"),
-  m_AttributeArrayNamesArrayName("AttributeArrayNames"),
-  m_RegistrationCoordinates(nullptr)
+ImportRegisteredImageMontage::ImportRegisteredImageMontage()
+: m_DataContainerName(SIMPL::Defaults::ImageDataContainerName)
+, m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName)
+, m_MetaDataAttributeMatrixName("MetaDataAttributeMatrix")
+,
+    //  m_RegistrationFile(""),
+    m_RegistrationCoordinatesArrayName("RegistrationCoordinates")
+, m_AttributeArrayNamesArrayName("AttributeArrayNames")
+, m_RegistrationCoordinates(nullptr)
 {
   m_Origin.x = 0.0;
   m_Origin.y = 0.0;
@@ -57,7 +57,6 @@ ImportRegisteredImageMontage::ImportRegisteredImageMontage() :
 
   m_NumImages = 0;
 
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

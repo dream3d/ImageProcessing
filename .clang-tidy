@@ -9,7 +9,7 @@ CheckOptions:
   - key:             modernize-use-nullptr.NullMacros
     value:           'NULL'
   - key:             clang-analyzer-optin.cplusplus.VirtualCall
-    value:           'False' 
+    value:           0
 
 
 

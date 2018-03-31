@@ -28,15 +28,13 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkBinaryWatershedLabeled::ItkBinaryWatershedLabeled() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_PeakTolerance(1.0),
-  m_NewCellArrayName("BinaryWatershedLabeled"),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkBinaryWatershedLabeled::ItkBinaryWatershedLabeled()
+: m_SelectedCellArrayPath("", "", "")
+, m_PeakTolerance(1.0)
+, m_NewCellArrayName("BinaryWatershedLabeled")
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
