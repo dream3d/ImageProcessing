@@ -188,7 +188,7 @@ class ItkStitchImages : public AbstractFilter
   public:
     ItkStitchImages(const ItkStitchImages&) = delete; // Copy Constructor Not Implemented
     ItkStitchImages(ItkStitchImages&&) = delete;      // Move Constructor
-    ItkStitchImages& operator=(const ItkStitchImages&) = delete; // Copy Assignment
+    ItkStitchImages& operator=(const ItkStitchImages&) = delete; // Copy Assignment Not Implemented
     ItkStitchImages& operator=(ItkStitchImages&&) = delete;      // Move Assignment
 };
 

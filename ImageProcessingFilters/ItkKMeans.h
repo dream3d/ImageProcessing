@@ -186,7 +186,7 @@ class ItkKMeans : public AbstractFilter
   public:
     ItkKMeans(const ItkKMeans&) = delete;      // Copy Constructor Not Implemented
     ItkKMeans(ItkKMeans&&) = delete;           // Move Constructor
-    ItkKMeans& operator=(const ItkKMeans&) = delete; // Copy Assignment
+    ItkKMeans& operator=(const ItkKMeans&) = delete; // Copy Assignment Not Implemented
     ItkKMeans& operator=(ItkKMeans&&) = delete;      // Move Assignment
 };
 

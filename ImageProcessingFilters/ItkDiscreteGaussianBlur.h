@@ -179,7 +179,7 @@ class ItkDiscreteGaussianBlur : public AbstractFilter
   public:
     ItkDiscreteGaussianBlur(const ItkDiscreteGaussianBlur&) = delete; // Copy Constructor Not Implemented
     ItkDiscreteGaussianBlur(ItkDiscreteGaussianBlur&&) = delete;      // Move Constructor
-    ItkDiscreteGaussianBlur& operator=(const ItkDiscreteGaussianBlur&) = delete; // Copy Assignment
+    ItkDiscreteGaussianBlur& operator=(const ItkDiscreteGaussianBlur&) = delete; // Copy Assignment Not Implemented
     ItkDiscreteGaussianBlur& operator=(ItkDiscreteGaussianBlur&&) = delete;      // Move Assignment
 };
 

@@ -196,7 +196,7 @@ class IPItkImportImageStack : public AbstractFilter
   public:
     IPItkImportImageStack(const IPItkImportImageStack&) = delete; // Copy Constructor Not Implemented
     IPItkImportImageStack(IPItkImportImageStack&&) = delete;      // Move Constructor
-    IPItkImportImageStack& operator=(const IPItkImportImageStack&) = delete; // Copy Assignment
+    IPItkImportImageStack& operator=(const IPItkImportImageStack&) = delete; // Copy Assignment Not Implemented
     IPItkImportImageStack& operator=(IPItkImportImageStack&&) = delete;      // Move Assignment
 };
 

@@ -187,7 +187,7 @@ class ItkAutoThreshold : public AbstractFilter
   public:
     ItkAutoThreshold(const ItkAutoThreshold&) = delete; // Copy Constructor Not Implemented
     ItkAutoThreshold(ItkAutoThreshold&&) = delete;      // Move Constructor
-    ItkAutoThreshold& operator=(const ItkAutoThreshold&) = delete; // Copy Assignment
+    ItkAutoThreshold& operator=(const ItkAutoThreshold&) = delete; // Copy Assignment Not Implemented
     ItkAutoThreshold& operator=(ItkAutoThreshold&&) = delete;      // Move Assignment
 };
 

@@ -192,7 +192,7 @@ class ItkRGBToGray : public AbstractFilter
   public:
     ItkRGBToGray(const ItkRGBToGray&) = delete;   // Copy Constructor Not Implemented
     ItkRGBToGray(ItkRGBToGray&&) = delete;        // Move Constructor
-    ItkRGBToGray& operator=(const ItkRGBToGray&) = delete; // Copy Assignment
+    ItkRGBToGray& operator=(const ItkRGBToGray&) = delete; // Copy Assignment Not Implemented
     ItkRGBToGray& operator=(ItkRGBToGray&&) = delete;      // Move Assignment
 };
 

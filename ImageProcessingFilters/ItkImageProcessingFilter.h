@@ -147,7 +147,7 @@ class ImageProcessingFilter : public AbstractFilter
      */
 
     ImageProcessingFilter(const ImageProcessingFilter&) = delete; // Copy Constructor Not Implemented
-    void operator=(const ImageProcessingFilter&) = delete;        // Operator '=' Not Implemented
+    void operator=(const ImageProcessingFilter&) = delete;        // Move assignment Not Implemented
 };
 
 #endif /* _ImageProcessingFilter_H_ */

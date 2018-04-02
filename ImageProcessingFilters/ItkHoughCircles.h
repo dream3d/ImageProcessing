@@ -183,7 +183,7 @@ class ItkHoughCircles : public AbstractFilter
   public:
     ItkHoughCircles(const ItkHoughCircles&) = delete; // Copy Constructor Not Implemented
     ItkHoughCircles(ItkHoughCircles&&) = delete;      // Move Constructor
-    ItkHoughCircles& operator=(const ItkHoughCircles&) = delete; // Copy Assignment
+    ItkHoughCircles& operator=(const ItkHoughCircles&) = delete; // Copy Assignment Not Implemented
     ItkHoughCircles& operator=(ItkHoughCircles&&) = delete;      // Move Assignment
 };
 

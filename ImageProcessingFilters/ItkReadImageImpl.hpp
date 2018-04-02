@@ -165,7 +165,7 @@ class ItkReadImagePrivate
     }
   private:
     ItkReadImagePrivate(const ItkReadImagePrivate&); // Copy Constructor Not Implemented
-    void operator=(const ItkReadImagePrivate&); // Operator '=' Not Implemented
+    void operator=(const ItkReadImagePrivate&);      // Move assignment Not Implemented
 };
 
 

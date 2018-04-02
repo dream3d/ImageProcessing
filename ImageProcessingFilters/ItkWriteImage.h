@@ -175,7 +175,7 @@ class ItkWriteImage : public AbstractFilter
   public:
     ItkWriteImage(const ItkWriteImage&) = delete;  // Copy Constructor Not Implemented
     ItkWriteImage(ItkWriteImage&&) = delete;       // Move Constructor
-    ItkWriteImage& operator=(const ItkWriteImage&) = delete; // Copy Assignment
+    ItkWriteImage& operator=(const ItkWriteImage&) = delete; // Copy Assignment Not Implemented
     ItkWriteImage& operator=(ItkWriteImage&&) = delete;      // Move Assignment
 };
 

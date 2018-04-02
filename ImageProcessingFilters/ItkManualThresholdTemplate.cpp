@@ -117,7 +117,7 @@ class ManualThresholdTemplatePrivate
     }
   private:
     ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&); // Copy Constructor Not Implemented
-    void operator=(const ManualThresholdTemplatePrivate&); // Operator '=' Not Implemented
+    void operator=(const ManualThresholdTemplatePrivate&);                 // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------

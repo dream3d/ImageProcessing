@@ -187,7 +187,7 @@ class ItkManualThresholdTemplate : public AbstractFilter
   public:
     ItkManualThresholdTemplate(const ItkManualThresholdTemplate&) = delete; // Copy Constructor Not Implemented
     ItkManualThresholdTemplate(ItkManualThresholdTemplate&&) = delete;      // Move Constructor
-    ItkManualThresholdTemplate& operator=(const ItkManualThresholdTemplate&) = delete; // Copy Assignment
+    ItkManualThresholdTemplate& operator=(const ItkManualThresholdTemplate&) = delete; // Copy Assignment Not Implemented
     ItkManualThresholdTemplate& operator=(ItkManualThresholdTemplate&&) = delete;      // Move Assignment
 };
 

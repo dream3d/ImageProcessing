@@ -181,7 +181,7 @@ class ItkBinaryWatershedLabeled : public AbstractFilter
   public:
     ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&) = delete; // Copy Constructor Not Implemented
     ItkBinaryWatershedLabeled(ItkBinaryWatershedLabeled&&) = delete;      // Move Constructor
-    ItkBinaryWatershedLabeled& operator=(const ItkBinaryWatershedLabeled&) = delete; // Copy Assignment
+    ItkBinaryWatershedLabeled& operator=(const ItkBinaryWatershedLabeled&) = delete; // Copy Assignment Not Implemented
     ItkBinaryWatershedLabeled& operator=(ItkBinaryWatershedLabeled&&) = delete;      // Move Assignment
 };
 

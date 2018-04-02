@@ -188,7 +188,7 @@ class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
 public:
   ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Constructor Not Implemented
   ItkDetermineStitchingCoordinatesGeneric(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Constructor
-  ItkDetermineStitchingCoordinatesGeneric& operator=(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Assignment
+  ItkDetermineStitchingCoordinatesGeneric& operator=(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Assignment Not Implemented
   ItkDetermineStitchingCoordinatesGeneric& operator=(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Assignment
 };
 

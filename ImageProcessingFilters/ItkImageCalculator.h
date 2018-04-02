@@ -182,7 +182,7 @@ class ItkImageCalculator : public AbstractFilter
   public:
     ItkImageCalculator(const ItkImageCalculator&) = delete; // Copy Constructor Not Implemented
     ItkImageCalculator(ItkImageCalculator&&) = delete;      // Move Constructor
-    ItkImageCalculator& operator=(const ItkImageCalculator&) = delete; // Copy Assignment
+    ItkImageCalculator& operator=(const ItkImageCalculator&) = delete; // Copy Assignment Not Implemented
     ItkImageCalculator& operator=(ItkImageCalculator&&) = delete;      // Move Assignment
 };
 

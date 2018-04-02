@@ -183,7 +183,7 @@ class ItkMeanKernel : public AbstractFilter
   public:
     ItkMeanKernel(const ItkMeanKernel&) = delete;  // Copy Constructor Not Implemented
     ItkMeanKernel(ItkMeanKernel&&) = delete;       // Move Constructor
-    ItkMeanKernel& operator=(const ItkMeanKernel&) = delete; // Copy Assignment
+    ItkMeanKernel& operator=(const ItkMeanKernel&) = delete; // Copy Assignment Not Implemented
     ItkMeanKernel& operator=(ItkMeanKernel&&) = delete;      // Move Assignment
 };
 

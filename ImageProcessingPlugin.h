@@ -184,7 +184,7 @@ class ImageProcessingPlugin : public QObject, public ISIMPLibPlugin
     bool				m_DidLoad;
 
     ImageProcessingPlugin(const ImageProcessingPlugin&) = delete; // Copy Constructor Not Implemented
-    void operator=(const ImageProcessingPlugin&) = delete;        // Operator '=' Not Implemented
+    void operator=(const ImageProcessingPlugin&) = delete;        // Move assignment Not Implemented
 };
 
 #endif /* _ImageProcessing_H_ */

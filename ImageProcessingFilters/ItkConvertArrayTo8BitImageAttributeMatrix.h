@@ -164,7 +164,7 @@ class ItkConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
   public:
     ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Constructor Not Implemented
     ItkConvertArrayTo8BitImageAttributeMatrix(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Constructor
-    ItkConvertArrayTo8BitImageAttributeMatrix& operator=(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Assignment
+    ItkConvertArrayTo8BitImageAttributeMatrix& operator=(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Assignment Not Implemented
     ItkConvertArrayTo8BitImageAttributeMatrix& operator=(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Assignment
 };
 

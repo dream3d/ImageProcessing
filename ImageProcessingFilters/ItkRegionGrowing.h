@@ -181,7 +181,7 @@ class RegionGrowing : public AbstractFilter
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
 
     RegionGrowing(const RegionGrowing&) = delete;  // Copy Constructor Not Implemented
-    void operator=(const RegionGrowing&) = delete; // Operator '=' Not Implemented
+    void operator=(const RegionGrowing&) = delete; // Move assignment Not Implemented
 };
 
 #endif /* _RegionGrowing_H_ */

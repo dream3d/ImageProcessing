@@ -165,7 +165,7 @@ class ImageRegistration : public AbstractFilter
      */
 
     ImageRegistration(const ImageRegistration&) = delete; // Copy Constructor Not Implemented
-    void operator=(const ImageRegistration&) = delete;    // Operator '=' Not Implemented
+    void operator=(const ImageRegistration&) = delete;    // Move assignment Not Implemented
 };
 
 #endif /* _ImageRegistration_H_ */

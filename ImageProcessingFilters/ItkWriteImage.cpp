@@ -166,7 +166,7 @@ class WriteImagePrivate
     }
   private:
     WriteImagePrivate(const WriteImagePrivate&); // Copy Constructor Not Implemented
-    void operator=(const WriteImagePrivate&); // Operator '=' Not Implemented
+    void operator=(const WriteImagePrivate&);    // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------

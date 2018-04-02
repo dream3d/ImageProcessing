@@ -114,7 +114,7 @@ class FindMaximaPrivate
     }
   private:
     FindMaximaPrivate(const FindMaximaPrivate&); // Copy Constructor Not Implemented
-    void operator=(const FindMaximaPrivate&); // Operator '=' Not Implemented
+    void operator=(const FindMaximaPrivate&);    // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------

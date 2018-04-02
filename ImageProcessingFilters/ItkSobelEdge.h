@@ -179,7 +179,7 @@ class ItkSobelEdge : public AbstractFilter
   public:
     ItkSobelEdge(const ItkSobelEdge&) = delete;   // Copy Constructor Not Implemented
     ItkSobelEdge(ItkSobelEdge&&) = delete;        // Move Constructor
-    ItkSobelEdge& operator=(const ItkSobelEdge&) = delete; // Copy Assignment
+    ItkSobelEdge& operator=(const ItkSobelEdge&) = delete; // Copy Assignment Not Implemented
     ItkSobelEdge& operator=(ItkSobelEdge&&) = delete;      // Move Assignment
 };
 

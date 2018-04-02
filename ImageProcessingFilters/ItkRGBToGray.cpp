@@ -128,7 +128,7 @@ public:
 
 private:
   RGBToGrayPrivate(const RGBToGrayPrivate&); // Copy Constructor Not Implemented
-  void operator=(const RGBToGrayPrivate&);   // Operator '=' Not Implemented
+  void operator=(const RGBToGrayPrivate&);   // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------

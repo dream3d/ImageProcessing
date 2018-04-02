@@ -96,7 +96,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     void dataCheck();
 
     AlignSectionsPhaseCorrelation(const AlignSectionsPhaseCorrelation&) = delete; // Copy Constructor Not Implemented
-    void operator=(const AlignSectionsPhaseCorrelation&) = delete;                // Operator '=' Not Implemented
+    void operator=(const AlignSectionsPhaseCorrelation&) = delete;                // Move assignment Not Implemented
 };
 
 #endif /* _AlignSectionsPhaseCorrelation_H_ */

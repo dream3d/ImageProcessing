@@ -178,7 +178,7 @@ class TemplateUtilities
 
   private:
     TemplateUtilities(const TemplateUtilities&) = delete; // Copy Constructor Not Implemented
-    void operator=(const TemplateUtilities&) = delete; // Operator '=' Not Implemented
+    void operator=(const TemplateUtilities&) = delete; // Move assignment Not Implemented
 };
 
 #endif
