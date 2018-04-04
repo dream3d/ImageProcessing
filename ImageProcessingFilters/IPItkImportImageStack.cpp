@@ -59,13 +59,12 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-IPItkImportImageStack::IPItkImportImageStack() :
-  AbstractFilter(),
-  m_DataContainerName(SIMPL::Defaults::ImageDataContainerName),
-  m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName),
-  m_BoundsFile(""),
-  m_GeometryType(0),
-  m_ImageDataArrayName(SIMPL::CellData::ImageData)
+IPItkImportImageStack::IPItkImportImageStack()
+: m_DataContainerName(SIMPL::Defaults::ImageDataContainerName)
+, m_CellAttributeMatrixName(SIMPL::Defaults::CellAttributeMatrixName)
+, m_BoundsFile("")
+, m_GeometryType(0)
+, m_ImageDataArrayName(SIMPL::CellData::ImageData)
 {
   m_Origin.x = 0.0f;
   m_Origin.y = 0.0f;
@@ -80,7 +79,6 @@ IPItkImportImageStack::IPItkImportImageStack() :
   m_InputFileListInfo.EndIndex = 0;
   m_InputFileListInfo.PaddingDigits = 0;
 
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
@@ -361,7 +359,7 @@ void IPItkImportImageStack::dataCheck()
     if(getErrorCondition() < 0) { return; }
 
     m_ImageDataPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, createdPath, componentDims, data);
-    if( nullptr != m_ImageDataPtr.lock().get() )
+    if(nullptr != m_ImageDataPtr.lock())
     {
       m_ImageData = m_ImageDataPtr.lock()->getVoidPointer(0);
     }

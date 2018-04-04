@@ -59,7 +59,7 @@
 template <typename T> class RGBToGrayPrivate
 {
 public:
-  typedef DataArray<T> DataArrayType;
+  using DataArrayType = DataArray<T>;
 
   RGBToGrayPrivate()
   {
@@ -128,25 +128,19 @@ public:
 
 private:
   RGBToGrayPrivate(const RGBToGrayPrivate&); // Copy Constructor Not Implemented
-  void operator=(const RGBToGrayPrivate&);   // Operator '=' Not Implemented
+  void operator=(const RGBToGrayPrivate&);   // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 ItkRGBToGray::ItkRGBToGray()
-: AbstractFilter()
-//  m_SelectedCellArrayArrayPath("", "", ""),
-//  m_NewCellArrayName(""),
-, m_OutputAttributeMatrixName("")
+: m_OutputAttributeMatrixName("")
 , m_OutputArrayPrefix("GrayScale_")
-//, m_SelectedCellArray(nullptr)
-//, m_NewCellArray(nullptr)
 {
   m_ColorWeights.x = 0.2125f;
   m_ColorWeights.y = 0.7154f;
   m_ColorWeights.z = 0.0721f;
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

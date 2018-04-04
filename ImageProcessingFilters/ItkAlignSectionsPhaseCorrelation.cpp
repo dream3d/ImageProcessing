@@ -180,6 +180,7 @@ AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation() = default;
 // -----------------------------------------------------------------------------
 void AlignSectionsPhaseCorrelation::setupFilterParameters()
 {
+  AlignSections::setupFilterParameters();
   FilterParameterVector parameters;
   parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath)));
   setFilterParameters(parameters);
@@ -215,7 +216,7 @@ void AlignSectionsPhaseCorrelation::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }

@@ -56,10 +56,10 @@ class ItkStitchImages : public AbstractFilter
 
   public:
     SIMPL_SHARED_POINTERS(ItkStitchImages)
-    SIMPL_STATIC_NEW_MACRO(ItkStitchImages)
-     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkStitchImages, AbstractFilter)
+    SIMPL_FILTER_NEW_MACRO(ItkStitchImages)
+    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkStitchImages, AbstractFilter)
 
-    virtual ~ItkStitchImages();
+    ~ItkStitchImages() override;
 
     SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
@@ -83,56 +83,56 @@ class ItkStitchImages : public AbstractFilter
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    virtual const QString getCompiledLibraryName() const override;
+    const QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    virtual const QString getHumanLabel() const override;
+    const QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    virtual const QString getGroupName() const override;
+    const QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    virtual const QString getSubGroupName() const override;
+    const QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    virtual const QUuid getUuid() override;
+    const QUuid getUuid() override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
     * for this filter
     */
-    virtual void setupFilterParameters() override;
+    void setupFilterParameters() override;
 
     /**
     * @brief This method will read the options from a file
     * @param reader The reader that is used to read the options from a file
     * @param index The index to read the information from
     */
-    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
+    void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
 
     /**
      * @brief Reimplemented from @see AbstractFilter class
      */
-    virtual void execute() override;
+    void execute() override;
 
     /**
     * @brief This function runs some sanity checks on the DataContainer and inputs
     * in an attempt to ensure the filter can process the inputs.
     */
-    virtual void preflight() override;
+    void preflight() override;
 
     /**
      * @brief newFilterInstance Returns a new instance of the filter optionally copying the filter parameters from the
@@ -140,7 +140,7 @@ class ItkStitchImages : public AbstractFilter
      * @param copyFilterParameters
      * @return
      */
-    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
+    AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
 
   signals:
     /**
@@ -185,8 +185,11 @@ class ItkStitchImages : public AbstractFilter
     StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
     DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, StitchedImageArray)
 
+  public:
     ItkStitchImages(const ItkStitchImages&) = delete; // Copy Constructor Not Implemented
-    void operator=(const ItkStitchImages&) = delete;  // Operator '=' Not Implemented
+    ItkStitchImages(ItkStitchImages&&) = delete;      // Move Constructor
+    ItkStitchImages& operator=(const ItkStitchImages&) = delete; // Copy Assignment Not Implemented
+    ItkStitchImages& operator=(ItkStitchImages&&) = delete;      // Move Assignment
 };
 
 #endif /* _StitchImages_H_ */

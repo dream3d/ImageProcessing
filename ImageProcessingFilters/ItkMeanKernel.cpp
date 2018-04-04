@@ -52,19 +52,17 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkMeanKernel::ItkMeanKernel() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_Slice(false),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkMeanKernel::ItkMeanKernel()
+: m_SelectedCellArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_Slice(false)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
   m_KernelSize.x = 1;
   m_KernelSize.y = 1;
   m_KernelSize.z = 1;
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
@@ -128,7 +126,7 @@ void ItkMeanKernel::dataCheck()
 
   QVector<size_t> dims(1, 1);
   m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( nullptr != m_SelectedCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_SelectedCellArrayPtr.lock())                            /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCondition() < 0) { return; }
 
@@ -138,7 +136,7 @@ void ItkMeanKernel::dataCheck()
   if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( nullptr != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
 

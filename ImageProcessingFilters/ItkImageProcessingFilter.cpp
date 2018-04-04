@@ -92,7 +92,7 @@ void ImageProcessingFilter::dataCheck()
   * // Assigns the shared_ptr<> to an instance variable that is a weak_ptr<>
   * m_CellPhasesPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<int32_t>, AbstractFilter>(this, getCellPhasesArrayPath(), dims);
   *  // Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object
-  * if( nullptr != m_CellPhasesPtr.lock().get() )
+  * if(nullptr != m_CellPhasesPtr.lock() )
   * {
   *   // Now assign the raw pointer to data from the DataArray<T> object
   *   m_CellPhases = m_CellPhasesPtr.lock()->getPointer(0);
@@ -103,7 +103,7 @@ void ImageProcessingFilter::dataCheck()
   * // Assigns the shared_ptr<> to an instance variable that is a weak_ptr<>
   * m_CellIPFColorsPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims);
   * // Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object
-  * if( nullptr != m_CellIPFColorsPtr.lock().get() )
+  * if(nullptr != m_CellIPFColorsPtr.lock() )
   * {
   * // Now assign the raw pointer to data from the DataArray<T> object
   * m_CellIPFColors = m_CellIPFColorsPtr.lock()->getPointer(0);

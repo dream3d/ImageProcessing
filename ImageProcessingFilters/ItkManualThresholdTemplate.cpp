@@ -117,22 +117,20 @@ class ManualThresholdTemplatePrivate
     }
   private:
     ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&); // Copy Constructor Not Implemented
-    void operator=(const ManualThresholdTemplatePrivate&); // Operator '=' Not Implemented
+    void operator=(const ManualThresholdTemplatePrivate&);                 // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkManualThresholdTemplate::ItkManualThresholdTemplate() :
-  AbstractFilter(),
-  m_SelectedCellArrayArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_SaveAsNewArray(true),
-  m_ManualParameter(128),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkManualThresholdTemplate::ItkManualThresholdTemplate()
+: m_SelectedCellArrayArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_SaveAsNewArray(true)
+, m_ManualParameter(128)
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
@@ -196,7 +194,7 @@ void ItkManualThresholdTemplate::dataCheck()
   QVector<size_t> compDims(1, 1);
 
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayArrayPath(), compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
@@ -214,7 +212,7 @@ void ItkManualThresholdTemplate::dataCheck()
   if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, data);
-  if( nullptr != m_NewCellArrayPtr.lock().get() )
+  if(nullptr != m_NewCellArrayPtr.lock())
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }

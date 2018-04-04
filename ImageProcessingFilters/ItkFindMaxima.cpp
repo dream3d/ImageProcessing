@@ -114,21 +114,19 @@ class FindMaximaPrivate
     }
   private:
     FindMaximaPrivate(const FindMaximaPrivate&); // Copy Constructor Not Implemented
-    void operator=(const FindMaximaPrivate&); // Operator '=' Not Implemented
+    void operator=(const FindMaximaPrivate&);    // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkFindMaxima::ItkFindMaxima() :
-  AbstractFilter(),
-  m_SelectedCellArrayPath("", "", ""),
-  m_Tolerance(1.0),
-  m_NewCellArrayName("Maxima"),
-  m_SelectedCellArray(nullptr),
-  m_NewCellArray(nullptr)
+ItkFindMaxima::ItkFindMaxima()
+: m_SelectedCellArrayPath("", "", "")
+, m_Tolerance(1.0)
+, m_NewCellArrayName("Maxima")
+, m_SelectedCellArray(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
@@ -185,7 +183,7 @@ void ItkFindMaxima::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
-  if(nullptr != m_SelectedCellArrayPtr.lock().get())
+  if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
@@ -204,7 +202,7 @@ void ItkFindMaxima::dataCheck()
   //create new boolean array
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(this, tempPath, 0, compDims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if( nullptr != m_NewCellArrayPtr.lock().get() ) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
 }

@@ -59,13 +59,13 @@ class ItkRGBToGray : public AbstractFilter
 
   public:
     SIMPL_SHARED_POINTERS(ItkRGBToGray)
-    SIMPL_STATIC_NEW_MACRO(ItkRGBToGray)
-     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkRGBToGray, AbstractFilter)
+    SIMPL_FILTER_NEW_MACRO(ItkRGBToGray)
+    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkRGBToGray, AbstractFilter)
 
-    virtual ~ItkRGBToGray();
+    ~ItkRGBToGray() override;
 
-//    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
-//    Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
+    //    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
+    //    Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
 
     SIMPL_FILTER_PARAMETER(FloatVec3_t, ColorWeights)
     Q_PROPERTY(FloatVec3_t ColorWeights READ getColorWeights WRITE setColorWeights)
@@ -87,56 +87,56 @@ class ItkRGBToGray : public AbstractFilter
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    virtual const QString getCompiledLibraryName() const override;
+    const QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    virtual const QString getHumanLabel() const override;
+    const QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    virtual const QString getGroupName() const override;
+    const QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    virtual const QString getSubGroupName() const override;
+    const QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    virtual const QUuid getUuid() override;
+    const QUuid getUuid() override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
     * for this filter
     */
-    virtual void setupFilterParameters() override;
+    void setupFilterParameters() override;
 
     /**
     * @brief This method will read the options from a file
     * @param reader The reader that is used to read the options from a file
     * @param index The index to read the information from
     */
-    virtual void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
+    void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
 
     /**
      * @brief Reimplemented from @see AbstractFilter class
      */
-    virtual void execute() override;
+    void execute() override;
 
     /**
     * @brief This function runs some sanity checks on the DataContainer and inputs
     * in an attempt to ensure the filter can process the inputs.
     */
-    virtual void preflight() override;
+    void preflight() override;
 
     /**
      * @brief newFilterInstance Returns a new instance of the filter optionally copying the filter parameters from the
@@ -144,7 +144,7 @@ class ItkRGBToGray : public AbstractFilter
      * @param copyFilterParameters
      * @return
      */
-    virtual AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
+    AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
 
     // virtual void RGBToGray::template_execute();
 
@@ -189,8 +189,11 @@ class ItkRGBToGray : public AbstractFilter
 //    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
 //    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
 
+  public:
     ItkRGBToGray(const ItkRGBToGray&) = delete;   // Copy Constructor Not Implemented
-    void operator=(const ItkRGBToGray&) = delete; // Operator '=' Not Implemented
+    ItkRGBToGray(ItkRGBToGray&&) = delete;        // Move Constructor
+    ItkRGBToGray& operator=(const ItkRGBToGray&) = delete; // Copy Assignment Not Implemented
+    ItkRGBToGray& operator=(ItkRGBToGray&&) = delete;      // Move Assignment
 };
 
 #endif /* _RGBToGray_H_ */

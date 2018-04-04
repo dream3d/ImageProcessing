@@ -119,24 +119,22 @@ class GrayToRGBPrivate
     }
   private:
     GrayToRGBPrivate(const GrayToRGBPrivate&); // Copy Constructor Not Implemented
-    void operator=(const GrayToRGBPrivate&); // Operator '=' Not Implemented
+    void operator=(const GrayToRGBPrivate&);   // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkGrayToRGB::ItkGrayToRGB() :
-  AbstractFilter(),
-  m_RedArrayPath("", "", ""),
-  m_GreenArrayPath("", "", ""),
-  m_BlueArrayPath("", "", ""),
-  m_NewCellArrayName(""),
-  m_Red(nullptr),
-  m_Green(nullptr),
-  m_Blue(nullptr),
-  m_NewCellArray(nullptr)
+ItkGrayToRGB::ItkGrayToRGB()
+: m_RedArrayPath("", "", "")
+, m_GreenArrayPath("", "", "")
+, m_BlueArrayPath("", "", "")
+, m_NewCellArrayName("")
+, m_Red(nullptr)
+, m_Green(nullptr)
+, m_Blue(nullptr)
+, m_NewCellArray(nullptr)
 {
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
@@ -201,17 +199,17 @@ void ItkGrayToRGB::dataCheck()
   //check for required arrays
   QVector<size_t> compDims(1, 1);
   m_RedPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getRedArrayPath(), compDims);
-  if(nullptr != m_RedPtr.lock().get())
+  if(nullptr != m_RedPtr.lock())
   {
     m_Red = m_RedPtr.lock().get();
   }
   m_GreenPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getGreenArrayPath(), compDims);
-  if(nullptr != m_GreenPtr.lock().get())
+  if(nullptr != m_GreenPtr.lock())
   {
     m_Green = m_GreenPtr.lock().get();
   }
   m_BluePtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getBlueArrayPath(), compDims);
-  if(nullptr != m_BluePtr.lock().get())
+  if(nullptr != m_BluePtr.lock())
   {
     m_Blue = m_BluePtr.lock().get();
   }
@@ -232,7 +230,7 @@ void ItkGrayToRGB::dataCheck()
   //create new array of same type
   compDims[0] = 3;
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, redArrayptr);
-  if( nullptr != m_NewCellArrayPtr.lock().get() )
+  if(nullptr != m_NewCellArrayPtr.lock())
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }
