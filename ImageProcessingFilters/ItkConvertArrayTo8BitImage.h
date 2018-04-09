@@ -58,6 +58,9 @@
 class ItkConvertArrayTo8BitImage : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkConvertArrayTo8BitImage SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
+    PYB11_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
   public:
     SIMPL_SHARED_POINTERS(ItkConvertArrayTo8BitImage)
     SIMPL_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImage)

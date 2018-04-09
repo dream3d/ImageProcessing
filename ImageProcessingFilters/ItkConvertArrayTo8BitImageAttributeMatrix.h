@@ -58,6 +58,9 @@
 class ItkConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkConvertArrayTo8BitImageAttributeMatrix SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
+    PYB11_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
   public:
     SIMPL_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
     SIMPL_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)

@@ -53,6 +53,13 @@
 class ItkStitchImages : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
+    PYB11_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
+    PYB11_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
+    PYB11_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
+    PYB11_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
+    PYB11_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkStitchImages)

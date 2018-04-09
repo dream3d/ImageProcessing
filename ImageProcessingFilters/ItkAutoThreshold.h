@@ -56,6 +56,13 @@
 class ItkAutoThreshold : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkAutoThreshold SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
+    PYB11_PROPERTY(unsigned int Method READ getMethod WRITE setMethod)
+    PYB11_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
 
   public:
     SIMPL_SHARED_POINTERS(ItkAutoThreshold)

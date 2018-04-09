@@ -52,6 +52,11 @@
 class ItkDiscreteGaussianBlur : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkDiscreteGaussianBlur SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    PYB11_PROPERTY(float Stdev READ getStdev WRITE setStdev)
 
   public:
     SIMPL_SHARED_POINTERS(ItkDiscreteGaussianBlur)

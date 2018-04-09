@@ -53,6 +53,12 @@
 class ItkImageMath : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkImageMath SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    PYB11_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
+    PYB11_PROPERTY(double Value READ getValue WRITE setValue)
 
   public:
     SIMPL_SHARED_POINTERS(ItkImageMath)

@@ -53,6 +53,11 @@
 class ItkImageCalculator : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath1 READ getSelectedCellArrayPath1 WRITE setSelectedCellArrayPath1)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath2 READ getSelectedCellArrayPath2 WRITE setSelectedCellArrayPath2)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
 
   public:
     SIMPL_SHARED_POINTERS(ItkImageCalculator)

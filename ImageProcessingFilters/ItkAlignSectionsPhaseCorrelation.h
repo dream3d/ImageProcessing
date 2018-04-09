@@ -50,6 +50,9 @@
 class AlignSectionsPhaseCorrelation : public AlignSections
 {
     Q_OBJECT
+    //    PYB11_CREATE_BINDINGS(ItkAlignSectionsPhaseCorrelation SUPERCLASS AlignSections)
+    //    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    //    PYB11_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
   public:
     SIMPL_SHARED_POINTERS(AlignSectionsPhaseCorrelation)
     SIMPL_FILTER_NEW_MACRO(AlignSectionsPhaseCorrelation)

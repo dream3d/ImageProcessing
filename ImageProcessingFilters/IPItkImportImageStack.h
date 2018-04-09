@@ -50,6 +50,7 @@
 class IPItkImportImageStack : public AbstractFilter
 {
     Q_OBJECT
+
   public:
     SIMPL_SHARED_POINTERS(IPItkImportImageStack)
     SIMPL_FILTER_NEW_MACRO(IPItkImportImageStack)

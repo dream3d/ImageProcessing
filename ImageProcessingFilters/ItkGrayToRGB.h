@@ -58,6 +58,11 @@
 class ItkGrayToRGB : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkGrayToRGB SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)
+    PYB11_PROPERTY(DataArrayPath GreenArrayPath READ getGreenArrayPath WRITE setGreenArrayPath)
+    PYB11_PROPERTY(DataArrayPath BlueArrayPath READ getBlueArrayPath WRITE setBlueArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkGrayToRGB)

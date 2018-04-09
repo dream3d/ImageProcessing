@@ -55,6 +55,10 @@
 class ItkBinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkBinaryWatershedLabeled SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkBinaryWatershedLabeled)

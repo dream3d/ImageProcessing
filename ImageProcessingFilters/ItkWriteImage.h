@@ -54,6 +54,9 @@
 class ItkWriteImage : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkWriteImage SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString OutputFileName READ getOutputFileName WRITE setOutputFileName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkWriteImage)

@@ -59,6 +59,11 @@
 class ItkReadImage : public AbstractFilter
 {
     Q_OBJECT
+    //    PYB11_CREATE_BINDINGS(ItkReadImage SUPERCLASS AbstractFilter)
+    //    PYB11_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
+    //    PYB11_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    //    PYB11_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
+    //    PYB11_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkReadImage)

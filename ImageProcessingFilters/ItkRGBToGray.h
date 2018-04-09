@@ -56,6 +56,11 @@
 class ItkRGBToGray : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkRGBToGray SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(FloatVec3_t ColorWeights READ getColorWeights WRITE setColorWeights)
+    PYB11_PROPERTY(QVector<DataArrayPath> InputDataArrayVector READ getInputDataArrayVector WRITE setInputDataArrayVector)
+    PYB11_PROPERTY(QString OutputAttributeMatrixName READ getOutputAttributeMatrixName WRITE setOutputAttributeMatrixName)
+    PYB11_PROPERTY(QString OutputArrayPrefix READ getOutputArrayPrefix WRITE setOutputArrayPrefix)
 
   public:
     SIMPL_SHARED_POINTERS(ItkRGBToGray)

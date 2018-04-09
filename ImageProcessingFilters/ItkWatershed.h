@@ -54,6 +54,11 @@
 class ItkWatershed : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkWatershed SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString FeatureIdsArrayName READ getFeatureIdsArrayName WRITE setFeatureIdsArrayName)
+    PYB11_PROPERTY(float Threshold READ getThreshold WRITE setThreshold)
+    PYB11_PROPERTY(float Level READ getLevel WRITE setLevel)
 
   public:
     SIMPL_SHARED_POINTERS(ItkWatershed)

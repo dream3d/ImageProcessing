@@ -52,6 +52,13 @@
 class ItkHoughCircles : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkHoughCircles SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    PYB11_PROPERTY(float MinRadius READ getMinRadius WRITE setMinRadius)
+    PYB11_PROPERTY(float MaxRadius READ getMaxRadius WRITE setMaxRadius)
+    PYB11_PROPERTY(int NumberCircles READ getNumberCircles WRITE setNumberCircles)
 
   public:
     SIMPL_SHARED_POINTERS(ItkHoughCircles)

@@ -58,6 +58,11 @@
 class ItkManualThresholdTemplate : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkManualThresholdTemplate SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
+    PYB11_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
 
   public:
     SIMPL_SHARED_POINTERS(ItkManualThresholdTemplate)

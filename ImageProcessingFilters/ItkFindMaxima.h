@@ -58,6 +58,10 @@
 class ItkFindMaxima : public AbstractFilter
 {
     Q_OBJECT
+    PYB11_CREATE_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)
+    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    PYB11_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
+    PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
   public:
     SIMPL_SHARED_POINTERS(ItkFindMaxima)
