@@ -50,7 +50,7 @@
 
 // ImageProcessing Plugin
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
-#include "ItkBridge.h"
+#include "SIMPLib/ITK/itkBridge.h"
 
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details

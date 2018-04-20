@@ -22,8 +22,8 @@
 
 
 // ImageProcessing Plugin
-#include "ItkBridge.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
+#include "SIMPLib/ITK/itkBridge.h"
 
 // -----------------------------------------------------------------------------
 //

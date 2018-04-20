@@ -37,12 +37,12 @@
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 
 // ImageProcessing Plugin
-#include "ItkBridge.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
-#include "itkRegionalMaximaImageFilter.h"
+#include "SIMPLib/ITK/itkBridge.h"
 #include "itkBinaryImageToLabelMapFilter.h"
 #include "itkBinaryThresholdImageFunction.h"
 #include "itkFloodFilledImageFunctionConditionalIterator.h"
+#include "itkRegionalMaximaImageFilter.h"
 
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatFilterParameter.h"

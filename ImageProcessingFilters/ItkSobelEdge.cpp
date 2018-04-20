@@ -44,9 +44,9 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
-#include "ItkBridge.h"
-#include "itkSobelEdgeDetectionImageFilter.h"
+#include "SIMPLib/ITK/itkBridge.h"
 #include "itkRescaleIntensityImageFilter.h"
+#include "itkSobelEdgeDetectionImageFilter.h"
 
 // -----------------------------------------------------------------------------
 //

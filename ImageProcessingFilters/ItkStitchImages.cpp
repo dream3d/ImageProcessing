@@ -43,7 +43,7 @@
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
 
-#include "ItkBridge.h"
+#include "SIMPLib/ITK/itkBridge.h"
 
 #include "itkImage.h"
 #include "itkImageFileWriter.h"

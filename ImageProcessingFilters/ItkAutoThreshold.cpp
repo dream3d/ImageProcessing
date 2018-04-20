@@ -65,8 +65,7 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
-
-#include "ItkBridge.h"
+#include "SIMPLib/ITK/itkBridge.h"
 
 // -----------------------------------------------------------------------------
 //

@@ -43,7 +43,7 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
-#include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
+#include "SIMPLib/ITK/itkReadImageImpl.hpp"
 
 // -----------------------------------------------------------------------------
 //

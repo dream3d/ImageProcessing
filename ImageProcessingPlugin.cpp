@@ -259,7 +259,11 @@ void ImageProcessingPlugin::readSettings(QSettings& prefs)
 
 }
 
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+void ImageProcessingPlugin::registerFilterWidgets(FilterWidgetManager* fwm)
+{
+}
+
 #include "ImageProcessingFilters/RegisterKnownFilters.cpp"
-
-#include "ImageProcessing/FilterParameterWidgets/RegisterKnownFilterParameterWidgets.cpp"
-

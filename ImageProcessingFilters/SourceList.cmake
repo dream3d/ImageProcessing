@@ -78,9 +78,9 @@ foreach(f ${_PrivateFilters} )
                         ${${PLUGIN_NAME}_SOURCE_DIR}/Documentation/${_filterGroupName}/${f}.md FALSE ${${PLUGIN_NAME}_BINARY_DIR})
 endforeach()
 
-ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkBridge.h)
-ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkReadImageImpl.hpp)
-ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkTemplateUtilities.h)
+#ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkBridge.h)
+#ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkReadImageImpl.hpp)
+#ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkTemplateUtilities.h)
 
 
 #-------------

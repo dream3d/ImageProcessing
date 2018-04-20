@@ -40,14 +40,8 @@
 #include "itkChangeInformationImageFilter.h"
 #include "itkMinimumMaximumImageCalculator.h"
 
-
-#include "ImageProcessing/ImageProcessingFilters/ItkBridge.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
-
-
-
-
-
+#include "SIMPLib/ITK/itkBridge.h"
 
 // -----------------------------------------------------------------------------
 //
