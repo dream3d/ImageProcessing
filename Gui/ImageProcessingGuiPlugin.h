@@ -10,7 +10,13 @@ class ImageProcessingGuiPlugin : public ImageProcessingPlugin
 
 public:
   ImageProcessingGuiPlugin();
-  ~ImageProcessingGuiPlugin() override;
+   ~ImageProcessingGuiPlugin() override;
+  
+  /**
+   * @brief Register all the filters with the FilterWidgetFactory
+   */
+  void registerFilterWidgets(FilterWidgetManager* fwm) override;
+  
 
 public:
   ImageProcessingGuiPlugin(const ImageProcessingGuiPlugin&) = delete;            // Copy Constructor Not Implemented

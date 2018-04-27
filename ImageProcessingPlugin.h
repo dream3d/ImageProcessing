@@ -41,14 +41,17 @@
 #include "SIMPLib/Plugin/ISIMPLibPlugin.h"
 
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
- * @class ImageProcessingPlugin ImageProcessingPlugin.h SurfaceMeshing/ImageProcessingPlugin.h
+ * @class ImageProcessingPlugin ImageProcessingPlugin.hSurfaceMeshing/ImageProcessingPlugin.h
  * @brief
  * @author
  * @date
  * @version 1.0
  */
-class ImageProcessingPlugin : public QObject, public ISIMPLibPlugin
+class ImageProcessing_EXPORT ImageProcessingPlugin : public QObject, public ISIMPLibPlugin
+
 {
     Q_OBJECT
     Q_INTERFACES(ISIMPLibPlugin)
