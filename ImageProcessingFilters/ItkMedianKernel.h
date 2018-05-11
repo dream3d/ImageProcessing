@@ -42,6 +42,7 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class MedianKernel MedianKernel.h ImageProcessing/ImageProcessingFilters/MedianKernel.h
@@ -50,7 +51,7 @@
  * @date
  * @version 1.0
  */
-class ItkMedianKernel : public AbstractFilter
+class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkMedianKernel SUPERCLASS AbstractFilter)

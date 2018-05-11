@@ -41,6 +41,7 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class HoughCircles HoughCircles.h ImageProcessing/ImageProcessingFilters/HoughCircles.h
@@ -49,7 +50,7 @@
  * @date
  * @version 1.0
  */
-class ItkHoughCircles : public AbstractFilter
+class ImageProcessing_EXPORT ItkHoughCircles : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkHoughCircles SUPERCLASS AbstractFilter)

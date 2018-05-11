@@ -44,6 +44,8 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class Watershed Watershed.h ImageProcessing/ImageProcessingFilters/Watershed.h
  * @brief
@@ -51,7 +53,7 @@
  * @date
  * @version 1.0
  */
-class ItkWatershed : public AbstractFilter
+class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkWatershed SUPERCLASS AbstractFilter)

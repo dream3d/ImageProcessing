@@ -43,6 +43,7 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class MeanKernel MeanKernel.h ImageProcessing/ImageProcessingFilters/MeanKernel.h
@@ -51,7 +52,7 @@
  * @date
  * @version 1.0
  */
-class ItkMeanKernel : public AbstractFilter
+class ImageProcessing_EXPORT ItkMeanKernel : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkMeanKernel SUPERCLASS AbstractFilter)

@@ -44,6 +44,8 @@
 
 //#include "TemplateUtilities.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class WriteImage WriteImage.h ImageProcessing/ImageProcessingFilters/WriteImage.h
  * @brief
@@ -51,7 +53,7 @@
  * @date
  * @version 1.0
  */
-class ItkWriteImage : public AbstractFilter
+class ImageProcessing_EXPORT ItkWriteImage : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkWriteImage SUPERCLASS AbstractFilter)

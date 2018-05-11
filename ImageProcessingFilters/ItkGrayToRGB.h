@@ -47,6 +47,7 @@
 
 //#include "TemplateUtilities.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class GrayToRGB GrayToRGB.h ImageProcessing/ImageProcessingFilters/GrayToRGB.h
@@ -55,7 +56,7 @@
  * @date
  * @version 1.0
  */
-class ItkGrayToRGB : public AbstractFilter
+class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkGrayToRGB SUPERCLASS AbstractFilter)

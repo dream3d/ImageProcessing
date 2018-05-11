@@ -47,6 +47,8 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 #include "ImageProcessing/ImageProcessingConstants.h"
 /**
  * @class ConvertArrayTo8BitImage ConvertArrayTo8BitImage.h /FilterCategoryFilters/ConvertArrayTo8BitImage.h
@@ -55,7 +57,7 @@
  * @date
  * @version 1.0
  */
-class ItkConvertArrayTo8BitImage : public AbstractFilter
+class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkConvertArrayTo8BitImage SUPERCLASS AbstractFilter)

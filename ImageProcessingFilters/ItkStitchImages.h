@@ -43,6 +43,8 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class StitchImages StitchImages.h ImageProcessing/ImageProcessingFilters/StitchImages.h
  * @brief
@@ -50,7 +52,7 @@
  * @date
  * @version 1.0
  */
-class ItkStitchImages : public AbstractFilter
+class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)

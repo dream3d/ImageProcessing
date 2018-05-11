@@ -45,6 +45,8 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class BinaryWatershedLabeled BinaryWatershedLabeled.h ImageProcessing/ImageProcessingFilters/BinaryWatershedLabeled.h
  * @brief splits concave objects in a binary array with a watershed segmentation
@@ -52,7 +54,7 @@
  * @date 8/29/14
  * @version 1.0
  */
-class ItkBinaryWatershedLabeled : public AbstractFilter
+class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkBinaryWatershedLabeled SUPERCLASS AbstractFilter)

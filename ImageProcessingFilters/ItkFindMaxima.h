@@ -47,6 +47,7 @@
 
 //#include "ItkTemplateUtilities.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class FindMaxima FindMaxima.h ImageProcessing/ImageProcessingFilters/FindMaxima.h
@@ -55,7 +56,7 @@
  * @date 8/7/14
  * @version 1.0
  */
-class ItkFindMaxima : public AbstractFilter
+class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)

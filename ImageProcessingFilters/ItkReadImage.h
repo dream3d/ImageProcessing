@@ -48,6 +48,7 @@
 
 //#include "TemplateUtilities.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class ItkReadImage ItkReadImage.h ImageProcessing/ImageProcessingFilters/ItkReadImage.h
@@ -56,7 +57,7 @@
  * @date
  * @version 1.0
  */
-class ItkReadImage : public AbstractFilter
+class ImageProcessing_EXPORT ItkReadImage : public AbstractFilter
 {
     Q_OBJECT
     //    PYB11_CREATE_BINDINGS(ItkReadImage SUPERCLASS AbstractFilter)

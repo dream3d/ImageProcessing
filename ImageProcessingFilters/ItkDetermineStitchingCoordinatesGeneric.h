@@ -11,6 +11,8 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class DetermineStitchingCoordinatesGeneric DetermineStitchingCoordinatesGeneric.h ZeissImport/ZeissImportFilters/DetermineStitchingCoordinatesGeneric.h
  * @brief
@@ -18,7 +20,7 @@
  * @date
  * @version 1.0
  */
-class ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
+class ImageProcessing_EXPORT ItkDetermineStitchingCoordinatesGeneric : public AbstractFilter
 {
   Q_OBJECT
   PYB11_CREATE_BINDINGS(ItkDetermineStitchingCoordinatesGeneric SUPERCLASS AbstractFilter)

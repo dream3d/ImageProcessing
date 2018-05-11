@@ -47,6 +47,7 @@
 
 //#include "TemplateUtilities.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class ManualThresholdTemplate ManualThresholdTemplate.h ImageProcessing/ImageProcessingFilters/ManualThresholdTemplate.h
@@ -55,7 +56,7 @@
  * @date
  * @version 1.0
  */
-class ItkManualThresholdTemplate : public AbstractFilter
+class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkManualThresholdTemplate SUPERCLASS AbstractFilter)

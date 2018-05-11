@@ -41,6 +41,7 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
 
 /**
  * @class DiscreteGaussianBlur DiscreteGaussianBlur.h ImageProcessing/ImageProcessingFilters/DiscreteGaussianBlur.h
@@ -49,7 +50,7 @@
  * @date
  * @version 1.0
  */
-class ItkDiscreteGaussianBlur : public AbstractFilter
+class ImageProcessing_EXPORT ItkDiscreteGaussianBlur : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkDiscreteGaussianBlur SUPERCLASS AbstractFilter)

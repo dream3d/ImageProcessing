@@ -43,6 +43,8 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class ImageCalculator ImageCalculator.h ImageProcessing/ImageProcessingFilters/ImageCalculator.h
  * @brief
@@ -50,7 +52,7 @@
  * @date
  * @version 1.0
  */
-class ItkImageCalculator : public AbstractFilter
+class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)

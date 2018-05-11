@@ -41,6 +41,8 @@
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @class SobelEdge SobelEdge.h ImageProcessing/ImageProcessingFilters/SobelEdge.h
  * @brief
@@ -48,7 +50,7 @@
  * @date
  * @version 1.0
  */
-class ItkSobelEdge : public AbstractFilter
+class ImageProcessing_EXPORT ItkSobelEdge : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkSobelEdge SUPERCLASS AbstractFilter)

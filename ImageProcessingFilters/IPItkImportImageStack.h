@@ -44,10 +44,12 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
 
+#include "ImageProcessing/ImageProcessingDLLExport.h"
+
 /**
  * @brief The IPItkImportImageStack class. See [Filter documentation](@ref IPItkImportImageStack) for details.
  */
-class IPItkImportImageStack : public AbstractFilter
+class ImageProcessing_EXPORT IPItkImportImageStack : public AbstractFilter
 {
     Q_OBJECT
 
