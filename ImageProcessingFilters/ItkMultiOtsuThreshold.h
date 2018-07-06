@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkmultiotsuthreshold_h_
-#define _itkmultiotsuthreshold_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -194,4 +193,3 @@ class ImageProcessing_EXPORT ItkMultiOtsuThreshold : public AbstractFilter
     ItkMultiOtsuThreshold& operator=(ItkMultiOtsuThreshold&&) = delete;      // Move Assignment
 };
 
-#endif /* _MultiOtsuThreshold_H_ */

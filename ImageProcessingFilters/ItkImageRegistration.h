@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkimageregistration_h_
-#define _itkimageregistration_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -168,4 +167,3 @@ class ImageRegistration : public AbstractFilter
     void operator=(const ImageRegistration&) = delete;    // Move assignment Not Implemented
 };
 
-#endif /* _ImageRegistration_H_ */

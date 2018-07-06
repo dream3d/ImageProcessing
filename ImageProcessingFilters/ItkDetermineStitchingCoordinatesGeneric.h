@@ -2,8 +2,7 @@
  * Your License or Copyright Information can go here
  */
 
-#ifndef _itkdeterminestitchingcoordinatesgeneric_h_
-#define _itkdeterminestitchingcoordinatesgeneric_h_
+#pragma once
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
@@ -203,4 +202,3 @@ public:
   ItkDetermineStitchingCoordinatesGeneric& operator=(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Assignment
 };
 
-#endif /* _DetermineStitchingCoordinatesGeneric_H_ */

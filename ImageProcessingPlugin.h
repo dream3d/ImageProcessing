@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _imageprocessingplugin_h_
-#define _imageprocessingplugin_h_
+#pragma once
 
 #include <QtCore/QObject>
 #include <QtCore/QSettings>
@@ -190,4 +189,3 @@ class ImageProcessing_EXPORT ImageProcessingPlugin : public QObject, public ISIM
     void operator=(const ImageProcessingPlugin&) = delete;        // Move assignment Not Implemented
 };
 
-#endif /* _ImageProcessing_H_ */

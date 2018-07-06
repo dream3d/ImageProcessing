@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkwriteimage_h_
-#define _itkwriteimage_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
@@ -184,4 +183,3 @@ class ImageProcessing_EXPORT ItkWriteImage : public AbstractFilter
     ItkWriteImage& operator=(ItkWriteImage&&) = delete;      // Move Assignment
 };
 
-#endif /* _WriteImage_H_ */

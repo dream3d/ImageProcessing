@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkimagecalculator_h_
-#define _itkimagecalculator_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -193,4 +192,3 @@ class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
     ItkImageCalculator& operator=(ItkImageCalculator&&) = delete;      // Move Assignment
 };
 
-#endif /* _ImageCalculator_H_ */

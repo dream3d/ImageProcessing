@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkalignsectionsphasecorrelation_h_
-#define _itkalignsectionsphasecorrelation_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
@@ -102,4 +101,3 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     void operator=(const AlignSectionsPhaseCorrelation&) = delete;                // Move assignment Not Implemented
 };
 
-#endif /* _AlignSectionsPhaseCorrelation_H_ */

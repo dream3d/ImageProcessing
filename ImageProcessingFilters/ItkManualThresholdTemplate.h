@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkmanualthresholdtemplate_h_
-#define _itkmanualthresholdtemplate_h_
+#pragma once
 
 //#include <vector>
 #include <QtCore/QString>
@@ -197,4 +196,3 @@ class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
     ItkManualThresholdTemplate& operator=(ItkManualThresholdTemplate&&) = delete;      // Move Assignment
 };
 
-#endif /* _ManualThresholdTemplate_H_ */

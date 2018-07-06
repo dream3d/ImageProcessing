@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkautothreshold_h_
-#define _itkautothreshold_h_
+#pragma once
 
 #include <vector>
 #include <QtCore/QString>
@@ -199,4 +198,3 @@ class ImageProcessing_EXPORT ItkAutoThreshold : public AbstractFilter
     ItkAutoThreshold& operator=(ItkAutoThreshold&&) = delete;      // Move Assignment
 };
 
-#endif /* _AutoThreshold_H_ */

@@ -32,8 +32,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkregiongrowing_h_
-#define _itkregiongrowing_h_
+#pragma once
 
 #include <vector>
 #include <QtCore/QString>
@@ -189,4 +188,3 @@ class RegionGrowing : public AbstractFilter
     void operator=(const RegionGrowing&) = delete; // Move assignment Not Implemented
 };
 
-#endif /* _RegionGrowing_H_ */

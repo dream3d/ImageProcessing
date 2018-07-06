@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkreadimage_h_
-#define _itkreadimage_h_
+#pragma once
 
 //#include <vector>
 #include <QtCore/QString>
@@ -197,4 +196,3 @@ class ImageProcessing_EXPORT ItkReadImage : public AbstractFilter
     ItkReadImage& operator=(ItkReadImage&&) = delete;      // Move Assignment
 };
 
-#endif /* _ItkReadImage_H_ */

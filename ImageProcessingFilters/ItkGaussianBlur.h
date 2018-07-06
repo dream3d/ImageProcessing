@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkgaussianblur_h_
-#define _itkgaussianblur_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -186,4 +185,3 @@ class ImageProcessing_EXPORT ItkGaussianBlur : public AbstractFilter
     ItkGaussianBlur& operator=(ItkGaussianBlur&&) = delete;      // Move Assignment
 };
 
-#endif /* _GaussianBlur_H_ */

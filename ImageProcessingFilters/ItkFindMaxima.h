@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkfindmaxima_h_
-#define _itkfindmaxima_h_
+#pragma once
 
 //#include <vector>
 #include <QtCore/QString>
@@ -191,4 +190,3 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
     ItkFindMaxima& operator=(ItkFindMaxima&&) = delete;      // Move Assignment
 };
 
-#endif /* _FindMaxima_H_ */

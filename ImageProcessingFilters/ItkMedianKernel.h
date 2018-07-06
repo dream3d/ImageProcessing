@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkmediankernel_h_
-#define _itkmediankernel_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
@@ -193,4 +192,3 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
     ItkMedianKernel& operator=(ItkMedianKernel&&) = delete;      // Move Assignment
 };
 
-#endif /* _MedianKernel_H_ */

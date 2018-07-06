@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkrgbtogray_h_
-#define _itkrgbtogray_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -203,4 +202,3 @@ class ImageProcessing_EXPORT ItkRGBToGray : public AbstractFilter
     ItkRGBToGray& operator=(ItkRGBToGray&&) = delete;      // Move Assignment
 };
 
-#endif /* _RGBToGray_H_ */

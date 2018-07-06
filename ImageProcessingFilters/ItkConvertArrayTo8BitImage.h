@@ -35,8 +35,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkconvertarrayto8bitimage_h_
-#define _itkconvertarrayto8bitimage_h_
+#pragma once
 
 #include <QtCore/QString>
 #include <set>
@@ -173,6 +172,5 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
     ItkConvertArrayTo8BitImage& operator=(ItkConvertArrayTo8BitImage&&) = delete;      // Move Assignment
 };
 
-#endif /* ConvertArrayTo8BitImage_H_ */
 
 

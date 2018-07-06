@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkmanualthreshold_h_
-#define _itkmanualthreshold_h_
+#pragma once
 
 #include <vector>
 #include <QtCore/QString>
@@ -193,4 +192,3 @@ class ImageProcessing_EXPORT ItkManualThreshold : public AbstractFilter
     ItkManualThreshold& operator=(ItkManualThreshold&&) = delete;      // Move Assignment
 };
 
-#endif /* _ManualThreshold_H_ */

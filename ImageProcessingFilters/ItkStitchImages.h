@@ -31,8 +31,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkstitchimages_h_
-#define _itkstitchimages_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -201,4 +200,3 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
     ItkStitchImages& operator=(ItkStitchImages&&) = delete;      // Move Assignment
 };
 
-#endif /* _StitchImages_H_ */

@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkbinarywatershedlabeled_h_
-#define _itkbinarywatershedlabeled_h_
+#pragma once
 
 //#include <vector>
 #include <QtCore/QString>
@@ -191,4 +190,3 @@ class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
     ItkBinaryWatershedLabeled& operator=(ItkBinaryWatershedLabeled&&) = delete;      // Move Assignment
 };
 
-#endif /* _BinaryWatershedLabeled_H_ */

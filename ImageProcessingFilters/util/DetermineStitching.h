@@ -29,8 +29,7 @@
  *
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _determinestitching_h_
-#define _determinestitching_h_
+#pragma once
 
 #include <vector>
 
@@ -122,4 +121,3 @@ class DetermineStitching
 };
 
 
-#endif /* _DetermineStitching_H_ */

@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkgraytorgb_h_
-#define _itkgraytorgb_h_
+#pragma once
 
 //#include <vector>
 #include <QtCore/QString>
@@ -200,4 +199,3 @@ class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
     ItkGrayToRGB& operator=(ItkGrayToRGB&&) = delete;      // Move Assignment
 };
 
-#endif /* _GrayToRGB_H_ */

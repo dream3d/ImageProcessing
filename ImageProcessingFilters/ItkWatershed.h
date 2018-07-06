@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkwatershed_h_
-#define _itkwatershed_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -192,4 +191,3 @@ class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
     ItkWatershed& operator=(ItkWatershed&&) = delete;      // Move Assignment
 };
 
-#endif /* _Watershed_H_ */

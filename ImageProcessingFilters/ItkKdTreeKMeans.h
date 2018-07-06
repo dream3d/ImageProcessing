@@ -32,8 +32,7 @@
 *    United States Prime Contract Navy N00173-07-C-2068
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkkdtreekmeans_h_
-#define _itkkdtreekmeans_h_
+#pragma once
 
 #include <vector>
 #include <QtCore/QString>
@@ -189,4 +188,3 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
     ItkKdTreeKMeans& operator=(ItkKdTreeKMeans&&) = delete;      // Move Assignment
 };
 
-#endif /* _KMeans_H_ */

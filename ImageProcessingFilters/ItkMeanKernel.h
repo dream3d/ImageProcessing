@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkmeankernel_h_
-#define _itkmeankernel_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
@@ -194,4 +193,3 @@ class ImageProcessing_EXPORT ItkMeanKernel : public AbstractFilter
     ItkMeanKernel& operator=(ItkMeanKernel&&) = delete;      // Move Assignment
 };
 
-#endif /* _MeanKernel_H_ */

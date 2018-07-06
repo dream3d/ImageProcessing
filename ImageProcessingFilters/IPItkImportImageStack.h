@@ -35,8 +35,7 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-#ifndef _IPItkImportImageStack_h_
-#define _IPItkImportImageStack_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/FilterParameters/FileListInfoFilterParameter.h"
@@ -203,4 +202,3 @@ class ImageProcessing_EXPORT IPItkImportImageStack : public AbstractFilter
     IPItkImportImageStack& operator=(IPItkImportImageStack&&) = delete;      // Move Assignment
 };
 
-#endif /* IPItkImportImageStack_H_ */

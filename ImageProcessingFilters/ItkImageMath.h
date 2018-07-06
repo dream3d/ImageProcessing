@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkimagemath_h_
-#define _itkimagemath_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -194,4 +193,3 @@ class ImageProcessing_EXPORT ItkImageMath : public AbstractFilter
     ItkImageMath& operator=(ItkImageMath&&) = delete;      // Move Assignment
 };
 
-#endif /* _ImageMath_H_ */

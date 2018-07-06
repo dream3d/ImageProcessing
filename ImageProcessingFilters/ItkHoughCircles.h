@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkhoughcircles_h_
-#define _itkhoughcircles_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -195,4 +194,3 @@ class ImageProcessing_EXPORT ItkHoughCircles : public AbstractFilter
     ItkHoughCircles& operator=(ItkHoughCircles&&) = delete;      // Move Assignment
 };
 
-#endif /* _HoughCircles_H_ */

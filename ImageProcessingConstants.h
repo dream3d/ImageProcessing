@@ -33,8 +33,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _imageprocessingconstants_h_
-#define _imageprocessingconstants_h_
+#pragma once
 
 
 #include "itkImage.h"
@@ -176,4 +175,3 @@ namespace FilterParameterWidgetType
   /*  const QString SomeCustomWidget("SomeCustomWidget"); */
 
 }
-#endif

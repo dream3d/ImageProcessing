@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itkkmeans_h_
-#define _itkkmeans_h_
+#pragma once
 
 #include <vector>
 #include <QtCore/QString>
@@ -198,4 +197,3 @@ class ImageProcessing_EXPORT ItkKMeans : public AbstractFilter
     ItkKMeans& operator=(ItkKMeans&&) = delete;      // Move Assignment
 };
 
-#endif /* _KMeans_H_ */

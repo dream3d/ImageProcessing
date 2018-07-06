@@ -35,8 +35,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _itkconvertarrayto8bitimageattributematrix_h_
-#define _itkconvertarrayto8bitimageattributematrix_h_
+#pragma once
 
 #include <QtCore/QString>
 #include <set>
@@ -173,6 +172,5 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
     ItkConvertArrayTo8BitImageAttributeMatrix& operator=(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Assignment
 };
 
-#endif /* ConvertArrayTo8BitImageAttributeMatrix_H_ */
 
 

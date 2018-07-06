@@ -32,8 +32,7 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#ifndef _itksobeledge_h_
-#define _itksobeledge_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -190,4 +189,3 @@ class ImageProcessing_EXPORT ItkSobelEdge : public AbstractFilter
     ItkSobelEdge& operator=(ItkSobelEdge&&) = delete;      // Move Assignment
 };
 
-#endif /* _SobelEdge_H_ */
