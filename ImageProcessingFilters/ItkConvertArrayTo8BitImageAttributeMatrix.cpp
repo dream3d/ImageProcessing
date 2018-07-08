@@ -37,6 +37,7 @@
 
 #include "ItkConvertArrayTo8BitImageAttributeMatrix.h"
 
+#include "SIMPLib/ITK/itkSupportConstants.h"
 #include "SIMPLib/Common/Constants.h"
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"

@@ -41,9 +41,7 @@
 #include "ImageProcessing/ImageProcessingVersion.h"
 #include "SIMPLib/Filtering/FilterFactory.hpp"
 #include "SIMPLib/Filtering/FilterManager.h"
-
-#include "ImageProcessing/ImageProcessingConstants.h"
-
+#include "SIMPLib/ITK/itkSupportConstants.h"
 
 #include <itkPNGImageIOFactory.h>
 #include <itkBMPImageIOFactory.h>

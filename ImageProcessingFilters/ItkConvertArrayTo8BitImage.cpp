@@ -37,6 +37,7 @@
 
 #include "ItkConvertArrayTo8BitImage.h"
 
+#include "SIMPLib/ITK/itkSupportConstants.h"
 #include "SIMPLib/Common/Constants.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"

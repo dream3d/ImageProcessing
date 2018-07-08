@@ -35,13 +35,11 @@
 
 #include <QtCore/QString>
 
+#include "SIMPLib/ITK/itkSupportConstants.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
-
-#include "ImageProcessing/ImageProcessingConstants.h"
-
 
 /**
  * @brief The DetermineStitching class
