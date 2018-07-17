@@ -216,7 +216,7 @@ void ItkHoughCircles::execute()
     //find circles
     ss = QObject::tr("Finding Circles on Slice: %1").arg(i + 1);
     notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
-    HoughTransformFilterType::CirclesListType circles = houghFilter->GetCircles( m_NumberCircles );
+    HoughTransformFilterType::CirclesListType circles = houghFilter->GetCircles();
 
     //create blank slice of same dimensions
     ImageProcessingConstants::DefaultSliceType::Pointer outputSlice = ImageProcessingConstants::DefaultSliceType::New();
