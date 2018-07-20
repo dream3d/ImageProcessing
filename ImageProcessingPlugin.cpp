@@ -43,30 +43,28 @@
 #include "SIMPLib/Filtering/FilterManager.h"
 #include "SIMPLib/ITK/itkSupportConstants.h"
 
-#include <itkPNGImageIOFactory.h>
 #include <itkBMPImageIOFactory.h>
 #include <itkJPEGImageIOFactory.h>
+#include <itkPNGImageIOFactory.h>
 #include <itkTIFFImageIOFactory.h>
-
-
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ImageProcessingPlugin::ImageProcessingPlugin() :
-  m_Version(ImageProcessing::Version::Package()),
-  m_CompatibilityVersion(ImageProcessing::Version::Package()),
-  m_Vendor("Open-Source"),
-  m_URL("http://www.github.com/dream3d/ImageProcessing"),
-  m_Location(""),
-  m_Copyright(""),
-  m_Filters(QList<QString>()),
-  m_DidLoad(false)
+ImageProcessingPlugin::ImageProcessingPlugin()
+: m_Version(ImageProcessing::Version::Package())
+, m_CompatibilityVersion(ImageProcessing::Version::Package())
+, m_Vendor("Open-Source")
+, m_URL("http://www.github.com/dream3d/ImageProcessing")
+, m_Location("")
+, m_Copyright()
+, m_Filters(QList<QString>())
+, m_DidLoad(false)
 {
-    itk::PNGImageIOFactory::RegisterOneFactory();
-    itk::TIFFImageIOFactory::RegisterOneFactory();
-    itk::JPEGImageIOFactory::RegisterOneFactory();
-    itk::BMPImageIOFactory::RegisterOneFactory();
+  itk::PNGImageIOFactory::RegisterOneFactory();
+  itk::TIFFImageIOFactory::RegisterOneFactory();
+  itk::JPEGImageIOFactory::RegisterOneFactory();
+  itk::BMPImageIOFactory::RegisterOneFactory();
 }
 
 // -----------------------------------------------------------------------------
@@ -97,7 +95,6 @@ QString ImageProcessingPlugin::getPluginBaseName()
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
-
 
 // -----------------------------------------------------------------------------
 //
@@ -148,9 +145,9 @@ QString ImageProcessingPlugin::getDescription()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--Description was not read-->>";
 
-  if ( licenseFileInfo.exists() )
+  if(licenseFileInfo.exists())
   {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -176,9 +173,9 @@ QString ImageProcessingPlugin::getLicense()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--License was not read-->>";
 
-  if (licenseFileInfo.exists())
+  if(licenseFileInfo.exists())
   {
-    if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -195,18 +192,18 @@ QMap<QString, QString> ImageProcessingPlugin::getThirdPartyLicenses()
   QMap<QString, QString> licenseMap;
   QList<QString> fileStrList;
   fileStrList.push_back(":/ThirdParty/HDF5.txt");
-  
+
   fileStrList.push_back(":/ThirdParty/Qt.txt");
   fileStrList.push_back(":/ThirdParty/Qwt.txt");
 
-  for (QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
+  for(QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
   {
     QFile file(*iter);
     QFileInfo licenseFileInfo(file);
 
-    if ( licenseFileInfo.exists() )
+    if(licenseFileInfo.exists())
     {
-      if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+      if(file.open(QIODevice::ReadOnly | QIODevice::Text))
       {
         QTextStream in(&file);
         licenseMap.insert(licenseFileInfo.baseName(), in.readAll());
@@ -246,7 +243,6 @@ void ImageProcessingPlugin::setLocation(QString filePath)
 // -----------------------------------------------------------------------------
 void ImageProcessingPlugin::writeSettings(QSettings& prefs)
 {
-
 }
 
 // -----------------------------------------------------------------------------
@@ -254,7 +250,6 @@ void ImageProcessingPlugin::writeSettings(QSettings& prefs)
 // -----------------------------------------------------------------------------
 void ImageProcessingPlugin::readSettings(QSettings& prefs)
 {
-
 }
 
 // -----------------------------------------------------------------------------
