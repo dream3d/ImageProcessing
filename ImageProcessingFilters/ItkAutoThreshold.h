@@ -193,7 +193,7 @@ class ImageProcessing_EXPORT ItkAutoThreshold : public AbstractFilter
 
   public:
     ItkAutoThreshold(const ItkAutoThreshold&) = delete; // Copy Constructor Not Implemented
-    ItkAutoThreshold(ItkAutoThreshold&&) = delete;      // Move Constructor
+    ItkAutoThreshold(ItkAutoThreshold&&) = delete;      // Move Constructor Not Implemented
     ItkAutoThreshold& operator=(const ItkAutoThreshold&) = delete; // Copy Assignment Not Implemented
     ItkAutoThreshold& operator=(ItkAutoThreshold&&) = delete;      // Move Assignment
 };

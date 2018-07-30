@@ -167,7 +167,7 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
 
   public:
     ItkConvertArrayTo8BitImage(const ItkConvertArrayTo8BitImage&) = delete; // Copy Constructor Not Implemented
-    ItkConvertArrayTo8BitImage(ItkConvertArrayTo8BitImage&&) = delete;      // Move Constructor
+    ItkConvertArrayTo8BitImage(ItkConvertArrayTo8BitImage&&) = delete;      // Move Constructor Not Implemented
     ItkConvertArrayTo8BitImage& operator=(const ItkConvertArrayTo8BitImage&) = delete; // Copy Assignment Not Implemented
     ItkConvertArrayTo8BitImage& operator=(ItkConvertArrayTo8BitImage&&) = delete;      // Move Assignment
 };

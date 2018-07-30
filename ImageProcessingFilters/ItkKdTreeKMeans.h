@@ -183,7 +183,7 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
 
   public:
     ItkKdTreeKMeans(const ItkKdTreeKMeans&) = delete; // Copy Constructor Not Implemented
-    ItkKdTreeKMeans(ItkKdTreeKMeans&&) = delete;      // Move Constructor
+    ItkKdTreeKMeans(ItkKdTreeKMeans&&) = delete;      // Move Constructor Not Implemented
     ItkKdTreeKMeans& operator=(const ItkKdTreeKMeans&) = delete; // Copy Assignment Not Implemented
     ItkKdTreeKMeans& operator=(ItkKdTreeKMeans&&) = delete;      // Move Assignment
 };

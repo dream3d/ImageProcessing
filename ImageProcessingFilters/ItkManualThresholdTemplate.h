@@ -191,7 +191,7 @@ class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
 
   public:
     ItkManualThresholdTemplate(const ItkManualThresholdTemplate&) = delete; // Copy Constructor Not Implemented
-    ItkManualThresholdTemplate(ItkManualThresholdTemplate&&) = delete;      // Move Constructor
+    ItkManualThresholdTemplate(ItkManualThresholdTemplate&&) = delete;      // Move Constructor Not Implemented
     ItkManualThresholdTemplate& operator=(const ItkManualThresholdTemplate&) = delete; // Copy Assignment Not Implemented
     ItkManualThresholdTemplate& operator=(ItkManualThresholdTemplate&&) = delete;      // Move Assignment
 };

@@ -187,7 +187,7 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
 
   public:
     ItkMedianKernel(const ItkMedianKernel&) = delete; // Copy Constructor Not Implemented
-    ItkMedianKernel(ItkMedianKernel&&) = delete;      // Move Constructor
+    ItkMedianKernel(ItkMedianKernel&&) = delete;      // Move Constructor Not Implemented
     ItkMedianKernel& operator=(const ItkMedianKernel&) = delete; // Copy Assignment Not Implemented
     ItkMedianKernel& operator=(ItkMedianKernel&&) = delete;      // Move Assignment
 };

@@ -188,7 +188,7 @@ class ImageProcessing_EXPORT ItkMultiOtsuThreshold : public AbstractFilter
 
   public:
     ItkMultiOtsuThreshold(const ItkMultiOtsuThreshold&) = delete; // Copy Constructor Not Implemented
-    ItkMultiOtsuThreshold(ItkMultiOtsuThreshold&&) = delete;      // Move Constructor
+    ItkMultiOtsuThreshold(ItkMultiOtsuThreshold&&) = delete;      // Move Constructor Not Implemented
     ItkMultiOtsuThreshold& operator=(const ItkMultiOtsuThreshold&) = delete; // Copy Assignment Not Implemented
     ItkMultiOtsuThreshold& operator=(ItkMultiOtsuThreshold&&) = delete;      // Move Assignment
 };

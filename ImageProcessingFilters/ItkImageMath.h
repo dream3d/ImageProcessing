@@ -188,7 +188,7 @@ class ImageProcessing_EXPORT ItkImageMath : public AbstractFilter
 
   public:
     ItkImageMath(const ItkImageMath&) = delete;   // Copy Constructor Not Implemented
-    ItkImageMath(ItkImageMath&&) = delete;        // Move Constructor
+    ItkImageMath(ItkImageMath&&) = delete;        // Move Constructor Not Implemented
     ItkImageMath& operator=(const ItkImageMath&) = delete; // Copy Assignment Not Implemented
     ItkImageMath& operator=(ItkImageMath&&) = delete;      // Move Assignment
 };

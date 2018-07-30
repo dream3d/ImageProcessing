@@ -197,7 +197,7 @@ class ImageProcessing_EXPORT IPItkImportImageStack : public AbstractFilter
 
   public:
     IPItkImportImageStack(const IPItkImportImageStack&) = delete; // Copy Constructor Not Implemented
-    IPItkImportImageStack(IPItkImportImageStack&&) = delete;      // Move Constructor
+    IPItkImportImageStack(IPItkImportImageStack&&) = delete;      // Move Constructor Not Implemented
     IPItkImportImageStack& operator=(const IPItkImportImageStack&) = delete; // Copy Assignment Not Implemented
     IPItkImportImageStack& operator=(IPItkImportImageStack&&) = delete;      // Move Assignment
 };

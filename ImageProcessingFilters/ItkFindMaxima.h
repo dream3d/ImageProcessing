@@ -185,7 +185,7 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 
   public:
     ItkFindMaxima(const ItkFindMaxima&) = delete;  // Copy Constructor Not Implemented
-    ItkFindMaxima(ItkFindMaxima&&) = delete;       // Move Constructor
+    ItkFindMaxima(ItkFindMaxima&&) = delete;       // Move Constructor Not Implemented
     ItkFindMaxima& operator=(const ItkFindMaxima&) = delete; // Copy Assignment Not Implemented
     ItkFindMaxima& operator=(ItkFindMaxima&&) = delete;      // Move Assignment
 };

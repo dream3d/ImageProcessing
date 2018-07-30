@@ -184,7 +184,7 @@ class ImageProcessing_EXPORT ItkSobelEdge : public AbstractFilter
 
   public:
     ItkSobelEdge(const ItkSobelEdge&) = delete;   // Copy Constructor Not Implemented
-    ItkSobelEdge(ItkSobelEdge&&) = delete;        // Move Constructor
+    ItkSobelEdge(ItkSobelEdge&&) = delete;        // Move Constructor Not Implemented
     ItkSobelEdge& operator=(const ItkSobelEdge&) = delete; // Copy Assignment Not Implemented
     ItkSobelEdge& operator=(ItkSobelEdge&&) = delete;      // Move Assignment
 };

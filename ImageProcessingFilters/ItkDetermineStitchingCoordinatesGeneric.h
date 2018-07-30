@@ -197,7 +197,7 @@ private:
 
 public:
   ItkDetermineStitchingCoordinatesGeneric(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Constructor Not Implemented
-  ItkDetermineStitchingCoordinatesGeneric(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Constructor
+  ItkDetermineStitchingCoordinatesGeneric(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Constructor Not Implemented
   ItkDetermineStitchingCoordinatesGeneric& operator=(const ItkDetermineStitchingCoordinatesGeneric&) = delete; // Copy Assignment Not Implemented
   ItkDetermineStitchingCoordinatesGeneric& operator=(ItkDetermineStitchingCoordinatesGeneric&&) = delete;      // Move Assignment
 };

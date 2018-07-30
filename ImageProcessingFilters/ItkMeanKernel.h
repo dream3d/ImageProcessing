@@ -188,7 +188,7 @@ class ImageProcessing_EXPORT ItkMeanKernel : public AbstractFilter
 
   public:
     ItkMeanKernel(const ItkMeanKernel&) = delete;  // Copy Constructor Not Implemented
-    ItkMeanKernel(ItkMeanKernel&&) = delete;       // Move Constructor
+    ItkMeanKernel(ItkMeanKernel&&) = delete;       // Move Constructor Not Implemented
     ItkMeanKernel& operator=(const ItkMeanKernel&) = delete; // Copy Assignment Not Implemented
     ItkMeanKernel& operator=(ItkMeanKernel&&) = delete;      // Move Assignment
 };

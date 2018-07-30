@@ -194,7 +194,7 @@ class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
 
   public:
     ItkGrayToRGB(const ItkGrayToRGB&) = delete;   // Copy Constructor Not Implemented
-    ItkGrayToRGB(ItkGrayToRGB&&) = delete;        // Move Constructor
+    ItkGrayToRGB(ItkGrayToRGB&&) = delete;        // Move Constructor Not Implemented
     ItkGrayToRGB& operator=(const ItkGrayToRGB&) = delete; // Copy Assignment Not Implemented
     ItkGrayToRGB& operator=(ItkGrayToRGB&&) = delete;      // Move Assignment
 };

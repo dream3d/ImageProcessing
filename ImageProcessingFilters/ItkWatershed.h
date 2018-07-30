@@ -186,7 +186,7 @@ class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
 
   public:
     ItkWatershed(const ItkWatershed&) = delete;   // Copy Constructor Not Implemented
-    ItkWatershed(ItkWatershed&&) = delete;        // Move Constructor
+    ItkWatershed(ItkWatershed&&) = delete;        // Move Constructor Not Implemented
     ItkWatershed& operator=(const ItkWatershed&) = delete; // Copy Assignment Not Implemented
     ItkWatershed& operator=(ItkWatershed&&) = delete;      // Move Assignment
 };
