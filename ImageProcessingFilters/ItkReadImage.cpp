@@ -36,13 +36,13 @@
 
 #include <string>
 
+#include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
-#include "SIMPLib/FilterParameters/InputFileFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/InputFileFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 #include "SIMPLib/ITK/itkReadImageImpl.hpp"
 
 // -----------------------------------------------------------------------------

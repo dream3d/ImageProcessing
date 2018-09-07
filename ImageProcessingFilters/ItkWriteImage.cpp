@@ -42,11 +42,10 @@
 #include "itkRGBAPixel.h"
 #include "itkVectorImage.h"
 
-
-#include "SIMPLib/Common/TemplateHelpers.hpp"
+#include "SIMPLib/Common/TemplateHelpers.h"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/OutputFileFilterParameter.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
@@ -245,7 +244,7 @@ void ItkWriteImage::dataCheck()
 
   //pass empty dimensions to allow any size
   QVector<size_t> compDims;
-  m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getSelectedCellArrayPath(), compDims);
+  m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getSelectedCellArrayPath(), compDims);
   if(nullptr != m_SelectedCellArrayPtr.lock())
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();

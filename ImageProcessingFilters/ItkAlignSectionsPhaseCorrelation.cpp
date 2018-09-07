@@ -35,8 +35,11 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "AlignSectionsPhaseCorrelation.h"
 
-#include <QtCore/QString>
 #include <fstream>
+
+#include <QtCore/QString>
+
+#include "SIMPLib/Common/TemplateHelpers.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ItkBridge.h"

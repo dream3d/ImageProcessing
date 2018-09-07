@@ -39,6 +39,7 @@
 #include "itkBinaryThresholdImageFilter.h"
 #include <limits>
 
+#include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 #include "SIMPLib/Geometry/ImageGeom.h"
 

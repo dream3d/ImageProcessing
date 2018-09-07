@@ -37,13 +37,12 @@
 //thresholding filter
 #include "itkComposeImageFilter.h"
 
-#include "SIMPLib/Common/TemplateHelpers.hpp"
-#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
+#include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 
 // ImageProcessing Plugin
 #include "SIMPLib/ITK/itkBridge.h"
@@ -197,17 +196,17 @@ void ItkGrayToRGB::dataCheck()
 
   //check for required arrays
   QVector<size_t> compDims(1, 1);
-  m_RedPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getRedArrayPath(), compDims);
+  m_RedPtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getRedArrayPath(), compDims);
   if(nullptr != m_RedPtr.lock())
   {
     m_Red = m_RedPtr.lock().get();
   }
-  m_GreenPtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getGreenArrayPath(), compDims);
+  m_GreenPtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getGreenArrayPath(), compDims);
   if(nullptr != m_GreenPtr.lock())
   {
     m_Green = m_GreenPtr.lock().get();
   }
-  m_BluePtr = TemplateHelpers::GetPrereqArrayFromPath<AbstractFilter>()(this, getBlueArrayPath(), compDims);
+  m_BluePtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getBlueArrayPath(), compDims);
   if(nullptr != m_BluePtr.lock())
   {
     m_Blue = m_BluePtr.lock().get();
