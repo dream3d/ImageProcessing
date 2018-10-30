@@ -48,6 +48,7 @@
 #include "SIMPLib/FilterParameters/OutputFileFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/Utilities/FileSystemPathHelper.h"
 
 #include "SIMPLib/ITK/itkBridge.h"
 
@@ -224,23 +225,7 @@ void ItkWriteImage::dataCheck()
   setErrorCondition(0);
   setWarningCondition(0);
 
-
-  if(m_OutputFileName.isEmpty())
-  {
-    QString ss = QObject::tr("Output file name/path was not given");
-    setErrorCondition(-100);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
-
-  QFileInfo fi(m_OutputFileName);
-  if(fi.suffix().compare("tif") != 0)
-  {
-    QString ss = QObject::tr("Image Stacks are only supported for TIFF formatted output");
-    setErrorCondition(-101);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
+  FileSystemPathHelper::CheckOutputFile(this, "Image Output File", getOutputFileName(), true);
 
   //pass empty dimensions to allow any size
   QVector<size_t> compDims;
