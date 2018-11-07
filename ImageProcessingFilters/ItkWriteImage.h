@@ -180,6 +180,6 @@ class ImageProcessing_EXPORT ItkWriteImage : public AbstractFilter
     ItkWriteImage(const ItkWriteImage&) = delete;  // Copy Constructor Not Implemented
     ItkWriteImage(ItkWriteImage&&) = delete;       // Move Constructor Not Implemented
     ItkWriteImage& operator=(const ItkWriteImage&) = delete; // Copy Assignment Not Implemented
-    ItkWriteImage& operator=(ItkWriteImage&&) = delete;      // Move Assignment
+    ItkWriteImage& operator=(ItkWriteImage&&) = delete;      // Move Assignment Not Implemented
 };
 

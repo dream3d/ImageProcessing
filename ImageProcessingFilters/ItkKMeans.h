@@ -194,6 +194,6 @@ class ImageProcessing_EXPORT ItkKMeans : public AbstractFilter
     ItkKMeans(const ItkKMeans&) = delete;      // Copy Constructor Not Implemented
     ItkKMeans(ItkKMeans&&) = delete;           // Move Constructor Not Implemented
     ItkKMeans& operator=(const ItkKMeans&) = delete; // Copy Assignment Not Implemented
-    ItkKMeans& operator=(ItkKMeans&&) = delete;      // Move Assignment
+    ItkKMeans& operator=(ItkKMeans&&) = delete;      // Move Assignment Not Implemented
 };
 

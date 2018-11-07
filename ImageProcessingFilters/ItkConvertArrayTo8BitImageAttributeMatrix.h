@@ -169,7 +169,7 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
     ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Constructor Not Implemented
     ItkConvertArrayTo8BitImageAttributeMatrix(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Constructor Not Implemented
     ItkConvertArrayTo8BitImageAttributeMatrix& operator=(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Assignment Not Implemented
-    ItkConvertArrayTo8BitImageAttributeMatrix& operator=(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Assignment
+    ItkConvertArrayTo8BitImageAttributeMatrix& operator=(ItkConvertArrayTo8BitImageAttributeMatrix&&) = delete;      // Move Assignment Not Implemented
 };
 
 

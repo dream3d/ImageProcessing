@@ -193,6 +193,6 @@ class ImageProcessing_EXPORT ItkReadImage : public AbstractFilter
     ItkReadImage(const ItkReadImage&) = delete;   // Copy Constructor Not Implemented
     ItkReadImage(ItkReadImage&&) = delete;        // Move Constructor Not Implemented
     ItkReadImage& operator=(const ItkReadImage&) = delete; // Copy Assignment Not Implemented
-    ItkReadImage& operator=(ItkReadImage&&) = delete;      // Move Assignment
+    ItkReadImage& operator=(ItkReadImage&&) = delete;      // Move Assignment Not Implemented
 };
 

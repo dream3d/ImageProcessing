@@ -187,6 +187,6 @@ class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
     ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&) = delete; // Copy Constructor Not Implemented
     ItkBinaryWatershedLabeled(ItkBinaryWatershedLabeled&&) = delete;      // Move Constructor Not Implemented
     ItkBinaryWatershedLabeled& operator=(const ItkBinaryWatershedLabeled&) = delete; // Copy Assignment Not Implemented
-    ItkBinaryWatershedLabeled& operator=(ItkBinaryWatershedLabeled&&) = delete;      // Move Assignment
+    ItkBinaryWatershedLabeled& operator=(ItkBinaryWatershedLabeled&&) = delete;      // Move Assignment Not Implemented
 };
 
