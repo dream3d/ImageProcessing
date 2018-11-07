@@ -113,9 +113,11 @@ class DetermineStitching
   protected:
     DetermineStitching();
 
-  private:
+  public:
     DetermineStitching(const DetermineStitching&) = delete; // Copy Constructor Not Implemented
-    void operator=(const DetermineStitching&) = delete;     // Move assignment Not Implemented
+    DetermineStitching(DetermineStitching&&) = delete;      // Move Constructor Not Implemented
+    DetermineStitching& operator=(const DetermineStitching&) = delete; // Copy Assignment Not Implemented
+    DetermineStitching& operator=(DetermineStitching&&) = delete;      // Move Assignment Not Implemented
 };
 
 
