@@ -58,7 +58,6 @@
 ItkStitchImages::ItkStitchImages()
 : m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, "")
 , m_StitchedCoordinatesArrayPath(SIMPL::Defaults::ImageDataContainerName, "", "")
-, m_AttributeArrayNamesPath()
 , m_StitchedVolumeDataContainerName("MontagedImageDataContainer")
 , m_StitchedImagesArrayName("Montage")
 , m_StitchedAttributeMatrixName("MontageAttributeMatrix")
@@ -393,7 +392,7 @@ void ItkStitchImages::execute()
 AbstractFilter::Pointer ItkStitchImages::newFilterInstance(bool copyFilterParameters) const
 {
   ItkStitchImages::Pointer filter = ItkStitchImages::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

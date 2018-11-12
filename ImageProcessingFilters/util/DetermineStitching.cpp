@@ -46,19 +46,12 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-DetermineStitching::DetermineStitching()
-{
-
-}
+DetermineStitching::DetermineStitching() = default;
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-DetermineStitching::~DetermineStitching()
-{
-
-}
-
+DetermineStitching::~DetermineStitching() = default;
 
 // -----------------------------------------------------------------------------
 //
@@ -561,7 +554,7 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
 
     }
 
-    if(filter)
+    if(filter != nullptr)
     {
       //Generate a QString of the message
       QString msg;

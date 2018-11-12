@@ -114,8 +114,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
     return;
   }
-  else
-  {
+
     QList<QString> names = am->getAttributeArrayNames();
     QVector<size_t> dims(1, 1);
 
@@ -124,8 +123,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
       tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
       IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath);
       if (getErrorCondition() < 0) { return; }
-      else
-      {
+
         if(inputData->getNumberOfComponents() > 1)
         {
           QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
@@ -133,14 +131,11 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
           notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
           return;
         }
-
-      }
     }
 
 
     ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
     if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
-  }
 }
 
 // -----------------------------------------------------------------------------
@@ -301,7 +296,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
 AbstractFilter::Pointer ItkConvertArrayTo8BitImageAttributeMatrix::newFilterInstance(bool copyFilterParameters) const
 {
   ItkConvertArrayTo8BitImageAttributeMatrix::Pointer filter = ItkConvertArrayTo8BitImageAttributeMatrix::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

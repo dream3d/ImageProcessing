@@ -212,7 +212,7 @@ void ItkWatershed::execute()
 AbstractFilter::Pointer ItkWatershed::newFilterInstance(bool copyFilterParameters) const
 {
   ItkWatershed::Pointer filter = ItkWatershed::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

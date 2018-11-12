@@ -61,8 +61,8 @@ class ManualThresholdTemplatePrivate
   public:
     typedef DataArray<PixelType> DataArrayType;
 
-    ManualThresholdTemplatePrivate() {}
-    virtual ~ManualThresholdTemplatePrivate() {}
+    ManualThresholdTemplatePrivate() = default;
+    virtual ~ManualThresholdTemplatePrivate() = default;
 
     // -----------------------------------------------------------------------------
     // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -200,7 +200,10 @@ void ItkManualThresholdTemplate::dataCheck()
   if(getErrorCondition() < 0) { return; }
 
   //configured created name / location
-  if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
+  if(!m_SaveAsNewArray)
+  {
+    m_NewCellArrayName = "thisIsATempName";
+  }
   tempPath.update(getSelectedCellArrayArrayPath().getDataContainerName(), getSelectedCellArrayArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
   // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
@@ -368,7 +371,7 @@ void ItkManualThresholdTemplate::execute()
 
   //array name changing/cleanup
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
-  if(m_SaveAsNewArray == true)
+  if(m_SaveAsNewArray)
   {
     attrMat->addAttributeArray(getNewCellArrayName(), outputData);
   }
@@ -389,7 +392,7 @@ void ItkManualThresholdTemplate::execute()
 AbstractFilter::Pointer ItkManualThresholdTemplate::newFilterInstance(bool copyFilterParameters) const
 {
   ItkManualThresholdTemplate::Pointer filter = ItkManualThresholdTemplate::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

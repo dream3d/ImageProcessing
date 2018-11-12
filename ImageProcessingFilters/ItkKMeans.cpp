@@ -131,7 +131,10 @@ void ItkKMeans::dataCheck()
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
   if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
 
-  if(m_SaveAsNewArray == false) { m_NewCellArrayName = "thisIsATempName"; }
+  if(!m_SaveAsNewArray)
+  {
+    m_NewCellArrayName = "thisIsATempName";
+  }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
@@ -272,7 +275,7 @@ void ItkKMeans::execute()
 
 
   //array name changing/cleanup
-  if(m_SaveAsNewArray == false)
+  if(!m_SaveAsNewArray)
   {
     AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayPath.getAttributeMatrixName());
     attrMat->removeAttributeArray(m_SelectedCellArrayPath.getDataArrayName());
@@ -294,7 +297,7 @@ AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters) 
   * write code to optionally copy the filter parameters from the current filter into the new instance
   */
   ItkKMeans::Pointer filter = ItkKMeans::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     /* If the filter uses all the standard Filter Parameter Widgets you can probabaly get
      * away with using this method to copy the filter parameters from the current instance

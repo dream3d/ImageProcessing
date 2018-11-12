@@ -57,8 +57,8 @@ class GrayToRGBPrivate
   public:
     typedef DataArray<PixelType> DataArrayType;
 
-    GrayToRGBPrivate() {}
-    virtual ~GrayToRGBPrivate() {}
+    GrayToRGBPrivate() = default;
+    virtual ~GrayToRGBPrivate() = default;
 
     // -----------------------------------------------------------------------------
     // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -340,7 +340,7 @@ void ItkGrayToRGB::execute()
 AbstractFilter::Pointer ItkGrayToRGB::newFilterInstance(bool copyFilterParameters) const
 {
   ItkGrayToRGB::Pointer filter = ItkGrayToRGB::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

@@ -5,10 +5,7 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ImageProcessingGuiPlugin::ImageProcessingGuiPlugin()
-: ImageProcessingPlugin()
-{
-}
+ImageProcessingGuiPlugin::ImageProcessingGuiPlugin() = default;
 
 // -----------------------------------------------------------------------------
 //

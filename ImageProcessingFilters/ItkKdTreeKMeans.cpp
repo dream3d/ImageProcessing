@@ -60,8 +60,8 @@ class itkKdTreeKMeansTemplate
   public:
     typedef DataArray<DataType> DataArrayType;
 
-    itkKdTreeKMeansTemplate() {}
-    virtual ~itkKdTreeKMeansTemplate() {}
+    itkKdTreeKMeansTemplate() = default;
+    virtual ~itkKdTreeKMeansTemplate() = default;
 
     // -----------------------------------------------------------------------------
     //
@@ -284,7 +284,7 @@ void ItkKdTreeKMeans::execute()
 AbstractFilter::Pointer ItkKdTreeKMeans::newFilterInstance(bool copyFilterParameters) const
 {
   ItkKdTreeKMeans::Pointer filter = ItkKdTreeKMeans::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

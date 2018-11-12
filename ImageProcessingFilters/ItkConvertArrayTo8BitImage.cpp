@@ -107,7 +107,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
   setErrorCondition(0);
   setWarningCondition(0);
 
-  if(m_SelectedArrayPath.isEmpty() == true)
+  if(m_SelectedArrayPath.isEmpty())
   {
     setErrorCondition(-11000);
     notifyErrorMessage(getHumanLabel(), "An array from the DataContainer must be selected.", getErrorCondition());
@@ -116,8 +116,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
   {
     IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, getSelectedArrayPath());
     if (getErrorCondition() < 0) { return; }
-    else
-    {
+
       if(inputData->getNumberOfComponents() > 1)
       {
         QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(m_SelectedArrayPath.getDataArrayName());
@@ -134,7 +133,6 @@ void ItkConvertArrayTo8BitImage::dataCheck()
 
       ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
       if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
-    }
   }
 }
 
@@ -259,7 +257,7 @@ void ItkConvertArrayTo8BitImage::execute()
 AbstractFilter::Pointer ItkConvertArrayTo8BitImage::newFilterInstance(bool copyFilterParameters) const
 {
   ItkConvertArrayTo8BitImage::Pointer filter = ItkConvertArrayTo8BitImage::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

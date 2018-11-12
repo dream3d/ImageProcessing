@@ -225,7 +225,7 @@ void ItkBinaryWatershedLabeled::execute()
 AbstractFilter::Pointer ItkBinaryWatershedLabeled::newFilterInstance(bool copyFilterParameters) const
 {
   ItkBinaryWatershedLabeled::Pointer filter = ItkBinaryWatershedLabeled::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

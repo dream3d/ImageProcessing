@@ -175,7 +175,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   // Zeiss Data things. I won't be using this because I won't be givin the Zeiss Data
   // Which is unfortunete
-  if(m_UseZeissMetaData == true)
+  if(m_UseZeissMetaData)
   {
     AttributeMatrix::Pointer MetaDataAm = getDataContainerArray()->getAttributeMatrix(m_MetaDataAttributeMatrixName);
     if(nullptr == MetaDataAm.get())
@@ -185,7 +185,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
     }
     //        QString temp = "_META_DATA";
     bool a = getMetaDataAttributeMatrixName().getAttributeMatrixName().contains("_META_DATA");
-    if (a == false)
+    if(!a)
     {
       notifyErrorMessage(getHumanLabel(), "The Attribute Matrix does not contain the Zeiss Meta Data", -76002);
       return;
@@ -224,8 +224,6 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   {
     // m_DataArrayNamesForStitchedCoordinates = m_DataArrayNamesForStitchedCoordinatesPtr.lock()->getPointer(0);  /* Now assign the raw pointer to data from the DataArray<T> object */
   }
-
-  return;
 }
 
 // -----------------------------------------------------------------------------
@@ -525,7 +523,7 @@ AbstractFilter::Pointer ItkDetermineStitchingCoordinatesGeneric::newFilterInstan
   * write code to optionally copy the filter parameters from the current filter into the new instance
   */
   ItkDetermineStitchingCoordinatesGeneric::Pointer filter = ItkDetermineStitchingCoordinatesGeneric::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     /* If the filter uses all the standard Filter Parameter Widgets you can probabaly get
      * away with using this method to copy the filter parameters from the current instance

@@ -62,8 +62,8 @@ class WriteImagePrivate
   public:
     typedef DataArray<TInputType> DataArrayType;
 
-    WriteImagePrivate() {}
-    virtual ~WriteImagePrivate() {}
+    WriteImagePrivate() = default;
+    virtual ~WriteImagePrivate() = default;
 
     // -----------------------------------------------------------------------------
     // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -365,7 +365,7 @@ void ItkWriteImage::execute()
 AbstractFilter::Pointer ItkWriteImage::newFilterInstance(bool copyFilterParameters) const
 {
   ItkWriteImage::Pointer filter = ItkWriteImage::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

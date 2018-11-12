@@ -60,12 +60,8 @@ template <typename T> class RGBToGrayPrivate
 public:
   using DataArrayType = DataArray<T>;
 
-  RGBToGrayPrivate()
-  {
-  }
-  virtual ~RGBToGrayPrivate()
-  {
-  }
+  RGBToGrayPrivate() = default;
+  virtual ~RGBToGrayPrivate() = default;
 
   // -----------------------------------------------------------------------------
   // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -192,7 +188,7 @@ void ItkRGBToGray::dataCheck()
 {
   setErrorCondition(0);
   setWarningCondition(0);
-  if(DataArrayPath::ValidateVector(getInputDataArrayVector()) == false)
+  if(!DataArrayPath::ValidateVector(getInputDataArrayVector()))
   {
     setErrorCondition(-62000);
     QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");
@@ -373,7 +369,7 @@ void ItkRGBToGray::execute()
 AbstractFilter::Pointer ItkRGBToGray::newFilterInstance(bool copyFilterParameters) const
 {
   ItkRGBToGray::Pointer filter = ItkRGBToGray::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }
