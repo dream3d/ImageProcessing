@@ -54,8 +54,6 @@ ItkGaussianBlur::ItkGaussianBlur()
 : m_SelectedCellArrayPath("", "", "")
 , m_NewCellArrayName("")
 , m_SaveAsNewArray(true)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -108,7 +106,6 @@ void ItkGaussianBlur::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 void ItkGaussianBlur::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

@@ -69,8 +69,6 @@ ItkImageMath::ItkImageMath()
 , m_SaveAsNewArray(true)
 , m_Operator(0)
 , m_Value(1)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -145,7 +143,6 @@ void ItkImageMath::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkImageMath::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

@@ -58,8 +58,6 @@ ItkKMeans::ItkKMeans()
 , m_SaveAsNewArray(true)
 , m_Slice(false)
 , m_Classes(2)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -110,7 +108,6 @@ void ItkKMeans::readFilterParameters(AbstractFilterParametersReader* reader, int
 // -----------------------------------------------------------------------------
 void ItkKMeans::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

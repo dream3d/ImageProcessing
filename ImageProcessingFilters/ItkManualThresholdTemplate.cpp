@@ -115,8 +115,8 @@ class ManualThresholdTemplatePrivate
       }
     }
   private:
-    ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&); // Copy Constructor Not Implemented
-    void operator=(const ManualThresholdTemplatePrivate&);                 // Move assignment Not Implemented
+    ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const ManualThresholdTemplatePrivate&) = delete;                 // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
@@ -127,8 +127,6 @@ ItkManualThresholdTemplate::ItkManualThresholdTemplate()
 , m_NewCellArrayName("")
 , m_SaveAsNewArray(true)
 , m_ManualParameter(128)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -177,7 +175,6 @@ void ItkManualThresholdTemplate::readFilterParameters(AbstractFilterParametersRe
 // -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

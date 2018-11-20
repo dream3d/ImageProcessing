@@ -143,7 +143,6 @@ void IPItkImportImageStack::readFilterParameters(AbstractFilterParametersReader*
 // -----------------------------------------------------------------------------
 void IPItkImportImageStack::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

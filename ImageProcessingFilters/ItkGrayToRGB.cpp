@@ -116,8 +116,8 @@ class GrayToRGBPrivate
       }
     }
   private:
-    GrayToRGBPrivate(const GrayToRGBPrivate&); // Copy Constructor Not Implemented
-    void operator=(const GrayToRGBPrivate&);   // Move assignment Not Implemented
+    GrayToRGBPrivate(const GrayToRGBPrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const GrayToRGBPrivate&) = delete;   // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
@@ -128,10 +128,6 @@ ItkGrayToRGB::ItkGrayToRGB()
 , m_GreenArrayPath("", "", "")
 , m_BlueArrayPath("", "", "")
 , m_NewCellArrayName("")
-, m_Red(nullptr)
-, m_Green(nullptr)
-, m_Blue(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -182,7 +178,6 @@ void ItkGrayToRGB::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkGrayToRGB::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

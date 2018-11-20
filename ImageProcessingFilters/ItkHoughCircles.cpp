@@ -59,8 +59,6 @@ ItkHoughCircles::ItkHoughCircles()
 , m_MinRadius(0)
 , m_MaxRadius(0)
 , m_NumberCircles(0)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -113,7 +111,6 @@ void ItkHoughCircles::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 void ItkHoughCircles::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

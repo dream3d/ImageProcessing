@@ -56,8 +56,6 @@ ItkManualThreshold::ItkManualThreshold()
 , m_NewCellArrayName("")
 , m_SaveAsNewArray(true)
 , m_ManualParameter(128)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -106,7 +104,6 @@ void ItkManualThreshold::readFilterParameters(AbstractFilterParametersReader* re
 // -----------------------------------------------------------------------------
 void ItkManualThreshold::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

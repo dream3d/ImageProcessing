@@ -58,8 +58,6 @@ ItkMultiOtsuThreshold::ItkMultiOtsuThreshold()
 , m_SaveAsNewArray(true)
 , m_Slice(false)
 , m_Levels(1)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -110,7 +108,6 @@ void ItkMultiOtsuThreshold::readFilterParameters(AbstractFilterParametersReader*
 // -----------------------------------------------------------------------------
 void ItkMultiOtsuThreshold::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

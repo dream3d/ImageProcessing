@@ -94,7 +94,6 @@ void ItkReadImage::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkReadImage::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

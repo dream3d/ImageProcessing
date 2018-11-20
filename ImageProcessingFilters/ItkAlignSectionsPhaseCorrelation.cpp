@@ -204,7 +204,6 @@ void AlignSectionsPhaseCorrelation::readFilterParameters(AbstractFilterParameter
 // -----------------------------------------------------------------------------
 void AlignSectionsPhaseCorrelation::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

@@ -56,8 +56,6 @@ ItkMedianKernel::ItkMedianKernel()
 , m_NewCellArrayName("")
 , m_SaveAsNewArray(true)
 , m_Slice(false)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
   m_KernelSize.x = 1;
   m_KernelSize.y = 1;
@@ -112,7 +110,6 @@ void ItkMedianKernel::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 void ItkMedianKernel::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

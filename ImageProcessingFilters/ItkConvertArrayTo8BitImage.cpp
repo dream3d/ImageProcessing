@@ -54,7 +54,6 @@
 ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage()
 : m_SelectedArrayPath("", "", "")
 , m_NewArrayArrayName("")
-, m_NewArray(nullptr)
 {
 }
 
@@ -95,7 +94,6 @@ void ItkConvertArrayTo8BitImage::readFilterParameters(AbstractFilterParametersRe
 // -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImage::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

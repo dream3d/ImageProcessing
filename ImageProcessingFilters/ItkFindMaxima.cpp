@@ -113,8 +113,8 @@ class FindMaximaPrivate
       }
     }
   private:
-    FindMaximaPrivate(const FindMaximaPrivate&); // Copy Constructor Not Implemented
-    void operator=(const FindMaximaPrivate&);    // Move assignment Not Implemented
+    FindMaximaPrivate(const FindMaximaPrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const FindMaximaPrivate&) = delete;    // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
@@ -124,8 +124,6 @@ ItkFindMaxima::ItkFindMaxima()
 : m_SelectedCellArrayPath("", "", "")
 , m_Tolerance(1.0)
 , m_NewCellArrayName("Maxima")
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -168,7 +166,6 @@ void ItkFindMaxima::readFilterParameters(AbstractFilterParametersReader* reader,
 // -----------------------------------------------------------------------------
 void ItkFindMaxima::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

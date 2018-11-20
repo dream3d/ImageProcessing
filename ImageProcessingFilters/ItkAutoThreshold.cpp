@@ -77,8 +77,6 @@ ItkAutoThreshold::ItkAutoThreshold()
 , m_Slice(false)
 , m_Method(7)
 , m_ManualParameter(128)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -150,7 +148,6 @@ void ItkAutoThreshold::readFilterParameters(AbstractFilterParametersReader* read
 // -----------------------------------------------------------------------------
 void ItkAutoThreshold::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

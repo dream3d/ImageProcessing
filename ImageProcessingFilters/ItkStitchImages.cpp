@@ -61,8 +61,6 @@ ItkStitchImages::ItkStitchImages()
 , m_StitchedVolumeDataContainerName("MontagedImageDataContainer")
 , m_StitchedImagesArrayName("Montage")
 , m_StitchedAttributeMatrixName("MontageAttributeMatrix")
-, m_StitchedCoordinates(nullptr)
-, m_StitchedImageArray(nullptr)
 {
 }
 
@@ -122,7 +120,6 @@ void ItkStitchImages::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 void ItkStitchImages::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

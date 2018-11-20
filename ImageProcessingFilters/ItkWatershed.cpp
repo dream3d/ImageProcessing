@@ -57,8 +57,6 @@ ItkWatershed::ItkWatershed()
 , m_FeatureIdsArrayName(SIMPL::CellData::FeatureIds)
 , m_Threshold(0.005f)
 , m_Level(0.5f)
-, m_SelectedCellArray(nullptr)
-, m_FeatureIds(nullptr)
 {
 }
 
@@ -103,7 +101,6 @@ void ItkWatershed::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkWatershed::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

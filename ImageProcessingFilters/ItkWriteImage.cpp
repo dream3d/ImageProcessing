@@ -164,8 +164,8 @@ class WriteImagePrivate
       }
     }
   private:
-    WriteImagePrivate(const WriteImagePrivate&); // Copy Constructor Not Implemented
-    void operator=(const WriteImagePrivate&);    // Move assignment Not Implemented
+    WriteImagePrivate(const WriteImagePrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const WriteImagePrivate&) = delete;    // Move assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
@@ -174,7 +174,6 @@ class WriteImagePrivate
 ItkWriteImage::ItkWriteImage()
 : m_SelectedCellArrayPath("", "", "")
 , m_OutputFileName("")
-, m_SelectedCellArray(nullptr)
 {
 }
 
@@ -214,7 +213,6 @@ void ItkWriteImage::readFilterParameters(AbstractFilterParametersReader* reader,
 // -----------------------------------------------------------------------------
 void ItkWriteImage::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

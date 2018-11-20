@@ -95,7 +95,6 @@ void RegionGrowing::readFilterParameters(AbstractFilterParametersReader* reader,
 // -----------------------------------------------------------------------------
 void RegionGrowing::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

@@ -170,7 +170,6 @@ ItkKdTreeKMeans::ItkKdTreeKMeans()
 : m_SelectedCellArrayPath("", "", "")
 , m_NewCellArrayName("ClassLabels")
 , m_Classes(2)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -209,7 +208,6 @@ void ItkKdTreeKMeans::readFilterParameters(AbstractFilterParametersReader* reade
 // -----------------------------------------------------------------------------
 void ItkKdTreeKMeans::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

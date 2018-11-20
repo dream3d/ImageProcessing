@@ -56,8 +56,6 @@ ItkSobelEdge::ItkSobelEdge()
 , m_NewCellArrayName("")
 , m_SaveAsNewArray(true)
 , m_Slice(false)
-, m_SelectedCellArray(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -106,7 +104,6 @@ void ItkSobelEdge::readFilterParameters(AbstractFilterParametersReader* reader, 
 // -----------------------------------------------------------------------------
 void ItkSobelEdge::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

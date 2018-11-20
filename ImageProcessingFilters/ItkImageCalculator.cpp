@@ -65,9 +65,6 @@ ItkImageCalculator::ItkImageCalculator()
 , m_SelectedCellArrayPath2("", "", "")
 , m_NewCellArrayName("")
 , m_Operator(0)
-, m_SelectedCellArray1(nullptr)
-, m_SelectedCellArray2(nullptr)
-, m_NewCellArray(nullptr)
 {
 }
 
@@ -137,7 +134,6 @@ void ItkImageCalculator::readFilterParameters(AbstractFilterParametersReader* re
 // -----------------------------------------------------------------------------
 void ItkImageCalculator::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

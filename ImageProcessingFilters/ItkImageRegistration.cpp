@@ -82,7 +82,6 @@ void ImageRegistration::readFilterParameters(AbstractFilterParametersReader* rea
 // -----------------------------------------------------------------------------
 void ImageRegistration::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

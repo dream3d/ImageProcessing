@@ -167,7 +167,6 @@ void FindMaxima::readFilterParameters(AbstractFilterParametersReader* reader, in
 // -----------------------------------------------------------------------------
 void FindMaxima::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------

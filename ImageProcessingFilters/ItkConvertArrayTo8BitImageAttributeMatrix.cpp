@@ -51,10 +51,8 @@
 //
 // -----------------------------------------------------------------------------
 ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMatrix()
-: //  m_SelectedArrayPath("", "", ""),
-    m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, "")
+: m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, "")
 , m_NewArrayArrayName("")
-, m_NewArray(nullptr)
 {
 }
 
@@ -94,7 +92,6 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::readFilterParameters(AbstractFil
 // -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImageAttributeMatrix::initialize()
 {
-
 }
 
 // -----------------------------------------------------------------------------
