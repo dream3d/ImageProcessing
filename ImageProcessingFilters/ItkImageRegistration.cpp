@@ -159,10 +159,6 @@ void ImageRegistration::execute()
   if(getErrorCondition() < 0) { return; }
   setErrorCondition(0);
   setWarningCondition(0);
-
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

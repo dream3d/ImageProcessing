@@ -358,9 +358,6 @@ void ItkRGBToGray::execute()
     //    AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
     //    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
   }
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

@@ -263,10 +263,6 @@ void ItkHoughCircles::execute()
     attrMat->removeAttributeArray(m_SelectedCellArrayPath.getDataArrayName());
     attrMat->renameAttributeArray(m_NewCellArrayName, m_SelectedCellArrayPath.getDataArrayName());
   }
-
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

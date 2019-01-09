@@ -380,7 +380,6 @@ void ItkStitchImages::execute()
 
 
 
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

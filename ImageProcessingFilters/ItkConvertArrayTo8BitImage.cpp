@@ -246,7 +246,6 @@ void ItkConvertArrayTo8BitImage::execute()
     scaleArray<bool>(inputData, m_NewArray);
   }
 
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

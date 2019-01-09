@@ -338,9 +338,6 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   {
     arrayNames->setValue(i, names[i]);
   }
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

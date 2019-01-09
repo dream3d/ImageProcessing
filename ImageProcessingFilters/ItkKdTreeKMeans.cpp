@@ -271,9 +271,6 @@ void ItkKdTreeKMeans::execute()
   if(getErrorCondition() < 0) { return; }
 
   EXECUTE_TEMPLATE(this, itkKdTreeKMeansTemplate, m_SelectedCellArrayPtr.lock(), m_SelectedCellArrayPtr.lock(), m_NewCellArrayPtr.lock(), m_Classes)
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

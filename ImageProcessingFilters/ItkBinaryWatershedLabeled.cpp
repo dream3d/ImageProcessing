@@ -211,9 +211,6 @@ void ItkBinaryWatershedLabeled::execute()
     QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

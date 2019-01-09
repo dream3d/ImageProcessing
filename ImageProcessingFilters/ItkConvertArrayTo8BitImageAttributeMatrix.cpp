@@ -284,7 +284,6 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
 
 
 
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

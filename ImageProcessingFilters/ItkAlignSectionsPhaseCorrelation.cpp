@@ -307,9 +307,6 @@ void AlignSectionsPhaseCorrelation::execute()
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 void AlignSectionsPhaseCorrelation::find_shifts(QVector<int>& xshifts, QVector<int>& yshifts)

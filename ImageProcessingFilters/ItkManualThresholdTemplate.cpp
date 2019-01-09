@@ -378,9 +378,6 @@ void ItkManualThresholdTemplate::execute()
     outputData->setName(m_SelectedCellArrayArrayPath.getDataArrayName());
     attrMat->addAttributeArray(outputData->getName(), outputData);
   }
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------

@@ -323,10 +323,6 @@ void ItkGrayToRGB::execute()
   //array name changing/cleanup
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_RedArrayPath.getAttributeMatrixName());
   attrMat->addAttributeArray(getNewCellArrayName(), outputData);
-
-
-  /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
