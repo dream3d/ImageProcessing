@@ -45,7 +45,7 @@ ItkBinaryWatershedLabeled::~ItkBinaryWatershedLabeled() = default;
 // -----------------------------------------------------------------------------
 void ItkBinaryWatershedLabeled::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Bool, 1, AttributeMatrix::Category::Any);

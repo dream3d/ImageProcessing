@@ -46,12 +46,12 @@ ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneri
 // -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 {
-  FilterParameterVector parameters;
-//  {
-//    QStringList linkedProps;
-//    linkedProps << "MetaDataAttributeMatrixName";
-//    parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
-//  }
+  FilterParameterVectorType parameters;
+  //  {
+  //    QStringList linkedProps;
+  //    linkedProps << "MetaDataAttributeMatrixName";
+  //    parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
+  //  }
 
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();

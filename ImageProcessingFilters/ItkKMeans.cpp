@@ -71,7 +71,7 @@ ItkKMeans::~ItkKMeans() = default;
 // -----------------------------------------------------------------------------
 void ItkKMeans::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKMeans));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkKMeans));

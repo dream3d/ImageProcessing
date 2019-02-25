@@ -69,7 +69,7 @@ ItkSobelEdge::~ItkSobelEdge() = default;
 // -----------------------------------------------------------------------------
 void ItkSobelEdge::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkSobelEdge));
   QStringList linkedProps;

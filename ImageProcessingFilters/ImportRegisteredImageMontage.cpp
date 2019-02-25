@@ -69,7 +69,7 @@ ImportRegisteredImageMontage::~ImportRegisteredImageMontage() = default;
 // -----------------------------------------------------------------------------
 void ImportRegisteredImageMontage::setupFilterParameters()
 {
-  QVector<FilterParameter::Pointer> parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(FileListInfoFilterParameter::New("Input File List", "InputFileListInfo", getInputFileListInfo(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, InputFileListInfo), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, InputFileListInfo)));
   parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Origin), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Origin)));
   parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Resolution), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Resolution)));

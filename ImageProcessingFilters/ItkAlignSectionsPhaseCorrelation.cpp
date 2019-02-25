@@ -184,7 +184,7 @@ AlignSectionsPhaseCorrelation::~AlignSectionsPhaseCorrelation() = default;
 void AlignSectionsPhaseCorrelation::setupFilterParameters()
 {
   AlignSections::setupFilterParameters();
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkAlignSectionsPhaseCorrelation, this, SelectedCellArrayPath)));
   setFilterParameters(parameters);
 }

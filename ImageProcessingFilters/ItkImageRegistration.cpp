@@ -60,7 +60,7 @@ ImageRegistration::~ImageRegistration() = default;
 // -----------------------------------------------------------------------------
 void ImageRegistration::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   setFilterParameters(parameters);
 }
 

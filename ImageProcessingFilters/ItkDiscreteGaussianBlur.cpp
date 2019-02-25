@@ -70,7 +70,7 @@ ItkDiscreteGaussianBlur::~ItkDiscreteGaussianBlur() = default;
 // -----------------------------------------------------------------------------
 void ItkDiscreteGaussianBlur::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

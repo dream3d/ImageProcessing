@@ -140,7 +140,7 @@ ItkManualThresholdTemplate::~ItkManualThresholdTemplate() = default;
 // -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Parameter, ItkManualThresholdTemplate));
   QStringList linkedProps;

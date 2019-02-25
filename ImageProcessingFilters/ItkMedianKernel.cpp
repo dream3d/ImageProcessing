@@ -72,7 +72,7 @@ ItkMedianKernel::~ItkMedianKernel() = default;
 // -----------------------------------------------------------------------------
 void ItkMedianKernel::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INT_VEC3_FP("Kernel Size", KernelSize, FilterParameter::Parameter, ItkMedianKernel));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMedianKernel));

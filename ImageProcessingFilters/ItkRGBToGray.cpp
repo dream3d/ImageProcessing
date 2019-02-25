@@ -148,7 +148,7 @@ ItkRGBToGray::~ItkRGBToGray() = default;
 // -----------------------------------------------------------------------------
 void ItkRGBToGray::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Output Array Prefix", OutputArrayPrefix, FilterParameter::Parameter, ItkRGBToGray));

@@ -74,7 +74,7 @@ ItkStitchImages::~ItkStitchImages() = default;
 // -----------------------------------------------------------------------------
 void ItkStitchImages::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
 
   {

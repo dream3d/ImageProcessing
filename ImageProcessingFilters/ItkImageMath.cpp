@@ -82,7 +82,7 @@ ItkImageMath::~ItkImageMath() = default;
 // -----------------------------------------------------------------------------
 void ItkImageMath::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

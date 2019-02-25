@@ -67,7 +67,7 @@ RegionGrowing::~RegionGrowing() = default;
 // -----------------------------------------------------------------------------
 void RegionGrowing::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(DataArraySelectionFilterParameter::New("Array to Process", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkRegionGrowing, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkRegionGrowing, this, SelectedCellArrayPath)));
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

@@ -90,7 +90,7 @@ ItkAutoThreshold::~ItkAutoThreshold() = default;
 // -----------------------------------------------------------------------------
 void ItkAutoThreshold::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
     parameter->setHumanLabel("Threshold Method");

@@ -67,7 +67,7 @@ ItkReadImage::~ItkReadImage() = default;
 // -----------------------------------------------------------------------------
 void ItkReadImage::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Input File", InputFileName, FilterParameter::Parameter, ItkReadImage, "*.tif *.jpeg *.png *.bmp", "Image"));
   parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ItkReadImage));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));

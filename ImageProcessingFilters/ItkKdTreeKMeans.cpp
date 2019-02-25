@@ -183,7 +183,7 @@ ItkKdTreeKMeans::~ItkKdTreeKMeans() = default;
 // -----------------------------------------------------------------------------
 void ItkKdTreeKMeans::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKdTreeKMeans));
   DataArraySelectionFilterParameter::RequirementType req;
   parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Classify", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkKdTreeKMeans, req));

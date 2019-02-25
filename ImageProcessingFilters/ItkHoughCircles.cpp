@@ -72,7 +72,7 @@ ItkHoughCircles::~ItkHoughCircles() = default;
 // -----------------------------------------------------------------------------
 void ItkHoughCircles::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";

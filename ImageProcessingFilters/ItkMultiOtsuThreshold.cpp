@@ -71,7 +71,7 @@ ItkMultiOtsuThreshold::~ItkMultiOtsuThreshold() = default;
 // -----------------------------------------------------------------------------
 void ItkMultiOtsuThreshold::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMultiOtsuThreshold));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Levels", Levels, FilterParameter::Parameter, ItkMultiOtsuThreshold));

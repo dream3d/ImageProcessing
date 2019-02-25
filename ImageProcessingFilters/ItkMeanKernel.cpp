@@ -73,7 +73,7 @@ ItkMeanKernel::~ItkMeanKernel() = default;
 // -----------------------------------------------------------------------------
 void ItkMeanKernel::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INT_VEC3_FP("Kernel Size", KernelSize, FilterParameter::Parameter, ItkMeanKernel));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMeanKernel));

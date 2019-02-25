@@ -91,7 +91,7 @@ IPItkImportImageStack::~IPItkImportImageStack() = default;
 // -----------------------------------------------------------------------------
 void IPItkImportImageStack::setupFilterParameters()
 {
-  QVector<FilterParameter::Pointer> parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SIMPL_NEW_FILELISTINFO_FP("Input File List", InputFileListInfo, FilterParameter::Parameter, IPItkImportImageStack));
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
