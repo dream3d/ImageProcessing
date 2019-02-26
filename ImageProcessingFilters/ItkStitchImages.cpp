@@ -91,7 +91,7 @@ void ItkStitchImages::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Stitched Coordinates Names", AttributeArrayNamesPath, FilterParameter::RequiredArray, ItkStitchImages, req));
   }
 
-  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, FilterParameter::CreatedArray, ItkStitchImages));
   parameters.push_back(SIMPL_NEW_STRING_FP("Montage", StitchedImagesArrayName, FilterParameter::CreatedArray, ItkStitchImages));

@@ -59,8 +59,8 @@ class ImageProcessing_EXPORT IPItkImportImageStack : public AbstractFilter
 
     ~IPItkImportImageStack() override;
 
-    SIMPL_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, DataContainerName)
+    Q_PROPERTY(DataArrayPath DataContainerName READ getDataContainerName WRITE setDataContainerName)
 
     SIMPL_FILTER_PARAMETER(QString, CellAttributeMatrixName)
     Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)

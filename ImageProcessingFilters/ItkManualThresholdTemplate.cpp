@@ -204,7 +204,7 @@ void ItkManualThresholdTemplate::dataCheck()
   tempPath.update(getSelectedCellArrayArrayPath().getDataContainerName(), getSelectedCellArrayArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
   // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
-  DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataContainerName() );
+  DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayArrayPath().getDataContainerName());
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
   IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);

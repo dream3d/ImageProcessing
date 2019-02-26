@@ -114,7 +114,7 @@ void IPItkImportImageStack::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Origin", Origin, FilterParameter::Parameter, IPItkImportImageStack, 0));
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Resolution", Resolution, FilterParameter::Parameter, IPItkImportImageStack, 0));
   parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Bounds File", BoundsFile, FilterParameter::Parameter, IPItkImportImageStack, "*.txt", "", 1));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, IPItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, IPItkImportImageStack));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, IPItkImportImageStack));
   parameters.push_back(SIMPL_NEW_STRING_FP("Image Data", ImageDataArrayName, FilterParameter::CreatedArray, IPItkImportImageStack));

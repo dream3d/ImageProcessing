@@ -210,8 +210,7 @@ void ItkGrayToRGB::dataCheck()
   //configured created name / location
   tempPath.update(getRedArrayPath().getDataContainerName(), getRedArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
-
-  DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getRedArrayPath().getDataContainerName() );
+  DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer(this, getRedArrayPath().getDataContainerName());
   if(getErrorCondition() < 0) { return; }
   AttributeMatrix::Pointer redAM = redDC->getPrereqAttributeMatrix(this, getRedArrayPath().getAttributeMatrixName(), 80000);
   if(getErrorCondition() < 0) { return; }

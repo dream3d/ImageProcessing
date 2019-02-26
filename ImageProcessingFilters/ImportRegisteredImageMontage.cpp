@@ -74,7 +74,7 @@ void ImportRegisteredImageMontage::setupFilterParameters()
   parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Origin), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Origin)));
   parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Resolution), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Resolution)));
   //parameters.push_back(InputFileFilterParameter::New("Registration File", "RegistrationFile", getRegistrationFile(), FilterParameter::Parameter, "", "*.txt"));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Meta Data", FilterParameter::CreatedArray));
