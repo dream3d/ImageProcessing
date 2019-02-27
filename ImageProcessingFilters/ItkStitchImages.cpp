@@ -35,6 +35,7 @@
 
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/DataContainerCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
@@ -105,7 +106,7 @@ void ItkStitchImages::setupFilterParameters()
 void ItkStitchImages::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
-  setStitchedVolumeDataContainerName(reader->readString("StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName() ) );
+  setStitchedVolumeDataContainerName(DataArrayPath(reader->readString("StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName().getDataContainerName() ), "", "") );
   setAttributeMatrixName(reader->readDataArrayPath("AttributeMatrixName", getAttributeMatrixName()));
   setStitchedCoordinatesArrayPath(reader->readDataArrayPath("StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath()));
   setStitchedImagesArrayName(reader->readString("StitchedImagesArrayName", getStitchedImagesArrayName()));
@@ -207,7 +208,7 @@ void ItkStitchImages::dataCheck()
   dims[0] = 1;
 
 
-  tempPath.update(getStitchedVolumeDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
+  tempPath.update(getStitchedVolumeDataContainerName().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
   m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(nullptr != m_StitchedImageArrayPtr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
