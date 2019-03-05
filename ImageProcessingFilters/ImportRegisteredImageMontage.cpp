@@ -441,7 +441,7 @@ void ImportRegisteredImageMontage::execute()
 
 	// Add the information to the Attribute Array
 	// addAttributeArray will replace empty dummy arrays created in DataCheck i
-  attrMat->insert_or_assign(imageData);
+  attrMat->insertOrAssign(imageData);
 
   if(getCancel() == true)
   {

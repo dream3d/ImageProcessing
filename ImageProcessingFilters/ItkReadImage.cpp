@@ -434,7 +434,7 @@ void ItkReadImage::execute()
   }
 
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(getCellAttributeMatrixName());
-  attrMat->insert_or_assign(imageData);
+  attrMat->insertOrAssign(imageData);
 
   /* Let the GUI know we are done with this filter */
   notifyStatusMessage(getMessagePrefix(), getHumanLabel(), "Complete");

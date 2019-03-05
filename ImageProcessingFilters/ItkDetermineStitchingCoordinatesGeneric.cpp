@@ -217,7 +217,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   //m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
 
   StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumberOfTuples(), getStitchedArrayNames());
-  AttrMat->insert_or_assign(StrongDataArrayNames);
+  AttrMat->insertOrAssign(StrongDataArrayNames);
   m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
 
   if(nullptr != m_DataArrayNamesForStitchedCoordinatesPtr.lock()) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
