@@ -64,24 +64,12 @@ class DetermineStitching
    * @param obs
    * @return
    */
-    static FloatArrayType::Pointer FindGlobalOriginsLegacy(size_t totalPoints,
-                                                     QVector<size_t> udims,
-                                                     float sampleOrigin[],
-                                                     float voxelResolution[],
-                                                     QVector<ImageProcessingConstants::DefaultPixelType *> dataArrayList,
-                                                     QVector<float> xGlobCoordsList,
-                                                     QVector<float> yGlobCoordsList,
-                                                     QVector<qint32> xTileList,
-                                                     QVector<qint32> yTileList,
-                                                     AbstractFilter *filter = nullptr);
+    static FloatArrayType::Pointer FindGlobalOriginsLegacy(size_t totalPoints, QVector<size_t> udims, FloatVec3Type& sampleOrigin, FloatVec3Type& voxelResolution,
+                                                           const QVector<ImageProcessingConstants::DefaultPixelType*>& dataArrayList, QVector<float> xGlobCoordsList, QVector<float> yGlobCoordsList,
+                                                           const QVector<qint32>& xTileList, const QVector<qint32>& yTileList, AbstractFilter* filter = nullptr);
 
-	static FloatArrayType::Pointer FindGlobalOrigins(int xTileCount, int yTileCount,
-		int ImportMode,
-		float overlapPer,
-		QVector<ImageProcessingConstants::DefaultPixelType*> dataArrayList,
-		QVector<size_t> udims,
-		float sampleOrigin[],
-		float voxelResolution[]);
+    static FloatArrayType::Pointer FindGlobalOrigins(int xTileCount, int yTileCount, int ImportMode, float overlapPer, const QVector<ImageProcessingConstants::DefaultPixelType*>& dataArrayList,
+                                                     QVector<size_t> udims, FloatVec3Type& sampleOrigin, FloatVec3Type& voxelResolution);
 
     /**
    * @brief ReturnIndexForCombOrder

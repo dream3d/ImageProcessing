@@ -217,7 +217,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   //m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
 
   StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumberOfTuples(), getStitchedArrayNames());
-  AttrMat->addAttributeArray(getStitchedArrayNames(), StrongDataArrayNames);
+  AttrMat->insert_or_assign(StrongDataArrayNames);
   m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
 
   if(nullptr != m_DataArrayNamesForStitchedCoordinatesPtr.lock()) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
@@ -258,11 +258,11 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   FloatArrayType::Pointer temp;
 
   // Set up the origins and resolutions (some of this data is used in legacy, some of it's used in non-legacy, some of it's used in both; for now we're including it up here; consider moving it where it's cleanest)
-  float sampleOrigin[3];
-  float voxelResolution[3];
+  FloatVec3Type sampleOrigin;
+  FloatVec3Type voxelResolution;
 
   m->getGeometryAs<ImageGeom>()->getOrigin(sampleOrigin);
-  m->getGeometryAs<ImageGeom>()->getResolution(voxelResolution);
+  m->getGeometryAs<ImageGeom>()->getSpacing(voxelResolution);
   QVector<size_t> udims = attrMat->getTupleDimensions(); // The udims variable is filled with information about the size of each image (provided they were imported correctly) [0] = x; [1] = y; [2] = z;
   size_t totalPoints = attrMat->getNumberOfTuples();
 
@@ -330,7 +330,7 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   ::memcpy(dest, src, totalBytes);
 #endif
   StringDataArray::Pointer arrayNames = m_DataArrayNamesForStitchedCoordinatesPtr.lock();
-  arrayNames->resize(m_PointerList.size());
+  arrayNames->resizeTuples(m_PointerList.size());
 
   //Create another data array with the list of names of the images in the same order as the returned stitched coordinates
   QList<QString> names = attrMat->getAttributeArrayNames();

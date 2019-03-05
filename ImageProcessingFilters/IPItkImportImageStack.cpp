@@ -66,9 +66,9 @@ IPItkImportImageStack::IPItkImportImageStack()
 , m_GeometryType(0)
 , m_ImageDataArrayName(SIMPL::CellData::ImageData)
 {
-  m_Origin.x = 0.0f;
-  m_Origin.y = 0.0f;
-  m_Origin.z = 0.0f;
+  m_Origin[0] = 0.0f;
+  m_Origin[1] = 0.0f;
+  m_Origin[2] = 0.0f;
 
   m_Resolution.x = 1.0f;
   m_Resolution.y = 1.0f;
@@ -257,7 +257,7 @@ void IPItkImportImageStack::dataCheck()
     {
       m->getGeometryAs<ImageGeom>()->setDimensions(static_cast<size_t>(xdim), static_cast<size_t>(ydim), static_cast<size_t>(zdim));
       m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-      m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+      m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
     }
     else if (m_GeometryType == 1)
     {
@@ -431,7 +431,7 @@ void IPItkImportImageStack::execute()
   if (m_GeometryType == 0)
   {
     m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
     std::tie(width, height, depth) = m->getGeometryAs<ImageGeom>()->getDimensions();
   }
   else if (m_GeometryType == 1)

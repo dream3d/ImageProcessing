@@ -33,14 +33,14 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "ItkStitchImages.h"
 
+#include "SIMPLib/Common/SIMPLArray.hpp"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataContainerCreationFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
 
@@ -189,15 +189,15 @@ void ItkStitchImages::dataCheck()
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m2->setGeometry(image);
 
-  //Keep Resolution the same as original images
+  // Keep Spacing the same as original images
   float xRes = 0.0f;
   float yRes = 0.0f;
   float zRes = 0.0f;
-  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getResolution();
+  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getSpacing();
 
-  m2->getGeometryAs<ImageGeom>()->setResolution(xRes, yRes, zRes);
+  m2->getGeometryAs<ImageGeom>()->setSpacing(FloatVec3Type(xRes, yRes, zRes));
   //Set origin to zero
-  m2->getGeometryAs<ImageGeom>()->setOrigin(0, 0, 0);
+  m2->getGeometryAs<ImageGeom>()->setOrigin(FloatVec3Type());
 
   m2->getGeometryAs<ImageGeom>()->setDimensions(1, 1, 1);
 

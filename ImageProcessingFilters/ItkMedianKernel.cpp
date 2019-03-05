@@ -57,9 +57,9 @@ ItkMedianKernel::ItkMedianKernel()
 , m_SaveAsNewArray(true)
 , m_Slice(false)
 {
-  m_KernelSize.x = 1;
-  m_KernelSize.y = 1;
-  m_KernelSize.z = 1;
+  m_KernelSize[0] = 1;
+  m_KernelSize[1] = 1;
+  m_KernelSize[2] = 1;
 }
 
 // -----------------------------------------------------------------------------
@@ -176,9 +176,9 @@ void ItkMedianKernel::execute()
 
   //set kernel size
   MedianFilterType::InputSizeType radius;
-  radius[0] = m_KernelSize.x;
-  radius[1] = m_KernelSize.y;
-  radius[2] = m_KernelSize.z;
+  radius[0] = m_KernelSize[0];
+  radius[1] = m_KernelSize[1];
+  radius[2] = m_KernelSize[2];
   medianFilter->SetRadius(radius);
 
   //have filter write to dream3d array instead of creating its own buffer

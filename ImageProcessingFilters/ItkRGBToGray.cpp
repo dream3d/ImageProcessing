@@ -74,7 +74,7 @@ public:
   // -----------------------------------------------------------------------------
   // This is the actual templated algorithm
   // -----------------------------------------------------------------------------
-  void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3_t weights, DataContainer::Pointer m, QString attrMatName)
+  void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3Type weights, DataContainer::Pointer m, QString attrMatName)
   {
     typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
     typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
@@ -86,7 +86,7 @@ public:
     size_t numVoxels = inputDataPtr->getNumberOfTuples();
 
     // set weighting
-    double mag = weights.x + weights.y + weights.z;
+    double mag = weights[0] + weights[1] + weights[2];
 
     // Define all the typedefs that are needed
     typedef ItkBridge<T> ItkBridgeType;
@@ -105,9 +105,9 @@ public:
 
     // convert to gray
     typename RGBToGrayType::Pointer itkFilter = RGBToGrayType::New();
-    itkFilter->GetFunctor().SetRWeight(weights.x / mag);
-    itkFilter->GetFunctor().SetGWeight(weights.y / mag);
-    itkFilter->GetFunctor().SetBWeight(weights.z / mag);
+    itkFilter->GetFunctor().SetRWeight(weights[0] / mag);
+    itkFilter->GetFunctor().SetGWeight(weights[1] / mag);
+    itkFilter->GetFunctor().SetBWeight(weights[2] / mag);
     itkFilter->SetInput(inputImage);
     itkFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
     try
@@ -133,9 +133,9 @@ ItkRGBToGray::ItkRGBToGray()
 : m_OutputAttributeMatrixName("")
 , m_OutputArrayPrefix("GrayScale_")
 {
-  m_ColorWeights.x = 0.2125f;
-  m_ColorWeights.y = 0.7154f;
-  m_ColorWeights.z = 0.0721f;
+  m_ColorWeights[0] = 0.2125f;
+  m_ColorWeights[1] = 0.7154f;
+  m_ColorWeights[2] = 0.0721f;
 }
 
 // -----------------------------------------------------------------------------
@@ -356,7 +356,7 @@ void ItkRGBToGray::execute()
 
     // array name changing/cleanup
     //    AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
-    //    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+    //    attrMat->insert_or_assign(outputData);
   }
 }
 

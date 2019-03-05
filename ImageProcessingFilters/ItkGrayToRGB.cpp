@@ -321,7 +321,7 @@ void ItkGrayToRGB::execute()
 
   //array name changing/cleanup
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_RedArrayPath.getAttributeMatrixName());
-  attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+  attrMat->insert_or_assign(outputData);
 }
 
 // -----------------------------------------------------------------------------

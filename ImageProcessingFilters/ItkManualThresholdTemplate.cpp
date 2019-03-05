@@ -370,13 +370,13 @@ void ItkManualThresholdTemplate::execute()
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
   if(m_SaveAsNewArray)
   {
-    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+    attrMat->insert_or_assign(outputData);
   }
   else
   {
     attrMat->removeAttributeArray(m_SelectedCellArrayArrayPath.getDataArrayName());
     outputData->setName(m_SelectedCellArrayArrayPath.getDataArrayName());
-    attrMat->addAttributeArray(outputData->getName(), outputData);
+    attrMat->insert_or_assign(outputData);
   }
 }
 

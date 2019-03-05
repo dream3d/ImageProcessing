@@ -42,9 +42,9 @@ ImportRegisteredImageMontage::ImportRegisteredImageMontage()
 , m_AttributeArrayNamesArrayName("AttributeArrayNames")
 , m_RegistrationCoordinates(nullptr)
 {
-  m_Origin.x = 0.0;
-  m_Origin.y = 0.0;
-  m_Origin.z = 0.0;
+  m_Origin[0] = 0.0;
+  m_Origin[1] = 0.0;
+  m_Origin[2] = 0.0;
 
   m_Resolution.x = 1.0;
   m_Resolution.y = 1.0;
@@ -192,12 +192,12 @@ void ImportRegisteredImageMontage::dataCheck()
     /* ************ End Sanity Check *************************** */
     m->getGeometryAs<ImageGeom>()->setDimensions(static_cast<size_t>(dims[0]), static_cast<size_t>(dims[1]), static_cast<size_t>(dims[2]));
     m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
 
-	// Populate the structure with meaningful data
-	//image/attribute matrix dimensions
-	QVector<size_t> tDims(3, 0); // Touple dimensions (These need to be image width * height * pixel depth)
-	QVector<size_t> cDims(1, 1); // Component dimensions 
+    // Populate the structure with meaningful data
+    // image/attribute matrix dimensions
+    QVector<size_t> tDims(3, 0); // Touple dimensions (These need to be image width * height * pixel depth)
+    QVector<size_t> cDims(1, 1); // Component dimensions
 
     for (QVector<QString>::iterator filepath = fileList.begin(); filepath != fileList.end(); ++filepath)
     {
@@ -441,9 +441,12 @@ void ImportRegisteredImageMontage::execute()
 
 	// Add the information to the Attribute Array
 	// addAttributeArray will replace empty dummy arrays created in DataCheck i
-	attrMat->addAttributeArray(ss, imageData);
+  attrMat->insert_or_assign(imageData);
 
-    if (getCancel() == true) { return; }
+  if(getCancel() == true)
+  {
+    return;
+  }
   }
 }
 

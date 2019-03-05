@@ -58,7 +58,7 @@ class ImageProcessing_EXPORT ItkRGBToGray : public AbstractFilter
 {
     Q_OBJECT
     PYB11_CREATE_BINDINGS(ItkRGBToGray SUPERCLASS AbstractFilter)
-    PYB11_PROPERTY(FloatVec3_t ColorWeights READ getColorWeights WRITE setColorWeights)
+    PYB11_PROPERTY(FloatVec3Type ColorWeights READ getColorWeights WRITE setColorWeights)
     PYB11_PROPERTY(QVector<DataArrayPath> InputDataArrayVector READ getInputDataArrayVector WRITE setInputDataArrayVector)
     PYB11_PROPERTY(QString OutputAttributeMatrixName READ getOutputAttributeMatrixName WRITE setOutputAttributeMatrixName)
     PYB11_PROPERTY(QString OutputArrayPrefix READ getOutputArrayPrefix WRITE setOutputArrayPrefix)
@@ -73,11 +73,11 @@ class ImageProcessing_EXPORT ItkRGBToGray : public AbstractFilter
     //    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
     //    Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
 
-    SIMPL_FILTER_PARAMETER(FloatVec3_t, ColorWeights)
-    Q_PROPERTY(FloatVec3_t ColorWeights READ getColorWeights WRITE setColorWeights)
+    SIMPL_FILTER_PARAMETER(FloatVec3Type, ColorWeights)
+    Q_PROPERTY(FloatVec3Type ColorWeights READ getColorWeights WRITE setColorWeights)
 
-//    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
-//    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+    //    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    //    Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     SIMPL_FILTER_PARAMETER(QVector<DataArrayPath>, InputDataArrayVector)
     Q_PROPERTY(QVector<DataArrayPath> InputDataArrayVector READ getInputDataArrayVector WRITE setInputDataArrayVector)
