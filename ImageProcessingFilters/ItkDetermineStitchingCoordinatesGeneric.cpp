@@ -139,8 +139,7 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
   // If it's null, then it's not good throw an error
   if (am.get() == nullptr)
   {
-    setErrorCondition(-76000);
-    notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
+    notifyErrorMessage("", "The attribute matrix has not been selected properly", -76000);
     return;
   }
 
@@ -180,14 +179,14 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
     AttributeMatrix::Pointer MetaDataAm = getDataContainerArray()->getAttributeMatrix(m_MetaDataAttributeMatrixName);
     if(nullptr == MetaDataAm.get())
     {
-      notifyErrorMessage(getHumanLabel(), "The Attribute Matrix was not found", -76001);
+      notifyErrorMessage("", "The Attribute Matrix was not found", -76001);
       return;
     }
     //        QString temp = "_META_DATA";
     bool a = getMetaDataAttributeMatrixName().getAttributeMatrixName().contains("_META_DATA");
     if(!a)
     {
-      notifyErrorMessage(getHumanLabel(), "The Attribute Matrix does not contain the Zeiss Meta Data", -76002);
+      notifyErrorMessage("", "The Attribute Matrix does not contain the Zeiss Meta Data", -76002);
       return;
     }
 
@@ -389,8 +388,7 @@ QVector<float> ItkDetermineStitchingCoordinatesGeneric::extractFloatValues(QStri
       if(!ok)
       {
         QString ss = QObject::tr("Error trying to convert the string '%1' to a float. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
-        setErrorCondition(-34005);
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        notifyErrorMessage("", ss, -34005);
         tileList.clear();
         return tileList;
       }
@@ -400,8 +398,7 @@ QVector<float> ItkDetermineStitchingCoordinatesGeneric::extractFloatValues(QStri
   else
   {
     QString ss = QObject::tr("Error trying to read the metadata");
-    setErrorCondition(-34006);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -34006);
   }
 
   return tileList;
@@ -453,8 +450,7 @@ QVector<qint32> ItkDetermineStitchingCoordinatesGeneric::extractIntegerValues(QS
       if(!ok)
       {
         QString ss = QObject::tr("Error trying to convert the string '%1' to an integer. This string was part of the Data Array '%2' at index '%3'.").arg(value).arg(arrayName).arg(i);
-        setErrorCondition(-34005);
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        notifyErrorMessage("", ss, -34005);
         tileList.clear();
         return tileList;
       }
@@ -463,8 +459,7 @@ QVector<qint32> ItkDetermineStitchingCoordinatesGeneric::extractIntegerValues(QS
   else
   {
     QString ss = QObject::tr("Error trying to read the metadata");
-    setErrorCondition(-34006);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -34006);
   }
 
   return tileList;

@@ -157,14 +157,14 @@ void ItkWatershed::execute()
   ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   //create gradient magnitude filter
-  notifyStatusMessage(getHumanLabel(), "Calculating Gradient Magnitude");
+  notifyStatusMessage("", "Calculating Gradient Magnitude");
   typedef itk::GradientMagnitudeImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType >  GradientMagnitudeImageFilterType;
   GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
   gradientMagnitudeImageFilter->SetInput(inputImage);
   gradientMagnitudeImageFilter->Update();
 
   //watershed image
-  notifyStatusMessage(getHumanLabel(), "Watershedding");
+  notifyStatusMessage("", "Watershedding");
   typedef itk::WatershedImageFilter<ImageProcessingConstants::DefaultImageType> WatershedFilterType;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
   watershed->SetThreshold(m_Threshold);
@@ -178,9 +178,8 @@ void ItkWatershed::execute()
   }
   catch( itk::ExceptionObject& err )
   {
-    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::GradientMagnitudeImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -5);
   }
 
   //get output and copy to grainids

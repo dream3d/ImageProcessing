@@ -158,9 +158,8 @@ class WriteImagePrivate
       }
       catch( itk::ExceptionObject& err )
       {
-        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to write image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
+        filter->notifyErrorMessage("", ss, filter->getErrorCondition());
       }
     }
   private:
@@ -250,26 +249,22 @@ void ItkWriteImage::dataCheck()
     }
     else if (3 == compDims[0])//rgb
     {
-      setWarningCondition(-100);
-      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
+      notifyWarningMessage("", "Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)", -100);
     }
     else if (4 == compDims[0])//rgba
     {
-      setWarningCondition(-101);
-      notifyWarningMessage(getHumanLabel(), "Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
+      notifyWarningMessage("", "Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)", -101);
     }
     else  //vector
     {
-      //notifyWarningMessage(getHumanLabel(), "Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
-      setErrorCondition(-102);
-      notifyErrorMessage(getHumanLabel(), "Error: writing of vector images is currently not supported", getErrorCondition());
+      // notifyWarningMessage("", "Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)", -103);
+      notifyErrorMessage("", "Error: writing of vector images is currently not supported", -102);
     }
   }
   else
   {
     QString message = QObject::tr("The selected array '%1' has unsupported dimensionality (%2)").arg(m_SelectedCellArrayPath.getDataArrayName()).arg(compDims.size());
-    setErrorCondition(-103);
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage("", message, -103);
   }
 
 }
@@ -345,9 +340,8 @@ void ItkWriteImage::execute()
   }
   else
   {
-    setErrorCondition(-10001);
     QString ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -10001);
     return;
   }
 }

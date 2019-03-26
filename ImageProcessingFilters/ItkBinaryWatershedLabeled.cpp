@@ -123,9 +123,8 @@ void ItkBinaryWatershedLabeled::execute()
   dataCheck();
   if(getErrorCondition() < 0)
   {
-    setErrorCondition(-11000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -11000);
     return;
   }
 
@@ -151,9 +150,8 @@ void ItkBinaryWatershedLabeled::execute()
   }
   catch( itk::ExceptionObject& err )
   {
-    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -5);
   }
 
   //find maxima in distance map (ultimate points)
@@ -207,9 +205,8 @@ void ItkBinaryWatershedLabeled::execute()
   }
   catch( itk::ExceptionObject& err )
   {
-    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -5);
   }
 }
 

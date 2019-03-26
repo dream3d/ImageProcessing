@@ -107,8 +107,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 
   if (am.get() == nullptr)
   {
-    setErrorCondition(-76000);
-    notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
+    notifyErrorMessage("", "The attribute matrix has not been selected properly", -76000);
     return;
   }
 
@@ -124,8 +123,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
         if(inputData->getNumberOfComponents() > 1)
         {
           QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
-          setErrorCondition(-11002);
-          notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+          notifyErrorMessage("", ss, -11002);
           return;
         }
     }

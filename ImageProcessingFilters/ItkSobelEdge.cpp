@@ -210,9 +210,8 @@ void ItkSobelEdge::execute()
       }
       catch( itk::ExceptionObject& err )
       {
-        setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::SobelEdgeDetectionImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        notifyErrorMessage("", ss, -5);
       }
 
       //copy into volume
@@ -246,9 +245,8 @@ void ItkSobelEdge::execute()
     }
     catch( itk::ExceptionObject& err )
     {
-      setErrorCondition(-5);
       QString ss = QObject::tr("Failed to execute itk::SobelEdgeDetectionImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      notifyErrorMessage("", ss, -5);
     }
 
   }

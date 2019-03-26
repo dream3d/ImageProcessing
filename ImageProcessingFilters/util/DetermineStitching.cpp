@@ -561,7 +561,7 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
       QTextStream out(&msg);
 
       out << "Placing Image Number " << i;
-      filter->notifyStatusMessage(filter->getMessagePrefix(), filter->getHumanLabel(), msg);
+      filter->notifyStatusMessage(filter->getMessagePrefix(), msg);
 
 
 //            std::cout << "new global x " << xyStitchedGlobalListPtr->getValue(2*i) << std::endl;

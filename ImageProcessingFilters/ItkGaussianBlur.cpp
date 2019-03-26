@@ -183,7 +183,7 @@ void ItkGaussianBlur::execute()
   gaussianFunction->SetMaximumKernelWidth( 5 );
 
   //loop over image running filter
-  notifyStatusMessage(getHumanLabel(), "Blurring");
+  notifyStatusMessage("", "Blurring");
   it.GoToBegin();
   int index = 0;
   while( !it.IsAtEnd() )

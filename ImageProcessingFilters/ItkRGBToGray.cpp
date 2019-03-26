@@ -115,9 +115,8 @@ public:
       itkFilter->Update();
     } catch(itk::ExceptionObject& err)
     {
-      filter->setErrorCondition(-5);
       QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
+      filter->notifyErrorMessage("", ss, filter->getErrorCondition());
     }
   }
 
@@ -190,23 +189,20 @@ void ItkRGBToGray::dataCheck()
   setWarningCondition(0);
   if(!DataArrayPath::ValidateVector(getInputDataArrayVector()))
   {
-    setErrorCondition(-62000);
     QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -62000);
   }
 
   if(getOutputArrayPrefix().isEmpty())
   {
-    setErrorCondition(-62002);
     QString message = QObject::tr("Using a prefix (even a single alphanumeric value) is required so that the output Xdmf files can be written correctly");
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage("", message, -62002);
   }
 
   if(getInputDataArrayVector().isEmpty())
   {
-    setErrorCondition(-62003);
     QString message = QObject::tr("At least one Attribute Array must be selected");
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage("", message, -62003);
     return;
   }
 
@@ -271,9 +267,8 @@ void ItkRGBToGray::execute()
   dataCheck();
   if(getErrorCondition() < 0)
   {
-    setErrorCondition(-16000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage("", ss, -16000);
     return;
   }
   initialize();
@@ -348,9 +343,8 @@ void ItkRGBToGray::execute()
     }
     else
     {
-      setErrorCondition(-10001);
       ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      notifyErrorMessage("", ss, -10001);
       return;
     }
 
