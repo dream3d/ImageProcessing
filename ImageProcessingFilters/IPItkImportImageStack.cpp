@@ -467,7 +467,7 @@ void IPItkImportImageStack::execute()
   {
     QString imageFName = *filepath;
     QString ss = QObject::tr("Importing file %1").arg(imageFName);
-    notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
+    notifyStatusMessage(getMessagePrefix(), ss);
 
     //get input and output data
     IDataArray::Pointer imageData = m_ImageDataPtr.lock();
@@ -540,7 +540,7 @@ void IPItkImportImageStack::execute()
   }
 
   /* Let the GUI know we are done with this filter */
-  notifyStatusMessage(getMessagePrefix(), getHumanLabel(), "Complete");
+  notifyStatusMessage(getMessagePrefix(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
