@@ -45,6 +45,11 @@
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkReadImageImpl.hpp"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataContainerID = 1
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -159,7 +164,7 @@ void ItkReadImage::dataCheck()
 
   if(nullptr == m.get()) //datacontainer doesn't exist->create
   {
-    m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+    m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
     ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
     m->setGeometry(image);
     m->getGeometryAs<ImageGeom>()->setDimensions(xdim, ydim, zdim);

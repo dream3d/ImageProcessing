@@ -27,7 +27,10 @@
 // Get ITKReadImage so you can properly read in 16 bit images
 #include "ItkReadImage.h"
 
-
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataContainerID = 1
+};
 
 // -----------------------------------------------------------------------------
 //
@@ -123,8 +126,7 @@ void ImportRegisteredImageMontage::dataCheck()
     return;
   }
 
-
-  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
   if(getErrorCondition() < 0) { return; }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);

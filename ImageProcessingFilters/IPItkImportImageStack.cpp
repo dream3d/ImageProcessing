@@ -56,6 +56,11 @@
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataContainerID = 1
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -164,7 +169,7 @@ void IPItkImportImageStack::dataCheck()
 
   }
 
-  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
   if(getErrorCondition() < 0 || nullptr == m.get()) { return; }
 
   if (m_GeometryType == 0)

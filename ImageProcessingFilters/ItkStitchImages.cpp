@@ -53,6 +53,11 @@
 
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataContainerID = 1
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -182,8 +187,7 @@ void ItkStitchImages::dataCheck()
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
   if(getErrorCondition() < 0 || nullptr == m) { return; }
 
-
-  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
+  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName(), DataContainerID);
   if(getErrorCondition() < 0) { return; }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
