@@ -51,6 +51,13 @@
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 #include "SIMPLib/ITK/itkBridge.h"
 
+/* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataArrayID30 = 30,
+  DataArrayID31 = 31,
+};
+
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
  * for us like figuring out if we can use this private implementation with the data array that is assigned.
@@ -244,7 +251,7 @@ void ItkRGBToGray::dataCheck()
       return;
     }
     QVector<size_t> outCDims(1, 1);
-    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims);
+    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims, DataArrayID31); /* @ADD_DATAARRAY_ID@ */
   }
 }
 
