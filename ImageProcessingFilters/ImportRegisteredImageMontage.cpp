@@ -29,6 +29,8 @@
 
 enum createdPathID : RenameDataPath::DataID_t
 {
+  AttributeMatrixID21 = 21,
+
   DataContainerID = 1
 };
 
@@ -259,8 +261,10 @@ void ImportRegisteredImageMontage::dataCheck()
 		tDims[2] = zdim;
 
 		if (!m->doesAttributeMatrixExist(getCellAttributeMatrixName()))
-		{ m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell); }
-		if (getErrorCondition() < 0) { return; }
+    {
+      m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell, AttributeMatrixID21);
+    }
+    if (getErrorCondition() < 0) { return; }
 
 		// Set up the component dimmensions
 		itk::ImageIOBase::IOPixelType pixelType = imageIO->GetPixelType();

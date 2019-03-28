@@ -58,6 +58,8 @@
 
 enum createdPathID : RenameDataPath::DataID_t
 {
+  AttributeMatrixID21 = 21,
+
   DataContainerID = 1
 };
 
@@ -276,7 +278,7 @@ void IPItkImportImageStack::dataCheck()
     tDims[1] = ydim;
     tDims[2] = zdim;
 
-    m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
 
     //check pixel type (scalar, vector, etc) for support
     QVector<size_t> componentDims(1, 0);

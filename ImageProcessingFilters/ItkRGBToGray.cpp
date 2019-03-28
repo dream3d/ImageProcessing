@@ -54,6 +54,8 @@
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
 enum createdPathID : RenameDataPath::DataID_t
 {
+  AttributeMatrixID21 = 21,
+
   DataArrayID30 = 30,
   DataArrayID31 = 31,
 };
@@ -229,7 +231,7 @@ void ItkRGBToGray::dataCheck()
   QVector<size_t> tDims = inAM->getTupleDimensions();
   DataContainerArray::Pointer dca = getDataContainerArray();
   DataContainer::Pointer dc = dca->getDataContainer(inputAMPath.getDataContainerName());
-  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
   if(getErrorCondition() < 0 || nullptr == outAM.get())
   {
     return;
@@ -251,7 +253,7 @@ void ItkRGBToGray::dataCheck()
       return;
     }
     QVector<size_t> outCDims(1, 1);
-    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims, DataArrayID31); /* @ADD_DATAARRAY_ID@ */
+    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims, DataArrayID31);
   }
 }
 

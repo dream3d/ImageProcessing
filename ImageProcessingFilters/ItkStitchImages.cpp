@@ -55,6 +55,8 @@
 
 enum createdPathID : RenameDataPath::DataID_t
 {
+  AttributeMatrixID21 = 21,
+
   DataArrayID31 = 31,
 
   DataContainerID = 1
@@ -209,14 +211,14 @@ void ItkStitchImages::dataCheck()
 
   QVector<size_t> tDims(1, 0);
 
-  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
   if(getErrorCondition() < 0) { return; }
   dims[0] = 1;
 
 
   tempPath.update(getStitchedVolumeDataContainerName().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
   m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(
-      this, tempPath, 0, dims, "", DataArrayID31);                          /* @ADD_DATAARRAY_ID@ */
+      this, tempPath, 0, dims, "", DataArrayID31);
   if(nullptr != m_StitchedImageArrayPtr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 

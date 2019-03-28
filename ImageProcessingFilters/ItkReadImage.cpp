@@ -47,6 +47,8 @@
 
 enum createdPathID : RenameDataPath::DataID_t
 {
+  AttributeMatrixID21 = 21,
+
   DataContainerID = 1
 };
 
@@ -252,7 +254,7 @@ void ItkReadImage::dataCheck()
   if(createAttributeMatrix)
   {
     //create attribute matrix
-    cellAttrMat = m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    cellAttrMat = m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
     if(getErrorCondition() < 0) { return; }
   }
 
