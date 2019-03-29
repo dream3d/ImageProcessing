@@ -117,7 +117,7 @@ public:
     {
       filter->setErrorCondition(-5);
       QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
+      filter->notifyErrorMessage(ss, filter->getErrorCondition());
     }
   }
 
@@ -192,21 +192,21 @@ void ItkRGBToGray::dataCheck()
   {
     setErrorCondition(-62000);
     QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
   }
 
   if(getOutputArrayPrefix().isEmpty())
   {
     setErrorCondition(-62002);
     QString message = QObject::tr("Using a prefix (even a single alphanumeric value) is required so that the output Xdmf files can be written correctly");
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage(message, getErrorCondition());
   }
 
   if(getInputDataArrayVector().isEmpty())
   {
     setErrorCondition(-62003);
     QString message = QObject::tr("At least one Attribute Array must be selected");
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage(message, getErrorCondition());
     return;
   }
 
@@ -273,7 +273,7 @@ void ItkRGBToGray::execute()
   {
     setErrorCondition(-16000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
   initialize();
@@ -350,7 +350,7 @@ void ItkRGBToGray::execute()
     {
       setErrorCondition(-10001);
       ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      notifyErrorMessage(ss, getErrorCondition());
       return;
     }
 

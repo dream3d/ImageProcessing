@@ -139,7 +139,7 @@ class AlignSectionsPhaseCorrelationPrivate
         {
           filter->setErrorCondition(-5);
           QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-          filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
+          filter->notifyErrorMessage(ss, filter->getErrorCondition());
         }
 
         //convert from max location to shift
@@ -304,7 +304,7 @@ void AlignSectionsPhaseCorrelation::execute()
   {
     QString ss = QObject::tr("Some error message");
     setErrorCondition(-99999999);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 }
@@ -366,7 +366,7 @@ void AlignSectionsPhaseCorrelation::find_shifts(QVector<int>& xshifts, QVector<i
   {
     setErrorCondition(-10001);
     QString ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 }

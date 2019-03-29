@@ -108,7 +108,7 @@ void ItkReadImage::dataCheck()
   if(getInputFileName().isEmpty())
   {
     setErrorCondition(-1);
-    notifyErrorMessage(getHumanLabel(), "The input file name must be set before executing this filter.", getErrorCondition());
+    notifyErrorMessage("The input file name must be set before executing this filter.", getErrorCondition());
     return;
   }
 
@@ -118,7 +118,7 @@ void ItkReadImage::dataCheck()
   {
     setErrorCondition(-2);
     QString message = QObject::tr("Unable to read image '%1'").arg(getInputFileName());
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage(message, getErrorCondition());
     return;
   }
   imageIO->SetFileName(getInputFileName().toLocal8Bit().data());
@@ -139,7 +139,7 @@ void ItkReadImage::dataCheck()
     {
       QString message = QObject::tr("3 dimensional image required (slected image dimensions: %1)").arg(numDimensions);
       setErrorCondition(-3);
-      notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+      notifyErrorMessage(message, getErrorCondition());
       return;
     }
   }
@@ -200,14 +200,14 @@ void ItkReadImage::dataCheck()
       {
         QString message = QObject::tr("The x size of '%1' (%2) does not match the x size of '%3' (%4)").arg(getInputFileName()).arg(xdim).arg(getDataContainerName() + "/" + getCellAttributeMatrixName()).arg(tDims[0]);
         setErrorCondition(-4);
-        notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+        notifyErrorMessage(message, getErrorCondition());
         return;
       }
       if(tDims[1] != ydim || iDims[1] != ydim)
       {
         QString message = QObject::tr("The y size of '%1' (%2) does not match the x size of '%3' (%4)").arg(getInputFileName()).arg(ydim).arg(getDataContainerName() + "/" + getCellAttributeMatrixName()).arg(tDims[1]);
         setErrorCondition(-5);
-        notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+        notifyErrorMessage(message, getErrorCondition());
         return;
       }
       if(3 == numDimensions)
@@ -216,7 +216,7 @@ void ItkReadImage::dataCheck()
         {
           QString message = QObject::tr("The z size of '%1' (%2) does not match the x size of '%3' (%4)").arg(getInputFileName()).arg(zdim).arg(getDataContainerName() + "/" + getCellAttributeMatrixName()).arg(tDims[2]);
           setErrorCondition(-6);
-          notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+          notifyErrorMessage(message, getErrorCondition());
           return;
         }
       }
@@ -226,7 +226,7 @@ void ItkReadImage::dataCheck()
         {
           QString message = QObject::tr("The z size of '%1' (%2) does not match the x size of '%3' (1)").arg(getInputFileName()).arg(zdim).arg(getDataContainerName() + "/" + getCellAttributeMatrixName());
           setErrorCondition(-7);
-          notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+          notifyErrorMessage(message, getErrorCondition());
           return;
         }
       }
@@ -269,7 +269,7 @@ void ItkReadImage::dataCheck()
       break;
     default:
       setErrorCondition(-90001);
-      notifyErrorMessage(getHumanLabel(), "The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
+      notifyErrorMessage("The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
   }
 
   // Check to make sure everything is OK with reading the image
@@ -277,7 +277,7 @@ void ItkReadImage::dataCheck()
   {
     std::string pixelTypeName = itk::ImageIOBase::GetPixelTypeAsString(pixelType);
     QString message = QObject::tr("The pixel type of '%1' (%2) is unsupported").arg(getInputFileName()).arg(QString::fromStdString(pixelTypeName));
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage(message, getErrorCondition());
     return;
   }
 
@@ -329,7 +329,7 @@ void ItkReadImage::dataCheck()
     std::string componentTypeName = itk::ImageIOBase::GetComponentTypeAsString(componentType);
     QString message = QObject::tr("The component type type of '%1' (%2) is unsupported").arg(getInputFileName()).arg(QString::fromStdString(componentTypeName));
     setErrorCondition(-9);
-    notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+    notifyErrorMessage(message, getErrorCondition());
     return;
   }
 
@@ -367,7 +367,7 @@ void ItkReadImage::execute()
   {
     setErrorCondition(-11000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
@@ -429,7 +429,7 @@ void ItkReadImage::execute()
   {
     setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 

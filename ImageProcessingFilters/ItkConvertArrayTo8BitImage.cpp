@@ -108,7 +108,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
   if(m_SelectedArrayPath.isEmpty())
   {
     setErrorCondition(-11000);
-    notifyErrorMessage(getHumanLabel(), "An array from the DataContainer must be selected.", getErrorCondition());
+    notifyErrorMessage("An array from the DataContainer must be selected.", getErrorCondition());
   }
   else
   {
@@ -119,7 +119,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
       {
         QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(m_SelectedArrayPath.getDataArrayName());
         setErrorCondition(-11002);
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        notifyErrorMessage(ss, getErrorCondition());
         return;
       }
       QVector<size_t> dims(1, 1);

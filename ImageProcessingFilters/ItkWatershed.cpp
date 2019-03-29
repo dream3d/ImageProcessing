@@ -180,7 +180,7 @@ void ItkWatershed::execute()
   {
     setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::GradientMagnitudeImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
   }
 
   //get output and copy to grainids

@@ -112,7 +112,7 @@ class FindMaximaPrivate
       {
         filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
+        filter->notifyErrorMessage(ss, filter->getErrorCondition());
       }
     }
   private:
@@ -229,7 +229,7 @@ void FindMaxima::execute()
   {
     setErrorCondition(-10000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
@@ -288,7 +288,7 @@ void FindMaxima::execute()
   {
     setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 }

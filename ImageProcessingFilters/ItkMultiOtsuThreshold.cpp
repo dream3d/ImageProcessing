@@ -206,7 +206,7 @@ void ItkMultiOtsuThreshold::execute()
       {
         setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::OtsuMultipleThresholdsImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+        notifyErrorMessage(ss, getErrorCondition());
       }
 
       //copy back into volume
@@ -231,7 +231,7 @@ void ItkMultiOtsuThreshold::execute()
     {
       setErrorCondition(-5);
       QString ss = QObject::tr("Failed to execute itk::OtsuMultipleThresholdsImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      notifyErrorMessage(ss, getErrorCondition());
     }
   }
 

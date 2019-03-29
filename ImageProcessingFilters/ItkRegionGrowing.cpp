@@ -178,7 +178,7 @@ void RegionGrowing::execute()
   {
     setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::RegionGrowing filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
   }
 
   //array name changing/cleanup

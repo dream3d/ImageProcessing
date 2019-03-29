@@ -137,7 +137,7 @@ void ItkStitchImages::dataCheck()
   if (am.get() == nullptr)
   {
     setErrorCondition(-76000);
-    notifyErrorMessage(getHumanLabel(), "The attribute matrix has not been selected properly", -76000);
+    notifyErrorMessage("The attribute matrix has not been selected properly", -76000);
     return;
   }
 
@@ -157,7 +157,7 @@ void ItkStitchImages::dataCheck()
     if(nullptr == imagePtr)
     {
       setErrorCondition(-76001);
-      notifyErrorMessage(getHumanLabel(), "The data was not found", getErrorCondition());
+      notifyErrorMessage("The data was not found", getErrorCondition());
     }
   }
 
@@ -169,7 +169,7 @@ void ItkStitchImages::dataCheck()
     {
       QString ss = QObject::tr("The number of Attribute Array Names (%1) does not match the number of Images (%2)").arg(m_StitchedCoordinatesPtr.lock()->getNumberOfTuples()).arg(names.size());
       setErrorCondition(-76002);
-      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+      notifyErrorMessage(ss, getErrorCondition());
     }
   }
 
@@ -249,7 +249,7 @@ void ItkStitchImages::execute()
   {
     QString ss = QObject::tr("Error Importing a Zeiss AxioVision file set.");
     setErrorCondition(-90000);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
