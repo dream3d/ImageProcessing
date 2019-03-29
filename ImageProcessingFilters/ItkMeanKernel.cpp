@@ -199,8 +199,9 @@ void ItkMeanKernel::execute()
   }
   catch( itk::ExceptionObject& err )
   {
+    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::MeanImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage("", ss, -5);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
 
 
@@ -210,8 +211,9 @@ void ItkMeanKernel::execute()
   }
   catch( itk::ExceptionObject& err )
   {
+    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::RescaleIntensityImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage("", ss, -5);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
 
   //array name changing/cleanup

@@ -192,7 +192,7 @@ void ItkSobelEdge::execute()
     for(int i = 0; i < dims[2]; ++i)
     {
       QString ss = QObject::tr("Finding Edges On Slice: %1").arg(i + 1);
-      notifyStatusMessage(getMessagePrefix(), ss);
+      notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
 
       //get slice
       ImageProcessingConstants::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
@@ -210,8 +210,9 @@ void ItkSobelEdge::execute()
       }
       catch( itk::ExceptionObject& err )
       {
+        setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::SobelEdgeDetectionImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        notifyErrorMessage("", ss, -5);
+        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
       }
 
       //copy into volume
@@ -245,8 +246,9 @@ void ItkSobelEdge::execute()
     }
     catch( itk::ExceptionObject& err )
     {
+      setErrorCondition(-5);
       QString ss = QObject::tr("Failed to execute itk::SobelEdgeDetectionImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      notifyErrorMessage("", ss, -5);
+      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     }
 
   }

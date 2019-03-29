@@ -109,8 +109,9 @@ class ManualThresholdTemplatePrivate
       }
       catch( itk::ExceptionObject& err )
       {
+        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::BinaryThresholdImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage("", ss, filter->getErrorCondition());
+        filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
       }
     }
   private:
@@ -299,8 +300,9 @@ void ItkManualThresholdTemplate::execute()
   dataCheck();
   if(getErrorCondition() < 0)
   {
+    setErrorCondition(-15000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage("", ss, -15000);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 
@@ -358,8 +360,9 @@ void ItkManualThresholdTemplate::execute()
   }
   else
   {
+    setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage("", ss, -10001);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 

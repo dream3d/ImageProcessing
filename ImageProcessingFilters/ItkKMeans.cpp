@@ -140,7 +140,8 @@ void ItkKMeans::dataCheck()
   if(m_Classes < 2)
   {
     QString ss = QObject::tr("Must threshold into at least 2 classes");
-    notifyErrorMessage("", ss, -1000);
+    setErrorCondition(-1000);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 }
@@ -224,8 +225,9 @@ void ItkKMeans::execute()
       }
       catch( itk::ExceptionObject& err )
       {
+        setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        notifyErrorMessage("", ss, -5);
+        notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
       }
 
       //copy back into volume
@@ -262,8 +264,9 @@ void ItkKMeans::execute()
     }
     catch( itk::ExceptionObject& err )
     {
+      setErrorCondition(-5);
       QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      notifyErrorMessage("", ss, -5);
+      notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     }
   }
 

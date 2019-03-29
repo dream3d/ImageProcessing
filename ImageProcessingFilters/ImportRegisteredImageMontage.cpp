@@ -117,7 +117,8 @@ void ImportRegisteredImageMontage::dataCheck()
   if (m_InputFileListInfo.InputPath.isEmpty() == true)
   {
     ss = QObject::tr("The input directory must be set");
-    notifyErrorMessage("", ss, -13);
+    setErrorCondition(-13);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
 
     return;
   }
@@ -151,7 +152,8 @@ void ImportRegisteredImageMontage::dataCheck()
   if (fileList.size() == 0)
   {
     QString ss = QObject::tr("No files have been selected for import. Have you set the input directory?");
-    notifyErrorMessage("", ss, -11);
+    setErrorCondition(-11);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
   else
   {
@@ -217,10 +219,11 @@ void ImportRegisteredImageMontage::dataCheck()
 		itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(imageFName.toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
 		if (nullptr == imageIO)
 		{
-      QString message = QObject::tr("Unable to read image '%1'").arg(imageFName);
-      notifyErrorMessage("", message, -2);
-      return;
-    }
+			setErrorCondition(-2);
+			QString message = QObject::tr("Unable to read image '%1'").arg(imageFName);
+			notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+			return;
+		}
 		imageIO->SetFileName(imageFName.toLocal8Bit().data());
 		imageIO->ReadImageInformation();
 
@@ -238,9 +241,10 @@ void ImportRegisteredImageMontage::dataCheck()
 			else
 			{
 				QString message = QObject::tr("3 dimensional image required (slected image dimensions: %1)").arg(numDimensions);
-        notifyErrorMessage("", message, -3);
-        return;
-      }
+				setErrorCondition(-3);
+				notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+				return;
+			}
 		}
 		else
 		{
@@ -272,10 +276,12 @@ void ImportRegisteredImageMontage::dataCheck()
 			componentDims[0] = 4;
 			break;
 		default:
-      notifyErrorMessage("", "The Pixel Type of the image is not supported with DREAM3D.", -90001);
-    }
+			setErrorCondition(-90001);
+			notifyErrorMessage(getHumanLabel(), "The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
+		}
 
-    //Now get how the actual image data is stored.
+
+		//Now get how the actual image data is stored.
 		IDataArray::Pointer data;
 		itk::ImageIOBase::IOComponentType componentType = imageIO->GetComponentType();
 		if (itk::ImageIOBase::CHAR == componentType)
@@ -322,9 +328,10 @@ void ImportRegisteredImageMontage::dataCheck()
 		{
 			std::string componentTypeName = itk::ImageIOBase::GetComponentTypeAsString(componentType);
 			QString message = QObject::tr("The component type type of '%1' (%2) is unsupported").arg(imageFName).arg(QString::fromStdString(componentTypeName));
-      notifyErrorMessage("", message, -9);
-      return;
-    }
+			setErrorCondition(-9);
+			notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+			return;
+		}
 
 		// Doing it this way because we have dynamic value's we're writing to
 		TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, path, componentDims, data);
@@ -375,7 +382,8 @@ void ImportRegisteredImageMontage::execute()
   if (fileList.size() == 0)
   {
     QString ss = QObject::tr("No files have been selected for import. Have you set the input directory?");
-    notifyErrorMessage("", ss, -11);
+    setErrorCondition(-11);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
   }
 
   // We'll be using ITKReadImage because it can handle most pixelTypes (8bit, 16bit, 16bit greyscale etc)
@@ -411,8 +419,9 @@ void ImportRegisteredImageMontage::execute()
 	if (ReadImageFilter->getErrorCondition() == -10000)
 	{
 		QString message = QObject::tr("Image failed to pass data check. The image %1 might be a different size then the attribute matrix. Consider making all images the same dimensions.").arg(ss);
-    notifyErrorMessage("", message, -10000);
-    return;
+		setErrorCondition(-10000); // See itk read image filter
+		notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+		return;
 	}
 
 	
@@ -425,9 +434,10 @@ void ImportRegisteredImageMontage::execute()
 	if (getErrorCondition() < 0 || imageData == nullptr)
 	{
 		QString message = QObject::tr("The image %1 was unable to be imported").arg(ss);
-    notifyErrorMessage("", message, -5);
-    return;
-  }
+		setErrorCondition(-5);
+		notifyErrorMessage(getHumanLabel(), message, getErrorCondition());
+		return;
+	}
 
 	// Add the information to the Attribute Array
 	// addAttributeArray will replace empty dummy arrays created in DataCheck i

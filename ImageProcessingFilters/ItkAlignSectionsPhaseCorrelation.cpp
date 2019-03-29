@@ -113,7 +113,7 @@ class AlignSectionsPhaseCorrelationPrivate
       {
         //update progress
         QString ss = QObject::tr("Aligning Sections - Determining Shifts - %1 Percent Complete").arg(((float)iter / dims[2]) * 100);
-        filter->notifyStatusMessage(filter->getMessagePrefix(), );
+        filter->notifyStatusMessage(filter->getMessagePrefix(), filter->getHumanLabel(), ss);
 
         //extract slices
         int sliceNum = static_cast<int>( (dims[2] - 1) - iter );
@@ -137,7 +137,8 @@ class AlignSectionsPhaseCorrelationPrivate
         }
         catch( itk::ExceptionObject& err )
         {
-          filter->QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
+          filter->setErrorCondition(-5);
+          QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
           filter->notifyErrorMessage(filter->getHumanLabel(), ss, filter->getErrorCondition());
         }
 
@@ -302,7 +303,8 @@ void AlignSectionsPhaseCorrelation::execute()
   if (err < 0)
   {
     QString ss = QObject::tr("Some error message");
-    notifyErrorMessage("", ss, -99999999);
+    setErrorCondition(-99999999);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 }
@@ -362,8 +364,9 @@ void AlignSectionsPhaseCorrelation::find_shifts(QVector<int>& xshifts, QVector<i
   }
   else
   {
+    setErrorCondition(-10001);
     QString ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage("", ss, -10001);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 }
