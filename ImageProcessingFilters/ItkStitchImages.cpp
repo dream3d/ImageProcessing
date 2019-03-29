@@ -127,8 +127,8 @@ void ItkStitchImages::initialize()
 // -----------------------------------------------------------------------------
 void ItkStitchImages::dataCheck()
 {
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
 
   DataArrayPath tempPath;
 
@@ -241,8 +241,8 @@ void ItkStitchImages::execute()
   // Check to make sure you made it through the data check. Errors would have been reported already so if something
   // happens to fail in the dataCheck() then we simply return
   if(getErrorCondition() < 0) { return; }
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
 
   /* If some error occurs this code snippet can report the error up the call chain*/
   if (err < 0)

@@ -186,8 +186,8 @@ void ItkRGBToGray::initialize()
 // -----------------------------------------------------------------------------
 void ItkRGBToGray::dataCheck()
 {
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
   if(!DataArrayPath::ValidateVector(getInputDataArrayVector()))
   {
     setErrorCondition(-62000);

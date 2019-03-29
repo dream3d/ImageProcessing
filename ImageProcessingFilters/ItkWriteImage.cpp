@@ -220,8 +220,8 @@ void ItkWriteImage::initialize()
 // -----------------------------------------------------------------------------
 void ItkWriteImage::dataCheck()
 {
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
 
   FileSystemPathHelper::CheckOutputFile(this, "Image Output File", getOutputFileName(), true);
 

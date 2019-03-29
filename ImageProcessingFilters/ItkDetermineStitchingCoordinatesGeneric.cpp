@@ -126,8 +126,8 @@ void ItkDetermineStitchingCoordinatesGeneric::readFilterParameters(AbstractFilte
 // -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 {
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
   DataArrayPath tempPath;
 
   QString ss;
@@ -248,8 +248,8 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
 {
   dataCheck();
   if(getErrorCondition() < 0) { return; }
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
 
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName()); // M is CellData basically? or maybe it's the meta data? I don't know what 'm' means; // Wait it's a 'DataContainer' object. So it's just the data container?
   QString attrMatName = getAttributeMatrixName().getAttributeMatrixName();

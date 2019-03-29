@@ -101,8 +101,8 @@ void ItkReadImage::initialize()
 // -----------------------------------------------------------------------------
 void ItkReadImage::dataCheck()
 {
-  setErrorCondition(0);
-  setWarningCondition(0);
+  clearErrorCondition();
+  clearWarningCondition();
 
   //check file name exists
   if(getInputFileName().isEmpty())
