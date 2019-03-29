@@ -207,7 +207,7 @@ void ItkHoughCircles::execute()
   {
     //extract slice and transform
     QString ss = QObject::tr("Hough Transforming Slice: %1").arg(i + 1);
-    notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
+    notifyStatusMessageWithPrefix(getMessagePrefix(), ss);
     ImageProcessingConstants::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
     houghFilter->SetInput( inputSlice );
     houghFilter->Update();
@@ -215,7 +215,7 @@ void ItkHoughCircles::execute()
 
     //find circles
     ss = QObject::tr("Finding Circles on Slice: %1").arg(i + 1);
-    notifyStatusMessage(getMessagePrefix(), getHumanLabel(), ss);
+    notifyStatusMessageWithPrefix(getMessagePrefix(), ss);
     HoughTransformFilterType::CirclesListType circles = houghFilter->GetCircles();
 
     //create blank slice of same dimensions

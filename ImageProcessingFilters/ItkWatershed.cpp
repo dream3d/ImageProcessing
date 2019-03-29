@@ -157,14 +157,14 @@ void ItkWatershed::execute()
   ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   //create gradient magnitude filter
-  notifyStatusMessage(getHumanLabel(), "Calculating Gradient Magnitude");
+  notifyStatusMessage("Calculating Gradient Magnitude");
   typedef itk::GradientMagnitudeImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType >  GradientMagnitudeImageFilterType;
   GradientMagnitudeImageFilterType::Pointer gradientMagnitudeImageFilter = GradientMagnitudeImageFilterType::New();
   gradientMagnitudeImageFilter->SetInput(inputImage);
   gradientMagnitudeImageFilter->Update();
 
   //watershed image
-  notifyStatusMessage(getHumanLabel(), "Watershedding");
+  notifyStatusMessage("Watershedding");
   typedef itk::WatershedImageFilter<ImageProcessingConstants::DefaultImageType> WatershedFilterType;
   WatershedFilterType::Pointer watershed = WatershedFilterType::New();
   watershed->SetThreshold(m_Threshold);

@@ -113,7 +113,7 @@ class AlignSectionsPhaseCorrelationPrivate
       {
         //update progress
         QString ss = QObject::tr("Aligning Sections - Determining Shifts - %1 Percent Complete").arg(((float)iter / dims[2]) * 100);
-        filter->notifyStatusMessage(filter->getMessagePrefix(), filter->getHumanLabel(), ss);
+        filter->notifyStatusMessageWithPrefix(filter->getMessagePrefix(), ss);
 
         //extract slices
         int sliceNum = static_cast<int>( (dims[2] - 1) - iter );

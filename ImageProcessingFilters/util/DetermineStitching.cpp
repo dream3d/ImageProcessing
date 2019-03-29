@@ -561,11 +561,10 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
       QTextStream out(&msg);
 
       out << "Placing Image Number " << i;
-      filter->notifyStatusMessage(filter->getMessagePrefix(), filter->getHumanLabel(), msg);
+      filter->notifyStatusMessageWithPrefix(filter->getMessagePrefix(), msg);
 
-
-//            std::cout << "new global x " << xyStitchedGlobalListPtr->getValue(2*i) << std::endl;
-//            std::cout << "new global y " << xyStitchedGlobalListPtr->getValue(2*i + 1) << std::endl;
+      //            std::cout << "new global x " << xyStitchedGlobalListPtr->getValue(2*i) << std::endl;
+      //            std::cout << "new global y " << xyStitchedGlobalListPtr->getValue(2*i + 1) << std::endl;
     }
 
     //Put the values found in from going in the comb order into another data array which represents the original order the images came in as
