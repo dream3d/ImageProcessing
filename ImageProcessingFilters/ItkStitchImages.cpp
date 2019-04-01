@@ -136,8 +136,7 @@ void ItkStitchImages::dataCheck()
 
   if (am.get() == nullptr)
   {
-    setErrorCondition(-76000);
-    notifyErrorMessage("The attribute matrix has not been selected properly", -76000);
+    setErrorCondition(-76000, "The attribute matrix has not been selected properly");
     return;
   }
 
@@ -156,8 +155,7 @@ void ItkStitchImages::dataCheck()
     imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
     if(nullptr == imagePtr)
     {
-      setErrorCondition(-76001);
-      notifyErrorMessage("The data was not found", getErrorCondition());
+      setErrorCondition(-76001, "The data was not found");
     }
   }
 
@@ -168,8 +166,7 @@ void ItkStitchImages::dataCheck()
     if(names.size() != m_StitchedCoordinatesPtr.lock()->getNumberOfTuples() )
     {
       QString ss = QObject::tr("The number of Attribute Array Names (%1) does not match the number of Images (%2)").arg(m_StitchedCoordinatesPtr.lock()->getNumberOfTuples()).arg(names.size());
-      setErrorCondition(-76002);
-      notifyErrorMessage(ss, getErrorCondition());
+      setErrorCondition(-76002, ss);
     }
   }
 
@@ -179,11 +176,16 @@ void ItkStitchImages::dataCheck()
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
-  if(getErrorCondition() < 0 || nullptr == m) { return; }
-
+  if(getErrorCode() < 0 || nullptr == m)
+  {
+    return;
+  }
 
   DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m2->setGeometry(image);
@@ -203,7 +205,10 @@ void ItkStitchImages::dataCheck()
   QVector<size_t> tDims(1, 0);
 
   AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   dims[0] = 1;
 
 
@@ -240,7 +245,10 @@ void ItkStitchImages::execute()
   dataCheck();
   // Check to make sure you made it through the data check. Errors would have been reported already so if something
   // happens to fail in the dataCheck() then we simply return
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   clearErrorCondition();
   clearWarningCondition();
 
@@ -248,8 +256,7 @@ void ItkStitchImages::execute()
   if (err < 0)
   {
     QString ss = QObject::tr("Error Importing a Zeiss AxioVision file set.");
-    setErrorCondition(-90000);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-90000, ss);
     return;
   }
 

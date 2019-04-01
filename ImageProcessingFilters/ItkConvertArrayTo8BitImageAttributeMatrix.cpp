@@ -107,8 +107,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 
   if (am.get() == nullptr)
   {
-    setErrorCondition(-76000);
-    notifyErrorMessage("The attribute matrix has not been selected properly", -76000);
+    setErrorCondition(-76000, "The attribute matrix has not been selected properly");
     return;
   }
 
@@ -119,20 +118,25 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     {
       tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
       IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath);
-      if (getErrorCondition() < 0) { return; }
+      if(getErrorCode() < 0)
+      {
+        return;
+      }
 
-        if(inputData->getNumberOfComponents() > 1)
-        {
-          QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
-          setErrorCondition(-11002);
-          notifyErrorMessage(ss, getErrorCondition());
-          return;
+      if(inputData->getNumberOfComponents() > 1)
+      {
+        QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(names[i]);
+        setErrorCondition(-11002, ss);
+        return;
         }
     }
 
 
     ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-    if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+    if(getErrorCode() < 0 || nullptr == image.get())
+    {
+      return;
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -207,8 +211,10 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
   clearErrorCondition();
   clearWarningCondition();
   dataCheck();
-  if(getErrorCondition() < 0) { return; }
-
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
   QList<QString> names = am->getAttributeArrayNames();

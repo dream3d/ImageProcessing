@@ -107,30 +107,37 @@ void ItkConvertArrayTo8BitImage::dataCheck()
 
   if(m_SelectedArrayPath.isEmpty())
   {
-    setErrorCondition(-11000);
-    notifyErrorMessage("An array from the DataContainer must be selected.", getErrorCondition());
+    setErrorCondition(-11000, "An array from the DataContainer must be selected.");
   }
   else
   {
     IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, getSelectedArrayPath());
-    if (getErrorCondition() < 0) { return; }
+    if(getErrorCode() < 0)
+    {
+      return;
+    }
 
-      if(inputData->getNumberOfComponents() > 1)
-      {
-        QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(m_SelectedArrayPath.getDataArrayName());
-        setErrorCondition(-11002);
-        notifyErrorMessage(ss, getErrorCondition());
-        return;
+    if(inputData->getNumberOfComponents() > 1)
+    {
+      QString ss = QObject::tr("Data Array '%1' cannot have more than 1 component").arg(m_SelectedArrayPath.getDataArrayName());
+      setErrorCondition(-11002, ss);
+      return;
       }
       QVector<size_t> dims(1, 1);
       tempPath.update(m_SelectedArrayPath.getDataContainerName(), m_SelectedArrayPath.getAttributeMatrixName(), getNewArrayArrayName() );
       m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
       if(nullptr != m_NewArrayPtr.lock())                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
       { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
-      if(getErrorCondition() < 0) { return; }
+      if(getErrorCode() < 0)
+      {
+        return;
+      }
 
       ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-      if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+      if(getErrorCode() < 0 || nullptr == image.get())
+      {
+        return;
+      }
   }
 }
 
@@ -191,7 +198,10 @@ void ItkConvertArrayTo8BitImage::execute()
   clearErrorCondition();
   clearWarningCondition();
   dataCheck();
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(m_SelectedArrayPath.getDataContainerName());
 

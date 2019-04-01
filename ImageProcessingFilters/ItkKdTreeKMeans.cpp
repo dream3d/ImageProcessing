@@ -222,20 +222,21 @@ void ItkKdTreeKMeans::dataCheck()
 
   if (getClasses() < 2)
   {
-    setErrorCondition(-5555);
-    notifyErrorMessage("Must have at least 2 classes", getErrorCondition());
+    setErrorCondition(-5555, "Must have at least 2 classes");
   }
 
   m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, getSelectedCellArrayPath()); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if (getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   int32_t numComps = m_SelectedCellArrayPtr.lock()->getNumberOfComponents();
 
   if (numComps != 3)
   {
-    setErrorCondition(-5555);
     QString ss = QObject::tr("Input data has total components %1, but the data must be 3-vectors").arg(numComps);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-5555, ss);
   }
 
   QVector<size_t> cDims(1, 1);
@@ -268,7 +269,10 @@ void ItkKdTreeKMeans::execute()
   clearErrorCondition();
   clearWarningCondition();
   dataCheck();
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   EXECUTE_TEMPLATE(this, itkKdTreeKMeansTemplate, m_SelectedCellArrayPtr.lock(), m_SelectedCellArrayPtr.lock(), m_NewCellArrayPtr.lock(), m_Classes)
 }

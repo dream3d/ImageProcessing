@@ -158,9 +158,8 @@ class WriteImagePrivate
       }
       catch( itk::ExceptionObject& err )
       {
-        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to write image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(ss, filter->getErrorCondition());
+        filter->setErrorCondition(-5, ss);
       }
     }
   private:
@@ -232,14 +231,16 @@ void ItkWriteImage::dataCheck()
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   getDataContainerArray()->getPrereqGeometryFromDataContainer<ImageGeom, AbstractFilter>(this, getSelectedCellArrayPath().getDataContainerName());
   // Ignore returning from the dataCheck if this errors out. We are just trying to
   // ensure an ImageGeometry is selected. If code is added below that starts depending
   // on the image geometry, then the next line should be uncommented.
-  //if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
-
+  // if(getErrorCode() < 0 || nullptr == image.get()) { return; }
 
   //make sure dims of selected array are appropriate
   if(1 == compDims.size())
@@ -250,26 +251,22 @@ void ItkWriteImage::dataCheck()
     }
     else if (3 == compDims[0])//rgb
     {
-      setWarningCondition(-100);
-      notifyWarningMessage("Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
+      setWarningCondition(-100, "Warning: writing of rgb images is currenlty experimental (unstable behavoir may occur)");
     }
     else if (4 == compDims[0])//rgba
     {
-      setWarningCondition(-101);
-      notifyWarningMessage("Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
+      setWarningCondition(-101, "Warning: writing of rgba images is currenlty experimental (unstable behavoir may occur)");
     }
     else  //vector
     {
-      // notifyWarningMessage("Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)", getWarningCondition());
-      setErrorCondition(-102);
-      notifyErrorMessage("Error: writing of vector images is currently not supported", getErrorCondition());
+      // setWarningCondition(getWarningCode(), "Warning: writing of vector images is currenlty experimental (unstable behavoir may occur)");
+      setErrorCondition(-102, "Error: writing of vector images is currently not supported");
     }
   }
   else
   {
     QString message = QObject::tr("The selected array '%1' has unsupported dimensionality (%2)").arg(m_SelectedCellArrayPath.getDataArrayName()).arg(compDims.size());
-    setErrorCondition(-103);
-    notifyErrorMessage(message, getErrorCondition());
+    setErrorCondition(-103, message);
   }
 
 }
@@ -295,7 +292,10 @@ void ItkWriteImage::execute()
 {
   //int err = 0;
   dataCheck();
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName());
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
@@ -345,9 +345,8 @@ void ItkWriteImage::execute()
   }
   else
   {
-    setErrorCondition(-10001);
     QString ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-10001, ss);
     return;
   }
 }

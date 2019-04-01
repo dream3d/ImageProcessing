@@ -117,8 +117,7 @@ void ImportRegisteredImageMontage::dataCheck()
   if (m_InputFileListInfo.InputPath.isEmpty() == true)
   {
     ss = QObject::tr("The input directory must be set");
-    setErrorCondition(-13);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-13, ss);
 
     return;
   }
@@ -152,8 +151,7 @@ void ImportRegisteredImageMontage::dataCheck()
   if (fileList.size() == 0)
   {
     QString ss = QObject::tr("No files have been selected for import. Have you set the input directory?");
-    setErrorCondition(-11);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-11, ss);
   }
   else
   {
@@ -177,8 +175,7 @@ void ImportRegisteredImageMontage::dataCheck()
     {
       err = -1;
       QString ss = QObject::tr("The total number of elements '%1' is greater than this program can hold. Try the 64 bit version.").arg((dims[0] * dims[1]));
-      setErrorCondition(err);
-      notifyErrorMessage(ss, err);
+      setErrorCondition(err, ss);
     }
 
     if(dims[0] > max || dims[1] > max)
@@ -186,8 +183,7 @@ void ImportRegisteredImageMontage::dataCheck()
       err = -1;
       QString ss = QObject::tr("One of the dimensions is greater than the max index for this sysem. Try the 64 bit version."
                                " dim[0]=%1  dim[1]=%2").arg(dims[0]).arg(dims[1]);
-      setErrorCondition(err);
-      notifyErrorMessage(ss, err);
+      setErrorCondition(err, ss);
     }
     /* ************ End Sanity Check *************************** */
     m->getGeometryAs<ImageGeom>()->setDimensions(static_cast<size_t>(dims[0]), static_cast<size_t>(dims[1]), static_cast<size_t>(dims[2]));
@@ -219,9 +215,8 @@ void ImportRegisteredImageMontage::dataCheck()
 		itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(imageFName.toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
 		if (nullptr == imageIO)
 		{
-			setErrorCondition(-2);
-			QString message = QObject::tr("Unable to read image '%1'").arg(imageFName);
-      notifyErrorMessage(message, getErrorCondition());
+      QString message = QObject::tr("Unable to read image '%1'").arg(imageFName);
+      setErrorCondition(-2, message);
       return;
 		}
 		imageIO->SetFileName(imageFName.toLocal8Bit().data());
@@ -241,8 +236,7 @@ void ImportRegisteredImageMontage::dataCheck()
 			else
 			{
 				QString message = QObject::tr("3 dimensional image required (slected image dimensions: %1)").arg(numDimensions);
-				setErrorCondition(-3);
-        notifyErrorMessage(message, getErrorCondition());
+        setErrorCondition(-3, message);
         return;
 			}
 		}
@@ -276,8 +270,7 @@ void ImportRegisteredImageMontage::dataCheck()
 			componentDims[0] = 4;
 			break;
 		default:
-			setErrorCondition(-90001);
-      notifyErrorMessage("The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
+      setErrorCondition(-90001, "The Pixel Type of the image is not supported with DREAM3D.");
     }
 
 
@@ -328,8 +321,7 @@ void ImportRegisteredImageMontage::dataCheck()
 		{
 			std::string componentTypeName = itk::ImageIOBase::GetComponentTypeAsString(componentType);
 			QString message = QObject::tr("The component type type of '%1' (%2) is unsupported").arg(imageFName).arg(QString::fromStdString(componentTypeName));
-			setErrorCondition(-9);
-      notifyErrorMessage(message, getErrorCondition());
+      setErrorCondition(-9, message);
       return;
 		}
 
@@ -382,8 +374,7 @@ void ImportRegisteredImageMontage::execute()
   if (fileList.size() == 0)
   {
     QString ss = QObject::tr("No files have been selected for import. Have you set the input directory?");
-    setErrorCondition(-11);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-11, ss);
   }
 
   // We'll be using ITKReadImage because it can handle most pixelTypes (8bit, 16bit, 16bit greyscale etc)
@@ -419,8 +410,7 @@ void ImportRegisteredImageMontage::execute()
 	if (ReadImageFilter->getErrorCondition() == -10000)
 	{
 		QString message = QObject::tr("Image failed to pass data check. The image %1 might be a different size then the attribute matrix. Consider making all images the same dimensions.").arg(ss);
-		setErrorCondition(-10000); // See itk read image filter
-    notifyErrorMessage(message, getErrorCondition());
+    setErrorCondition(-10000, message);
     return;
 	}
 
@@ -434,8 +424,7 @@ void ImportRegisteredImageMontage::execute()
 	if (getErrorCondition() < 0 || imageData == nullptr)
 	{
 		QString message = QObject::tr("The image %1 was unable to be imported").arg(ss);
-		setErrorCondition(-5);
-    notifyErrorMessage(message, getErrorCondition());
+    setErrorCondition(-5, message);
     return;
 	}
 

@@ -110,9 +110,8 @@ class GrayToRGBPrivate
       }
       catch( itk::ExceptionObject& err )
       {
-        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(ss, filter->getErrorCondition());
+        filter->setErrorCondition(-5, ss);
       }
     }
   private:
@@ -212,13 +211,25 @@ void ItkGrayToRGB::dataCheck()
 
 
   DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getRedArrayPath().getDataContainerName() );
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   AttributeMatrix::Pointer redAM = redDC->getPrereqAttributeMatrix(this, getRedArrayPath().getAttributeMatrixName(), 80000);
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getRedArrayPath().getDataArrayName(), 80000);
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+  if(getErrorCode() < 0 || nullptr == image.get())
+  {
+    return;
+  }
 
   //create new array of same type
   compDims[0] = 3;
@@ -250,11 +261,10 @@ void ItkGrayToRGB::execute()
 {
   QString ss;
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
-    setErrorCondition(-13000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-13000, ss);
     return;
   }
 
@@ -314,9 +324,8 @@ void ItkGrayToRGB::execute()
   }
   else
   {
-    setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-10001, ss);
     return;
   }
 

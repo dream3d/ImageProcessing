@@ -89,10 +89,16 @@ void ItkBinaryWatershedLabeled::dataCheck()
   m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<bool>, AbstractFilter>(this, getSelectedCellArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(nullptr != m_SelectedCellArrayPtr.lock())                            /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_SelectedCellArray = m_SelectedCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+  if(getErrorCode() < 0 || nullptr == image.get())
+  {
+    return;
+  }
 
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint32_t>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
@@ -121,11 +127,10 @@ void ItkBinaryWatershedLabeled::execute()
 {
   QString ss;
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
-    setErrorCondition(-11000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-11000, ss);
     return;
   }
 
@@ -151,9 +156,8 @@ void ItkBinaryWatershedLabeled::execute()
   }
   catch( itk::ExceptionObject& err )
   {
-    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-5, ss);
   }
 
   //find maxima in distance map (ultimate points)
@@ -207,9 +211,8 @@ void ItkBinaryWatershedLabeled::execute()
   }
   catch( itk::ExceptionObject& err )
   {
-    setErrorCondition(-5);
     QString ss = QObject::tr("Failed to execute itk::KMeans filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-5, ss);
   }
 }
 

@@ -159,8 +159,7 @@ void IPItkImportImageStack::dataCheck()
   if (m_InputFileListInfo.InputPath.isEmpty() == true)
   {
     ss = QObject::tr("The input directory must be set");
-    setErrorCondition(-13);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-13, ss);
   }
 
   DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
@@ -179,8 +178,7 @@ void IPItkImportImageStack::dataCheck()
     if (m_BoundsFile.isEmpty() == true)
     {
       ss = QObject::tr("The Bounds file must be set");
-      setErrorCondition(-14);
-      notifyErrorMessage(ss, getErrorCondition());
+      setErrorCondition(-14, ss);
     }
   }
 
@@ -209,8 +207,7 @@ void IPItkImportImageStack::dataCheck()
     out << "StartIndex: " << m_InputFileListInfo.StartIndex << "\n";
     out << "EndIndex: " << m_InputFileListInfo.EndIndex << "\n";
 
-    setErrorCondition(-11);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-11, ss);
   }
   else
   {
@@ -218,9 +215,8 @@ void IPItkImportImageStack::dataCheck()
     itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(fileList.at(0).toLocal8Bit().constData(), itk::ImageIOFactory::ReadMode);
     if(nullptr == imageIO)
     {
-      setErrorCondition(-2);
       QString message = QObject::tr("Unable to read image '%1'").arg(fileList.at(0));
-      notifyErrorMessage(message, getErrorCondition());
+      setErrorCondition(-2, message);
       return;
     }
     imageIO->SetFileName(fileList.at(0).toLocal8Bit().data());
@@ -240,8 +236,7 @@ void IPItkImportImageStack::dataCheck()
       else
       {
         QString message = QObject::tr("3 dimensional image required (slected image dimensions: %1)").arg(numDimensions);
-        setErrorCondition(-3);
-        notifyErrorMessage(message, getErrorCondition());
+        setErrorCondition(-3, message);
         return;
       }
     }
@@ -261,8 +256,10 @@ void IPItkImportImageStack::dataCheck()
     {
       m->getGeometryAs<RectGridGeom>()->setDimensions(static_cast<size_t>(xdim), static_cast<size_t>(ydim), static_cast<size_t>(zdim));
       if (!m_BoundsFile.isEmpty()) { err = readBounds(); }
-      if (err < 0) { setErrorCondition(err); }
-    }
+      if(err < 0)
+      {
+        return;
+      }
 
     QVector<size_t> tDims(3, 0);
     tDims[0] = xdim;
@@ -288,8 +285,7 @@ void IPItkImportImageStack::dataCheck()
       componentDims[0] = 4;
       break;
     default:
-      setErrorCondition(-90001);
-      notifyErrorMessage("The Pixel Type of the image is not supported with DREAM3D.", getErrorCondition());
+      setErrorCondition(-90001, "The Pixel Type of the image is not supported with DREAM3D.");
     }
 
     // Check to make sure everything is OK with reading the image
@@ -297,7 +293,7 @@ void IPItkImportImageStack::dataCheck()
     {
       std::string pixelTypeName = itk::ImageIOBase::GetPixelTypeAsString(pixelType);
       QString message = QObject::tr("The pixel type of '%1' (%2) is unsupported").arg(fileList.at(0)).arg(QString::fromStdString(pixelTypeName));
-      notifyErrorMessage(message, getErrorCondition());
+      setErrorCondition(getErrorCondition(), message);
       return;
     }
 
@@ -348,8 +344,7 @@ void IPItkImportImageStack::dataCheck()
     {
       std::string componentTypeName = itk::ImageIOBase::GetComponentTypeAsString(componentType);
       QString message = QObject::tr("The component type type of '%1' (%2) is unsupported").arg(fileList.at(0)).arg(QString::fromStdString(componentTypeName));
-      setErrorCondition(-9);
-      notifyErrorMessage(message, getErrorCondition());
+      setErrorCondition(-9, message);
       return;
     }
 
@@ -413,9 +408,8 @@ void IPItkImportImageStack::execute()
   dataCheck();
   if(getErrorCondition() < 0)
   {
-    setErrorCondition(-14000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-14000, ss);
     return;
   }
 
@@ -457,8 +451,7 @@ void IPItkImportImageStack::execute()
   if (fileList.size() == 0)
   {
     QString ss = QObject::tr("No files have been selected for import");
-    setErrorCondition(-11);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-11, ss);
   }
 
   for (QVector<QString>::iterator filepath = fileList.begin(); filepath != fileList.end(); ++filepath)
@@ -516,9 +509,8 @@ void IPItkImportImageStack::execute()
     }
     else
     {
-      setErrorCondition(-10001);
       ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-      notifyErrorMessage(ss, getErrorCondition());
+      setErrorCondition(-10001, ss);
       return;
     }
 
@@ -562,8 +554,7 @@ int IPItkImportImageStack::readBounds()
   if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
   {
     QString ss = QObject::tr("Bounds Input file could not be opened: %1").arg(getBoundsFile());
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
 
@@ -588,23 +579,20 @@ int IPItkImportImageStack::readBounds()
   if (word.compare("X_COORDINATES") != 0)
   {
     QString ss = QObject::tr("X_COORDINATES keyword not found in proper location in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   if (tokens.size() != 2)
   {
     QString ss = QObject::tr("X_COORDINATES keyword line not properly formatted in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   size_t numXBounds = tokens[1].toInt(&ok, 10);
   if (numXBounds != xbounds->getNumberOfTuples())
   {
     QString ss = QObject::tr("The number of X bounds in %1 does not match the x dimension of the geometry.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   count = 0;
@@ -613,8 +601,7 @@ int IPItkImportImageStack::readBounds()
     if (inFile.atEnd())
     {
       QString ss = QObject::tr(" %1..").arg(m_BoundsFile);
-      setErrorCondition(-100);
-      notifyErrorMessage(ss, getErrorCondition());
+      setErrorCondition(-100, ss);
       return -1;
     }
     buf = inFile.readLine();
@@ -627,8 +614,7 @@ int IPItkImportImageStack::readBounds()
       if (!ok)
       {
         QString ss = QObject::tr("Could not read X coordinte number %1. Could not interpret as float value.").arg(count+1);
-        setErrorCondition(-100);
-        notifyErrorMessage(ss, getErrorCondition());
+        setErrorCondition(-100, ss);
         return -1;
       }
       count++;
@@ -644,23 +630,20 @@ int IPItkImportImageStack::readBounds()
   if (word.compare("Y_COORDINATES") != 0)
   {
     QString ss = QObject::tr("Y_COORDINATES keyword not found in proper location in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   if (tokens.size() != 2)
   {
     QString ss = QObject::tr("Y_COORDINATES keyword line not properly formatted in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   size_t numYBounds = tokens[1].toInt(&ok, 10);
   if (numYBounds != ybounds->getNumberOfTuples())
   {
     QString ss = QObject::tr("The number of Y bounds in %1 does not match the y dimension of the geometry.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   count = 0;
@@ -676,8 +659,7 @@ int IPItkImportImageStack::readBounds()
       if (!ok)
       {
         QString ss = QObject::tr("Could not read Y coordinte number %1. Could not interpret as float value.").arg(count + 1);
-        setErrorCondition(-100);
-        notifyErrorMessage(ss, getErrorCondition());
+        setErrorCondition(-100, ss);
         return -1;
       }
       count++;
@@ -693,23 +675,20 @@ int IPItkImportImageStack::readBounds()
   if (word.compare("Z_COORDINATES") != 0)
   {
     QString ss = QObject::tr("Z_COORDINATES keyword not found in proper location in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   if (tokens.size() != 2)
   {
     QString ss = QObject::tr("Z_COORDINATES keyword line not properly formatted in: %1.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   size_t numZBounds = tokens[1].toInt(&ok, 10);
   if (numZBounds != zbounds->getNumberOfTuples())
   {
     QString ss = QObject::tr("The number of Z bounds in %1 does not match the z dimension of the geometry.").arg(m_BoundsFile);
-    setErrorCondition(-100);
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-100, ss);
     return -1;
   }
   count = 0;
@@ -725,8 +704,7 @@ int IPItkImportImageStack::readBounds()
       if (!ok)
       {
         QString ss = QObject::tr("Could not read Z coordinte number %1. Could not interpret as float value.").arg(count + 1);
-        setErrorCondition(-100);
-        notifyErrorMessage(ss, getErrorCondition());
+        setErrorCondition(-100, ss);
         return -1;
       }
       count++;

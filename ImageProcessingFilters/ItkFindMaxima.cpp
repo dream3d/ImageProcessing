@@ -100,9 +100,8 @@ class FindMaximaPrivate
       }
       catch( itk::ExceptionObject& err )
       {
-        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(ss, filter->getErrorCondition());
+        filter->setErrorCondition(-5, ss);
       }
 
       //fill output data with false then set peaks to true
@@ -189,13 +188,25 @@ void ItkFindMaxima::dataCheck()
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
   DataContainer::Pointer dataContiner = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayPath().getDataContainerName() );
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   AttributeMatrix::Pointer attrMatrix = dataContiner->getPrereqAttributeMatrix(this, getSelectedCellArrayPath().getAttributeMatrixName(), 80000);
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
   IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
-  if(getErrorCondition() < 0 || nullptr == redArrayptr.get()) { return; }
+  if(getErrorCode() < 0 || nullptr == redArrayptr.get())
+  {
+    return;
+  }
   ImageGeom::Pointer image = dataContiner->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+  if(getErrorCode() < 0 || nullptr == image.get())
+  {
+    return;
+  }
   //create new boolean array
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(
@@ -226,11 +237,10 @@ void ItkFindMaxima::execute()
 {
   QString ss;
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
-    setErrorCondition(-12000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-12000, ss);
     return;
   }
 
@@ -287,9 +297,8 @@ void ItkFindMaxima::execute()
   }
   else
   {
-    setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-10001, ss);
     return;
   }
 }

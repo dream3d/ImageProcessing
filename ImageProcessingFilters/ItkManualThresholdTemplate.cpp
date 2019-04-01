@@ -109,9 +109,8 @@ class ManualThresholdTemplatePrivate
       }
       catch( itk::ExceptionObject& err )
       {
-        filter->setErrorCondition(-5);
         QString ss = QObject::tr("Failed to execute itk::BinaryThresholdImageFilter filter. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-        filter->notifyErrorMessage(ss, filter->getErrorCondition());
+        filter->setErrorCondition(-5, ss);
       }
     }
   private:
@@ -194,7 +193,10 @@ void ItkManualThresholdTemplate::dataCheck()
   {
     m_SelectedCellArray = m_SelectedCellArrayPtr.lock().get();
   }
-  if(getErrorCondition() < 0) { return; }
+  if(getErrorCode() < 0)
+  {
+    return;
+  }
 
   //configured created name / location
   if(!m_SaveAsNewArray)
@@ -208,7 +210,10 @@ void ItkManualThresholdTemplate::dataCheck()
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
   IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
-  if(getErrorCondition() < 0 || nullptr == image.get()) { return; }
+  if(getErrorCode() < 0 || nullptr == image.get())
+  {
+    return;
+  }
 
   m_NewCellArrayPtr = TemplateHelpers::CreateNonPrereqArrayFromArrayType()(this, tempPath, compDims, data);
   if(nullptr != m_NewCellArrayPtr.lock())
@@ -298,11 +303,10 @@ void ItkManualThresholdTemplate::execute()
 {
   QString ss;
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
-    setErrorCondition(-15000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-15000, ss);
     return;
   }
 
@@ -360,9 +364,8 @@ void ItkManualThresholdTemplate::execute()
   }
   else
   {
-    setErrorCondition(-10001);
     ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-10001, ss);
     return;
   }
 

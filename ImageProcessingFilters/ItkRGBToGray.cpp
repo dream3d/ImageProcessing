@@ -115,9 +115,8 @@ public:
       itkFilter->Update();
     } catch(itk::ExceptionObject& err)
     {
-      filter->setErrorCondition(-5);
       QString ss = QObject::tr("Failed to convert image. Error Message returned from ITK:\n   %1").arg(err.GetDescription());
-      filter->notifyErrorMessage(ss, filter->getErrorCondition());
+      filter->setErrorCondition(-5, ss);
     }
   }
 
@@ -190,30 +189,27 @@ void ItkRGBToGray::dataCheck()
   clearWarningCondition();
   if(!DataArrayPath::ValidateVector(getInputDataArrayVector()))
   {
-    setErrorCondition(-62000);
     QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-62000, ss);
   }
 
   if(getOutputArrayPrefix().isEmpty())
   {
-    setErrorCondition(-62002);
     QString message = QObject::tr("Using a prefix (even a single alphanumeric value) is required so that the output Xdmf files can be written correctly");
-    notifyErrorMessage(message, getErrorCondition());
+    setErrorCondition(-62002, message);
   }
 
   if(getInputDataArrayVector().isEmpty())
   {
-    setErrorCondition(-62003);
     QString message = QObject::tr("At least one Attribute Array must be selected");
-    notifyErrorMessage(message, getErrorCondition());
+    setErrorCondition(-62003, message);
     return;
   }
 
   DataArrayPath inputAMPath = DataArrayPath::GetAttributeMatrixPath(getInputDataArrayVector());
 
   AttributeMatrix::Pointer inAM = getDataContainerArray()->getPrereqAttributeMatrixFromPath<AbstractFilter>(this, inputAMPath, -301);
-  if(getErrorCondition() < 0 || nullptr == inAM.get())
+  if(getErrorCode() < 0 || nullptr == inAM.get())
   {
     return;
   }
@@ -223,7 +219,7 @@ void ItkRGBToGray::dataCheck()
   DataContainerArray::Pointer dca = getDataContainerArray();
   DataContainer::Pointer dc = dca->getDataContainer(inputAMPath.getDataContainerName());
   AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
-  if(getErrorCondition() < 0 || nullptr == outAM.get())
+  if(getErrorCode() < 0 || nullptr == outAM.get())
   {
     return;
   }
@@ -239,7 +235,7 @@ void ItkRGBToGray::dataCheck()
 
     // getDataContainerArray()->getPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter>(this, inputAMPath, cDims);
     IDataArray::Pointer iDatArray = dca->getPrereqIDataArrayFromPath<IDataArray, ItkRGBToGray>(this, inputAMPath);
-    if(getErrorCondition() < 0)
+    if(getErrorCode() < 0)
     {
       return;
     }
@@ -269,11 +265,10 @@ void ItkRGBToGray::execute()
 {
   QString ss;
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
-    setErrorCondition(-16000);
     ss = QObject::tr("DataCheck did not pass during execute");
-    notifyErrorMessage(ss, getErrorCondition());
+    setErrorCondition(-16000, ss);
     return;
   }
   initialize();
@@ -348,9 +343,8 @@ void ItkRGBToGray::execute()
     }
     else
     {
-      setErrorCondition(-10001);
       ss = QObject::tr("A Supported DataArray type was not used for an input array.");
-      notifyErrorMessage(ss, getErrorCondition());
+      setErrorCondition(-10001, ss);
       return;
     }
 
