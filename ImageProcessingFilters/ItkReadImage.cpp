@@ -426,7 +426,7 @@ void ItkReadImage::execute()
   attrMat->addAttributeArray(getImageDataArrayName(), imageData);
 
   /* Let the GUI know we are done with this filter */
-  notifyStatusMessageWithPrefix(getMessagePrefix(), "Complete");
+  notifyStatusMessage("Complete");
 }
 
 // -----------------------------------------------------------------------------

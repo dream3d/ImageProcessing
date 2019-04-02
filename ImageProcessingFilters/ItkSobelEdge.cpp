@@ -201,7 +201,7 @@ void ItkSobelEdge::execute()
     for(int i = 0; i < dims[2]; ++i)
     {
       QString ss = QObject::tr("Finding Edges On Slice: %1").arg(i + 1);
-      notifyStatusMessageWithPrefix(getMessagePrefix(), ss);
+      notifyStatusMessage(ss);
 
       //get slice
       ImageProcessingConstants::DefaultSliceType::Pointer inputSlice = ITKUtilitiesType::ExtractSlice(inputImage, ImageProcessingConstants::ZSlice, i);
