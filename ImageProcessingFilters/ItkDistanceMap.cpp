@@ -179,8 +179,8 @@ void FindMaxima::initialize()
 // -----------------------------------------------------------------------------
 void FindMaxima::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   //check for required arrays

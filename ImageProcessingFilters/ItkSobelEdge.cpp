@@ -118,8 +118,8 @@ void ItkSobelEdge::initialize()
 // -----------------------------------------------------------------------------
 void ItkSobelEdge::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);

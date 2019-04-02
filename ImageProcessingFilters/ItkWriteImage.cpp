@@ -219,8 +219,8 @@ void ItkWriteImage::initialize()
 // -----------------------------------------------------------------------------
 void ItkWriteImage::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   FileSystemPathHelper::CheckOutputFile(this, "Image Output File", getOutputFileName(), true);
 

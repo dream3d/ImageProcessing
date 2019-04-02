@@ -157,8 +157,8 @@ void IPItkImportImageStack::initialize()
 // -----------------------------------------------------------------------------
 void IPItkImportImageStack::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   DataArrayPath tempPath;
   QString ss;

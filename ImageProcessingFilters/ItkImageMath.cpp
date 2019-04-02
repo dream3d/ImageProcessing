@@ -157,8 +157,8 @@ void ItkImageMath::initialize()
 // -----------------------------------------------------------------------------
 void ItkImageMath::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);

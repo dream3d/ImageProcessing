@@ -162,8 +162,8 @@ void ItkAutoThreshold::initialize()
 // -----------------------------------------------------------------------------
 void ItkAutoThreshold::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   QVector<size_t> dims(1, 1);

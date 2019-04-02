@@ -137,8 +137,8 @@ void ItkStitchImages::initialize()
 // -----------------------------------------------------------------------------
 void ItkStitchImages::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   DataArrayPath tempPath;
 
@@ -252,8 +252,8 @@ void ItkStitchImages::execute()
   {
     return;
   }
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   /* If some error occurs this code snippet can report the error up the call chain*/
   if (err < 0)

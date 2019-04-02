@@ -210,8 +210,8 @@ void AlignSectionsPhaseCorrelation::initialize()
 // -----------------------------------------------------------------------------
 void AlignSectionsPhaseCorrelation::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   //check for required arrays
@@ -292,8 +292,8 @@ void AlignSectionsPhaseCorrelation::execute()
   // Check to make sure you made it through the data check. Errors would have been reported already so if something
   // happens to fail in the dataCheck() then we simply return
   if(getErrorCondition() < 0) { return; }
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   /* Place all your code to execute your filter here. */
   AlignSections::execute();

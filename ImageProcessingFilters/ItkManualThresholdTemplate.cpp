@@ -181,8 +181,8 @@ void ItkManualThresholdTemplate::initialize()
 // -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   //check for required arrays

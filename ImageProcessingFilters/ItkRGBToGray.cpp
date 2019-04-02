@@ -194,8 +194,8 @@ void ItkRGBToGray::initialize()
 // -----------------------------------------------------------------------------
 void ItkRGBToGray::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   if(!DataArrayPath::ValidateVector(getInputDataArrayVector()))
   {
     QString ss = QObject::tr("All Attribute Arrays must belong to the same Data Container and Attribute Matrix");

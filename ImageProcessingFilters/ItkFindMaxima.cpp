@@ -172,8 +172,8 @@ void ItkFindMaxima::initialize()
 // -----------------------------------------------------------------------------
 void ItkFindMaxima::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   //check for required arrays

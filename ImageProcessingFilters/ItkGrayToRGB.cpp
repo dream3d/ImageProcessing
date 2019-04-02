@@ -184,8 +184,8 @@ void ItkGrayToRGB::initialize()
 // -----------------------------------------------------------------------------
 void ItkGrayToRGB::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   DataArrayPath tempPath;
 
   //check for required arrays

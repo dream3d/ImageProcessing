@@ -89,8 +89,8 @@ void ImageRegistration::initialize()
 // -----------------------------------------------------------------------------
 void ImageRegistration::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 }
 
 // -----------------------------------------------------------------------------
@@ -157,8 +157,8 @@ void ImageRegistration::execute()
   // Check to make sure you made it through the data check. Errors would have been reported already so if something
   // happens to fail in the dataCheck() then we simply return
   if(getErrorCondition() < 0) { return; }
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 }
 
 // -----------------------------------------------------------------------------
