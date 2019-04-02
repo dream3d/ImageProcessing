@@ -58,7 +58,7 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
-    PYB11_PROPERTY(IntVec3_t KernelSize READ getKernelSize WRITE setKernelSize)
+    PYB11_PROPERTY(IntVec3Type KernelSize READ getKernelSize WRITE setKernelSize)
 
   public:
     SIMPL_SHARED_POINTERS(ItkMedianKernel)
@@ -77,8 +77,8 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     SIMPL_FILTER_PARAMETER(bool, Slice)
     Q_PROPERTY(bool Slice READ getSlice WRITE setSlice)
-    SIMPL_FILTER_PARAMETER(IntVec3_t, KernelSize)
-    Q_PROPERTY(IntVec3_t KernelSize READ getKernelSize WRITE setKernelSize)
+    SIMPL_FILTER_PARAMETER(IntVec3Type, KernelSize)
+    Q_PROPERTY(IntVec3Type KernelSize READ getKernelSize WRITE setKernelSize)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of

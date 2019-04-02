@@ -45,6 +45,13 @@
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkReadImageImpl.hpp"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
+
+  DataContainerID = 1
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -67,9 +74,9 @@ ItkReadImage::~ItkReadImage() = default;
 // -----------------------------------------------------------------------------
 void ItkReadImage::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Input File", InputFileName, FilterParameter::Parameter, ItkReadImage, "*.tif *.jpeg *.png *.bmp", "Image"));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ItkReadImage));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ItkReadImage));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, ItkReadImage));
   parameters.push_back(SIMPL_NEW_STRING_FP("Image Data", ImageDataArrayName, FilterParameter::CreatedArray, ItkReadImage));
@@ -156,7 +163,7 @@ void ItkReadImage::dataCheck()
 
   if(nullptr == m.get()) //datacontainer doesn't exist->create
   {
-    m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+    m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
     ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
     m->setGeometry(image);
     m->getGeometryAs<ImageGeom>()->setDimensions(xdim, ydim, zdim);
@@ -240,7 +247,7 @@ void ItkReadImage::dataCheck()
   if(createAttributeMatrix)
   {
     //create attribute matrix
-    cellAttrMat = m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    cellAttrMat = m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
     if(getErrorCondition() < 0) { return; }
   }
 
@@ -423,7 +430,7 @@ void ItkReadImage::execute()
   }
 
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(getCellAttributeMatrixName());
-  attrMat->addAttributeArray(getImageDataArrayName(), imageData);
+  attrMat->insertOrAssign(imageData);
 
   /* Let the GUI know we are done with this filter */
   notifyStatusMessage("Complete");

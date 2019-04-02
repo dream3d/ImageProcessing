@@ -64,15 +64,10 @@ T FindMaxValue(QVector<T> inputVector)
   return *it;
 }
 
-
-FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, int yTileCount,
-  int ImportMode,
-  float overlapPer,
-  QVector<ImageProcessingConstants::DefaultPixelType*> dataArrayList,
-  QVector<size_t> udims,
-  float sampleOrigin[],
-  float voxelResolution[]
-  )
+// -----------------------------------------------------------------------------
+FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, int yTileCount, int ImportMode, float overlapPer,
+                                                              const QVector<ImageProcessingConstants::DefaultPixelType*>& dataArrayList, QVector<size_t> udims, FloatVec3Type& sampleOrigin,
+                                                              FloatVec3Type& voxelResolution)
 {
   // Basically the same thing as the legacy method, but with several values changed to make up for the fact that we're not using
   // the zeiss data
@@ -142,9 +137,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, in
 
       //get filter to convert m_RawImageData to itk::image
 
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - 1]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - 1]]);
       leftImage = importFilter2->GetOutput();
 
       // Determine the windows to be cross correlated depending on the rough overlap as found from the global coordinates
@@ -183,9 +180,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, in
       //int iZerothIndex = i - 1;
       //get filter to convert m_RawImageData to itk::image
 
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - numXtiles]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - numXtiles]]);
       aboveImage = importFilter2->GetOutput();
 
 
@@ -227,9 +226,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, in
 
       //get filter to convert m_RawImageData to itk::image
       ///TOP IMAGE FIRST
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - numXtiles]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - numXtiles]]);
       aboveImage = importFilter2->GetOutput();
 
 
@@ -260,9 +261,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, in
       newYfromtop = previousYtop + newXYOrigin2[1] + cropSpecsIm1Im2[1];
 
       //BOTTOM IMAGE NEXT
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - 1]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - 1]]);
       leftImage = importFilter2->GetOutput();
 
       cropSpecsIm1Im2[0] = udims[0] - (udims[0] * (overlapPer/100)); //xGlobCoordsList[combIndexList[i]] - xyStitchedGlobalListPtr->getValue(2*(i-1)) - xGlobCoordsList[0]; //left image X Origin
@@ -309,16 +312,9 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOrigins(int xTileCount, in
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t totalPoints,
-    QVector<size_t> udims,
-    float sampleOrigin[],
-    float voxelResolution[],
-    QVector<ImageProcessingConstants::DefaultPixelType*> dataArrayList,
-    QVector<float> xGlobCoordsList,
-    QVector<float> yGlobCoordsList,
-    QVector<qint32> xTileList,
-    QVector<qint32> yTileList,
-    AbstractFilter* filter)
+FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t totalPoints, QVector<size_t> udims, FloatVec3Type& sampleOrigin, FloatVec3Type& voxelResolution,
+                                                                    const QVector<ImageProcessingConstants::DefaultPixelType*>& dataArrayList, QVector<float> xGlobCoordsList,
+                                                                    QVector<float> yGlobCoordsList, const QVector<qint32>& xTileList, const QVector<qint32>& yTileList, AbstractFilter* filter)
 {
 
   QVector<size_t> cDims(1, 2);  // a dimension for the xvalues and one for the y values
@@ -380,9 +376,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
 
       //get filter to convert m_RawImageData to itk::image
 
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - 1]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - 1]]);
       leftImage = importFilter2->GetOutput();
 
       // Determine the windows to be cross correlated depending on the rough overlap as found from the global coordinates
@@ -422,9 +420,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
 
       //get filter to convert m_RawImageData to itk::image
 
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]); //combIndexList[i]]
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]); // combIndexList[i]]
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - numXtiles]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - numXtiles]]);
       aboveImage = importFilter2->GetOutput();
 
       // Determine the windows to be cross correlated depending on the rough overlap as found from the global coordinates
@@ -470,9 +470,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
 
       //get filter to convert m_RawImageData to itk::image
       ///TOP IMAGE FIRST
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - numXtiles]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - numXtiles]]);
       aboveImage = importFilter2->GetOutput();
 
 
@@ -503,9 +505,11 @@ FloatArrayType::Pointer DetermineStitching::FindGlobalOriginsLegacy(size_t total
       newYfromtop = previousYtop + newXYOrigin2[1] + cropSpecsIm1Im2[1];
 
       //BOTTOM IMAGE NEXT
-      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i]]);
+      importFilter = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                     dataArrayList[combIndexList[i]]);
       currentImage = importFilter->GetOutput();
-      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin, voxelResolution, dataArrayList[combIndexList[i - 1]]);
+      importFilter2 = ITKUtilitiesType::Dream3DtoITKImportFilterDataArray<ImageProcessingConstants::DefaultPixelType>(totalPoints, udims, sampleOrigin.data(), voxelResolution.data(),
+                                                                                                                      dataArrayList[combIndexList[i - 1]]);
       leftImage = importFilter2->GetOutput();
 
       cropSpecsIm1Im2[0] = xGlobCoordsList[combIndexList[i]] - xGlobCoordsList[combIndexList[i - 1]]; //xGlobCoordsList[combIndexList[i]] - xyStitchedGlobalListPtr->getValue(2*(i-1)) - xGlobCoordsList[0]; //left image X Origin

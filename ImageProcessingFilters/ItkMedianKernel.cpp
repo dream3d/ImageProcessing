@@ -48,6 +48,13 @@
 #include "SIMPLib/ITK/itkBridge.h"
 #include "itkMedianImageFilter.h"
 
+/* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataArrayID30 = 30,
+  DataArrayID31 = 31,
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -57,9 +64,9 @@ ItkMedianKernel::ItkMedianKernel()
 , m_SaveAsNewArray(true)
 , m_Slice(false)
 {
-  m_KernelSize.x = 1;
-  m_KernelSize.y = 1;
-  m_KernelSize.z = 1;
+  m_KernelSize[0] = 1;
+  m_KernelSize[1] = 1;
+  m_KernelSize[2] = 1;
 }
 
 // -----------------------------------------------------------------------------
@@ -72,7 +79,7 @@ ItkMedianKernel::~ItkMedianKernel() = default;
 // -----------------------------------------------------------------------------
 void ItkMedianKernel::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INT_VEC3_FP("Kernel Size", KernelSize, FilterParameter::Parameter, ItkMedianKernel));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Parameter, ItkMedianKernel));
@@ -141,7 +148,8 @@ void ItkMedianKernel::dataCheck()
     m_NewCellArrayName = "thisIsATempName";
   }
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(
+      this, tempPath, 0, dims, "", DataArrayID31);
   if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
@@ -185,9 +193,9 @@ void ItkMedianKernel::execute()
 
   //set kernel size
   MedianFilterType::InputSizeType radius;
-  radius[0] = m_KernelSize.x;
-  radius[1] = m_KernelSize.y;
-  radius[2] = m_KernelSize.z;
+  radius[0] = m_KernelSize[0];
+  radius[1] = m_KernelSize[1];
+  radius[2] = m_KernelSize[2];
   medianFilter->SetRadius(radius);
 
   //have filter write to dream3d array instead of creating its own buffer

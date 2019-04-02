@@ -46,6 +46,12 @@
 // ImageProcessing Plugin
 #include "ItkBridge.h"
 
+/* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
+enum createdPathID : RenameDataPath::DataID_t
+{
+  DataArrayID30 = 30,
+  DataArrayID31 = 31,
+};
 
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
@@ -142,7 +148,7 @@ FindMaxima::~FindMaxima() = default;
 // -----------------------------------------------------------------------------
 void FindMaxima::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(DataArraySelectionFilterParameter::New("Input Array", "SelectedCellArrayPath", getSelectedCellArrayPath(), FilterParameter::Uncategorized, SIMPL_BIND_SETTER(ItkDistanceMap, this, SelectedCellArrayPath), SIMPL_BIND_GETTER(ItkDistanceMap, this, SelectedCellArrayPath)));
   parameters.push_back(SIMPL_NEW_FLOAT_FP("Minimum Peak Intensity", MinValue, FilterParameter::Uncategorized, ItkDistanceMap));
   parameters.push_back(SIMPL_NEW_STRING_FP("Created Array Name", NewCellArrayName, FilterParameter::Uncategorized, ItkDistanceMap));
@@ -197,7 +203,7 @@ void FindMaxima::dataCheck()
 
   //create new boolean array
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(this, tempPath, 0, compDims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(this, tempPath, 0, compDims, "", DataArrayID31);
   if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 

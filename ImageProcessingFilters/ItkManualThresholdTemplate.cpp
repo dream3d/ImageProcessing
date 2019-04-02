@@ -139,7 +139,7 @@ ItkManualThresholdTemplate::~ItkManualThresholdTemplate() = default;
 // -----------------------------------------------------------------------------
 void ItkManualThresholdTemplate::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Parameter, ItkManualThresholdTemplate));
   QStringList linkedProps;
@@ -206,7 +206,7 @@ void ItkManualThresholdTemplate::dataCheck()
   tempPath.update(getSelectedCellArrayArrayPath().getDataContainerName(), getSelectedCellArrayArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
   // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
-  DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataContainerName() );
+  DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayArrayPath().getDataContainerName());
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
   IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
@@ -373,13 +373,13 @@ void ItkManualThresholdTemplate::execute()
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
   if(m_SaveAsNewArray)
   {
-    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+    attrMat->insertOrAssign(outputData);
   }
   else
   {
     attrMat->removeAttributeArray(m_SelectedCellArrayArrayPath.getDataArrayName());
     outputData->setName(m_SelectedCellArrayArrayPath.getDataArrayName());
-    attrMat->addAttributeArray(outputData->getName(), outputData);
+    attrMat->insertOrAssign(outputData);
   }
 }
 

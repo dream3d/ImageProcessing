@@ -51,6 +51,15 @@
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 #include "SIMPLib/ITK/itkBridge.h"
 
+/* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
+
+  DataArrayID30 = 30,
+  DataArrayID31 = 31,
+};
+
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details
  * for us like figuring out if we can use this private implementation with the data array that is assigned.
@@ -74,7 +83,7 @@ public:
   // -----------------------------------------------------------------------------
   // This is the actual templated algorithm
   // -----------------------------------------------------------------------------
-  void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3_t weights, DataContainer::Pointer m, QString attrMatName)
+  void static Execute(ItkRGBToGray* filter, IDataArray::Pointer inputIDataArray, IDataArray::Pointer outputIDataArray, FloatVec3Type weights, DataContainer::Pointer m, QString attrMatName)
   {
     typename DataArrayType::Pointer inputDataPtr = std::dynamic_pointer_cast<DataArrayType>(inputIDataArray);
     typename DataArrayType::Pointer outputDataPtr = std::dynamic_pointer_cast<DataArrayType>(outputIDataArray);
@@ -86,7 +95,7 @@ public:
     size_t numVoxels = inputDataPtr->getNumberOfTuples();
 
     // set weighting
-    double mag = weights.x + weights.y + weights.z;
+    double mag = weights[0] + weights[1] + weights[2];
 
     // Define all the typedefs that are needed
     typedef ItkBridge<T> ItkBridgeType;
@@ -105,9 +114,9 @@ public:
 
     // convert to gray
     typename RGBToGrayType::Pointer itkFilter = RGBToGrayType::New();
-    itkFilter->GetFunctor().SetRWeight(weights.x / mag);
-    itkFilter->GetFunctor().SetGWeight(weights.y / mag);
-    itkFilter->GetFunctor().SetBWeight(weights.z / mag);
+    itkFilter->GetFunctor().SetRWeight(weights[0] / mag);
+    itkFilter->GetFunctor().SetGWeight(weights[1] / mag);
+    itkFilter->GetFunctor().SetBWeight(weights[2] / mag);
     itkFilter->SetInput(inputImage);
     itkFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
     try
@@ -132,9 +141,9 @@ ItkRGBToGray::ItkRGBToGray()
 : m_OutputAttributeMatrixName("")
 , m_OutputArrayPrefix("GrayScale_")
 {
-  m_ColorWeights.x = 0.2125f;
-  m_ColorWeights.y = 0.7154f;
-  m_ColorWeights.z = 0.0721f;
+  m_ColorWeights[0] = 0.2125f;
+  m_ColorWeights[1] = 0.7154f;
+  m_ColorWeights[2] = 0.0721f;
 }
 
 // -----------------------------------------------------------------------------
@@ -147,7 +156,7 @@ ItkRGBToGray::~ItkRGBToGray() = default;
 // -----------------------------------------------------------------------------
 void ItkRGBToGray::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Color Weighting", ColorWeights, FilterParameter::Parameter, ItkRGBToGray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Output Array Prefix", OutputArrayPrefix, FilterParameter::Parameter, ItkRGBToGray));
@@ -218,7 +227,8 @@ void ItkRGBToGray::dataCheck()
   QVector<size_t> tDims = inAM->getTupleDimensions();
   DataContainerArray::Pointer dca = getDataContainerArray();
   DataContainer::Pointer dc = dca->getDataContainer(inputAMPath.getDataContainerName());
-  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+
+  AttributeMatrix::Pointer outAM = dc->createNonPrereqAttributeMatrix(this, getOutputAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
   if(getErrorCode() < 0 || nullptr == outAM.get())
   {
     return;
@@ -240,7 +250,7 @@ void ItkRGBToGray::dataCheck()
       return;
     }
     QVector<size_t> outCDims(1, 1);
-    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims);
+    outAM->createAndAddAttributeArray<UInt8ArrayType, AbstractFilter, uint8_t>(this, newName, 0, outCDims, DataArrayID31);
   }
 }
 
@@ -350,7 +360,7 @@ void ItkRGBToGray::execute()
 
     // array name changing/cleanup
     //    AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_SelectedCellArrayArrayPath.getAttributeMatrixName());
-    //    attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+    //    attrMat->insertOrAssign(outputData);
   }
 }
 

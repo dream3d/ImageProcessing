@@ -33,13 +33,14 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "ItkStitchImages.h"
 
+#include "SIMPLib/Common/SIMPLArray.hpp"
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
+#include "SIMPLib/FilterParameters/DataContainerCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
 
@@ -51,6 +52,15 @@
 
 
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
+
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
+
+  DataArrayID31 = 31,
+
+  DataContainerID = 1
+};
 
 // -----------------------------------------------------------------------------
 //
@@ -74,7 +84,7 @@ ItkStitchImages::~ItkStitchImages() = default;
 // -----------------------------------------------------------------------------
 void ItkStitchImages::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
 
   {
@@ -91,7 +101,7 @@ void ItkStitchImages::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Stitched Coordinates Names", AttributeArrayNamesPath, FilterParameter::RequiredArray, ItkStitchImages, req));
   }
 
-  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, FilterParameter::CreatedArray, ItkStitchImages));
   parameters.push_back(SIMPL_NEW_STRING_FP("Montage", StitchedImagesArrayName, FilterParameter::CreatedArray, ItkStitchImages));
@@ -105,7 +115,7 @@ void ItkStitchImages::setupFilterParameters()
 void ItkStitchImages::readFilterParameters(AbstractFilterParametersReader* reader, int index)
 {
   reader->openFilterGroup(this, index);
-  setStitchedVolumeDataContainerName(reader->readString("StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName() ) );
+  setStitchedVolumeDataContainerName(DataArrayPath(reader->readString("StitchedVolumeDataContainerName", getStitchedVolumeDataContainerName().getDataContainerName() ), "", "") );
   setAttributeMatrixName(reader->readDataArrayPath("AttributeMatrixName", getAttributeMatrixName()));
   setStitchedCoordinatesArrayPath(reader->readDataArrayPath("StitchedCoordinatesArrayPath", getStitchedCoordinatesArrayPath()));
   setStitchedImagesArrayName(reader->readString("StitchedImagesArrayName", getStitchedImagesArrayName()));
@@ -176,44 +186,37 @@ void ItkStitchImages::dataCheck()
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
-  if(getErrorCode() < 0 || nullptr == m)
-  {
-    return;
-  }
 
-  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName());
-  if(getErrorCode() < 0)
-  {
-    return;
-  }
+  if(getErrorCode() < 0 || nullptr == m) { return; }
+
+  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName(), DataContainerID);
+  if(getErrorCode() < 0) { return; }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
   m2->setGeometry(image);
 
-  //Keep Resolution the same as original images
+  // Keep Spacing the same as original images
   float xRes = 0.0f;
   float yRes = 0.0f;
   float zRes = 0.0f;
-  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getResolution();
+  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getSpacing();
 
-  m2->getGeometryAs<ImageGeom>()->setResolution(xRes, yRes, zRes);
+  m2->getGeometryAs<ImageGeom>()->setSpacing(FloatVec3Type(xRes, yRes, zRes));
   //Set origin to zero
-  m2->getGeometryAs<ImageGeom>()->setOrigin(0, 0, 0);
+  m2->getGeometryAs<ImageGeom>()->setOrigin(FloatVec3Type());
 
   m2->getGeometryAs<ImageGeom>()->setDimensions(1, 1, 1);
 
   QVector<size_t> tDims(1, 0);
 
-  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
-  if(getErrorCode() < 0)
-  {
-    return;
-  }
+  AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
+  if(getErrorCode() < 0) { return; }
   dims[0] = 1;
 
 
-  tempPath.update(getStitchedVolumeDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
-  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(this, tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  tempPath.update(getStitchedVolumeDataContainerName().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
+  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(
+      this, tempPath, 0, dims, "", DataArrayID31);
   if(nullptr != m_StitchedImageArrayPtr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 

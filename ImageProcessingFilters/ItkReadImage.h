@@ -61,7 +61,7 @@ class ImageProcessing_EXPORT ItkReadImage : public AbstractFilter
     Q_OBJECT
     //    PYB11_CREATE_BINDINGS(ItkReadImage SUPERCLASS AbstractFilter)
     //    PYB11_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
-    //    PYB11_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    //    PYB11_PROPERTY(DataArrayPath DataContainerName READ getDataContainerName WRITE setDataContainerName)
     //    PYB11_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)
     //    PYB11_PROPERTY(QString ImageDataArrayName READ getImageDataArrayName WRITE setImageDataArrayName)
 
@@ -75,8 +75,8 @@ class ImageProcessing_EXPORT ItkReadImage : public AbstractFilter
     SIMPL_FILTER_PARAMETER(QString, InputFileName)
     Q_PROPERTY(QString InputFileName READ getInputFileName WRITE setInputFileName)
 
-    SIMPL_FILTER_PARAMETER(QString, DataContainerName)
-    Q_PROPERTY(QString DataContainerName READ getDataContainerName WRITE setDataContainerName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, DataContainerName)
+    Q_PROPERTY(DataArrayPath DataContainerName READ getDataContainerName WRITE setDataContainerName)
 
     SIMPL_FILTER_PARAMETER(QString, CellAttributeMatrixName)
     Q_PROPERTY(QString CellAttributeMatrixName READ getCellAttributeMatrixName WRITE setCellAttributeMatrixName)

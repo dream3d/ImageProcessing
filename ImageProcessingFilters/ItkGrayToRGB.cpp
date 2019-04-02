@@ -140,7 +140,7 @@ ItkGrayToRGB::~ItkGrayToRGB() = default;
 // -----------------------------------------------------------------------------
 void ItkGrayToRGB::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
@@ -209,12 +209,9 @@ void ItkGrayToRGB::dataCheck()
   //configured created name / location
   tempPath.update(getRedArrayPath().getDataContainerName(), getRedArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
 
+  DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer(this, getRedArrayPath().getDataContainerName());
+  if(getErrorCode() < 0) { return; }
 
-  DataContainer::Pointer redDC = getDataContainerArray()->getPrereqDataContainer<AbstractFilter>(this, getRedArrayPath().getDataContainerName() );
-  if(getErrorCode() < 0)
-  {
-    return;
-  }
   AttributeMatrix::Pointer redAM = redDC->getPrereqAttributeMatrix(this, getRedArrayPath().getAttributeMatrixName(), 80000);
   if(getErrorCode() < 0)
   {
@@ -331,7 +328,7 @@ void ItkGrayToRGB::execute()
 
   //array name changing/cleanup
   AttributeMatrix::Pointer attrMat = m->getAttributeMatrix(m_RedArrayPath.getAttributeMatrixName());
-  attrMat->addAttributeArray(getNewCellArrayName(), outputData);
+  attrMat->insertOrAssign(outputData);
 }
 
 // -----------------------------------------------------------------------------

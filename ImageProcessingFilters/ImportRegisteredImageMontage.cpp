@@ -27,7 +27,12 @@
 // Get ITKReadImage so you can properly read in 16 bit images
 #include "ItkReadImage.h"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
 
+  DataContainerID = 1
+};
 
 // -----------------------------------------------------------------------------
 //
@@ -42,9 +47,9 @@ ImportRegisteredImageMontage::ImportRegisteredImageMontage()
 , m_AttributeArrayNamesArrayName("AttributeArrayNames")
 , m_RegistrationCoordinates(nullptr)
 {
-  m_Origin.x = 0.0;
-  m_Origin.y = 0.0;
-  m_Origin.z = 0.0;
+  m_Origin[0] = 0.0;
+  m_Origin[1] = 0.0;
+  m_Origin[2] = 0.0;
 
   m_Resolution.x = 1.0;
   m_Resolution.y = 1.0;
@@ -69,12 +74,12 @@ ImportRegisteredImageMontage::~ImportRegisteredImageMontage() = default;
 // -----------------------------------------------------------------------------
 void ImportRegisteredImageMontage::setupFilterParameters()
 {
-  QVector<FilterParameter::Pointer> parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(FileListInfoFilterParameter::New("Input File List", "InputFileListInfo", getInputFileListInfo(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, InputFileListInfo), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, InputFileListInfo)));
   parameters.push_back(FloatVec3FilterParameter::New("Origin", "Origin", getOrigin(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Origin), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Origin)));
   parameters.push_back(FloatVec3FilterParameter::New("Resolution", "Resolution", getResolution(), FilterParameter::Parameter, SIMPL_BIND_SETTER(ImportRegisteredImageMontage, this, Resolution), SIMPL_BIND_GETTER(ImportRegisteredImageMontage, this, Resolution)));
   //parameters.push_back(InputFileFilterParameter::New("Registration File", "RegistrationFile", getRegistrationFile(), FilterParameter::Parameter, "", "*.txt"));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, ImportRegisteredImageMontage));
   parameters.push_back(SeparatorFilterParameter::New("Meta Data", FilterParameter::CreatedArray));
@@ -122,8 +127,7 @@ void ImportRegisteredImageMontage::dataCheck()
     return;
   }
 
-
-  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
   if(getErrorCondition() < 0) { return; }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
@@ -188,12 +192,12 @@ void ImportRegisteredImageMontage::dataCheck()
     /* ************ End Sanity Check *************************** */
     m->getGeometryAs<ImageGeom>()->setDimensions(static_cast<size_t>(dims[0]), static_cast<size_t>(dims[1]), static_cast<size_t>(dims[2]));
     m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
 
-	// Populate the structure with meaningful data
-	//image/attribute matrix dimensions
-	QVector<size_t> tDims(3, 0); // Touple dimensions (These need to be image width * height * pixel depth)
-	QVector<size_t> cDims(1, 1); // Component dimensions 
+    // Populate the structure with meaningful data
+    // image/attribute matrix dimensions
+    QVector<size_t> tDims(3, 0); // Touple dimensions (These need to be image width * height * pixel depth)
+    QVector<size_t> cDims(1, 1); // Component dimensions
 
     for (QVector<QString>::iterator filepath = fileList.begin(); filepath != fileList.end(); ++filepath)
     {
@@ -251,8 +255,10 @@ void ImportRegisteredImageMontage::dataCheck()
 		tDims[2] = zdim;
 
 		if (!m->doesAttributeMatrixExist(getCellAttributeMatrixName()))
-		{ m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell); }
-		if (getErrorCondition() < 0) { return; }
+    {
+      m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, SIMPL::AttributeMatrixType::Cell, AttributeMatrixID21);
+    }
+    if (getErrorCondition() < 0) { return; }
 
 		// Set up the component dimmensions
 		itk::ImageIOBase::IOPixelType pixelType = imageIO->GetPixelType();
@@ -430,9 +436,12 @@ void ImportRegisteredImageMontage::execute()
 
 	// Add the information to the Attribute Array
 	// addAttributeArray will replace empty dummy arrays created in DataCheck i
-	attrMat->addAttributeArray(ss, imageData);
+  attrMat->insertOrAssign(imageData);
 
-    if (getCancel() == true) { return; }
+  if(getCancel() == true)
+  {
+    return;
+  }
   }
 }
 

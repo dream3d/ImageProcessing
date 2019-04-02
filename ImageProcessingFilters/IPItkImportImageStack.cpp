@@ -56,6 +56,13 @@
 #include "ImageProcessing/ImageProcessingFilters/ItkReadImageImpl.hpp"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
+
+  DataContainerID = 1
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -66,9 +73,9 @@ IPItkImportImageStack::IPItkImportImageStack()
 , m_GeometryType(0)
 , m_ImageDataArrayName(SIMPL::CellData::ImageData)
 {
-  m_Origin.x = 0.0f;
-  m_Origin.y = 0.0f;
-  m_Origin.z = 0.0f;
+  m_Origin[0] = 0.0f;
+  m_Origin[1] = 0.0f;
+  m_Origin[2] = 0.0f;
 
   m_Resolution.x = 1.0f;
   m_Resolution.y = 1.0f;
@@ -91,7 +98,7 @@ IPItkImportImageStack::~IPItkImportImageStack() = default;
 // -----------------------------------------------------------------------------
 void IPItkImportImageStack::setupFilterParameters()
 {
-  QVector<FilterParameter::Pointer> parameters;
+  FilterParameterVectorType parameters;
   parameters.push_back(SIMPL_NEW_FILELISTINFO_FP("Input File List", InputFileListInfo, FilterParameter::Parameter, IPItkImportImageStack));
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
@@ -114,7 +121,7 @@ void IPItkImportImageStack::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Origin", Origin, FilterParameter::Parameter, IPItkImportImageStack, 0));
   parameters.push_back(SIMPL_NEW_FLOAT_VEC3_FP("Resolution", Resolution, FilterParameter::Parameter, IPItkImportImageStack, 0));
   parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Bounds File", BoundsFile, FilterParameter::Parameter, IPItkImportImageStack, "*.txt", "", 1));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, IPItkImportImageStack));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Data Container", DataContainerName, FilterParameter::CreatedArray, IPItkImportImageStack));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
   parameters.push_back(SIMPL_NEW_STRING_FP("Cell Attribute Matrix", CellAttributeMatrixName, FilterParameter::CreatedArray, IPItkImportImageStack));
   parameters.push_back(SIMPL_NEW_STRING_FP("Image Data", ImageDataArrayName, FilterParameter::CreatedArray, IPItkImportImageStack));
@@ -162,7 +169,7 @@ void IPItkImportImageStack::dataCheck()
     setErrorCondition(-13, ss);
   }
 
-  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName());
+  DataContainer::Pointer m = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getDataContainerName(), DataContainerID);
   if(getErrorCondition() < 0 || nullptr == m.get()) { return; }
 
   if (m_GeometryType == 0)
@@ -250,7 +257,7 @@ void IPItkImportImageStack::dataCheck()
     {
       m->getGeometryAs<ImageGeom>()->setDimensions(static_cast<size_t>(xdim), static_cast<size_t>(ydim), static_cast<size_t>(zdim));
       m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-      m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+      m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
     }
     else if (m_GeometryType == 1)
     {
@@ -266,7 +273,7 @@ void IPItkImportImageStack::dataCheck()
     tDims[1] = ydim;
     tDims[2] = zdim;
 
-    m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell);
+    m->createNonPrereqAttributeMatrix(this, getCellAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
 
     //check pixel type (scalar, vector, etc) for support
     QVector<size_t> componentDims(1, 0);
@@ -423,7 +430,7 @@ void IPItkImportImageStack::execute()
   if (m_GeometryType == 0)
   {
     m->getGeometryAs<ImageGeom>()->setResolution(m_Resolution.x, m_Resolution.y, m_Resolution.z);
-    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin.x, m_Origin.y, m_Origin.z);
+    m->getGeometryAs<ImageGeom>()->setOrigin(m_Origin[0], m_Origin[1], m_Origin[2]);
     std::tie(width, height, depth) = m->getGeometryAs<ImageGeom>()->getDimensions();
   }
   else if (m_GeometryType == 1)

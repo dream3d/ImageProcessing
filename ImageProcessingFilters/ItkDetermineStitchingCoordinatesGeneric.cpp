@@ -19,6 +19,16 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
+/* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
+enum createdPathID : RenameDataPath::DataID_t
+{
+  AttributeMatrixID21 = 21,
+
+  DataArrayID30 = 30,
+  DataArrayID31 = 31,
+  DataArrayID32 = 32,
+};
+
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -46,12 +56,12 @@ ItkDetermineStitchingCoordinatesGeneric::~ItkDetermineStitchingCoordinatesGeneri
 // -----------------------------------------------------------------------------
 void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
 {
-  FilterParameterVector parameters;
-//  {
-//    QStringList linkedProps;
-//    linkedProps << "MetaDataAttributeMatrixName";
-//    parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
-//  }
+  FilterParameterVectorType parameters;
+  //  {
+  //    QStringList linkedProps;
+  //    linkedProps << "MetaDataAttributeMatrixName";
+  //    parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Use Zeiss Meta Data", UseZeissMetaData, FilterParameter::Parameter, ItkDetermineStitchingCoordinatesGeneric, linkedProps));
+  //  }
 
   {
     LinkedChoicesFilterParameter::Pointer parameter = LinkedChoicesFilterParameter::New();
@@ -204,28 +214,24 @@ void ItkDetermineStitchingCoordinatesGeneric::dataCheck()
 
   // Create a new attribute matrix
   QVector<size_t> tDims(1, m_PointerList.size());
-  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix(this, getTileCalculatedInfoAttributeMatrixName(), tDims, AttributeMatrix::Type::CellFeature);
-  if(getErrorCode() < 0)
-  {
-    return;
-  }
+  AttributeMatrix::Pointer AttrMat = m->createNonPrereqAttributeMatrix(this, getTileCalculatedInfoAttributeMatrixName(), tDims, AttributeMatrix::Type::CellFeature, AttributeMatrixID21);
+  if(getErrorCode() < 0) { return; }
 
   dims[0] = 2;
 
   tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedCoordinatesArrayName());
-  m_StitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<float>, AbstractFilter, float>(this,  tempPath, 0, dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_StitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<float>, AbstractFilter, float>(this, tempPath, 0, dims, "", DataArrayID31);
   if(nullptr != m_StitchedCoordinatesPtr.lock())                              /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   dims[0] = 1;
 
-
-
-  //tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedArrayNames() );
-  //m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  // tempPath.update(getAttributeMatrixName().getDataContainerName(), getTileCalculatedInfoAttributeMatrixName(), getStitchedArrayNames() );
+  // m_DataArrayNamesForStitchedCoordinatesPtr = getDataContainerArray()->createNonPrereqArrayFromPath<StringDataArray, AbstractFilter, std::string>(this, tempPath, "0", dims, "", DataArrayID32);/*
+  // @ADD_DATAARRAY_ID@ */
 
   StringDataArray::Pointer StrongDataArrayNames = StringDataArray::CreateArray(AttrMat->getNumberOfTuples(), getStitchedArrayNames());
-  AttrMat->addAttributeArray(getStitchedArrayNames(), StrongDataArrayNames);
+  AttrMat->insertOrAssign(StrongDataArrayNames);
   m_DataArrayNamesForStitchedCoordinatesPtr = StrongDataArrayNames;
 
   if(nullptr != m_DataArrayNamesForStitchedCoordinatesPtr.lock()) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
@@ -269,11 +275,11 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   FloatArrayType::Pointer temp;
 
   // Set up the origins and resolutions (some of this data is used in legacy, some of it's used in non-legacy, some of it's used in both; for now we're including it up here; consider moving it where it's cleanest)
-  float sampleOrigin[3];
-  float voxelResolution[3];
+  FloatVec3Type sampleOrigin;
+  FloatVec3Type voxelResolution;
 
   m->getGeometryAs<ImageGeom>()->getOrigin(sampleOrigin);
-  m->getGeometryAs<ImageGeom>()->getResolution(voxelResolution);
+  m->getGeometryAs<ImageGeom>()->getSpacing(voxelResolution);
   QVector<size_t> udims = attrMat->getTupleDimensions(); // The udims variable is filled with information about the size of each image (provided they were imported correctly) [0] = x; [1] = y; [2] = z;
   size_t totalPoints = attrMat->getNumberOfTuples();
 
@@ -347,7 +353,7 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   ::memcpy(dest, src, totalBytes);
 #endif
   StringDataArray::Pointer arrayNames = m_DataArrayNamesForStitchedCoordinatesPtr.lock();
-  arrayNames->resize(m_PointerList.size());
+  arrayNames->resizeTuples(m_PointerList.size());
 
   //Create another data array with the list of names of the images in the same order as the returned stitched coordinates
   QList<QString> names = attrMat->getAttributeArrayNames();

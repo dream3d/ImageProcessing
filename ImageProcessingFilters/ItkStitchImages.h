@@ -58,7 +58,7 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
     PYB11_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
     PYB11_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
-    PYB11_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
+    PYB11_PROPERTY(DataArrayPath StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
     PYB11_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
     PYB11_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
 
@@ -78,8 +78,8 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
     SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
     Q_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
 
-    SIMPL_FILTER_PARAMETER(QString, StitchedVolumeDataContainerName)
-    Q_PROPERTY(QString StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, StitchedVolumeDataContainerName)
+    Q_PROPERTY(DataArrayPath StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
 
     SIMPL_FILTER_PARAMETER(QString, StitchedImagesArrayName)
     Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
