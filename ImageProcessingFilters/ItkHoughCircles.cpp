@@ -34,6 +34,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "ItkHoughCircles.h"
 
+#include <cmath>
+
 #include "itkHoughTransform2DCirclesImageFilter.h"
 
 #include <QtCore/QString>
@@ -168,7 +170,11 @@ void ItkHoughCircles::preflight()
   emit preflightExecuted(); // We are done preflighting this filter
   setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
-
+#if defined(ITK_VERSION_MAJOR) && ITK_VERSION_MAJOR == 4
+#define GETRADIUS GetRadius
+#else
+#define GETRADIUS GetRadiusInObjectSpace
+#endif
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -207,7 +213,12 @@ void ItkHoughCircles::execute()
   ImageProcessingConstants::DefaultImageType::Pointer outputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_NewCellArray);
 
   ImageProcessingConstants::DefaultSliceType::IndexType localIndex;
-  typedef itk::HoughTransform2DCirclesImageFilter<ImageProcessingConstants::DefaultPixelType, ImageProcessingConstants::FloatPixelType> HoughTransformFilterType;
+#if defined(ITK_VERSION_MAJOR) && ITK_VERSION_MAJOR == 4
+  using HoughTransformFilterType = itk::HoughTransform2DCirclesImageFilter<ImageProcessingConstants::DefaultPixelType, ImageProcessingConstants::FloatPixelType>;
+#else
+  using HoughTransformFilterType =
+      itk::HoughTransform2DCirclesImageFilter<ImageProcessingConstants::DefaultPixelType, ImageProcessingConstants::FloatPixelType, ImageProcessingConstants::FloatPixelType>;
+#endif
   HoughTransformFilterType::Pointer houghFilter = HoughTransformFilterType::New();
   houghFilter->SetNumberOfCircles( m_NumberCircles );
   houghFilter->SetMinimumRadius( m_MinRadius );
@@ -256,10 +267,8 @@ void ItkHoughCircles::execute()
 
       for(double angle = 0; angle <= 2 * vnl_math::pi; angle += vnl_math::pi / 60.0 )
       {
-        localIndex[0] = (long int)((*itCircles)->GetObjectToParentTransform()->GetOffset()[0]
-                                   + (*itCircles)->GetRadius()[0] * vcl_cos(angle));
-        localIndex[1] = (long int)((*itCircles)->GetObjectToParentTransform()->GetOffset()[1]
-                                   + (*itCircles)->GetRadius()[0] * vcl_sin(angle));
+        localIndex[0] = (long int)((*itCircles)->GetObjectToParentTransform()->GetOffset()[0] + (*itCircles)->GETRADIUS()[0] * std::cos(angle));
+        localIndex[1] = (long int)((*itCircles)->GetObjectToParentTransform()->GetOffset()[1] + (*itCircles)->GETRADIUS()[0] * std::sin(angle));
         ImageProcessingConstants::DefaultSliceType::RegionType outputRegion = outputSlice->GetLargestPossibleRegion();
         if( outputRegion.IsInside( localIndex ) )
         {
