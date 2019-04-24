@@ -276,11 +276,8 @@ void ItkDetermineStitchingCoordinatesGeneric::execute()
   FloatArrayType::Pointer temp;
 
   // Set up the origins and resolutions (some of this data is used in legacy, some of it's used in non-legacy, some of it's used in both; for now we're including it up here; consider moving it where it's cleanest)
-  FloatVec3Type sampleOrigin;
-  FloatVec3Type voxelResolution;
-
-  m->getGeometryAs<ImageGeom>()->getOrigin(sampleOrigin);
-  m->getGeometryAs<ImageGeom>()->getSpacing(voxelResolution);
+  FloatVec3Type sampleOrigin = m->getGeometryAs<ImageGeom>()->getOrigin();
+  FloatVec3Type voxelResolution = m->getGeometryAs<ImageGeom>()->getSpacing();
   QVector<size_t> udims = attrMat->getTupleDimensions(); // The udims variable is filled with information about the size of each image (provided they were imported correctly) [0] = x; [1] = y; [2] = z;
   size_t totalPoints = attrMat->getNumberOfTuples();
 

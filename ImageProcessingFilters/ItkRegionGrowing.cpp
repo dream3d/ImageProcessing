@@ -157,8 +157,7 @@ void RegionGrowing::execute()
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
 
   //get dims
-  size_t udims[3] = {0, 0, 0};
-  std::tie(udims[0], udims[1], udims[2]) = m->getGeometryAs<ImageGeom>()->getDimensions();
+  SizeVec3Type udims = m->getGeometryAs<ImageGeom>()->getDimensions();
 
   //wrap input as itk image
   ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
@@ -203,7 +202,7 @@ void RegionGrowing::execute()
 AbstractFilter::Pointer RegionGrowing::newFilterInstance(bool copyFilterParameters) const
 {
   RegionGrowing::Pointer filter = RegionGrowing::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

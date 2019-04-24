@@ -197,12 +197,9 @@ void ItkStitchImages::dataCheck()
   m2->setGeometry(image);
 
   // Keep Spacing the same as original images
-  float xRes = 0.0f;
-  float yRes = 0.0f;
-  float zRes = 0.0f;
-  std::tie(xRes, yRes, zRes) = m->getGeometryAs<ImageGeom>()->getSpacing();
+  FloatVec3Type spacing = m->getGeometryAs<ImageGeom>()->getSpacing();
 
-  m2->getGeometryAs<ImageGeom>()->setSpacing(FloatVec3Type(xRes, yRes, zRes));
+  m2->getGeometryAs<ImageGeom>()->setSpacing(spacing);
   //Set origin to zero
   m2->getGeometryAs<ImageGeom>()->setOrigin(FloatVec3Type());
 
@@ -328,10 +325,10 @@ void ItkStitchImages::execute()
   image2->SetRegions(region);
   image2->Allocate();
 
-  typedef itk::PasteImageFilter <ImageProcessingConstants::UInt8ImageType, ImageProcessingConstants::UInt8ImageType > PasteImageFilterType;
+  using PasteImageFilterType = itk::PasteImageFilter<ImageProcessingConstants::UInt8ImageType, ImageProcessingConstants::UInt8ImageType>;
   PasteImageFilterType::Pointer pasteFilter = PasteImageFilterType::New ();
 
-  typedef itk::ImageFileWriter< ImageProcessingConstants::UInt8ImageType > WriterType;
+  using WriterType = itk::ImageFileWriter<ImageProcessingConstants::UInt8ImageType>;
   WriterType::Pointer writer = WriterType::New();
 
   ImageProcessingConstants::UInt8ImageType::IndexType destinationIndex;

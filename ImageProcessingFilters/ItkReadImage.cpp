@@ -442,7 +442,7 @@ void ItkReadImage::execute()
 AbstractFilter::Pointer ItkReadImage::newFilterInstance(bool copyFilterParameters) const
 {
   ItkReadImage::Pointer filter = ItkReadImage::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

@@ -451,7 +451,7 @@ void ImportRegisteredImageMontage::execute()
 AbstractFilter::Pointer ImportRegisteredImageMontage::newFilterInstance(bool copyFilterParameters) const
 {
   ImportRegisteredImageMontage::Pointer filter = ImportRegisteredImageMontage::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     filter->setFilterParameters(getFilterParameters() );
     // We are going to hand copy all of the parameters because the other way of copying the parameters are going to

@@ -733,7 +733,7 @@ int IPItkImportImageStack::readBounds()
 AbstractFilter::Pointer IPItkImportImageStack::newFilterInstance(bool copyFilterParameters) const
 {
   IPItkImportImageStack::Pointer filter = IPItkImportImageStack::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     filter->setFilterParameters(getFilterParameters() );
     // We are going to hand copy all of the parameters because the other way of copying the parameters are going to

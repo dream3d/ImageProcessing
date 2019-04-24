@@ -302,7 +302,7 @@ void FindMaxima::execute()
 AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters) const
 {
   FindMaxima::Pointer filter = FindMaxima::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

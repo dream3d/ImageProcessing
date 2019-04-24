@@ -170,7 +170,7 @@ AbstractFilter::Pointer ImageRegistration::newFilterInstance(bool copyFilterPara
   * write code to optionally copy the filter parameters from the current filter into the new instance
   */
   ImageRegistration::Pointer filter = ImageRegistration::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     /* If the filter uses all the standard Filter Parameter Widgets you can probabaly get
      * away with using this method to copy the filter parameters from the current instance
