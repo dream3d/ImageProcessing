@@ -40,6 +40,7 @@
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -84,7 +85,7 @@ void ItkWatershed::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Data", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkWatershed, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Feature Ids", FeatureIdsArrayName, FilterParameter::CreatedArray, ItkWatershed));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Feature Ids", FeatureIdsArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkWatershed));
   parameters.push_back(SIMPL_NEW_FLOAT_FP("Threshold", Threshold, FilterParameter::Parameter, ItkWatershed));
   parameters.push_back(SIMPL_NEW_FLOAT_FP("Level", Level, FilterParameter::Parameter, ItkWatershed));
   setFilterParameters(parameters);

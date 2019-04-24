@@ -38,6 +38,7 @@
 #include "SIMPLib/FilterParameters/AttributeMatrixSelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/DataContainerCreationFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -103,8 +104,8 @@ void ItkStitchImages::setupFilterParameters()
 
   parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, FilterParameter::CreatedArray, ItkStitchImages));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Montage", StitchedImagesArrayName, FilterParameter::CreatedArray, ItkStitchImages));
+  parameters.push_back(SIMPL_NEW_AM_WITH_LINKED_DC_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Montage", StitchedImagesArrayName, StitchedVolumeDataContainerName, StitchedAttributeMatrixName, FilterParameter::CreatedArray, ItkStitchImages));
 
   setFilterParameters(parameters);
 }

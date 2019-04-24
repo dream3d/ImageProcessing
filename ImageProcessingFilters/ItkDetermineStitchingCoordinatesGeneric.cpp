@@ -15,6 +15,7 @@
 #include "SIMPLib/FilterParameters/IntFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedChoicesFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -103,9 +104,9 @@ void ItkDetermineStitchingCoordinatesGeneric::setupFilterParameters()
   }
 
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Attribute Matrix", TileCalculatedInfoAttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates", StitchedCoordinatesArrayName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Stitched Coordinates Names", StitchedArrayNames, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_AM_WITH_LINKED_DC_FP("Stitched Attribute Matrix", TileCalculatedInfoAttributeMatrixName, AttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Stitched Coordinates", StitchedCoordinatesArrayName, AttributeMatrixName, TileCalculatedInfoAttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Stitched Coordinates Names", StitchedArrayNames, AttributeMatrixName, TileCalculatedInfoAttributeMatrixName, FilterParameter::CreatedArray, ItkDetermineStitchingCoordinatesGeneric));
 
   setFilterParameters(parameters);
 }

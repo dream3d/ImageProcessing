@@ -40,6 +40,7 @@
 #include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -155,7 +156,7 @@ void ItkGrayToRGB::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Blue Channel", BlueArrayPath, FilterParameter::RequiredArray, ItkGrayToRGB, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("RGB Array", NewCellArrayName, FilterParameter::CreatedArray, ItkGrayToRGB));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("RGB Array", NewCellArrayName, RedArrayPath, RedArrayPath, FilterParameter::CreatedArray, ItkGrayToRGB));
   setFilterParameters(parameters);
 }
 

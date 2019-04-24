@@ -40,6 +40,7 @@
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
@@ -88,7 +89,7 @@ void ItkManualThreshold::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Threshold", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkManualThreshold, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Threshold Array", NewCellArrayName, FilterParameter::CreatedArray, ItkManualThreshold));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Threshold Array", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkManualThreshold));
 
   setFilterParameters(parameters);
 }

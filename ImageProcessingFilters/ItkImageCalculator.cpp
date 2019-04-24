@@ -52,6 +52,7 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/ChoiceFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
@@ -119,7 +120,7 @@ void ItkImageCalculator::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Second Array to Process", SelectedCellArrayPath2, FilterParameter::RequiredArray, ItkImageCalculator, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Output Attribute Array", NewCellArrayName, FilterParameter::CreatedArray, ItkImageCalculator));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Output Attribute Array", NewCellArrayName, SelectedCellArrayPath1, SelectedCellArrayPath1, FilterParameter::CreatedArray, ItkImageCalculator));
   setFilterParameters(parameters);
 }
 

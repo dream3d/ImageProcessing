@@ -44,6 +44,7 @@
 #include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
@@ -88,7 +89,7 @@ void ItkDiscreteGaussianBlur::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Blur", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkDiscreteGaussianBlur, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Blurred Array", NewCellArrayName, FilterParameter::CreatedArray, ItkDiscreteGaussianBlur));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Blurred Array", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkDiscreteGaussianBlur));
 
   parameters.push_back(SIMPL_NEW_FLOAT_FP("Standard Deviation", Stdev, FilterParameter::Parameter, ItkDiscreteGaussianBlur));
 

@@ -40,6 +40,7 @@
 #include "SIMPLib/ITK/itkSupportConstants.h"
 #include "SIMPLib/Common/Constants.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
@@ -81,7 +82,7 @@ void ItkConvertArrayTo8BitImage::setupFilterParameters()
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array To Convert", SelectedArrayPath, FilterParameter::RequiredArray, ItkConvertArrayTo8BitImage, req));
   }
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Converted Attribute Array", NewArrayArrayName, FilterParameter::CreatedArray, ItkConvertArrayTo8BitImage));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Converted Attribute Array", NewArrayArrayName, SelectedArrayPath, SelectedArrayPath, FilterParameter::CreatedArray, ItkConvertArrayTo8BitImage));
   setFilterParameters(parameters);
 }
 

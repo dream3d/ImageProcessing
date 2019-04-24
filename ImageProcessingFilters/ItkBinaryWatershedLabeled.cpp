@@ -14,6 +14,7 @@
 
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
@@ -60,7 +61,7 @@ void ItkBinaryWatershedLabeled::setupFilterParameters()
   }
   parameters.push_back(SIMPL_NEW_FLOAT_FP("Peak Noise Tolerance", PeakTolerance, FilterParameter::Parameter, ItkBinaryWatershedLabeled));
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Watershed Array", NewCellArrayName, FilterParameter::CreatedArray, ItkBinaryWatershedLabeled));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Watershed Array", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkBinaryWatershedLabeled));
   setFilterParameters(parameters);
 }
 

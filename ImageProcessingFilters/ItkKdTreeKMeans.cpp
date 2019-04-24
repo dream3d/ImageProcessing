@@ -45,6 +45,7 @@
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/IntFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedBooleanFilterParameter.h"
+#include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
@@ -194,7 +195,7 @@ void ItkKdTreeKMeans::setupFilterParameters()
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Classes", Classes, FilterParameter::Parameter, ItkKdTreeKMeans));
   DataArraySelectionFilterParameter::RequirementType req;
   parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Classify", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkKdTreeKMeans, req));
-  parameters.push_back(SIMPL_NEW_STRING_FP("Class Labels", NewCellArrayName, FilterParameter::CreatedArray, ItkKdTreeKMeans));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Class Labels", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkKdTreeKMeans));
   setFilterParameters(parameters);
 }
 
