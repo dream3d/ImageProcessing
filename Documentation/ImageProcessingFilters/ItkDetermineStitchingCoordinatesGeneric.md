@@ -1,5 +1,5 @@
-Determine Stitching Coordinates Generic 
-=====
+# Determine Stitching Coordinates Generic  #
+
 
 
 ## Group (Subgroup) ##

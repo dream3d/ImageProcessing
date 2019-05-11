@@ -1,5 +1,5 @@
-Convert RGB to Grayscale (ImageProcessing) 
-=====
+# Convert RGB to Grayscale (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

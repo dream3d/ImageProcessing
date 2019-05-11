@@ -1,5 +1,5 @@
-Convert Grayscale to RGB (Merge Channels) (ImageProcessing) 
-=====
+# Convert Grayscale to RGB (Merge Channels) (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

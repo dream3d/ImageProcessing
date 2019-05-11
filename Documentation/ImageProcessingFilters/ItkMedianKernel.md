@@ -1,5 +1,5 @@
-Median (Kernel) (ImageProcessing) 
-=====
+# Median (Kernel) (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

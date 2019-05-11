@@ -1,5 +1,5 @@
-Threshold Image (Auto) (Image Processing) 
-=====
+# Threshold Image (Auto) (Image Processing)  #
+
 
 ## Group (Subgroup) ##
 

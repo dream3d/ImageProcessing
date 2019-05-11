@@ -1,5 +1,5 @@
-Stitch Images (ImageProcessing) 
-=====
+# Stitch Images (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

@@ -1,5 +1,5 @@
-Region Growing (ImageProcessing) 
-=====
+# Region Growing (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

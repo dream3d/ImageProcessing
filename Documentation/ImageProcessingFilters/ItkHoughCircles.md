@@ -1,5 +1,5 @@
-Hough Circle Detection (ImageProcessing) 
-=====
+# Hough Circle Detection (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

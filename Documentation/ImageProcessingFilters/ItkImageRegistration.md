@@ -1,5 +1,5 @@
-ImageRegistration 
-=====
+# ImageRegistration  #
+
 
 ## Group (Subgroup) ##
 

@@ -1,5 +1,5 @@
-Find Maxima (ImageProcessing) 
-=====
+# Find Maxima (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

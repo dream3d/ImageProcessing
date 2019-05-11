@@ -1,5 +1,5 @@
-Image Calculator 
-=====
+# Image Calculator  #
+
 
 ## Group (Subgroup) ##
 

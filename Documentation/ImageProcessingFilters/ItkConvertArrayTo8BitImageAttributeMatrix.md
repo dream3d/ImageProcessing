@@ -1,5 +1,5 @@
-Convert Array To 8 Bit Image 
-=====
+# Convert Array To 8 Bit Image  #
+
 
 ## Group (Subgroup) ##
 

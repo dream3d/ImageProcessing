@@ -1,5 +1,5 @@
-Align Sections Phase Correlation 
-=====
+# Align Sections Phase Correlation  #
+
 
 ## Group (Subgroup) ##
 

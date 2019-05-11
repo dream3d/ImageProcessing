@@ -1,5 +1,5 @@
-Multi Level Otsu Threshold (ImageProcessing) 
-=====
+# Multi Level Otsu Threshold (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

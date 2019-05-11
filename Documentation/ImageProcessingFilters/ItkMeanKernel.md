@@ -1,5 +1,5 @@
-Mean (Kernel) (ImageProcessing) 
-=====
+# Mean (Kernel) (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

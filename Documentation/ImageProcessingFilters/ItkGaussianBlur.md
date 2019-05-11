@@ -1,5 +1,5 @@
-Gaussian Blur (ImageProcessing) 
-=====
+# Gaussian Blur (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 

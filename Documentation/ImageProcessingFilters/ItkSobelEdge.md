@@ -1,5 +1,5 @@
-Sobel Edge Detector (ImageProcessing) 
-=====
+# Sobel Edge Detector (ImageProcessing)  #
+
 
 ## Group (Subgroup) ##
 
