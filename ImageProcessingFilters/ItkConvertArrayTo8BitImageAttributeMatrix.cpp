@@ -45,6 +45,7 @@
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/SIMPLibVersion.h"
 
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingVersion.h"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */

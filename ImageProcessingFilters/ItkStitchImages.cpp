@@ -42,16 +42,15 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/ITK/itkBridge.h"
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
-
-#include "SIMPLib/ITK/itkBridge.h"
 
 #include "itkImage.h"
 #include "itkImageFileWriter.h"
 #include "itkPasteImageFilter.h"
 
-
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
 enum createdPathID : RenameDataPath::DataID_t

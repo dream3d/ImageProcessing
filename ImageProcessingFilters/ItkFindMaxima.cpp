@@ -45,6 +45,7 @@
 #include "SIMPLib/ITK/itkBridge.h"
 
 // ImageProcessing Plugin
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
 #include "itkBinaryImageToLabelMapFilter.h"

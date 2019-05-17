@@ -59,6 +59,7 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */

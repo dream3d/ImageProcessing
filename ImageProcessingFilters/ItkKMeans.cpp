@@ -47,8 +47,9 @@
 #include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 #include "SIMPLib/ITK/itkBridge.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
 enum createdPathID : RenameDataPath::DataID_t

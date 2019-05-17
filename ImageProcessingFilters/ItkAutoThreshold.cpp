@@ -51,8 +51,6 @@
 #include "itkShanbhagThresholdCalculator.h"
 #include "itkTriangleThresholdCalculator.h"
 #include "itkYenThresholdCalculator.h"
-
-//thresholding filter
 #include "itkBinaryThresholdImageFilter.h"
 
 #include "SIMPLib/Common/Constants.h"
@@ -65,8 +63,9 @@
 #include "SIMPLib/FilterParameters/ChoiceFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 #include "SIMPLib/ITK/itkBridge.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
 enum createdPathID : RenameDataPath::DataID_t

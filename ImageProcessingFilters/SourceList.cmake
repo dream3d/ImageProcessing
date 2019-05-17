@@ -18,12 +18,10 @@ SIMPL_START_FILTER_GROUP(
 #---------
 # List your public filters here
 set(_PublicFilters
-  #AlignSectionsPhaseCorrelation
   ItkAutoThreshold
   ItkBinaryWatershedLabeled
   ItkConvertArrayTo8BitImage
   ItkConvertArrayTo8BitImageAttributeMatrix
-  ItkDetermineStitchingCoordinatesGeneric
   ItkDiscreteGaussianBlur
   ItkFindMaxima
   ItkGaussianBlur
@@ -31,21 +29,15 @@ set(_PublicFilters
   ItkHoughCircles
   ItkImageCalculator
   ItkImageMath
-  #IPItkImportImageStack
-  #ItkImageRegistration
   ItkKdTreeKMeans
   ItkKMeans
   ItkManualThreshold
   ItkMeanKernel
   ItkMedianKernel
   ItkMultiOtsuThreshold
-  #ItkRegionGrowing
-  ItkRGBToGray
-  #ItkReadImage
   ItkSobelEdge
   ItkStitchImages
   ItkWatershed
-  ItkWriteImage
 )
 
 
@@ -85,7 +77,6 @@ endforeach()
 
 #-------------
 # These are files that need to be compiled into the plugin but are NOT filters
-ADD_SIMPL_SUPPORT_CLASS(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} util/DetermineStitching)
 
 #---------------------
 # This macro must come last after we are done adding all the filters and support files.

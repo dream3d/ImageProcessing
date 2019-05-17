@@ -34,17 +34,18 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "FindMaxima.h"
 
+#include <limits>
+
 //thresholding filter
 #include "itkValuedRegionalMaximaImageFilter.h"
 #include "itkBinaryThresholdImageFilter.h"
-#include <limits>
 
 #include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
-// ImageProcessing Plugin
 #include "ItkBridge.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
 enum createdPathID : RenameDataPath::DataID_t

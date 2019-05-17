@@ -47,9 +47,9 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
-// ImageProcessing Plugin
 #include "SIMPLib/ITK/itkBridge.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
 
 /**
  * @brief This is a private implementation for the filter that handles the actual algorithm implementation details

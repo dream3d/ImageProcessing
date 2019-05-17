@@ -44,8 +44,10 @@
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
 #include "SIMPLib/ITK/itkBridge.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
+
 //ITK Includes
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkWatershedImageFilter.h"

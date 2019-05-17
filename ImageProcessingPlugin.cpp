@@ -38,15 +38,17 @@
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 
-#include "ImageProcessing/ImageProcessingVersion.h"
-#include "SIMPLib/Filtering/FilterFactory.hpp"
-#include "SIMPLib/Filtering/FilterManager.h"
-#include "SIMPLib/ITK/itkSupportConstants.h"
-
 #include <itkBMPImageIOFactory.h>
 #include <itkJPEGImageIOFactory.h>
 #include <itkPNGImageIOFactory.h>
 #include <itkTIFFImageIOFactory.h>
+
+#include "SIMPLib/Filtering/FilterFactory.hpp"
+#include "SIMPLib/Filtering/FilterManager.h"
+#include "SIMPLib/ITK/itkSupportConstants.h"
+
+#include "ImageProcessing/ImageProcessingConstants.h"
+#include "ImageProcessing/ImageProcessingVersion.h"
 
 // -----------------------------------------------------------------------------
 //

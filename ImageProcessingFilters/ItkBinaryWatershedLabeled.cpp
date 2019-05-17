@@ -11,20 +11,18 @@
 #include "itkMaskImageFilter.h"
 #include "itkBinaryThresholdImageFilter.h"
 
-
+#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/FloatFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
-#include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
-
-
+#include "SIMPLib/ITK/itkBridge.h"
 
 // ImageProcessing Plugin
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
-#include "SIMPLib/ITK/itkBridge.h"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
 enum createdPathID : RenameDataPath::DataID_t

@@ -53,19 +53,23 @@
 */
 namespace ImageProcessingConstants
 {
-  //define pixels for dream3d variable types
-  typedef int8_t Int8PixelType;
-  typedef uint8_t UInt8PixelType;
-  typedef int16_t Int16PixelType;
-  typedef uint16_t UInt16PixelType;
-  typedef int32_t Int32PixelType;
-  typedef uint32_t UInt32PixelType;
-  typedef int64_t Int64PixelType;
-  typedef uint64_t UInt64PixelType;
-  typedef float FloatPixelType;
-  typedef double DoublePixelType;
+const QString ImageProcessingPluginFile("ImageProcessingPlugin");
+const QString ImageProcessingPluginDisplayName("ImageProcessing");
+const QString ImageProcessingBaseName("ImageProcessing");
 
-  //define default pixel type
+// define pixels for dream3d variable types
+typedef int8_t Int8PixelType;
+typedef uint8_t UInt8PixelType;
+typedef int16_t Int16PixelType;
+typedef uint16_t UInt16PixelType;
+typedef int32_t Int32PixelType;
+typedef uint32_t UInt32PixelType;
+typedef int64_t Int64PixelType;
+typedef uint64_t UInt64PixelType;
+typedef float FloatPixelType;
+typedef double DoublePixelType;
+
+// define default pixel type
 #if ImageProcessing_BitDepth == 8
   typedef UInt8PixelType                     DefaultPixelType;
   typedef DataArray<DefaultPixelType>        DefaultArrayType;

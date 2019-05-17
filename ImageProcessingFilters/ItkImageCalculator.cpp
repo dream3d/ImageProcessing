@@ -34,7 +34,6 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "ItkImageCalculator.h"
 
-#include "SIMPLib/ITK/itkBridge.h"
 #include "itkAbsoluteValueDifferenceImageFilter.h"
 #include "itkAddImageFilter.h"
 #include "itkAndImageFilter.h"
@@ -48,14 +47,16 @@
 #include "itkUnaryFunctorImageFilter.h"
 #include "itkXorImageFilter.h"
 
-#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
-#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/FilterParameters/AbstractFilterParametersReader.h"
 #include "SIMPLib/FilterParameters/ChoiceFilterParameter.h"
+#include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
+#include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/ITK/itkBridge.h"
 
+#include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
 
 /* Create Enumerations to allow the created Attribute Arrays to take part in renaming */
