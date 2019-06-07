@@ -179,14 +179,14 @@ void ItkManualThreshold::execute()
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getSelectedCellArrayPath().getDataContainerName());
   QString attrMatName = getSelectedCellArrayPath().getAttributeMatrixName();
 
-  //get dims
-  SizeVec3Type udims = m->getGeometryAs<ImageGeom>()->getDimensions();
+  // get dims
+  // SizeVec3Type udims = m->getGeometryAs<ImageGeom>()->getDimensions();
 
   //wrap input as itk image
   ImageProcessingConstants::DefaultImageType::Pointer inputImage = ITKUtilitiesType::CreateItkWrapperForDataPointer(m, attrMatName, m_SelectedCellArray);
 
   //define threshold filters
-  typedef itk::BinaryThresholdImageFilter <ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType> BinaryThresholdImageFilterType;
+  using BinaryThresholdImageFilterType = itk::BinaryThresholdImageFilter<ImageProcessingConstants::DefaultImageType, ImageProcessingConstants::DefaultImageType>;
 
   //threshold
   BinaryThresholdImageFilterType::Pointer thresholdFilter = BinaryThresholdImageFilterType::New();
