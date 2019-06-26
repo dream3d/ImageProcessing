@@ -179,7 +179,7 @@ void ItkFindMaxima::dataCheck()
   DataArrayPath tempPath;
 
   //check for required arrays
-  QVector<size_t> compDims(1, 1);
+  std::vector<size_t> compDims(1, 1);
   m_SelectedCellArrayPtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getSelectedCellArrayPath(), compDims);
   if(nullptr != m_SelectedCellArrayPtr.lock())
   {

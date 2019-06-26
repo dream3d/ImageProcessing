@@ -152,7 +152,7 @@ void ItkStitchImages::dataCheck()
 
   QList<QString> names = am->getAttributeArrayNames();
 
-  QVector<size_t> dims(1, 1);
+  std::vector<size_t> dims(1, 1);
 
   UInt8ArrayType::Pointer imagePtr = UInt8ArrayType::NullPointer();
   IDataArray::Pointer iDataArray = IDataArray::NullPointer();
@@ -204,7 +204,7 @@ void ItkStitchImages::dataCheck()
 
   m2->getGeometryAs<ImageGeom>()->setDimensions(1, 1, 1);
 
-  QVector<size_t> tDims(1, 0);
+  std::vector<size_t> tDims(1, 0);
 
   AttributeMatrix::Pointer stitchedAttMat = m2->createNonPrereqAttributeMatrix(this, getStitchedAttributeMatrixName(), tDims, AttributeMatrix::Type::Cell, AttributeMatrixID21);
   if(getErrorCode() < 0) { return; }
@@ -287,7 +287,7 @@ void ItkStitchImages::execute()
   DataContainer::Pointer m = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName());
   DataContainer::Pointer m2 = getDataContainerArray()->getDataContainer(getStitchedVolumeDataContainerName());
 
-  QVector<size_t> udims;
+  std::vector<size_t> udims;
   udims = am->getTupleDimensions();
 
   for (size_t i = 0; i < names.size(); i++)
@@ -332,7 +332,7 @@ void ItkStitchImages::execute()
 
   ImageProcessingConstants::UInt8ImageType::IndexType destinationIndex;
 
-  QVector<size_t> tDims(3);
+  std::vector<size_t> tDims(3);
   tDims[0] = NumRows;
   tDims[1] = NumCols;
   tDims[2] = 1;
@@ -340,7 +340,7 @@ void ItkStitchImages::execute()
   m2->getAttributeMatrix(getStitchedAttributeMatrixName())->resizeAttributeArrays(tDims);
   m2->getGeometryAs<ImageGeom>()->setDimensions(tDims[0], tDims[1], tDims[2]);
 
-  QVector<size_t> cDims(1, 1);
+  std::vector<size_t> cDims(1, 1);
 
   // run through all the data containers (images)
   for(size_t i = 0; i < names.size(); i++)

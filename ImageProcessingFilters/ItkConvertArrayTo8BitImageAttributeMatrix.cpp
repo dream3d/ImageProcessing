@@ -120,7 +120,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
   }
 
     QList<QString> names = am->getAttributeArrayNames();
-    QVector<size_t> dims(1, 1);
+    std::vector<size_t> dims(1, 1);
 
     for(int i = 0; i < names.size(); i++)
     {
@@ -227,7 +227,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
   QList<QString> names = am->getAttributeArrayNames();
   DataArrayPath tempPath;
-  QVector<size_t> dims(1, 1);
+  std::vector<size_t> dims(1, 1);
 
   for(size_t i = 0; i < names.size(); i++)
   {

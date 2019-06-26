@@ -190,7 +190,7 @@ void ItkGrayToRGB::dataCheck()
   DataArrayPath tempPath;
 
   //check for required arrays
-  QVector<size_t> compDims(1, 1);
+  std::vector<size_t> compDims(1, 1);
   m_RedPtr = TemplateHelpers::GetPrereqArrayFromPath()(this, getRedArrayPath(), compDims);
   if(nullptr != m_RedPtr.lock())
   {
