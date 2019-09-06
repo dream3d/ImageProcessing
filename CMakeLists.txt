@@ -67,9 +67,24 @@ set(${PLUGIN_NAME}_Project_SRCS "")
 include(${SIMPLProj_SOURCE_DIR}/Source/SIMPLib/SIMPLibMacros.cmake)
 
 ## YOU MUST INCLUDE THIS FILE TO USE ITK !!!
-## Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
-# --------------------------------------------------------------------
-# ITK Include
+# Then do not forget to add "${ITK_LIBRARIES}" to the target_link_libraries below
+# SIMPL Itself has ITK (at least it should if we are doing this) which means by
+# this point ITK is actually found. So let's add some additional Modules that are
+# going to be needed.
+get_property(ITK_VERSION_MAJOR GLOBAL PROPERTY ITK_VERSION_MAJOR)
+if(ITK_VERSION_MAJOR EQUAL 4)
+  # Put ITK 4 Specific Modules in here
+  set_property(GLOBAL PROPERTY ADDITIONAL_ITK_MODULES ""
+  )
+elseif(ITK_VERSION_MAJOR EQUAL 5)
+  # Put ITK 5 Specific Modules in here
+  set_property(GLOBAL PROPERTY ADDITIONAL_ITK_MODULES 	
+                          ITKWatersheds
+                          ITKSpatialObjects
+                          ITKStatistics
+                          ITKTransform
+  )
+endif()
 include( ${CMP_SOURCE_DIR}/ITKSupport/IncludeITK.cmake)
 
 
