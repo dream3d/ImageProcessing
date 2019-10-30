@@ -34,10 +34,12 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #pragma once
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include <memory>
+
+#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/FilterParameters/IntVec3FilterParameter.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -53,63 +55,132 @@
 class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkMedianKernel SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkMedianKernel)
+    PYB11_FILTER_NEW_MACRO(ItkMedianKernel)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
+    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
+    PYB11_FILTER_PARAMETER(bool, Slice)
+    PYB11_FILTER_PARAMETER(IntVec3Type, KernelSize)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
     PYB11_PROPERTY(IntVec3Type KernelSize READ getKernelSize WRITE setKernelSize)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkMedianKernel)
-    SIMPL_FILTER_NEW_MACRO(ItkMedianKernel)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkMedianKernel, AbstractFilter)
+    using Self = ItkMedianKernel;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkMedianKernel> New();
+
+    /**
+     * @brief Returns the name of the class for ItkMedianKernel
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkMedianKernel
+     */
+    static QString ClassName();
 
     ~ItkMedianKernel() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    /**
+     * @brief Setter property for SelectedCellArrayPath
+     */
+    void setSelectedCellArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath
+     * @return Value of SelectedCellArrayPath
+     */
+    DataArrayPath getSelectedCellArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    SIMPL_FILTER_PARAMETER(bool, SaveAsNewArray)
+    /**
+     * @brief Setter property for SaveAsNewArray
+     */
+    void setSaveAsNewArray(bool value);
+    /**
+     * @brief Getter property for SaveAsNewArray
+     * @return Value of SaveAsNewArray
+     */
+    bool getSaveAsNewArray() const;
+
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
-    SIMPL_FILTER_PARAMETER(bool, Slice)
+    /**
+     * @brief Setter property for Slice
+     */
+    void setSlice(bool value);
+    /**
+     * @brief Getter property for Slice
+     * @return Value of Slice
+     */
+    bool getSlice() const;
+
     Q_PROPERTY(bool Slice READ getSlice WRITE setSlice)
-    SIMPL_FILTER_PARAMETER(IntVec3Type, KernelSize)
+    /**
+     * @brief Setter property for KernelSize
+     */
+    void setKernelSize(const IntVec3Type& value);
+    /**
+     * @brief Getter property for KernelSize
+     * @return Value of KernelSize
+     */
+    IntVec3Type getKernelSize() const;
+
     Q_PROPERTY(IntVec3Type KernelSize READ getKernelSize WRITE setKernelSize)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -181,9 +252,16 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
 
 
   private:
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_SelectedCellArrayPtr;
+    ImageProcessingConstants::DefaultPixelType* m_SelectedCellArray = nullptr;
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
+    ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DataArrayPath m_SelectedCellArrayPath = {};
+    QString m_NewCellArrayName = {};
+    bool m_SaveAsNewArray = {};
+    bool m_Slice = {};
+    IntVec3Type m_KernelSize = {};
 
   public:
     ItkMedianKernel(const ItkMedianKernel&) = delete; // Copy Constructor Not Implemented

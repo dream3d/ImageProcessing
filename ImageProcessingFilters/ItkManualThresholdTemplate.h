@@ -35,12 +35,15 @@
 #pragma once
 
 //#include <vector>
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/DataArrays/IDataArray.h"
-#include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+
+class IDataArray;
+using IDataArrayWkPtrType = std::weak_ptr<IDataArray>;
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -58,61 +61,120 @@
 class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkManualThresholdTemplate SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkManualThresholdTemplate)
+    PYB11_FILTER_NEW_MACRO(ItkManualThresholdTemplate)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
+    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
+    PYB11_FILTER_PARAMETER(int, ManualParameter)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkManualThresholdTemplate)
-    SIMPL_FILTER_NEW_MACRO(ItkManualThresholdTemplate)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkManualThresholdTemplate, AbstractFilter)
+    using Self = ItkManualThresholdTemplate;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkManualThresholdTemplate> New();
+
+    /**
+     * @brief Returns the name of the class for ItkManualThresholdTemplate
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkManualThresholdTemplate
+     */
+    static QString ClassName();
 
     ~ItkManualThresholdTemplate() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayArrayPath)
+    /**
+     * @brief Setter property for SelectedCellArrayArrayPath
+     */
+    void setSelectedCellArrayArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayArrayPath
+     * @return Value of SelectedCellArrayArrayPath
+     */
+    DataArrayPath getSelectedCellArrayArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayArrayPath READ getSelectedCellArrayArrayPath WRITE setSelectedCellArrayArrayPath)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    SIMPL_FILTER_PARAMETER(bool, SaveAsNewArray)
+    /**
+     * @brief Setter property for SaveAsNewArray
+     */
+    void setSaveAsNewArray(bool value);
+    /**
+     * @brief Getter property for SaveAsNewArray
+     * @return Value of SaveAsNewArray
+     */
+    bool getSaveAsNewArray() const;
+
     Q_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
 
-    SIMPL_FILTER_PARAMETER(int, ManualParameter)
+    /**
+     * @brief Setter property for ManualParameter
+     */
+    void setManualParameter(int value);
+    /**
+     * @brief Getter property for ManualParameter
+     * @return Value of ManualParameter
+     */
+    int getManualParameter() const;
+
     Q_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -186,8 +248,15 @@ class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
 
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
+    IDataArrayWkPtrType m_SelectedCellArrayPtr;
+    void* m_SelectedCellArray = nullptr;
+    IDataArrayWkPtrType m_NewCellArrayPtr;
+    void* m_NewCellArray = nullptr;
+
+    DataArrayPath m_SelectedCellArrayArrayPath = {};
+    QString m_NewCellArrayName = {};
+    bool m_SaveAsNewArray = {};
+    int m_ManualParameter = {};
 
   public:
     ItkManualThresholdTemplate(const ItkManualThresholdTemplate&) = delete; // Copy Constructor Not Implemented

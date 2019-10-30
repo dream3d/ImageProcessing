@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkWatershed.h"
 
 #include <QtCore/QString>
@@ -45,6 +47,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -234,21 +238,21 @@ AbstractFilter::Pointer ItkWatershed::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getCompiledLibraryName() const
+QString ItkWatershed::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getGroupName() const
+QString ItkWatershed::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkWatershed::getUuid()
+QUuid ItkWatershed::getUuid() const
 {
   return QUuid("{994eb3c3-dafa-5611-8afe-efdac8c2f7da}");
 }
@@ -256,13 +260,89 @@ const QUuid ItkWatershed::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getSubGroupName() const
+QString ItkWatershed::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkWatershed::getHumanLabel() const
+QString ItkWatershed::getHumanLabel() const
 { return "Watershed Filter (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkWatershed::Pointer ItkWatershed::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkWatershed> ItkWatershed::New()
+{
+  struct make_shared_enabler : public ItkWatershed
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkWatershed::getNameOfClass() const
+{
+  return QString("ItkWatershed");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkWatershed::ClassName()
+{
+  return QString("ItkWatershed");
+}
+
+// -----------------------------------------------------------------------------
+void ItkWatershed::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkWatershed::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkWatershed::setFeatureIdsArrayName(const QString& value)
+{
+  m_FeatureIdsArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkWatershed::getFeatureIdsArrayName() const
+{
+  return m_FeatureIdsArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkWatershed::setThreshold(float value)
+{
+  m_Threshold = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkWatershed::getThreshold() const
+{
+  return m_Threshold;
+}
+
+// -----------------------------------------------------------------------------
+void ItkWatershed::setLevel(float value)
+{
+  m_Level = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkWatershed::getLevel() const
+{
+  return m_Level;
+}

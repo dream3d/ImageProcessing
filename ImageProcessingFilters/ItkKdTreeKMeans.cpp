@@ -32,6 +32,8 @@
 *    United States Prime Contract Navy N00173-07-C-2068
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkKdTreeKMeans.h"
 
 #include "itkScalarImageKmeansImageFilter.h"
@@ -50,6 +52,7 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -303,21 +306,21 @@ AbstractFilter::Pointer ItkKdTreeKMeans::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getCompiledLibraryName() const
+QString ItkKdTreeKMeans::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getGroupName() const
+QString ItkKdTreeKMeans::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkKdTreeKMeans::getUuid()
+QUuid ItkKdTreeKMeans::getUuid() const
 {
   return QUuid("{68d2b4e5-7325-5c9b-b3e0-26c726e8fd6f}");
 }
@@ -325,13 +328,77 @@ const QUuid ItkKdTreeKMeans::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getSubGroupName() const
+QString ItkKdTreeKMeans::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKdTreeKMeans::getHumanLabel() const
+QString ItkKdTreeKMeans::getHumanLabel() const
 { return "K-d Tree K Means (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkKdTreeKMeans::Pointer ItkKdTreeKMeans::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkKdTreeKMeans> ItkKdTreeKMeans::New()
+{
+  struct make_shared_enabler : public ItkKdTreeKMeans
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKdTreeKMeans::getNameOfClass() const
+{
+  return QString("ItkKdTreeKMeans");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKdTreeKMeans::ClassName()
+{
+  return QString("ItkKdTreeKMeans");
+}
+
+// -----------------------------------------------------------------------------
+void ItkKdTreeKMeans::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkKdTreeKMeans::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKdTreeKMeans::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKdTreeKMeans::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKdTreeKMeans::setClasses(int value)
+{
+  m_Classes = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkKdTreeKMeans::getClasses() const
+{
+  return m_Classes;
+}

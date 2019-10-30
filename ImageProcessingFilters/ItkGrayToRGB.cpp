@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkGrayToRGB.h"
 
 //thresholding filter
@@ -45,6 +47,8 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -349,21 +353,21 @@ AbstractFilter::Pointer ItkGrayToRGB::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getCompiledLibraryName() const
+QString ItkGrayToRGB::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getGroupName() const
+QString ItkGrayToRGB::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkGrayToRGB::getUuid()
+QUuid ItkGrayToRGB::getUuid() const
 {
   return QUuid("{d9b598d3-ef06-5776-8f68-362931fa5092}");
 }
@@ -371,13 +375,89 @@ const QUuid ItkGrayToRGB::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getSubGroupName() const
+QString ItkGrayToRGB::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGrayToRGB::getHumanLabel() const
+QString ItkGrayToRGB::getHumanLabel() const
 { return "Convert Grayscale to RGB (Merge Channels) (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkGrayToRGB::Pointer ItkGrayToRGB::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkGrayToRGB> ItkGrayToRGB::New()
+{
+  struct make_shared_enabler : public ItkGrayToRGB
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGrayToRGB::getNameOfClass() const
+{
+  return QString("ItkGrayToRGB");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGrayToRGB::ClassName()
+{
+  return QString("ItkGrayToRGB");
+}
+
+// -----------------------------------------------------------------------------
+void ItkGrayToRGB::setRedArrayPath(const DataArrayPath& value)
+{
+  m_RedArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkGrayToRGB::getRedArrayPath() const
+{
+  return m_RedArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkGrayToRGB::setGreenArrayPath(const DataArrayPath& value)
+{
+  m_GreenArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkGrayToRGB::getGreenArrayPath() const
+{
+  return m_GreenArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkGrayToRGB::setBlueArrayPath(const DataArrayPath& value)
+{
+  m_BlueArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkGrayToRGB::getBlueArrayPath() const
+{
+  return m_BlueArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkGrayToRGB::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGrayToRGB::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}

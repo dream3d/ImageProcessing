@@ -35,12 +35,15 @@
 #pragma once
 
 //#include <vector>
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/DataArrays/IDataArray.h"
-#include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+
+class IDataArray;
+using IDataArrayWkPtrType = std::weak_ptr<IDataArray>;
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -58,61 +61,120 @@
 class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkGrayToRGB SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkGrayToRGB)
+    PYB11_FILTER_NEW_MACRO(ItkGrayToRGB)
+    PYB11_FILTER_PARAMETER(DataArrayPath, RedArrayPath)
+    PYB11_FILTER_PARAMETER(DataArrayPath, GreenArrayPath)
+    PYB11_FILTER_PARAMETER(DataArrayPath, BlueArrayPath)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
     PYB11_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)
     PYB11_PROPERTY(DataArrayPath GreenArrayPath READ getGreenArrayPath WRITE setGreenArrayPath)
     PYB11_PROPERTY(DataArrayPath BlueArrayPath READ getBlueArrayPath WRITE setBlueArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkGrayToRGB)
-    SIMPL_FILTER_NEW_MACRO(ItkGrayToRGB)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkGrayToRGB, AbstractFilter)
+    using Self = ItkGrayToRGB;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkGrayToRGB> New();
+
+    /**
+     * @brief Returns the name of the class for ItkGrayToRGB
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkGrayToRGB
+     */
+    static QString ClassName();
 
     ~ItkGrayToRGB() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, RedArrayPath)
+    /**
+     * @brief Setter property for RedArrayPath
+     */
+    void setRedArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for RedArrayPath
+     * @return Value of RedArrayPath
+     */
+    DataArrayPath getRedArrayPath() const;
+
     Q_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, GreenArrayPath)
+    /**
+     * @brief Setter property for GreenArrayPath
+     */
+    void setGreenArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for GreenArrayPath
+     * @return Value of GreenArrayPath
+     */
+    DataArrayPath getGreenArrayPath() const;
+
     Q_PROPERTY(DataArrayPath GreenArrayPath READ getGreenArrayPath WRITE setGreenArrayPath)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, BlueArrayPath)
+    /**
+     * @brief Setter property for BlueArrayPath
+     */
+    void setBlueArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for BlueArrayPath
+     * @return Value of BlueArrayPath
+     */
+    DataArrayPath getBlueArrayPath() const;
+
     Q_PROPERTY(DataArrayPath BlueArrayPath READ getBlueArrayPath WRITE setBlueArrayPath)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -186,11 +248,19 @@ class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
 
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(Red)
-    DEFINE_IDATAARRAY_VARIABLE(Green)
-    DEFINE_IDATAARRAY_VARIABLE(Blue)
+    IDataArrayWkPtrType m_RedPtr;
+    void* m_Red = nullptr;
+    IDataArrayWkPtrType m_GreenPtr;
+    void* m_Green = nullptr;
+    IDataArrayWkPtrType m_BluePtr;
+    void* m_Blue = nullptr;
+    IDataArrayWkPtrType m_NewCellArrayPtr;
+    void* m_NewCellArray = nullptr;
 
-    DEFINE_IDATAARRAY_VARIABLE(NewCellArray)
+    DataArrayPath m_RedArrayPath = {};
+    DataArrayPath m_GreenArrayPath = {};
+    DataArrayPath m_BlueArrayPath = {};
+    QString m_NewCellArrayName = {};
 
   public:
     ItkGrayToRGB(const ItkGrayToRGB&) = delete;   // Copy Constructor Not Implemented

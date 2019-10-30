@@ -34,9 +34,13 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #pragma once
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include <memory>
+
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+
+class IDataArray;
+using IDataArrayWkPtrType = std::weak_ptr<IDataArray>;
 
 /**
  * @class AlignSectionsPhaseCorrelation AlignSectionsPhaseCorrelation.h ImageProcessing/ImageProcessingFilters/AlignSectionsPhaseCorrelation.h
@@ -52,29 +56,61 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     //    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     //    PYB11_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
   public:
-    SIMPL_SHARED_POINTERS(AlignSectionsPhaseCorrelation)
-    SIMPL_FILTER_NEW_MACRO(AlignSectionsPhaseCorrelation)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(AlignSectionsPhaseCorrelation, AlignSections)
+    using Self = AlignSectionsPhaseCorrelation;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    static std::shared_ptr<AlignSectionsPhaseCorrelation> New();
+
+    /**
+     * @brief Returns the name of the class for AlignSectionsPhaseCorrelation
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for AlignSectionsPhaseCorrelation
+     */
+    static QString ClassName();
+
+    /**
+     * @brief Setter property for SelectedCellArrayPath
+     */
+    void setSelectedCellArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath
+     * @return Value of SelectedCellArrayPath
+     */
+    DataArrayPath getSelectedCellArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
     virtual ~AlignSectionsPhaseCorrelation();
 
-    SIMPL_FILTER_PARAMETER(QString, InputFile)
+    /**
+     * @brief Setter property for InputFile
+     */
+    void setInputFile(const QString& value);
+    /**
+     * @brief Getter property for InputFile
+     * @return Value of InputFile
+     */
+    QString getInputFile() const;
+
     Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
 
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
     AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
-    const QString getGroupName() const override;
-    const QString getSubGroupName() const override;
+    QString getGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
-    const QString getHumanLabel() const override;
+    QUuid getUuid() const override;
+    QString getHumanLabel() const override;
     virtual const QString getBrandingString() { return "DREAM3D Reconstruction Plugin"; }
 
     /**
@@ -93,7 +129,12 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
+    IDataArrayWkPtrType m_SelectedCellArrayPtr;
+    void* m_SelectedCellArray = nullptr;
+
+    DataArrayPath m_SelectedCellArrayPath = {};
+    QString m_InputFile = {};
+
     void dataCheck();
 
     AlignSectionsPhaseCorrelation(const AlignSectionsPhaseCorrelation&) = delete; // Copy Constructor Not Implemented

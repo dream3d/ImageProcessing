@@ -31,6 +31,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkStitchImages.h"
 
 #include "SIMPLib/Common/SIMPLArray.hpp"
@@ -43,6 +45,8 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "itkMaskedFFTNormalizedCorrelationImageFilter.h"
 
@@ -406,21 +410,21 @@ AbstractFilter::Pointer ItkStitchImages::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getCompiledLibraryName() const
+QString ItkStitchImages::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getGroupName() const
+QString ItkStitchImages::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkStitchImages::getUuid()
+QUuid ItkStitchImages::getUuid() const
 {
   return QUuid("{aed7a137-bf2f-5bbc-b5e6-bf5db18e46c2}");
 }
@@ -428,13 +432,113 @@ const QUuid ItkStitchImages::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getSubGroupName() const
+QString ItkStitchImages::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkStitchImages::getHumanLabel() const
+QString ItkStitchImages::getHumanLabel() const
 { return "Stitch Images (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkStitchImages::Pointer ItkStitchImages::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkStitchImages> ItkStitchImages::New()
+{
+  struct make_shared_enabler : public ItkStitchImages
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkStitchImages::getNameOfClass() const
+{
+  return QString("ItkStitchImages");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkStitchImages::ClassName()
+{
+  return QString("ItkStitchImages");
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setAttributeMatrixName(const DataArrayPath& value)
+{
+  m_AttributeMatrixName = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkStitchImages::getAttributeMatrixName() const
+{
+  return m_AttributeMatrixName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setStitchedCoordinatesArrayPath(const DataArrayPath& value)
+{
+  m_StitchedCoordinatesArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkStitchImages::getStitchedCoordinatesArrayPath() const
+{
+  return m_StitchedCoordinatesArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setAttributeArrayNamesPath(const DataArrayPath& value)
+{
+  m_AttributeArrayNamesPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkStitchImages::getAttributeArrayNamesPath() const
+{
+  return m_AttributeArrayNamesPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setStitchedVolumeDataContainerName(const DataArrayPath& value)
+{
+  m_StitchedVolumeDataContainerName = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkStitchImages::getStitchedVolumeDataContainerName() const
+{
+  return m_StitchedVolumeDataContainerName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setStitchedImagesArrayName(const QString& value)
+{
+  m_StitchedImagesArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkStitchImages::getStitchedImagesArrayName() const
+{
+  return m_StitchedImagesArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkStitchImages::setStitchedAttributeMatrixName(const QString& value)
+{
+  m_StitchedAttributeMatrixName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkStitchImages::getStitchedAttributeMatrixName() const
+{
+  return m_StitchedAttributeMatrixName;
+}

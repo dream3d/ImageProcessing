@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkKMeans.h"
 
 #include "itkScalarImageKmeansImageFilter.h"
@@ -48,6 +50,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -315,10 +319,10 @@ AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters) 
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
-    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
+    //    filter->setOutputFile(getOutputFile());
+    //    filter->setZStartIndex(getZStartIndex());
+    //    filter->setZEndIndex(getZEndIndex());
+    //    filter->setZResolution(getZResolution());
   }
   return filter;
 }
@@ -327,21 +331,21 @@ AbstractFilter::Pointer ItkKMeans::newFilterInstance(bool copyFilterParameters) 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getCompiledLibraryName() const
+QString ItkKMeans::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getGroupName() const
+QString ItkKMeans::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkKMeans::getUuid()
+QUuid ItkKMeans::getUuid() const
 {
   return QUuid("{f398f1e8-2e9a-5b5b-b784-f0b8ce7e0abf}");
 }
@@ -349,13 +353,101 @@ const QUuid ItkKMeans::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getSubGroupName() const
+QString ItkKMeans::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkKMeans::getHumanLabel() const
+QString ItkKMeans::getHumanLabel() const
 { return "K Means (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkKMeans::Pointer ItkKMeans::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkKMeans> ItkKMeans::New()
+{
+  struct make_shared_enabler : public ItkKMeans
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKMeans::getNameOfClass() const
+{
+  return QString("ItkKMeans");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKMeans::ClassName()
+{
+  return QString("ItkKMeans");
+}
+
+// -----------------------------------------------------------------------------
+void ItkKMeans::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkKMeans::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKMeans::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkKMeans::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKMeans::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkKMeans::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKMeans::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkKMeans::getSlice() const
+{
+  return m_Slice;
+}
+
+// -----------------------------------------------------------------------------
+void ItkKMeans::setClasses(int value)
+{
+  m_Classes = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkKMeans::getClasses() const
+{
+  return m_Classes;
+}

@@ -35,11 +35,13 @@
 
 #pragma once
 
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -55,60 +57,119 @@
 class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkWatershed SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkWatershed)
+    PYB11_FILTER_NEW_MACRO(ItkWatershed)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    PYB11_FILTER_PARAMETER(QString, FeatureIdsArrayName)
+    PYB11_FILTER_PARAMETER(float, Threshold)
+    PYB11_FILTER_PARAMETER(float, Level)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString FeatureIdsArrayName READ getFeatureIdsArrayName WRITE setFeatureIdsArrayName)
     PYB11_PROPERTY(float Threshold READ getThreshold WRITE setThreshold)
     PYB11_PROPERTY(float Level READ getLevel WRITE setLevel)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkWatershed)
-    SIMPL_FILTER_NEW_MACRO(ItkWatershed)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkWatershed, AbstractFilter)
+    using Self = ItkWatershed;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkWatershed> New();
+
+    /**
+     * @brief Returns the name of the class for ItkWatershed
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkWatershed
+     */
+    static QString ClassName();
 
     ~ItkWatershed() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    /**
+     * @brief Setter property for SelectedCellArrayPath
+     */
+    void setSelectedCellArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath
+     * @return Value of SelectedCellArrayPath
+     */
+    DataArrayPath getSelectedCellArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    SIMPL_FILTER_PARAMETER(QString, FeatureIdsArrayName)
+    /**
+     * @brief Setter property for FeatureIdsArrayName
+     */
+    void setFeatureIdsArrayName(const QString& value);
+    /**
+     * @brief Getter property for FeatureIdsArrayName
+     * @return Value of FeatureIdsArrayName
+     */
+    QString getFeatureIdsArrayName() const;
+
     Q_PROPERTY(QString FeatureIdsArrayName READ getFeatureIdsArrayName WRITE setFeatureIdsArrayName)
 
-    SIMPL_FILTER_PARAMETER(float, Threshold)
+    /**
+     * @brief Setter property for Threshold
+     */
+    void setThreshold(float value);
+    /**
+     * @brief Getter property for Threshold
+     * @return Value of Threshold
+     */
+    float getThreshold() const;
+
     Q_PROPERTY(float Threshold READ getThreshold WRITE setThreshold)
-    SIMPL_FILTER_PARAMETER(float, Level)
+    /**
+     * @brief Setter property for Level
+     */
+    void setLevel(float value);
+    /**
+     * @brief Getter property for Level
+     * @return Value of Level
+     */
+    float getLevel() const;
+
     Q_PROPERTY(float Level READ getLevel WRITE setLevel)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -180,9 +241,15 @@ class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
 
 
   private:
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_SelectedCellArrayPtr;
+    ImageProcessingConstants::DefaultPixelType* m_SelectedCellArray = nullptr;
+    std::weak_ptr<DataArray<int32_t>> m_FeatureIdsPtr;
+    int32_t* m_FeatureIds = nullptr;
 
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(int32_t, FeatureIds)
+    DataArrayPath m_SelectedCellArrayPath = {};
+    QString m_FeatureIdsArrayName = {};
+    float m_Threshold = {};
+    float m_Level = {};
 
   public:
     ItkWatershed(const ItkWatershed&) = delete;   // Copy Constructor Not Implemented

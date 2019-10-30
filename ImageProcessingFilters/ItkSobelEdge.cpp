@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkSobelEdge.h"
 
 #include <QtCore/QString>
@@ -45,6 +47,9 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
+
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkSobelEdgeDetectionImageFilter.h"
 
@@ -295,21 +300,21 @@ AbstractFilter::Pointer ItkSobelEdge::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getCompiledLibraryName() const
+QString ItkSobelEdge::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getGroupName() const
+QString ItkSobelEdge::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkSobelEdge::getUuid()
+QUuid ItkSobelEdge::getUuid() const
 {
   return QUuid("{73917acf-23aa-59ac-b4fd-ab59a8ce1060}");
 }
@@ -317,13 +322,89 @@ const QUuid ItkSobelEdge::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getSubGroupName() const
+QString ItkSobelEdge::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkSobelEdge::getHumanLabel() const
+QString ItkSobelEdge::getHumanLabel() const
 { return "Sobel Edge Detector (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkSobelEdge::Pointer ItkSobelEdge::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkSobelEdge> ItkSobelEdge::New()
+{
+  struct make_shared_enabler : public ItkSobelEdge
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkSobelEdge::getNameOfClass() const
+{
+  return QString("ItkSobelEdge");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkSobelEdge::ClassName()
+{
+  return QString("ItkSobelEdge");
+}
+
+// -----------------------------------------------------------------------------
+void ItkSobelEdge::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkSobelEdge::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkSobelEdge::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkSobelEdge::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkSobelEdge::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkSobelEdge::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkSobelEdge::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkSobelEdge::getSlice() const
+{
+  return m_Slice;
+}

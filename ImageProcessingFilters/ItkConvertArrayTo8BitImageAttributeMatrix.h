@@ -37,14 +37,16 @@
 
 #pragma once
 
+#include <memory>
+
 #include <QtCore/QString>
 #include <set>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
 #include "SIMPLib/DataContainers/DataContainer.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingDLLExport.h"
 
@@ -59,40 +61,80 @@
 class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkConvertArrayTo8BitImageAttributeMatrix SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
+    PYB11_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)
+    PYB11_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    PYB11_FILTER_PARAMETER(QString, NewArrayArrayName)
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
     PYB11_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
+#endif
+
   public:
-    SIMPL_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
-    SIMPL_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkConvertArrayTo8BitImageAttributeMatrix, AbstractFilter)
+    using Self = ItkConvertArrayTo8BitImageAttributeMatrix;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkConvertArrayTo8BitImageAttributeMatrix> New();
+
+    /**
+     * @brief Returns the name of the class for ItkConvertArrayTo8BitImageAttributeMatrix
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkConvertArrayTo8BitImageAttributeMatrix
+     */
+    static QString ClassName();
 
     ~ItkConvertArrayTo8BitImageAttributeMatrix() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    /**
+     * @brief Setter property for AttributeMatrixName
+     */
+    void setAttributeMatrixName(const DataArrayPath& value);
+    /**
+     * @brief Getter property for AttributeMatrixName
+     * @return Value of AttributeMatrixName
+     */
+    DataArrayPath getAttributeMatrixName() const;
+
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    SIMPL_FILTER_PARAMETER(QString, NewArrayArrayName)
+    /**
+     * @brief Setter property for NewArrayArrayName
+     */
+    void setNewArrayArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewArrayArrayName
+     * @return Value of NewArrayArrayName
+     */
+    QString getNewArrayArrayName() const;
+
     Q_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
 
     /**
      * @brief getCompiledLibraryName Reimplemented from @see AbstractFilter class
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
      * @brief getBrandingString Returns the branding string for the filter, which is a tag
      * used to denote the filter's association with specific plugins
      * @return Branding string
     */
-    const QString getBrandingString() const override;
+    QString getBrandingString() const override;
 
     /**
      * @brief getFilterVersion Returns a version string for this filter. Default
      * value is an empty string.
      * @return
      */
-    const QString getFilterVersion() const override;
+    QString getFilterVersion() const override;
 
     /**
      * @brief newFilterInstance Reimplemented from @see AbstractFilter class
@@ -102,23 +144,23 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
     /**
      * @brief getGroupName Reimplemented from @see AbstractFilter class
      */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
      * @brief getSubGroupName Reimplemented from @see AbstractFilter class
      */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
      * @brief getHumanLabel Reimplemented from @see AbstractFilter class
      */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
      * @brief setupFilterParameters Reimplemented from @see AbstractFilter class
@@ -163,7 +205,11 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
 
 
   private:
-    DEFINE_DATAARRAY_VARIABLE(uint8_t, NewArray)
+    std::weak_ptr<DataArray<uint8_t>> m_NewArrayPtr;
+    uint8_t* m_NewArray = nullptr;
+
+    DataArrayPath m_AttributeMatrixName = {};
+    QString m_NewArrayArrayName = {};
 
   public:
     ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Constructor Not Implemented

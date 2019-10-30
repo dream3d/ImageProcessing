@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkHoughCircles.h"
 
 #include <cmath>
@@ -50,6 +52,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -309,21 +313,21 @@ AbstractFilter::Pointer ItkHoughCircles::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getCompiledLibraryName() const
+QString ItkHoughCircles::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getGroupName() const
+QString ItkHoughCircles::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkHoughCircles::getUuid()
+QUuid ItkHoughCircles::getUuid() const
 {
   return QUuid("{98721549-0070-5f80-80d6-0d8d31ade5d7}");
 }
@@ -331,13 +335,113 @@ const QUuid ItkHoughCircles::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getSubGroupName() const
+QString ItkHoughCircles::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkHoughCircles::getHumanLabel() const
+QString ItkHoughCircles::getHumanLabel() const
 { return "Hough Circle Detection (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkHoughCircles::Pointer ItkHoughCircles::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkHoughCircles> ItkHoughCircles::New()
+{
+  struct make_shared_enabler : public ItkHoughCircles
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkHoughCircles::getNameOfClass() const
+{
+  return QString("ItkHoughCircles");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkHoughCircles::ClassName()
+{
+  return QString("ItkHoughCircles");
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkHoughCircles::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkHoughCircles::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkHoughCircles::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setMinRadius(float value)
+{
+  m_MinRadius = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkHoughCircles::getMinRadius() const
+{
+  return m_MinRadius;
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setMaxRadius(float value)
+{
+  m_MaxRadius = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkHoughCircles::getMaxRadius() const
+{
+  return m_MaxRadius;
+}
+
+// -----------------------------------------------------------------------------
+void ItkHoughCircles::setNumberCircles(int value)
+{
+  m_NumberCircles = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkHoughCircles::getNumberCircles() const
+{
+  return m_NumberCircles;
+}

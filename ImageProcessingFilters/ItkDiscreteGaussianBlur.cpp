@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkDiscreteGaussianBlur.h"
 
 #include "itkDiscreteGaussianImageFilter.h"
@@ -48,6 +50,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -236,21 +240,21 @@ AbstractFilter::Pointer ItkDiscreteGaussianBlur::newFilterInstance(bool copyFilt
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getCompiledLibraryName() const
+QString ItkDiscreteGaussianBlur::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getGroupName() const
+QString ItkDiscreteGaussianBlur::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkDiscreteGaussianBlur::getUuid()
+QUuid ItkDiscreteGaussianBlur::getUuid() const
 {
   return QUuid("{73ad993e-a36e-5978-bda2-ccee69d36186}");
 }
@@ -258,13 +262,89 @@ const QUuid ItkDiscreteGaussianBlur::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getSubGroupName() const
+QString ItkDiscreteGaussianBlur::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkDiscreteGaussianBlur::getHumanLabel() const
+QString ItkDiscreteGaussianBlur::getHumanLabel() const
 { return "Discrete Gaussian Blur (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkDiscreteGaussianBlur::Pointer ItkDiscreteGaussianBlur::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkDiscreteGaussianBlur> ItkDiscreteGaussianBlur::New()
+{
+  struct make_shared_enabler : public ItkDiscreteGaussianBlur
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkDiscreteGaussianBlur::getNameOfClass() const
+{
+  return QString("ItkDiscreteGaussianBlur");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkDiscreteGaussianBlur::ClassName()
+{
+  return QString("ItkDiscreteGaussianBlur");
+}
+
+// -----------------------------------------------------------------------------
+void ItkDiscreteGaussianBlur::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkDiscreteGaussianBlur::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkDiscreteGaussianBlur::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkDiscreteGaussianBlur::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkDiscreteGaussianBlur::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkDiscreteGaussianBlur::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkDiscreteGaussianBlur::setStdev(float value)
+{
+  m_Stdev = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkDiscreteGaussianBlur::getStdev() const
+{
+  return m_Stdev;
+}

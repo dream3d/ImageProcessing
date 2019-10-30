@@ -2,6 +2,8 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "ItkBinaryWatershedLabeled.h"
 
 //thresholding filter
@@ -19,6 +21,8 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 // ImageProcessing Plugin
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -240,21 +244,21 @@ AbstractFilter::Pointer ItkBinaryWatershedLabeled::newFilterInstance(bool copyFi
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getCompiledLibraryName() const
+QString ItkBinaryWatershedLabeled::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getGroupName() const
+QString ItkBinaryWatershedLabeled::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkBinaryWatershedLabeled::getUuid()
+QUuid ItkBinaryWatershedLabeled::getUuid() const
 {
   return QUuid("{76fd1b13-5feb-5338-8d7f-b3b935ff3f22}");
 }
@@ -262,13 +266,77 @@ const QUuid ItkBinaryWatershedLabeled::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getSubGroupName() const
+QString ItkBinaryWatershedLabeled::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkBinaryWatershedLabeled::getHumanLabel() const
+QString ItkBinaryWatershedLabeled::getHumanLabel() const
 { return "Binary Watershed Labeled (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkBinaryWatershedLabeled::Pointer ItkBinaryWatershedLabeled::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkBinaryWatershedLabeled> ItkBinaryWatershedLabeled::New()
+{
+  struct make_shared_enabler : public ItkBinaryWatershedLabeled
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkBinaryWatershedLabeled::getNameOfClass() const
+{
+  return QString("ItkBinaryWatershedLabeled");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkBinaryWatershedLabeled::ClassName()
+{
+  return QString("ItkBinaryWatershedLabeled");
+}
+
+// -----------------------------------------------------------------------------
+void ItkBinaryWatershedLabeled::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkBinaryWatershedLabeled::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkBinaryWatershedLabeled::setPeakTolerance(float value)
+{
+  m_PeakTolerance = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkBinaryWatershedLabeled::getPeakTolerance() const
+{
+  return m_PeakTolerance;
+}
+
+// -----------------------------------------------------------------------------
+void ItkBinaryWatershedLabeled::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkBinaryWatershedLabeled::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}

@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkMultiOtsuThreshold.h"
 
 #include <QtCore/QString>
@@ -46,6 +48,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -280,10 +284,10 @@ AbstractFilter::Pointer ItkMultiOtsuThreshold::newFilterInstance(bool copyFilter
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
-    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
+    //    filter->setOutputFile(getOutputFile());
+    //    filter->setZStartIndex(getZStartIndex());
+    //    filter->setZEndIndex(getZEndIndex());
+    //    filter->setZResolution(getZResolution());
   }
   return filter;
 }
@@ -292,21 +296,21 @@ AbstractFilter::Pointer ItkMultiOtsuThreshold::newFilterInstance(bool copyFilter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getCompiledLibraryName() const
+QString ItkMultiOtsuThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getGroupName() const
+QString ItkMultiOtsuThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkMultiOtsuThreshold::getUuid()
+QUuid ItkMultiOtsuThreshold::getUuid() const
 {
   return QUuid("{fa281497-2f98-5fc7-bfd7-305dcea866ed}");
 }
@@ -314,13 +318,101 @@ const QUuid ItkMultiOtsuThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getSubGroupName() const
+QString ItkMultiOtsuThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMultiOtsuThreshold::getHumanLabel() const
+QString ItkMultiOtsuThreshold::getHumanLabel() const
 { return "Multi Level Otsu Threshold (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkMultiOtsuThreshold::Pointer ItkMultiOtsuThreshold::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkMultiOtsuThreshold> ItkMultiOtsuThreshold::New()
+{
+  struct make_shared_enabler : public ItkMultiOtsuThreshold
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMultiOtsuThreshold::getNameOfClass() const
+{
+  return QString("ItkMultiOtsuThreshold");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMultiOtsuThreshold::ClassName()
+{
+  return QString("ItkMultiOtsuThreshold");
+}
+
+// -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkMultiOtsuThreshold::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMultiOtsuThreshold::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMultiOtsuThreshold::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMultiOtsuThreshold::getSlice() const
+{
+  return m_Slice;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMultiOtsuThreshold::setLevels(int value)
+{
+  m_Levels = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkMultiOtsuThreshold::getLevels() const
+{
+  return m_Levels;
+}

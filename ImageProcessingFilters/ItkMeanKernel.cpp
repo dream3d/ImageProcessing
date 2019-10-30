@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkMeanKernel.h"
 
 #include <QtCore/QString>
@@ -46,6 +48,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -260,21 +264,21 @@ AbstractFilter::Pointer ItkMeanKernel::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getCompiledLibraryName() const
+QString ItkMeanKernel::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getGroupName() const
+QString ItkMeanKernel::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkMeanKernel::getUuid()
+QUuid ItkMeanKernel::getUuid() const
 {
   return QUuid("{9f6b76ba-cf04-5da1-8e99-783ff481ed85}");
 }
@@ -282,13 +286,101 @@ const QUuid ItkMeanKernel::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getSubGroupName() const
+QString ItkMeanKernel::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMeanKernel::getHumanLabel() const
+QString ItkMeanKernel::getHumanLabel() const
 { return "Mean (Kernel) (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkMeanKernel::Pointer ItkMeanKernel::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkMeanKernel> ItkMeanKernel::New()
+{
+  struct make_shared_enabler : public ItkMeanKernel
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMeanKernel::getNameOfClass() const
+{
+  return QString("ItkMeanKernel");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMeanKernel::ClassName()
+{
+  return QString("ItkMeanKernel");
+}
+
+// -----------------------------------------------------------------------------
+void ItkMeanKernel::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkMeanKernel::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMeanKernel::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMeanKernel::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMeanKernel::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMeanKernel::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMeanKernel::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMeanKernel::getSlice() const
+{
+  return m_Slice;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMeanKernel::setKernelSize(const IntVec3Type& value)
+{
+  m_KernelSize = value;
+}
+
+// -----------------------------------------------------------------------------
+IntVec3Type ItkMeanKernel::getKernelSize() const
+{
+  return m_KernelSize;
+}

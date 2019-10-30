@@ -35,9 +35,14 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "ItkConvertArrayTo8BitImage.h"
 
+#include <QtCore/QTextStream>
+
 #include "SIMPLib/ITK/itkSupportConstants.h"
+
 #include "SIMPLib/Common/Constants.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
@@ -46,6 +51,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/SIMPLibVersion.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingVersion.h"
@@ -283,7 +290,7 @@ AbstractFilter::Pointer ItkConvertArrayTo8BitImage::newFilterInstance(bool copyF
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getCompiledLibraryName() const
+QString ItkConvertArrayTo8BitImage::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -291,7 +298,7 @@ const QString ItkConvertArrayTo8BitImage::getCompiledLibraryName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getBrandingString() const
+QString ItkConvertArrayTo8BitImage::getBrandingString() const
 {
   return "ImageProcessing";
 }
@@ -299,7 +306,7 @@ const QString ItkConvertArrayTo8BitImage::getBrandingString() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getFilterVersion() const
+QString ItkConvertArrayTo8BitImage::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -310,14 +317,14 @@ const QString ItkConvertArrayTo8BitImage::getFilterVersion() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getGroupName() const
+QString ItkConvertArrayTo8BitImage::getGroupName() const
 { return SIMPL::FilterGroups::Unsupported; }
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkConvertArrayTo8BitImage::getUuid()
+QUuid ItkConvertArrayTo8BitImage::getUuid() const
 {
   return QUuid("{52f9e4c4-4e1c-55a3-a316-30c9e99c1216}");
 }
@@ -325,13 +332,65 @@ const QUuid ItkConvertArrayTo8BitImage::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getSubGroupName() const
+QString ItkConvertArrayTo8BitImage::getSubGroupName() const
 { return "Misc"; }
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkConvertArrayTo8BitImage::getHumanLabel() const
+QString ItkConvertArrayTo8BitImage::getHumanLabel() const
 { return "Convert Array to 8 Bit Image (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkConvertArrayTo8BitImage::Pointer ItkConvertArrayTo8BitImage::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkConvertArrayTo8BitImage> ItkConvertArrayTo8BitImage::New()
+{
+  struct make_shared_enabler : public ItkConvertArrayTo8BitImage
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkConvertArrayTo8BitImage::getNameOfClass() const
+{
+  return QString("ItkConvertArrayTo8BitImage");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkConvertArrayTo8BitImage::ClassName()
+{
+  return QString("ItkConvertArrayTo8BitImage");
+}
+
+// -----------------------------------------------------------------------------
+void ItkConvertArrayTo8BitImage::setSelectedArrayPath(const DataArrayPath& value)
+{
+  m_SelectedArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkConvertArrayTo8BitImage::getSelectedArrayPath() const
+{
+  return m_SelectedArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkConvertArrayTo8BitImage::setNewArrayArrayName(const QString& value)
+{
+  m_NewArrayArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkConvertArrayTo8BitImage::getNewArrayArrayName() const
+{
+  return m_NewArrayArrayName;
+}

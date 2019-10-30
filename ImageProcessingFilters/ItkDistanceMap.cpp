@@ -43,6 +43,9 @@
 #include "SIMPLib/Common/TemplateHelpers.h"
 #include "SIMPLib/Common/TemplateHelpers.hpp"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
+
 #include "ItkBridge.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -314,27 +317,27 @@ AbstractFilter::Pointer FindMaxima::newFilterInstance(bool copyFilterParameters)
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getCompiledLibraryName() const
+QString FindMaxima::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getGroupName() const
+QString FindMaxima::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getSubGroupName() const
+QString FindMaxima::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString FindMaxima::getHumanLabel() const
+QString FindMaxima::getHumanLabel() const
 { return "Find Maxima (ImageProcessing)"; }
 

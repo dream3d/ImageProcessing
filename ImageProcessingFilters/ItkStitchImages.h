@@ -33,12 +33,14 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #pragma once
 
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/DataArrays/StringDataArray.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -54,69 +56,148 @@
 class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkStitchImages)
+    PYB11_FILTER_NEW_MACRO(ItkStitchImages)
+    PYB11_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    PYB11_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
+    PYB11_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
+    PYB11_FILTER_PARAMETER(DataArrayPath, StitchedVolumeDataContainerName)
+    PYB11_FILTER_PARAMETER(QString, StitchedImagesArrayName)
+    PYB11_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
     PYB11_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
     PYB11_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
     PYB11_PROPERTY(DataArrayPath StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
     PYB11_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
     PYB11_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkStitchImages)
-    SIMPL_FILTER_NEW_MACRO(ItkStitchImages)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkStitchImages, AbstractFilter)
+    using Self = ItkStitchImages;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkStitchImages> New();
+
+    /**
+     * @brief Returns the name of the class for ItkStitchImages
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkStitchImages
+     */
+    static QString ClassName();
 
     ~ItkStitchImages() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
+    /**
+     * @brief Setter property for AttributeMatrixName
+     */
+    void setAttributeMatrixName(const DataArrayPath& value);
+    /**
+     * @brief Getter property for AttributeMatrixName
+     * @return Value of AttributeMatrixName
+     */
+    DataArrayPath getAttributeMatrixName() const;
+
     Q_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
+    /**
+     * @brief Setter property for StitchedCoordinatesArrayPath
+     */
+    void setStitchedCoordinatesArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for StitchedCoordinatesArrayPath
+     * @return Value of StitchedCoordinatesArrayPath
+     */
+    DataArrayPath getStitchedCoordinatesArrayPath() const;
+
     Q_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
+    /**
+     * @brief Setter property for AttributeArrayNamesPath
+     */
+    void setAttributeArrayNamesPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for AttributeArrayNamesPath
+     * @return Value of AttributeArrayNamesPath
+     */
+    DataArrayPath getAttributeArrayNamesPath() const;
+
     Q_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, StitchedVolumeDataContainerName)
+    /**
+     * @brief Setter property for StitchedVolumeDataContainerName
+     */
+    void setStitchedVolumeDataContainerName(const DataArrayPath& value);
+    /**
+     * @brief Getter property for StitchedVolumeDataContainerName
+     * @return Value of StitchedVolumeDataContainerName
+     */
+    DataArrayPath getStitchedVolumeDataContainerName() const;
+
     Q_PROPERTY(DataArrayPath StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
 
-    SIMPL_FILTER_PARAMETER(QString, StitchedImagesArrayName)
+    /**
+     * @brief Setter property for StitchedImagesArrayName
+     */
+    void setStitchedImagesArrayName(const QString& value);
+    /**
+     * @brief Getter property for StitchedImagesArrayName
+     * @return Value of StitchedImagesArrayName
+     */
+    QString getStitchedImagesArrayName() const;
+
     Q_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
 
-    SIMPL_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
+    /**
+     * @brief Setter property for StitchedAttributeMatrixName
+     */
+    void setStitchedAttributeMatrixName(const QString& value);
+    /**
+     * @brief Getter property for StitchedAttributeMatrixName
+     * @return Value of StitchedAttributeMatrixName
+     */
+    QString getStitchedAttributeMatrixName() const;
+
     Q_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -188,10 +269,21 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
 
 
   private:
-    DEFINE_DATAARRAY_WEAKPTR(ImageProcessingConstants::DefaultPixelType, SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(float, StitchedCoordinates)
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_SelectedCellArrayPtr;
+
+    std::weak_ptr<DataArray<float>> m_StitchedCoordinatesPtr;
+    float* m_StitchedCoordinates = nullptr;
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_StitchedImageArrayPtr;
+    ImageProcessingConstants::DefaultPixelType* m_StitchedImageArray = nullptr;
+
+    DataArrayPath m_AttributeMatrixName = {};
+    DataArrayPath m_StitchedCoordinatesArrayPath = {};
+    DataArrayPath m_AttributeArrayNamesPath = {};
+    DataArrayPath m_StitchedVolumeDataContainerName = {};
+    QString m_StitchedImagesArrayName = {};
+    QString m_StitchedAttributeMatrixName = {};
+
     StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, StitchedImageArray)
 
   public:
     ItkStitchImages(const ItkStitchImages&) = delete; // Copy Constructor Not Implemented

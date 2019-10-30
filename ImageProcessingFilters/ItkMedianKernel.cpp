@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkMedianKernel.h"
 
 #include <QtCore/QString>
@@ -46,6 +48,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -241,21 +245,21 @@ AbstractFilter::Pointer ItkMedianKernel::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getCompiledLibraryName() const
+QString ItkMedianKernel::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getGroupName() const
+QString ItkMedianKernel::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkMedianKernel::getUuid()
+QUuid ItkMedianKernel::getUuid() const
 {
   return QUuid("{303cc321-df55-5bb9-b3a4-22d490b728e7}");
 }
@@ -263,13 +267,101 @@ const QUuid ItkMedianKernel::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getSubGroupName() const
+QString ItkMedianKernel::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkMedianKernel::getHumanLabel() const
+QString ItkMedianKernel::getHumanLabel() const
 { return "Median (Kernel) (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkMedianKernel::Pointer ItkMedianKernel::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkMedianKernel> ItkMedianKernel::New()
+{
+  struct make_shared_enabler : public ItkMedianKernel
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMedianKernel::getNameOfClass() const
+{
+  return QString("ItkMedianKernel");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMedianKernel::ClassName()
+{
+  return QString("ItkMedianKernel");
+}
+
+// -----------------------------------------------------------------------------
+void ItkMedianKernel::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkMedianKernel::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMedianKernel::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkMedianKernel::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMedianKernel::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMedianKernel::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMedianKernel::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkMedianKernel::getSlice() const
+{
+  return m_Slice;
+}
+
+// -----------------------------------------------------------------------------
+void ItkMedianKernel::setKernelSize(const IntVec3Type& value)
+{
+  m_KernelSize = value;
+}
+
+// -----------------------------------------------------------------------------
+IntVec3Type ItkMedianKernel::getKernelSize() const
+{
+  return m_KernelSize;
+}

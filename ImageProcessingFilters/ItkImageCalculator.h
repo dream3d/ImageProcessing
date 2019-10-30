@@ -34,11 +34,13 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #pragma once
 
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -54,61 +56,120 @@
 class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkImageCalculator)
+    PYB11_FILTER_NEW_MACRO(ItkImageCalculator)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath1)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath2)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
+    PYB11_FILTER_PARAMETER(unsigned int, Operator)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath1 READ getSelectedCellArrayPath1 WRITE setSelectedCellArrayPath1)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath2 READ getSelectedCellArrayPath2 WRITE setSelectedCellArrayPath2)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkImageCalculator)
-    SIMPL_FILTER_NEW_MACRO(ItkImageCalculator)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkImageCalculator, AbstractFilter)
+    using Self = ItkImageCalculator;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkImageCalculator> New();
+
+    /**
+     * @brief Returns the name of the class for ItkImageCalculator
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkImageCalculator
+     */
+    static QString ClassName();
 
     ~ItkImageCalculator() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath1)
+    /**
+     * @brief Setter property for SelectedCellArrayPath1
+     */
+    void setSelectedCellArrayPath1(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath1
+     * @return Value of SelectedCellArrayPath1
+     */
+    DataArrayPath getSelectedCellArrayPath1() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath1 READ getSelectedCellArrayPath1 WRITE setSelectedCellArrayPath1)
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath2)
+    /**
+     * @brief Setter property for SelectedCellArrayPath2
+     */
+    void setSelectedCellArrayPath2(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath2
+     * @return Value of SelectedCellArrayPath2
+     */
+    DataArrayPath getSelectedCellArrayPath2() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath2 READ getSelectedCellArrayPath2 WRITE setSelectedCellArrayPath2)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
-    SIMPL_FILTER_PARAMETER(unsigned int, Operator)
+    /**
+     * @brief Setter property for Operator
+     */
+    void setOperator(unsigned int value);
+    /**
+     * @brief Getter property for Operator
+     * @return Value of Operator
+     */
+    unsigned int getOperator() const;
+
     Q_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -180,10 +241,17 @@ class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
 
 
   private:
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_SelectedCellArray1Ptr;
+    ImageProcessingConstants::DefaultPixelType* m_SelectedCellArray1 = nullptr;
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_SelectedCellArray2Ptr;
+    ImageProcessingConstants::DefaultPixelType* m_SelectedCellArray2 = nullptr;
+    std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
+    ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray1)
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, SelectedCellArray2)
-    DEFINE_DATAARRAY_VARIABLE(ImageProcessingConstants::DefaultPixelType, NewCellArray)
+    DataArrayPath m_SelectedCellArrayPath1 = {};
+    DataArrayPath m_SelectedCellArrayPath2 = {};
+    QString m_NewCellArrayName = {};
+    unsigned int m_Operator = {};
 
   public:
     ItkImageCalculator(const ItkImageCalculator&) = delete; // Copy Constructor Not Implemented

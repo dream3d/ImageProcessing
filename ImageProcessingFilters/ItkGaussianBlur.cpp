@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkGaussianBlur.h"
 
 #include "itkGaussianBlurImageFunction.h"
@@ -46,6 +48,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -238,21 +242,21 @@ AbstractFilter::Pointer ItkGaussianBlur::newFilterInstance(bool copyFilterParame
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getCompiledLibraryName() const
+QString ItkGaussianBlur::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getGroupName() const
+QString ItkGaussianBlur::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkGaussianBlur::getUuid()
+QUuid ItkGaussianBlur::getUuid() const
 {
   return QUuid("{b09afbe3-8483-59ef-b0cd-3dcdaf313f37}");
 }
@@ -260,13 +264,77 @@ const QUuid ItkGaussianBlur::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getSubGroupName() const
+QString ItkGaussianBlur::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkGaussianBlur::getHumanLabel() const
+QString ItkGaussianBlur::getHumanLabel() const
 { return "Gaussian Blur (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkGaussianBlur::Pointer ItkGaussianBlur::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkGaussianBlur> ItkGaussianBlur::New()
+{
+  struct make_shared_enabler : public ItkGaussianBlur
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGaussianBlur::getNameOfClass() const
+{
+  return QString("ItkGaussianBlur");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGaussianBlur::ClassName()
+{
+  return QString("ItkGaussianBlur");
+}
+
+// -----------------------------------------------------------------------------
+void ItkGaussianBlur::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkGaussianBlur::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkGaussianBlur::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkGaussianBlur::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkGaussianBlur::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkGaussianBlur::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}

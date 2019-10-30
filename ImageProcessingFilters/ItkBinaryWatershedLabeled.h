@@ -35,12 +35,14 @@
 #pragma once
 
 //#include <vector>
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/DataArrays/IDataArray.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -56,57 +58,106 @@
 class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkBinaryWatershedLabeled SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkBinaryWatershedLabeled)
+    PYB11_FILTER_NEW_MACRO(ItkBinaryWatershedLabeled)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    PYB11_FILTER_PARAMETER(float, PeakTolerance)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkBinaryWatershedLabeled)
-    SIMPL_FILTER_NEW_MACRO(ItkBinaryWatershedLabeled)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkBinaryWatershedLabeled, AbstractFilter)
+    using Self = ItkBinaryWatershedLabeled;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkBinaryWatershedLabeled> New();
+
+    /**
+     * @brief Returns the name of the class for ItkBinaryWatershedLabeled
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkBinaryWatershedLabeled
+     */
+    static QString ClassName();
 
     ~ItkBinaryWatershedLabeled() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    /**
+     * @brief Setter property for SelectedCellArrayPath
+     */
+    void setSelectedCellArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath
+     * @return Value of SelectedCellArrayPath
+     */
+    DataArrayPath getSelectedCellArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    SIMPL_FILTER_PARAMETER(float, PeakTolerance)
+    /**
+     * @brief Setter property for PeakTolerance
+     */
+    void setPeakTolerance(float value);
+    /**
+     * @brief Getter property for PeakTolerance
+     * @return Value of PeakTolerance
+     */
+    float getPeakTolerance() const;
+
     Q_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -180,8 +231,14 @@ class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
 
 
   private:
-    DEFINE_DATAARRAY_VARIABLE(bool, SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(uint32_t, NewCellArray)
+    std::weak_ptr<DataArray<bool>> m_SelectedCellArrayPtr;
+    bool* m_SelectedCellArray = nullptr;
+    std::weak_ptr<DataArray<uint32_t>> m_NewCellArrayPtr;
+    uint32_t* m_NewCellArray = nullptr;
+
+    DataArrayPath m_SelectedCellArrayPath = {};
+    float m_PeakTolerance = {};
+    QString m_NewCellArrayName = {};
 
   public:
     ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&) = delete; // Copy Constructor Not Implemented

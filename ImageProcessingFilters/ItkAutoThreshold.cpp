@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkAutoThreshold.h"
 
 //histogram calculation
@@ -64,6 +66,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -450,21 +454,21 @@ AbstractFilter::Pointer ItkAutoThreshold::newFilterInstance(bool copyFilterParam
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getCompiledLibraryName() const
+QString ItkAutoThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getGroupName() const
+QString ItkAutoThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkAutoThreshold::getUuid()
+QUuid ItkAutoThreshold::getUuid() const
 {
   return QUuid("{b1c401e4-cb40-574d-a663-2170b5a7cdaa}");
 }
@@ -472,13 +476,113 @@ const QUuid ItkAutoThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getSubGroupName() const
+QString ItkAutoThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkAutoThreshold::getHumanLabel() const
+QString ItkAutoThreshold::getHumanLabel() const
 { return "Threshold Image (Auto) (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkAutoThreshold::Pointer ItkAutoThreshold::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkAutoThreshold> ItkAutoThreshold::New()
+{
+  struct make_shared_enabler : public ItkAutoThreshold
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAutoThreshold::getNameOfClass() const
+{
+  return QString("ItkAutoThreshold");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAutoThreshold::ClassName()
+{
+  return QString("ItkAutoThreshold");
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkAutoThreshold::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAutoThreshold::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkAutoThreshold::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setSlice(bool value)
+{
+  m_Slice = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkAutoThreshold::getSlice() const
+{
+  return m_Slice;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setMethod(unsigned int value)
+{
+  m_Method = value;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int ItkAutoThreshold::getMethod() const
+{
+  return m_Method;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAutoThreshold::setManualParameter(int value)
+{
+  m_ManualParameter = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkAutoThreshold::getManualParameter() const
+{
+  return m_ManualParameter;
+}

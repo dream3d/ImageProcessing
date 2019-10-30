@@ -1,5 +1,4 @@
 /* ============================================================================
-#include "SIMPLib/Geometry/ImageGeom.h"
  * Copyright (c) 2014 William Lenthe
  * Copyright (c) 2014 DREAM3D Consortium
  * All rights reserved.
@@ -33,13 +32,18 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "AlignSectionsPhaseCorrelation.h"
 
 #include <fstream>
 
 #include <QtCore/QString>
 
+#include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/Common/TemplateHelpers.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ItkBridge.h"
@@ -244,7 +248,7 @@ void AlignSectionsPhaseCorrelation::preflight()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName() const
+QString AlignSectionsPhaseCorrelation::getCompiledLibraryName() const
 {
   return ImageProcessingConstants::ImageProcessingBaseName;
 }
@@ -252,7 +256,7 @@ const QString AlignSectionsPhaseCorrelation::getCompiledLibraryName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getGroupName() const
+QString AlignSectionsPhaseCorrelation::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -260,7 +264,7 @@ const QString AlignSectionsPhaseCorrelation::getGroupName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getHumanLabel() const
+QString AlignSectionsPhaseCorrelation::getHumanLabel() const
 {
   return "AlignSectionsPhaseCorrelation";
 }
@@ -268,7 +272,7 @@ const QString AlignSectionsPhaseCorrelation::getHumanLabel() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkAlignSectionsPhaseCorrelation::getUuid()
+QUuid ItkAlignSectionsPhaseCorrelation::getUuid() const
 {
   return QUuid("{b71888cb-b877-5522-b0f1-49ae49c6e695}");
 }
@@ -276,7 +280,7 @@ const QUuid ItkAlignSectionsPhaseCorrelation::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString AlignSectionsPhaseCorrelation::getSubGroupName() const
+QString AlignSectionsPhaseCorrelation::getSubGroupName() const
 {
   return "Misc";
 }
@@ -389,11 +393,63 @@ AbstractFilter::Pointer AlignSectionsPhaseCorrelation::newFilterInstance(bool co
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
-    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
+    //    filter->setOutputFile(getOutputFile());
+    //    filter->setZStartIndex(getZStartIndex());
+    //    filter->setZEndIndex(getZEndIndex());
+    //    filter->setZResolution(getZResolution());
   }
   return filter;
 }
 
+// -----------------------------------------------------------------------------
+ItkAlignSectionsPhaseCorrelation::Pointer ItkAlignSectionsPhaseCorrelation::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<AlignSectionsPhaseCorrelation> ItkAlignSectionsPhaseCorrelation::New()
+{
+  struct make_shared_enabler : public AlignSectionsPhaseCorrelation
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAlignSectionsPhaseCorrelation::getNameOfClass() const
+{
+  return QString("AlignSectionsPhaseCorrelation");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAlignSectionsPhaseCorrelation::ClassName()
+{
+  return QString("AlignSectionsPhaseCorrelation");
+}
+
+// -----------------------------------------------------------------------------
+void ItkAlignSectionsPhaseCorrelation::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkAlignSectionsPhaseCorrelation::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkAlignSectionsPhaseCorrelation::setInputFile(const QString& value)
+{
+  m_InputFile = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkAlignSectionsPhaseCorrelation::getInputFile() const
+{
+  return m_InputFile;
+}

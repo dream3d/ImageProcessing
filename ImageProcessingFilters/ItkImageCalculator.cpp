@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkImageCalculator.h"
 
 #include "itkAbsoluteValueDifferenceImageFilter.h"
@@ -55,6 +57,8 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
@@ -381,10 +385,10 @@ AbstractFilter::Pointer ItkImageCalculator::newFilterInstance(bool copyFilterPar
      * may need to copy each filter parameter explicitly plus any other instance variables that
      * are needed into the new instance. Here is some example code from ReadH5Ebsd
      */
-    //    SIMPL_COPY_INSTANCEVAR(OutputFile)
-    //    SIMPL_COPY_INSTANCEVAR(ZStartIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZEndIndex)
-    //    SIMPL_COPY_INSTANCEVAR(ZResolution)
+    //    filter->setOutputFile(getOutputFile());
+    //    filter->setZStartIndex(getZStartIndex());
+    //    filter->setZEndIndex(getZEndIndex());
+    //    filter->setZResolution(getZResolution());
   }
   return filter;
 }
@@ -393,21 +397,21 @@ AbstractFilter::Pointer ItkImageCalculator::newFilterInstance(bool copyFilterPar
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getCompiledLibraryName() const
+QString ItkImageCalculator::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getGroupName() const
+QString ItkImageCalculator::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkImageCalculator::getUuid()
+QUuid ItkImageCalculator::getUuid() const
 {
   return QUuid("{d0916970-0294-5970-aa76-efbee321b56f}");
 }
@@ -415,13 +419,89 @@ const QUuid ItkImageCalculator::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getSubGroupName() const
+QString ItkImageCalculator::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageCalculator::getHumanLabel() const
+QString ItkImageCalculator::getHumanLabel() const
 { return "Image Calculator (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkImageCalculator::Pointer ItkImageCalculator::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkImageCalculator> ItkImageCalculator::New()
+{
+  struct make_shared_enabler : public ItkImageCalculator
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageCalculator::getNameOfClass() const
+{
+  return QString("ItkImageCalculator");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageCalculator::ClassName()
+{
+  return QString("ItkImageCalculator");
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageCalculator::setSelectedCellArrayPath1(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath1 = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkImageCalculator::getSelectedCellArrayPath1() const
+{
+  return m_SelectedCellArrayPath1;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageCalculator::setSelectedCellArrayPath2(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath2 = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkImageCalculator::getSelectedCellArrayPath2() const
+{
+  return m_SelectedCellArrayPath2;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageCalculator::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageCalculator::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageCalculator::setOperator(unsigned int value)
+{
+  m_Operator = value;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int ItkImageCalculator::getOperator() const
+{
+  return m_Operator;
+}

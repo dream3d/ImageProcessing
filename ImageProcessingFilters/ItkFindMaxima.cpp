@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkFindMaxima.h"
 
 #include "SIMPLib/Common/TemplateHelpers.h"
@@ -43,6 +45,8 @@
 #include "SIMPLib/FilterParameters/StringFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 // ImageProcessing Plugin
 #include "ImageProcessing/ImageProcessingConstants.h"
@@ -322,21 +326,21 @@ AbstractFilter::Pointer ItkFindMaxima::newFilterInstance(bool copyFilterParamete
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getCompiledLibraryName() const
+QString ItkFindMaxima::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getGroupName() const
+QString ItkFindMaxima::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkFindMaxima::getUuid()
+QUuid ItkFindMaxima::getUuid() const
 {
   return QUuid("{d2ebf8df-1469-5b77-bfcd-e9e99344749e}");
 }
@@ -344,13 +348,77 @@ const QUuid ItkFindMaxima::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getSubGroupName() const
+QString ItkFindMaxima::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkFindMaxima::getHumanLabel() const
+QString ItkFindMaxima::getHumanLabel() const
 { return "Find Maxima (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkFindMaxima::Pointer ItkFindMaxima::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkFindMaxima> ItkFindMaxima::New()
+{
+  struct make_shared_enabler : public ItkFindMaxima
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkFindMaxima::getNameOfClass() const
+{
+  return QString("ItkFindMaxima");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkFindMaxima::ClassName()
+{
+  return QString("ItkFindMaxima");
+}
+
+// -----------------------------------------------------------------------------
+void ItkFindMaxima::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkFindMaxima::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkFindMaxima::setTolerance(float value)
+{
+  m_Tolerance = value;
+}
+
+// -----------------------------------------------------------------------------
+float ItkFindMaxima::getTolerance() const
+{
+  return m_Tolerance;
+}
+
+// -----------------------------------------------------------------------------
+void ItkFindMaxima::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkFindMaxima::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}

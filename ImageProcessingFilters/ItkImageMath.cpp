@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkImageMath.h"
 
 #include "SIMPLib/ITK/itkBridge.h"
@@ -58,6 +60,8 @@
 #include "SIMPLib/FilterParameters/LinkedPathCreationFilterParameter.h"
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 #include "ImageProcessing/ImageProcessingHelpers.hpp"
@@ -395,21 +399,21 @@ AbstractFilter::Pointer ItkImageMath::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getCompiledLibraryName() const
+QString ItkImageMath::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getGroupName() const
+QString ItkImageMath::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkImageMath::getUuid()
+QUuid ItkImageMath::getUuid() const
 {
   return QUuid("{57b7367b-c4f1-56e0-b47f-e61418479b03}");
 }
@@ -417,13 +421,101 @@ const QUuid ItkImageMath::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getSubGroupName() const
+QString ItkImageMath::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkImageMath::getHumanLabel() const
+QString ItkImageMath::getHumanLabel() const
 { return "Image Math (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkImageMath::Pointer ItkImageMath::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkImageMath> ItkImageMath::New()
+{
+  struct make_shared_enabler : public ItkImageMath
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageMath::getNameOfClass() const
+{
+  return QString("ItkImageMath");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageMath::ClassName()
+{
+  return QString("ItkImageMath");
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageMath::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkImageMath::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageMath::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkImageMath::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageMath::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkImageMath::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageMath::setOperator(unsigned int value)
+{
+  m_Operator = value;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int ItkImageMath::getOperator() const
+{
+  return m_Operator;
+}
+
+// -----------------------------------------------------------------------------
+void ItkImageMath::setValue(double value)
+{
+  m_Value = value;
+}
+
+// -----------------------------------------------------------------------------
+double ItkImageMath::getValue() const
+{
+  return m_Value;
+}

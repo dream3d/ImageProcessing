@@ -43,7 +43,10 @@
 #include <itkPNGImageIOFactory.h>
 #include <itkTIFFImageIOFactory.h>
 
+#include <QtCore/QTextStream>
+
 #include "SIMPLib/Filtering/FilterFactory.hpp"
+
 #include "SIMPLib/Filtering/FilterManager.h"
 #include "SIMPLib/ITK/itkSupportConstants.h"
 

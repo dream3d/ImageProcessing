@@ -32,6 +32,8 @@
  *                              FA8650-10-D-5210
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <memory>
+
 #include "ItkManualThreshold.h"
 
 #include "SIMPLib/Common/Constants.h"
@@ -44,6 +46,8 @@
 #include "SIMPLib/FilterParameters/SeparatorFilterParameter.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/ITK/itkBridge.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 //thresholding filter
 #include "itkBinaryThresholdImageFilter.h"
@@ -233,21 +237,21 @@ AbstractFilter::Pointer ItkManualThreshold::newFilterInstance(bool copyFilterPar
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getCompiledLibraryName() const
+QString ItkManualThreshold::getCompiledLibraryName() const
 {return ImageProcessingConstants::ImageProcessingBaseName;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getGroupName() const
+QString ItkManualThreshold::getGroupName() const
 {return SIMPL::FilterGroups::Unsupported;}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ItkManualThreshold::getUuid()
+QUuid ItkManualThreshold::getUuid() const
 {
   return QUuid("{8a8d3481-34d4-5845-b41f-f89e1d7448b7}");
 }
@@ -255,13 +259,89 @@ const QUuid ItkManualThreshold::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getSubGroupName() const
+QString ItkManualThreshold::getSubGroupName() const
 {return "Misc";}
 
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ItkManualThreshold::getHumanLabel() const
+QString ItkManualThreshold::getHumanLabel() const
 { return "Threshold Image (Manual - Single Level) (ImageProcessing)"; }
 
+// -----------------------------------------------------------------------------
+ItkManualThreshold::Pointer ItkManualThreshold::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ItkManualThreshold> ItkManualThreshold::New()
+{
+  struct make_shared_enabler : public ItkManualThreshold
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkManualThreshold::getNameOfClass() const
+{
+  return QString("ItkManualThreshold");
+}
+
+// -----------------------------------------------------------------------------
+QString ItkManualThreshold::ClassName()
+{
+  return QString("ItkManualThreshold");
+}
+
+// -----------------------------------------------------------------------------
+void ItkManualThreshold::setSelectedCellArrayPath(const DataArrayPath& value)
+{
+  m_SelectedCellArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ItkManualThreshold::getSelectedCellArrayPath() const
+{
+  return m_SelectedCellArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ItkManualThreshold::setNewCellArrayName(const QString& value)
+{
+  m_NewCellArrayName = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ItkManualThreshold::getNewCellArrayName() const
+{
+  return m_NewCellArrayName;
+}
+
+// -----------------------------------------------------------------------------
+void ItkManualThreshold::setSaveAsNewArray(bool value)
+{
+  m_SaveAsNewArray = value;
+}
+
+// -----------------------------------------------------------------------------
+bool ItkManualThreshold::getSaveAsNewArray() const
+{
+  return m_SaveAsNewArray;
+}
+
+// -----------------------------------------------------------------------------
+void ItkManualThreshold::setManualParameter(int value)
+{
+  m_ManualParameter = value;
+}
+
+// -----------------------------------------------------------------------------
+int ItkManualThreshold::getManualParameter() const
+{
+  return m_ManualParameter;
+}

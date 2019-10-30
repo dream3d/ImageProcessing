@@ -35,12 +35,16 @@
 #pragma once
 
 //#include <vector>
+#include <memory>
+
 #include <QtCore/QString>
 
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
-#include "SIMPLib/DataArrays/IDataArray.h"
-#include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
+#include "SIMPLib/Filtering/AbstractFilter.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
+
+class IDataArray;
+using IDataArrayWkPtrType = std::weak_ptr<IDataArray>;
 
 #include "ImageProcessing/ImageProcessingConstants.h"
 
@@ -58,57 +62,106 @@
 class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 {
     Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
     PYB11_CREATE_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)
+    PYB11_SHARED_POINTERS(ItkFindMaxima)
+    PYB11_FILTER_NEW_MACRO(ItkFindMaxima)
+    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    PYB11_FILTER_PARAMETER(float, Tolerance)
+    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
+#endif
 
   public:
-    SIMPL_SHARED_POINTERS(ItkFindMaxima)
-    SIMPL_FILTER_NEW_MACRO(ItkFindMaxima)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ItkFindMaxima, AbstractFilter)
+    using Self = ItkFindMaxima;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<ItkFindMaxima> New();
+
+    /**
+     * @brief Returns the name of the class for ItkFindMaxima
+     */
+    QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for ItkFindMaxima
+     */
+    static QString ClassName();
 
     ~ItkFindMaxima() override;
 
-    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
+    /**
+     * @brief Setter property for SelectedCellArrayPath
+     */
+    void setSelectedCellArrayPath(const DataArrayPath& value);
+    /**
+     * @brief Getter property for SelectedCellArrayPath
+     * @return Value of SelectedCellArrayPath
+     */
+    DataArrayPath getSelectedCellArrayPath() const;
+
     Q_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
 
-    SIMPL_FILTER_PARAMETER(float, Tolerance)
+    /**
+     * @brief Setter property for Tolerance
+     */
+    void setTolerance(float value);
+    /**
+     * @brief Getter property for Tolerance
+     * @return Value of Tolerance
+     */
+    float getTolerance() const;
+
     Q_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
 
-    SIMPL_FILTER_PARAMETER(QString, NewCellArrayName)
+    /**
+     * @brief Setter property for NewCellArrayName
+     */
+    void setNewCellArrayName(const QString& value);
+    /**
+     * @brief Getter property for NewCellArrayName
+     * @return Value of NewCellArrayName
+     */
+    QString getNewCellArrayName() const;
+
     Q_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
 
     /**
      * @brief getCompiledLibraryName Returns the name of the Library that this filter is a part of
      * @return
      */
-    const QString getCompiledLibraryName() const override;
+    QString getCompiledLibraryName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI. It should be readable
     * and understandable by humans.
     */
-    const QString getHumanLabel() const override;
+    QString getHumanLabel() const override;
 
     /**
     * @brief This returns the group that the filter belonds to. You can select
     * a different group if you want. The string returned here will be displayed
     * in the GUI for the filter
     */
-    const QString getGroupName() const override;
+    QString getGroupName() const override;
 
     /**
     * @brief This returns a string that is displayed in the GUI and helps to sort the filters into
     * a subgroup. It should be readable and understandable by humans.
     */
-    const QString getSubGroupName() const override;
+    QString getSubGroupName() const override;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    const QUuid getUuid() override;
+    QUuid getUuid() const override;
 
     /**
     * @brief This method will instantiate all the end user settable options/parameters
@@ -180,8 +233,15 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 
 
   private:
-    DEFINE_IDATAARRAY_VARIABLE(SelectedCellArray)
-    DEFINE_DATAARRAY_VARIABLE(bool, NewCellArray)
+    IDataArrayWkPtrType m_SelectedCellArrayPtr;
+    void* m_SelectedCellArray = nullptr;
+
+    std::weak_ptr<DataArray<bool>> m_NewCellArrayPtr;
+    bool* m_NewCellArray = nullptr;
+
+    DataArrayPath m_SelectedCellArrayPath = {};
+    float m_Tolerance = {};
+    QString m_NewCellArrayName = {};
 
   public:
     ItkFindMaxima(const ItkFindMaxima&) = delete;  // Copy Constructor Not Implemented
