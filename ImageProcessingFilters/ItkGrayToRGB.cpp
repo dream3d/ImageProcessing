@@ -222,12 +222,12 @@ void ItkGrayToRGB::dataCheck()
   {
     return;
   }
-  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getRedArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray>(this, getRedArrayPath().getDataArrayName(), 80000);
   if(getErrorCode() < 0)
   {
     return;
   }
-  ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+  ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom>(this);
   if(getErrorCode() < 0 || nullptr == image.get())
   {
     return;

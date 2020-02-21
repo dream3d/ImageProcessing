@@ -127,7 +127,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
   }
   else
   {
-    IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, getSelectedArrayPath());
+    IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray>(this, getSelectedArrayPath());
     if(getErrorCode() < 0)
     {
       return;
@@ -141,7 +141,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
       }
       std::vector<size_t> dims(1, 1);
       tempPath.update(m_SelectedArrayPath.getDataContainerName(), m_SelectedArrayPath.getAttributeMatrixName(), getNewArrayArrayName() );
-      m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims, "", DataArrayID31);
+      m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>>(this, tempPath, 0, dims, "", DataArrayID31);
       if(nullptr != m_NewArrayPtr.lock())                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
       { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
       if(getErrorCode() < 0)
@@ -149,7 +149,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
         return;
       }
 
-      ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+      ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getSelectedArrayPath().getDataContainerName())->getPrereqGeometry<ImageGeom>(this);
       if(getErrorCode() < 0 || nullptr == image.get())
       {
         return;

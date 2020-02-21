@@ -131,7 +131,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     for(int i = 0; i < names.size(); i++)
     {
       tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-      IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray, AbstractFilter>(this, tempPath);
+      IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray>(this, tempPath);
       if(getErrorCode() < 0)
       {
         return;
@@ -146,7 +146,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     }
 
 
-    ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+    ImageGeom::Pointer image = getDataContainerArray()->getDataContainer(getAttributeMatrixName().getDataContainerName())->getPrereqGeometry<ImageGeom>(this);
     if(getErrorCode() < 0 || nullptr == image.get())
     {
       return;
@@ -240,7 +240,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
 
     m_NewArrayArrayName = names[i] + "8bit";
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), getNewArrayArrayName() );
-    m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>, AbstractFilter, uint8_t>(this, tempPath, 0, dims, "", DataArrayID31);
+    m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>>(this, tempPath, 0, dims, "", DataArrayID31);
     if(nullptr != m_NewArrayPtr.lock())                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
     { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
