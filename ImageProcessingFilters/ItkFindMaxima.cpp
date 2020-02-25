@@ -203,7 +203,7 @@ void ItkFindMaxima::dataCheck()
   {
     return;
   }
-  IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray<IDataArray>(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
   if(getErrorCode() < 0 || nullptr == redArrayptr.get())
   {
     return;

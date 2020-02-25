@@ -222,7 +222,7 @@ void ItkGrayToRGB::dataCheck()
   {
     return;
   }
-  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray>(this, getRedArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray(this, getRedArrayPath().getDataArrayName(), 80000);
   if(getErrorCode() < 0)
   {
     return;

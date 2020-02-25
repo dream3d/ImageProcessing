@@ -127,7 +127,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
   }
   else
   {
-    IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray>(this, getSelectedArrayPath());
+    IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath(this, getSelectedArrayPath());
     if(getErrorCode() < 0)
     {
       return;

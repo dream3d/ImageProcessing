@@ -237,7 +237,7 @@ void ItkKdTreeKMeans::dataCheck()
     setErrorCondition(-5555, "Must have at least 2 classes");
   }
 
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray>(this, getSelectedCellArrayPath()); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqIDataArrayFromPath(this, getSelectedCellArrayPath()); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(getErrorCode() < 0)
   {
     return;

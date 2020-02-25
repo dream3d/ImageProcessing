@@ -131,7 +131,7 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     for(int i = 0; i < names.size(); i++)
     {
       tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-      IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath<IDataArray>(this, tempPath);
+      IDataArray::Pointer inputData = getDataContainerArray()->getPrereqIDataArrayFromPath(this, tempPath);
       if(getErrorCode() < 0)
       {
         return;

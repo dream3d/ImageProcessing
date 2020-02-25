@@ -212,7 +212,7 @@ void ItkManualThresholdTemplate::dataCheck()
   // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
   DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayArrayPath().getDataContainerName());
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
-  IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer data = am->getPrereqIDataArray(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
   ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom>(this);
   if(getErrorCode() < 0 || nullptr == image.get())
   {
