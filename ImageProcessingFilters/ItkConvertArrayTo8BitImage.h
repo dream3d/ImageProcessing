@@ -184,12 +184,6 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
     */
     void preflight() override;
 
-  signals:
-    void updateFilterParameters(AbstractFilter* filter);
-    void parametersChanged();
-    void preflightAboutToExecute();
-    void preflightExecuted();
-
   protected:
     ItkConvertArrayTo8BitImage();
 
