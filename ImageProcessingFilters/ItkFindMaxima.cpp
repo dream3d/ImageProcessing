@@ -203,19 +203,19 @@ void ItkFindMaxima::dataCheck()
   {
     return;
   }
-  IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer redArrayptr = attrMatrix->getPrereqIDataArray(this, getSelectedCellArrayPath().getDataArrayName(), 80000);
   if(getErrorCode() < 0 || nullptr == redArrayptr.get())
   {
     return;
   }
-  ImageGeom::Pointer image = dataContiner->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+  ImageGeom::Pointer image = dataContiner->getPrereqGeometry<ImageGeom>(this);
   if(getErrorCode() < 0 || nullptr == image.get())
   {
     return;
   }
   //create new boolean array
   tempPath.update(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName() );
-  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>, AbstractFilter, bool>(
+  m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<bool>>(
       this, tempPath, false, compDims);                         /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
