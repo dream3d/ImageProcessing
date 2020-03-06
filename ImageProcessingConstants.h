@@ -35,6 +35,14 @@
 
 #pragma once
 
+#include "itkConfigure.h"
+
+#if defined(ITK_VERSION_MAJOR) && ITK_VERSION_MAJOR == 4
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wself-assign-field"
+#endif
+#endif
 
 #include "itkImage.h"
 #include "itkRGBPixel.h"
@@ -103,3 +111,9 @@ namespace FilterParameterWidgetType
   /*  const QString SomeCustomWidget("SomeCustomWidget"); */
 
 }
+
+//#if defined(ITK_VERSION_MAJOR) && ITK_VERSION_MAJOR == 4
+//#ifdef __clang__
+//#pragma clang diagnostic pop
+//#endif
+//#endif
