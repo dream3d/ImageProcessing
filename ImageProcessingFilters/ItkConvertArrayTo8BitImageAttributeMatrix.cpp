@@ -153,18 +153,6 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
     }
 }
 
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-void ItkConvertArrayTo8BitImageAttributeMatrix::preflight()
-{
-  setInPreflight(true);
-  emit preflightAboutToExecute();
-  emit updateFilterParameters(this);
-  dataCheck();
-  emit preflightExecuted();
-  setInPreflight(false);
-}
 
 // -----------------------------------------------------------------------------
 //

@@ -179,11 +179,6 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
      */
     void execute() override;
 
-    /**
-    * @brief This function runs some sanity checks on the DataContainer and inputs
-    * in an attempt to ensure the filter can process the inputs.
-    */
-    void preflight() override;
 
     /**
      * @brief newFilterInstance Returns a new instance of the filter optionally copying the filter parameters from the
@@ -199,7 +194,7 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
     /**
      * @brief dataCheck Checks for the appropriate parameter values and availability of arrays
      */
-    void dataCheck();
+    void dataCheck() override;
 
     /**
      * @brief Initializes all the private instance variables.
