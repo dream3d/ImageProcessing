@@ -222,12 +222,12 @@ void ItkGrayToRGB::dataCheck()
   {
     return;
   }
-  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getRedArrayPath().getDataArrayName(), 80000);
+  IDataArray::Pointer redArrayptr = redAM->getPrereqIDataArray(this, getRedArrayPath().getDataArrayName(), 80000);
   if(getErrorCode() < 0)
   {
     return;
   }
-  ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+  ImageGeom::Pointer image = redDC->getPrereqGeometry<ImageGeom>(this);
   if(getErrorCode() < 0 || nullptr == image.get())
   {
     return;
@@ -240,20 +240,6 @@ void ItkGrayToRGB::dataCheck()
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-void ItkGrayToRGB::preflight()
-{
-  // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
-  setInPreflight(true); // Set the fact that we are preflighting.
-  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
-  emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
-  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted(); // We are done preflighting this filter
-  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------

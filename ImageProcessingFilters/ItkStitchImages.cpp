@@ -164,7 +164,7 @@ void ItkStitchImages::dataCheck()
   for(int i = 0; i < names.size(); i++)
   {
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-    iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType, AbstractFilter>(this, tempPath, dims);
+    iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType>(this, tempPath, dims);
 
     imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
     if(nullptr == imagePtr)
@@ -174,7 +174,7 @@ void ItkStitchImages::dataCheck()
   }
 
 
-  m_AttributeArrayNamesPtr = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray, AbstractFilter>(this, getAttributeArrayNamesPath(), dims);
+  m_AttributeArrayNamesPtr = getDataContainerArray()->getPrereqArrayFromPath<StringDataArray>(this, getAttributeArrayNamesPath(), dims);
   if(nullptr != m_StitchedCoordinatesPtr.lock())
   {
     if(names.size() != m_StitchedCoordinatesPtr.lock()->getNumberOfTuples() )
@@ -185,7 +185,7 @@ void ItkStitchImages::dataCheck()
   }
 
   dims[0] = 2;
-  m_StitchedCoordinatesPtr = getDataContainerArray()->getPrereqArrayFromPath<FloatArrayType, AbstractFilter>(this, getStitchedCoordinatesArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_StitchedCoordinatesPtr = getDataContainerArray()->getPrereqArrayFromPath<FloatArrayType>(this, getStitchedCoordinatesArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
   if(nullptr != m_StitchedCoordinatesPtr.lock())                              /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
@@ -193,7 +193,7 @@ void ItkStitchImages::dataCheck()
 
   if(getErrorCode() < 0 || nullptr == m) { return; }
 
-  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer<AbstractFilter>(this, getStitchedVolumeDataContainerName(), DataContainerID);
+  DataContainer::Pointer m2 = getDataContainerArray()->createNonPrereqDataContainer(this, getStitchedVolumeDataContainerName(), DataContainerID);
   if(getErrorCode() < 0) { return; }
 
   ImageGeom::Pointer image = ImageGeom::CreateGeometry(SIMPL::Geometry::ImageGeometry);
@@ -216,26 +216,12 @@ void ItkStitchImages::dataCheck()
 
 
   tempPath.update(getStitchedVolumeDataContainerName().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
-  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>, AbstractFilter, ImageProcessingConstants::DefaultPixelType>(
+  m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(
       this, tempPath, 0, dims, "", DataArrayID31);
   if(nullptr != m_StitchedImageArrayPtr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
 
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-void ItkStitchImages::preflight()
-{
-  // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
-  setInPreflight(true); // Set the fact that we are preflighting.
-  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
-  emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
-  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted(); // We are done preflighting this filter
-  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------
@@ -350,7 +336,7 @@ void ItkStitchImages::execute()
   for(size_t i = 0; i < names.size(); i++)
   {
     tempPath.update(getAttributeMatrixName().getDataContainerName(), getAttributeMatrixName().getAttributeMatrixName(), names[i]);
-    iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType, AbstractFilter>(this, tempPath, cDims);
+    iDataArray = getDataContainerArray()->getPrereqArrayFromPath<UInt8ArrayType>(this, tempPath, cDims);
 
     imagePtr = std::dynamic_pointer_cast<UInt8ArrayType>(iDataArray);
 

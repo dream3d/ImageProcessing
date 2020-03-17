@@ -212,8 +212,8 @@ void ItkManualThresholdTemplate::dataCheck()
   // We can safely just get the pointers without checking if they are nullptr because that was effectively done above in the GetPrereqArray call
   DataContainer::Pointer dc = getDataContainerArray()->getPrereqDataContainer(this, getSelectedCellArrayArrayPath().getDataContainerName());
   AttributeMatrix::Pointer am = dc->getPrereqAttributeMatrix(this, getSelectedCellArrayArrayPath().getAttributeMatrixName(), 80000);
-  IDataArray::Pointer data = am->getPrereqIDataArray<IDataArray, AbstractFilter>(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
-  ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom, AbstractFilter>(this);
+  IDataArray::Pointer data = am->getPrereqIDataArray(this, getSelectedCellArrayArrayPath().getDataArrayName(), 80000);
+  ImageGeom::Pointer image = dc->getPrereqGeometry<ImageGeom>(this);
   if(getErrorCode() < 0 || nullptr == image.get())
   {
     return;
@@ -224,20 +224,6 @@ void ItkManualThresholdTemplate::dataCheck()
   {
     m_NewCellArray = m_NewCellArrayPtr.lock()->getVoidPointer(0);
   }
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-void ItkManualThresholdTemplate::preflight()
-{
-  // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
-  setInPreflight(true); // Set the fact that we are preflighting.
-  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
-  emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
-  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted(); // We are done preflighting this filter
-  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------
