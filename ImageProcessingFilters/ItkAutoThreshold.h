@@ -59,23 +59,18 @@ class ImageProcessing_EXPORT ItkAutoThreshold : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkAutoThreshold SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkAutoThreshold SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkAutoThreshold)
     PYB11_FILTER_NEW_MACRO(ItkAutoThreshold)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
-    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
-    PYB11_FILTER_PARAMETER(bool, Slice)
-    PYB11_FILTER_PARAMETER(unsigned int, Method)
-    PYB11_FILTER_PARAMETER(int, ManualParameter)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
     PYB11_PROPERTY(unsigned int Method READ getMethod WRITE setMethod)
     PYB11_PROPERTY(int ManualParameter READ getManualParameter WRITE setManualParameter)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkAutoThreshold;

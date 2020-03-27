@@ -57,19 +57,16 @@ class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkImageCalculator)
     PYB11_FILTER_NEW_MACRO(ItkImageCalculator)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath1)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath2)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
-    PYB11_FILTER_PARAMETER(unsigned int, Operator)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath1 READ getSelectedCellArrayPath1 WRITE setSelectedCellArrayPath1)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath2 READ getSelectedCellArrayPath2 WRITE setSelectedCellArrayPath2)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(unsigned int Operator READ getOperator WRITE setOperator)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkImageCalculator;

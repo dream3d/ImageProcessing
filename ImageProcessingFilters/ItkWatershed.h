@@ -58,19 +58,16 @@ class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkWatershed SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkWatershed SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkWatershed)
     PYB11_FILTER_NEW_MACRO(ItkWatershed)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(QString, FeatureIdsArrayName)
-    PYB11_FILTER_PARAMETER(float, Threshold)
-    PYB11_FILTER_PARAMETER(float, Level)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString FeatureIdsArrayName READ getFeatureIdsArrayName WRITE setFeatureIdsArrayName)
     PYB11_PROPERTY(float Threshold READ getThreshold WRITE setThreshold)
     PYB11_PROPERTY(float Level READ getLevel WRITE setLevel)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkWatershed;

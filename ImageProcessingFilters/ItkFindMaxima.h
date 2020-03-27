@@ -63,17 +63,15 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkFindMaxima)
     PYB11_FILTER_NEW_MACRO(ItkFindMaxima)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(float, Tolerance)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(float Tolerance READ getTolerance WRITE setTolerance)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkFindMaxima;

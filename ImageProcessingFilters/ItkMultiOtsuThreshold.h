@@ -57,21 +57,17 @@ class ImageProcessing_EXPORT ItkMultiOtsuThreshold : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkMultiOtsuThreshold SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkMultiOtsuThreshold SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkMultiOtsuThreshold)
     PYB11_FILTER_NEW_MACRO(ItkMultiOtsuThreshold)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
-    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
-    PYB11_FILTER_PARAMETER(bool, Slice)
-    PYB11_FILTER_PARAMETER(int, Levels)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
     PYB11_PROPERTY(int Levels READ getLevels WRITE setLevels)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkMultiOtsuThreshold;

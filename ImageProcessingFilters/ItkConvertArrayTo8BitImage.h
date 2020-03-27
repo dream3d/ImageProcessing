@@ -62,15 +62,14 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkConvertArrayTo8BitImage SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkConvertArrayTo8BitImage SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkConvertArrayTo8BitImage)
     PYB11_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImage)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
-    PYB11_FILTER_PARAMETER(QString, NewArrayArrayName)
     PYB11_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
     PYB11_PROPERTY(QString NewArrayArrayName READ getNewArrayArrayName WRITE setNewArrayArrayName)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkConvertArrayTo8BitImage;

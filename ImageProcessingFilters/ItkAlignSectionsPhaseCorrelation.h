@@ -52,9 +52,9 @@ using IDataArrayWkPtrType = std::weak_ptr<IDataArray>;
 class AlignSectionsPhaseCorrelation : public AlignSections
 {
     Q_OBJECT
-    //    PYB11_CREATE_BINDINGS(ItkAlignSectionsPhaseCorrelation SUPERCLASS AlignSections)
-    //    PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
-    //    PYB11_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
+    //  PYB11_BEGIN_BINDINGS(ItkAlignSectionsPhaseCorrelation SUPERCLASS AlignSections)
+    //  PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
+    //  PYB11_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
   public:
     using Self = AlignSectionsPhaseCorrelation;
     using Pointer = std::shared_ptr<Self>;

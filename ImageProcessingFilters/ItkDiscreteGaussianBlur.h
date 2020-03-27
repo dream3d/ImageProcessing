@@ -55,19 +55,16 @@ class ImageProcessing_EXPORT ItkDiscreteGaussianBlur : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkDiscreteGaussianBlur SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkDiscreteGaussianBlur SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkDiscreteGaussianBlur)
     PYB11_FILTER_NEW_MACRO(ItkDiscreteGaussianBlur)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
-    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
-    PYB11_FILTER_PARAMETER(float, Stdev)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(float Stdev READ getStdev WRITE setStdev)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkDiscreteGaussianBlur;

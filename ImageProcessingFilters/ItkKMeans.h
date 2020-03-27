@@ -59,21 +59,17 @@ class ImageProcessing_EXPORT ItkKMeans : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkKMeans SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkKMeans SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkKMeans)
     PYB11_FILTER_NEW_MACRO(ItkKMeans)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
-    PYB11_FILTER_PARAMETER(bool, SaveAsNewArray)
-    PYB11_FILTER_PARAMETER(bool, Slice)
-    PYB11_FILTER_PARAMETER(int, Classes)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
     PYB11_PROPERTY(bool SaveAsNewArray READ getSaveAsNewArray WRITE setSaveAsNewArray)
     PYB11_PROPERTY(bool Slice READ getSlice WRITE setSlice)
     PYB11_PROPERTY(int Classes READ getClasses WRITE setClasses)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkKMeans;

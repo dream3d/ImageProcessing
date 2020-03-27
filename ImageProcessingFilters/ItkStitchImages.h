@@ -57,23 +57,18 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkStitchImages)
     PYB11_FILTER_NEW_MACRO(ItkStitchImages)
-    PYB11_FILTER_PARAMETER(DataArrayPath, AttributeMatrixName)
-    PYB11_FILTER_PARAMETER(DataArrayPath, StitchedCoordinatesArrayPath)
-    PYB11_FILTER_PARAMETER(DataArrayPath, AttributeArrayNamesPath)
-    PYB11_FILTER_PARAMETER(DataArrayPath, StitchedVolumeDataContainerName)
-    PYB11_FILTER_PARAMETER(QString, StitchedImagesArrayName)
-    PYB11_FILTER_PARAMETER(QString, StitchedAttributeMatrixName)
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)
     PYB11_PROPERTY(DataArrayPath StitchedCoordinatesArrayPath READ getStitchedCoordinatesArrayPath WRITE setStitchedCoordinatesArrayPath)
     PYB11_PROPERTY(DataArrayPath AttributeArrayNamesPath READ getAttributeArrayNamesPath WRITE setAttributeArrayNamesPath)
     PYB11_PROPERTY(DataArrayPath StitchedVolumeDataContainerName READ getStitchedVolumeDataContainerName WRITE setStitchedVolumeDataContainerName)
     PYB11_PROPERTY(QString StitchedImagesArrayName READ getStitchedImagesArrayName WRITE setStitchedImagesArrayName)
     PYB11_PROPERTY(QString StitchedAttributeMatrixName READ getStitchedAttributeMatrixName WRITE setStitchedAttributeMatrixName)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkStitchImages;

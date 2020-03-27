@@ -59,17 +59,15 @@ class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
 {
     Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-    PYB11_CREATE_BINDINGS(ItkBinaryWatershedLabeled SUPERCLASS AbstractFilter)
+    // Start Python bindings declarations
+    PYB11_BEGIN_BINDINGS(ItkBinaryWatershedLabeled SUPERCLASS AbstractFilter)
     PYB11_SHARED_POINTERS(ItkBinaryWatershedLabeled)
     PYB11_FILTER_NEW_MACRO(ItkBinaryWatershedLabeled)
-    PYB11_FILTER_PARAMETER(DataArrayPath, SelectedCellArrayPath)
-    PYB11_FILTER_PARAMETER(float, PeakTolerance)
-    PYB11_FILTER_PARAMETER(QString, NewCellArrayName)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
     PYB11_PROPERTY(float PeakTolerance READ getPeakTolerance WRITE setPeakTolerance)
     PYB11_PROPERTY(QString NewCellArrayName READ getNewCellArrayName WRITE setNewCellArrayName)
-#endif
+    PYB11_END_BINDINGS()
+    // End Python bindings declarations
 
   public:
     using Self = ItkBinaryWatershedLabeled;
