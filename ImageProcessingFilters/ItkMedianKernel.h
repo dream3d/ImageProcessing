@@ -58,6 +58,7 @@ class ImageProcessing_EXPORT ItkMedianKernel : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkMedianKernel SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkMedianKernel)
     PYB11_FILTER_NEW_MACRO(ItkMedianKernel)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

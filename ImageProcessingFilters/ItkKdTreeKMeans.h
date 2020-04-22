@@ -63,6 +63,7 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkKdTreeKMeans SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkKdTreeKMeans)
     PYB11_FILTER_NEW_MACRO(ItkKdTreeKMeans)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

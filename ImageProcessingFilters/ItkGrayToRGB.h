@@ -64,6 +64,7 @@ class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkGrayToRGB SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkGrayToRGB)
     PYB11_FILTER_NEW_MACRO(ItkGrayToRGB)
     PYB11_PROPERTY(DataArrayPath RedArrayPath READ getRedArrayPath WRITE setRedArrayPath)

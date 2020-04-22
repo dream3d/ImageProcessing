@@ -64,6 +64,7 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkConvertArrayTo8BitImage SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkConvertArrayTo8BitImage)
     PYB11_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImage)
     PYB11_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)

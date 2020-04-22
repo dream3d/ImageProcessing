@@ -65,6 +65,7 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkFindMaxima SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkFindMaxima)
     PYB11_FILTER_NEW_MACRO(ItkFindMaxima)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
