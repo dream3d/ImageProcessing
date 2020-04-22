@@ -59,6 +59,7 @@ class ImageProcessing_EXPORT ItkMultiOtsuThreshold : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkMultiOtsuThreshold SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkMultiOtsuThreshold)
     PYB11_FILTER_NEW_MACRO(ItkMultiOtsuThreshold)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

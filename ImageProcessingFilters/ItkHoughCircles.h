@@ -57,6 +57,7 @@ class ImageProcessing_EXPORT ItkHoughCircles : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkHoughCircles SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkHoughCircles)
     PYB11_FILTER_NEW_MACRO(ItkHoughCircles)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

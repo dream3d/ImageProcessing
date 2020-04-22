@@ -57,6 +57,7 @@ class ImageProcessing_EXPORT ItkSobelEdge : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkSobelEdge SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkSobelEdge)
     PYB11_FILTER_NEW_MACRO(ItkSobelEdge)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

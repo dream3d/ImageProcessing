@@ -61,6 +61,7 @@ class ImageProcessing_EXPORT ItkAutoThreshold : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkAutoThreshold SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkAutoThreshold)
     PYB11_FILTER_NEW_MACRO(ItkAutoThreshold)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)

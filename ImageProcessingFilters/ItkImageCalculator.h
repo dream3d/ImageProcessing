@@ -59,6 +59,7 @@ class ImageProcessing_EXPORT ItkImageCalculator : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkImageCalculator SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkImageCalculator)
     PYB11_FILTER_NEW_MACRO(ItkImageCalculator)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath1 READ getSelectedCellArrayPath1 WRITE setSelectedCellArrayPath1)

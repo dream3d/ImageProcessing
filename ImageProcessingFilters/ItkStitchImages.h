@@ -59,6 +59,7 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkStitchImages SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkStitchImages)
     PYB11_FILTER_NEW_MACRO(ItkStitchImages)
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)

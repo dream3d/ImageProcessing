@@ -64,6 +64,7 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkConvertArrayTo8BitImageAttributeMatrix SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkConvertArrayTo8BitImageAttributeMatrix)
     PYB11_FILTER_NEW_MACRO(ItkConvertArrayTo8BitImageAttributeMatrix)
     PYB11_PROPERTY(DataArrayPath AttributeMatrixName READ getAttributeMatrixName WRITE setAttributeMatrixName)

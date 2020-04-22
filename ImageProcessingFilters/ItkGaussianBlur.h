@@ -57,6 +57,7 @@ class ImageProcessing_EXPORT ItkGaussianBlur : public AbstractFilter
 
     // Start Python bindings declarations
     PYB11_BEGIN_BINDINGS(ItkGaussianBlur SUPERCLASS AbstractFilter)
+    PYB11_FILTER()
     PYB11_SHARED_POINTERS(ItkGaussianBlur)
     PYB11_FILTER_NEW_MACRO(ItkGaussianBlur)
     PYB11_PROPERTY(DataArrayPath SelectedCellArrayPath READ getSelectedCellArrayPath WRITE setSelectedCellArrayPath)
