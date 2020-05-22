@@ -51,7 +51,7 @@ set_property(GLOBAL PROPERTY PluginNumFilters ${PluginNumFilters})
 foreach(f ${_PublicFilters} )
   ADD_SIMPL_FILTER(  "ImageProcessing" "ImageProcessing"
                         ${_filterGroupName} ${f}
-                        ${ImageProcessing_SOURCE_DIR}/Documentation/${_filterGroupName}/${f}.md TRUE ${ImageProcessing_BINARY_DIR})
+                        ${ImageProcessing_SOURCE_DIR}/Documentation/${_filterGroupName}/${f}.md TRUE)
 endforeach()
 
 
@@ -67,7 +67,7 @@ set(_PrivateFilters
 foreach(f ${_PrivateFilters} )
   ADD_SIMPL_FILTER(  "ImageProcessing" "ImageProcessing"
                         ${_filterGroupName} ${f}
-                        ${${PLUGIN_NAME}_SOURCE_DIR}/Documentation/${_filterGroupName}/${f}.md FALSE ${${PLUGIN_NAME}_BINARY_DIR})
+                        ${${PLUGIN_NAME}_SOURCE_DIR}/Documentation/${_filterGroupName}/${f}.md FALSE)
 endforeach()
 
 #ADD_SIMPL_SUPPORT_HEADER(${ImageProcessing_SOURCE_DIR} ${_filterGroupName} ItkBridge.h)
