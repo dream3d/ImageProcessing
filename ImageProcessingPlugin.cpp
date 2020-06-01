@@ -56,7 +56,7 @@
 //
 // -----------------------------------------------------------------------------
 ImageProcessingPlugin::ImageProcessingPlugin()
-: m_Version(ImageProcessing::Version::Package())
+: m_Version(ImageProcessing::Version::Complete())
 , m_CompatibilityVersion(ImageProcessing::Version::Package())
 , m_Vendor("Open-Source")
 , m_URL("http://www.github.com/dream3d/ImageProcessing")
