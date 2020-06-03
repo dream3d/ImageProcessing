@@ -103,7 +103,7 @@ class ManualThresholdTemplatePrivate
       thresholdFilter->SetInput(inputImage);
       thresholdFilter->SetLowerThreshold(manParameter);
       thresholdFilter->SetUpperThreshold(0xFF);
-      thresholdFilter->SetInsideValue(255);
+      thresholdFilter->SetInsideValue(static_cast<typename BinaryThresholdImageFilterType::OutputPixelType>(255));
       thresholdFilter->SetOutsideValue(0);
       thresholdFilter->GetOutput()->GetPixelContainer()->SetImportPointer(outputData, numVoxels, false);
       try
@@ -116,9 +116,12 @@ class ManualThresholdTemplatePrivate
         filter->setErrorCondition(-5, ss);
       }
     }
-  private:
-    ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&) = delete; // Copy Constructor Not Implemented
-    void operator=(const ManualThresholdTemplatePrivate&) = delete;                 // Move assignment Not Implemented
+
+  public:
+    ManualThresholdTemplatePrivate(const ManualThresholdTemplatePrivate&) = delete;            // Copy Constructor Not Implemented
+    ManualThresholdTemplatePrivate(ManualThresholdTemplatePrivate&&) = delete;                 // Move Constructor Not Implemented
+    ManualThresholdTemplatePrivate& operator=(const ManualThresholdTemplatePrivate&) = delete; // Copy Assignment Not Implemented
+    ManualThresholdTemplatePrivate& operator=(ManualThresholdTemplatePrivate&&) = delete;      // Move Assignment Not Implemented
 };
 
 // -----------------------------------------------------------------------------
