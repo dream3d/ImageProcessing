@@ -158,8 +158,8 @@ void ItkImageCalculator::dataCheck()
   DataArrayPath tempPath;
 
   std::vector<size_t> dims(1, 1);
-  m_SelectedCellArray1Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(this, getSelectedCellArrayPath1(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if(nullptr != m_SelectedCellArray1Ptr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  m_SelectedCellArray1Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(this, getSelectedCellArrayPath1(), dims);
+  if(nullptr != m_SelectedCellArray1Ptr.lock())
   { m_SelectedCellArray1 = m_SelectedCellArray1Ptr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCode() < 0)
   {
@@ -172,8 +172,8 @@ void ItkImageCalculator::dataCheck()
     return;
   }
 
-  m_SelectedCellArray2Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(this, getSelectedCellArrayPath2(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if(nullptr != m_SelectedCellArray2Ptr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  m_SelectedCellArray2Ptr = getDataContainerArray()->getPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(this, getSelectedCellArrayPath2(), dims);
+  if(nullptr != m_SelectedCellArray2Ptr.lock())
   { m_SelectedCellArray2 = m_SelectedCellArray2Ptr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
   if(getErrorCode() < 0)
   {
@@ -189,7 +189,7 @@ void ItkImageCalculator::dataCheck()
   tempPath.update(getSelectedCellArrayPath1().getDataContainerName(), getSelectedCellArrayPath1().getAttributeMatrixName(), getNewCellArrayName() );
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(
       this, tempPath, 0, dims, "", DataArrayID31);
-  if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_NewCellArrayPtr.lock())
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
 

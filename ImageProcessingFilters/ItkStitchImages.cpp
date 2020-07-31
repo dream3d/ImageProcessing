@@ -184,8 +184,8 @@ void ItkStitchImages::dataCheck()
   }
 
   dims[0] = 2;
-  m_StitchedCoordinatesPtr = getDataContainerArray()->getPrereqArrayFromPath<FloatArrayType>(this, getStitchedCoordinatesArrayPath(), dims); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
-  if(nullptr != m_StitchedCoordinatesPtr.lock())                              /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  m_StitchedCoordinatesPtr = getDataContainerArray()->getPrereqArrayFromPath<FloatArrayType>(this, getStitchedCoordinatesArrayPath(), dims);
+  if(nullptr != m_StitchedCoordinatesPtr.lock())
   { m_StitchedCoordinates = m_StitchedCoordinatesPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
   DataContainer::Pointer m = getDataContainerArray()->getPrereqDataContainer(this, getStitchedCoordinatesArrayPath().getDataContainerName(), false);
@@ -217,7 +217,7 @@ void ItkStitchImages::dataCheck()
   tempPath.update(getStitchedVolumeDataContainerName().getDataContainerName(), getStitchedAttributeMatrixName(), getStitchedImagesArrayName() );
   m_StitchedImageArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<ImageProcessingConstants::DefaultPixelType>>(
       this, tempPath, 0, dims, "", DataArrayID31);
-  if(nullptr != m_StitchedImageArrayPtr.lock())                             /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_StitchedImageArrayPtr.lock())
   { m_StitchedImageArray = m_StitchedImageArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 
 

@@ -236,7 +236,7 @@ void ItkKdTreeKMeans::dataCheck()
     setErrorCondition(-5555, "Must have at least 2 classes");
   }
 
-  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqIDataArrayFromPath(this, getSelectedCellArrayPath()); /* Assigns the shared_ptr<> to an instance variable that is a weak_ptr<> */
+  m_SelectedCellArrayPtr = getDataContainerArray()->getPrereqIDataArrayFromPath(this, getSelectedCellArrayPath());
   if(getErrorCode() < 0)
   {
     return;
@@ -254,7 +254,7 @@ void ItkKdTreeKMeans::dataCheck()
   DataArrayPath tempPath(getSelectedCellArrayPath().getDataContainerName(), getSelectedCellArrayPath().getAttributeMatrixName(), getNewCellArrayName());
 
   m_NewCellArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<int32_t>>(this, tempPath, 0, cDims, "", DataArrayID31);
-  if(nullptr != m_NewCellArrayPtr.lock())                       /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_NewCellArrayPtr.lock())
   { m_NewCellArray = m_NewCellArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
 }
 

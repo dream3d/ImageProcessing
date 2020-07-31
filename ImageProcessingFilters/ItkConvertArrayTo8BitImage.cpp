@@ -138,7 +138,7 @@ void ItkConvertArrayTo8BitImage::dataCheck()
       std::vector<size_t> dims(1, 1);
       tempPath.update(m_SelectedArrayPath.getDataContainerName(), m_SelectedArrayPath.getAttributeMatrixName(), getNewArrayArrayName() );
       m_NewArrayPtr = getDataContainerArray()->createNonPrereqArrayFromPath<DataArray<uint8_t>>(this, tempPath, 0, dims, "", DataArrayID31);
-      if(nullptr != m_NewArrayPtr.lock())                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+      if(nullptr != m_NewArrayPtr.lock())
       { m_NewArray = m_NewArrayPtr.lock()->getPointer(0); } /* Now assign the raw pointer to data from the DataArray<T> object */
       if(getErrorCode() < 0)
       {
