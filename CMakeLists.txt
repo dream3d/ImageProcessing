@@ -278,7 +278,9 @@ target_link_libraries(${plug_target_name}
                     ${ITK_LIBRARIES}
                     )
 
-
+if(MSVC)
+  target_compile_options(${plug_target_name} PRIVATE "/bigobj")
+endif()
 
 if(SIMPL_BUILD_TESTING)
   include(${${PLUGIN_NAME}_SOURCE_DIR}/Test/CMakeLists.txt)
