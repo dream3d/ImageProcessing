@@ -263,8 +263,6 @@ void ItkKdTreeKMeans::dataCheck()
 // -----------------------------------------------------------------------------
 void ItkKdTreeKMeans::execute()
 {
-  clearErrorCode();
-  clearWarningCode();
   dataCheck();
   if(getErrorCode() < 0)
   {

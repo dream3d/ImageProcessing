@@ -109,9 +109,9 @@ void ItkConvertArrayTo8BitImageAttributeMatrix::initialize()
 // -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImageAttributeMatrix::dataCheck()
 {
-  DataArrayPath tempPath;
   clearErrorCode();
   clearWarningCode();
+  DataArrayPath tempPath;
 
   AttributeMatrix::Pointer am = getDataContainerArray()->getAttributeMatrix(m_AttributeMatrixName);
 
@@ -206,8 +206,6 @@ void scaleArray2(IDataArray::Pointer inputData, uint8_t* newArray)
 // -----------------------------------------------------------------------------
 void ItkConvertArrayTo8BitImageAttributeMatrix::execute()
 {
-  clearErrorCode();
-  clearWarningCode();
   dataCheck();
   if(getErrorCode() < 0)
   {
