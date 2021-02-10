@@ -87,7 +87,7 @@ void ItkGaussianBlur::setupFilterParameters()
   parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Type::Any, IGeometry::Type::Any);
-    QVector<QString> vec;
+    std::vector<QString> vec;
     vec.push_back(SIMPL::TypeNames::Int8);
     vec.push_back(SIMPL::TypeNames::Int16);
     vec.push_back(SIMPL::TypeNames::Int32);

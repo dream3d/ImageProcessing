@@ -96,7 +96,7 @@ void ItkStitchImages::setupFilterParameters()
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    req.daTypes = QVector<QString>(1, SIMPL::TypeNames::Float);
+    req.daTypes = std::vector<QString>(1, SIMPL::TypeNames::Float);
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Tile Origins", StitchedCoordinatesArrayPath, FilterParameter::RequiredArray, ItkStitchImages, req));
   }
   {
