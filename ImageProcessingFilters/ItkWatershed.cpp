@@ -84,15 +84,15 @@ ItkWatershed::~ItkWatershed() = default;
 void ItkWatershed::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Data", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkWatershed, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Data", SelectedCellArrayPath, FilterParameter::Category::RequiredArray, ItkWatershed, req));
   }
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Feature Ids", FeatureIdsArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkWatershed));
-  parameters.push_back(SIMPL_NEW_FLOAT_FP("Threshold", Threshold, FilterParameter::Parameter, ItkWatershed));
-  parameters.push_back(SIMPL_NEW_FLOAT_FP("Level", Level, FilterParameter::Parameter, ItkWatershed));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Feature Ids", FeatureIdsArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::Category::CreatedArray, ItkWatershed));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Threshold", Threshold, FilterParameter::Category::Parameter, ItkWatershed));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Level", Level, FilterParameter::Category::Parameter, ItkWatershed));
   setFilterParameters(parameters);
 }
 

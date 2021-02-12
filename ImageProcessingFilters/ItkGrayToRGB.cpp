@@ -145,21 +145,21 @@ ItkGrayToRGB::~ItkGrayToRGB() = default;
 void ItkGrayToRGB::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Red Channel", RedArrayPath, FilterParameter::RequiredArray, ItkGrayToRGB, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Red Channel", RedArrayPath, FilterParameter::Category::RequiredArray, ItkGrayToRGB, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Green Channel", GreenArrayPath, FilterParameter::RequiredArray, ItkGrayToRGB, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Green Channel", GreenArrayPath, FilterParameter::Category::RequiredArray, ItkGrayToRGB, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Blue Channel", BlueArrayPath, FilterParameter::RequiredArray, ItkGrayToRGB, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Blue Channel", BlueArrayPath, FilterParameter::Category::RequiredArray, ItkGrayToRGB, req));
   }
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("RGB Array", NewCellArrayName, RedArrayPath, RedArrayPath, FilterParameter::CreatedArray, ItkGrayToRGB));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("RGB Array", NewCellArrayName, RedArrayPath, RedArrayPath, FilterParameter::Category::CreatedArray, ItkGrayToRGB));
   setFilterParameters(parameters);
 }
 

@@ -80,13 +80,14 @@ ItkConvertArrayTo8BitImage::~ItkConvertArrayTo8BitImage() = default;
 void ItkConvertArrayTo8BitImage::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::Defaults::AnyPrimitive, 3, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array To Convert", SelectedArrayPath, FilterParameter::RequiredArray, ItkConvertArrayTo8BitImage, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array To Convert", SelectedArrayPath, FilterParameter::Category::RequiredArray, ItkConvertArrayTo8BitImage, req));
   }
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Converted Attribute Array", NewArrayArrayName, SelectedArrayPath, SelectedArrayPath, FilterParameter::CreatedArray, ItkConvertArrayTo8BitImage));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(
+      SIMPL_NEW_DA_WITH_LINKED_AM_FP("Converted Attribute Array", NewArrayArrayName, SelectedArrayPath, SelectedArrayPath, FilterParameter::Category::CreatedArray, ItkConvertArrayTo8BitImage));
   setFilterParameters(parameters);
 }
 

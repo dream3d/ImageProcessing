@@ -90,17 +90,18 @@ void ItkHoughCircles::setupFilterParameters()
 
   QStringList linkedProps;
   linkedProps << "NewCellArrayName";
-  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Parameter, ItkHoughCircles, linkedProps));
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkHoughCircles, linkedProps));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::Int8, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::RequiredArray, ItkHoughCircles, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Attribute Array to Process", SelectedCellArrayPath, FilterParameter::Category::RequiredArray, ItkHoughCircles, req));
   }
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Output Attribute Array", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::CreatedArray, ItkHoughCircles));
-  parameters.push_back(SIMPL_NEW_FLOAT_FP("Minimum Radius", MinRadius, FilterParameter::Parameter, ItkHoughCircles));
-  parameters.push_back(SIMPL_NEW_FLOAT_FP("Maximum Radius", MaxRadius, FilterParameter::Parameter, ItkHoughCircles));
-  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Circles", NumberCircles, FilterParameter::Parameter, ItkHoughCircles));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(
+      SIMPL_NEW_DA_WITH_LINKED_AM_FP("Output Attribute Array", NewCellArrayName, SelectedCellArrayPath, SelectedCellArrayPath, FilterParameter::Category::CreatedArray, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Minimum Radius", MinRadius, FilterParameter::Category::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_FLOAT_FP("Maximum Radius", MaxRadius, FilterParameter::Category::Parameter, ItkHoughCircles));
+  parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Circles", NumberCircles, FilterParameter::Category::Parameter, ItkHoughCircles));
 
   setFilterParameters(parameters);
 }

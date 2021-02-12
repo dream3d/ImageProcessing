@@ -91,10 +91,10 @@ ItkImageCalculator::~ItkImageCalculator() = default;
 void ItkImageCalculator::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("First Attribute Array to Process", SelectedCellArrayPath1, FilterParameter::RequiredArray, ItkImageCalculator, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("First Attribute Array to Process", SelectedCellArrayPath1, FilterParameter::Category::RequiredArray, ItkImageCalculator, req));
   }
   {
     ChoiceFilterParameter::Pointer parameter = ChoiceFilterParameter::New();
@@ -116,15 +116,16 @@ void ItkImageCalculator::setupFilterParameters()
     choices.push_back("Mean");
     choices.push_back("Difference");
     parameter->setChoices(choices);
-    parameter->setCategory(FilterParameter::Parameter);
+    parameter->setCategory(FilterParameter::Category::Parameter);
     parameters.push_back(parameter);
   }
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateCategoryRequirement(SIMPL::TypeNames::UInt8, 1, AttributeMatrix::Category::Any);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Second Array to Process", SelectedCellArrayPath2, FilterParameter::RequiredArray, ItkImageCalculator, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Second Array to Process", SelectedCellArrayPath2, FilterParameter::Category::RequiredArray, ItkImageCalculator, req));
   }
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Output Attribute Array", NewCellArrayName, SelectedCellArrayPath1, SelectedCellArrayPath1, FilterParameter::CreatedArray, ItkImageCalculator));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(
+      SIMPL_NEW_DA_WITH_LINKED_AM_FP("Output Attribute Array", NewCellArrayName, SelectedCellArrayPath1, SelectedCellArrayPath1, FilterParameter::Category::CreatedArray, ItkImageCalculator));
   setFilterParameters(parameters);
 }
 
