@@ -64,13 +64,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkSobelEdge::ItkSobelEdge()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_Slice(false)
-{
-}
+ItkSobelEdge::ItkSobelEdge() = default;
 
 // -----------------------------------------------------------------------------
 //

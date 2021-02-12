@@ -201,9 +201,9 @@ class ImageProcessing_EXPORT ItkGaussianBlur : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
 
   public:
     ItkGaussianBlur(const ItkGaussianBlur&) = delete; // Copy Constructor Not Implemented

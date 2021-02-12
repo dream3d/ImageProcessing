@@ -80,15 +80,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkAutoThreshold::ItkAutoThreshold()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_Slice(false)
-, m_Method(7)
-, m_ManualParameter(128)
-{
-}
+ItkAutoThreshold::ItkAutoThreshold() = default;
 
 // -----------------------------------------------------------------------------
 //

@@ -63,11 +63,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage()
-: m_SelectedArrayPath("", "", "")
-, m_NewArrayArrayName("")
-{
-}
+ItkConvertArrayTo8BitImage::ItkConvertArrayTo8BitImage() = default;
 
 // -----------------------------------------------------------------------------
 //

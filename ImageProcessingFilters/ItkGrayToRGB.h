@@ -227,10 +227,10 @@ class ImageProcessing_EXPORT ItkGrayToRGB : public AbstractFilter
     IDataArrayWkPtrType m_NewCellArrayPtr;
     void* m_NewCellArray = nullptr;
 
-    DataArrayPath m_RedArrayPath = {};
-    DataArrayPath m_GreenArrayPath = {};
-    DataArrayPath m_BlueArrayPath = {};
-    QString m_NewCellArrayName = {};
+    DataArrayPath m_RedArrayPath = {"", "", ""};
+    DataArrayPath m_GreenArrayPath = {"", "", ""};
+    DataArrayPath m_BlueArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
 
   public:
     ItkGrayToRGB(const ItkGrayToRGB&) = delete;   // Copy Constructor Not Implemented

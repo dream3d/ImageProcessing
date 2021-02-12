@@ -60,11 +60,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMatrix()
-: m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, "")
-, m_NewArrayArrayName("")
-{
-}
+ItkConvertArrayTo8BitImageAttributeMatrix::ItkConvertArrayTo8BitImageAttributeMatrix() = default;
 
 // -----------------------------------------------------------------------------
 //

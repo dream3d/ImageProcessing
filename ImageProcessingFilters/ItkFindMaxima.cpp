@@ -124,12 +124,7 @@ class FindMaximaPrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkFindMaxima::ItkFindMaxima()
-: m_SelectedCellArrayPath("", "", "")
-, m_Tolerance(1.0)
-, m_NewCellArrayName("Maxima")
-{
-}
+ItkFindMaxima::ItkFindMaxima() = default;
 
 // -----------------------------------------------------------------------------
 //

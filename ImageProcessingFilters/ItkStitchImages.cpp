@@ -68,14 +68,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkStitchImages::ItkStitchImages()
-: m_AttributeMatrixName(SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, "")
-, m_StitchedCoordinatesArrayPath(SIMPL::Defaults::ImageDataContainerName, "", "")
-, m_StitchedVolumeDataContainerName("MontagedImageDataContainer")
-, m_StitchedImagesArrayName("Montage")
-, m_StitchedAttributeMatrixName("MontageAttributeMatrix")
-{
-}
+ItkStitchImages::ItkStitchImages() = default;
 
 // -----------------------------------------------------------------------------
 //

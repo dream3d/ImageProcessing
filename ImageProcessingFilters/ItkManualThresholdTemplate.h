@@ -223,10 +223,10 @@ class ImageProcessing_EXPORT ItkManualThresholdTemplate : public AbstractFilter
     IDataArrayWkPtrType m_NewCellArrayPtr;
     void* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    int m_ManualParameter = {};
+    DataArrayPath m_SelectedCellArrayArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    int m_ManualParameter = {128};
 
   public:
     ItkManualThresholdTemplate(const ItkManualThresholdTemplate&) = delete; // Copy Constructor Not Implemented

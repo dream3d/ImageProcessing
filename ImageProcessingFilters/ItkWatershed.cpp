@@ -65,13 +65,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkWatershed::ItkWatershed()
-: m_SelectedCellArrayPath("", "", "")
-, m_FeatureIdsArrayName(SIMPL::CellData::FeatureIds)
-, m_Threshold(0.005f)
-, m_Level(0.5f)
-{
-}
+ItkWatershed::ItkWatershed() = default;
 
 // -----------------------------------------------------------------------------
 //

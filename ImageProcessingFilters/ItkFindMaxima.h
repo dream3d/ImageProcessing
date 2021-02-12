@@ -210,9 +210,9 @@ class ImageProcessing_EXPORT ItkFindMaxima : public AbstractFilter
     std::weak_ptr<DataArray<bool>> m_NewCellArrayPtr;
     bool* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    float m_Tolerance = {};
-    QString m_NewCellArrayName = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    float m_Tolerance = {1.0};
+    QString m_NewCellArrayName = {"Maxima"};
 
   public:
     ItkFindMaxima(const ItkFindMaxima&) = delete;  // Copy Constructor Not Implemented

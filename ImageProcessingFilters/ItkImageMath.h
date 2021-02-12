@@ -227,11 +227,11 @@ class ImageProcessing_EXPORT ItkImageMath : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    unsigned int m_Operator = {};
-    double m_Value = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    unsigned int m_Operator = {0};
+    double m_Value = {1};
 
   public:
     ItkImageMath(const ItkImageMath&) = delete;   // Copy Constructor Not Implemented

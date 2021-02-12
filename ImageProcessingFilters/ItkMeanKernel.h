@@ -227,10 +227,10 @@ class ImageProcessing_EXPORT ItkMeanKernel : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    bool m_Slice = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    bool m_Slice = {false};
     IntVec3Type m_KernelSize = {};
 
   public:

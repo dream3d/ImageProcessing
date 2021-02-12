@@ -197,8 +197,8 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImageAttributeMatrix : public 
     std::weak_ptr<DataArray<uint8_t>> m_NewArrayPtr;
     uint8_t* m_NewArray = nullptr;
 
-    DataArrayPath m_AttributeMatrixName = {};
-    QString m_NewArrayArrayName = {};
+    DataArrayPath m_AttributeMatrixName = {SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellAttributeMatrixName, ""};
+    QString m_NewArrayArrayName = {""};
 
   public:
     ItkConvertArrayTo8BitImageAttributeMatrix(const ItkConvertArrayTo8BitImageAttributeMatrix&) = delete; // Copy Constructor Not Implemented

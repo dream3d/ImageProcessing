@@ -64,14 +64,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkKMeans::ItkKMeans()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_Slice(false)
-, m_Classes(2)
-{
-}
+ItkKMeans::ItkKMeans() = default;
 
 // -----------------------------------------------------------------------------
 //

@@ -207,9 +207,9 @@ class ImageProcessing_EXPORT ItkBinaryWatershedLabeled : public AbstractFilter
     std::weak_ptr<DataArray<uint32_t>> m_NewCellArrayPtr;
     uint32_t* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    float m_PeakTolerance = {};
-    QString m_NewCellArrayName = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    float m_PeakTolerance = {1.0};
+    QString m_NewCellArrayName = {"BinaryWatershedLabeled"};
 
   public:
     ItkBinaryWatershedLabeled(const ItkBinaryWatershedLabeled&) = delete; // Copy Constructor Not Implemented

@@ -127,13 +127,7 @@ class ManualThresholdTemplatePrivate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkManualThresholdTemplate::ItkManualThresholdTemplate()
-: m_SelectedCellArrayArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_ManualParameter(128)
-{
-}
+ItkManualThresholdTemplate::ItkManualThresholdTemplate() = default;
 
 // -----------------------------------------------------------------------------
 //

@@ -35,12 +35,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkBinaryWatershedLabeled::ItkBinaryWatershedLabeled()
-: m_SelectedCellArrayPath("", "", "")
-, m_PeakTolerance(1.0)
-, m_NewCellArrayName("BinaryWatershedLabeled")
-{
-}
+ItkBinaryWatershedLabeled::ItkBinaryWatershedLabeled() = default;
 
 // -----------------------------------------------------------------------------
 //

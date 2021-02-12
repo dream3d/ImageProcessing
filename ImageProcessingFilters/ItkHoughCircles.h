@@ -237,12 +237,12 @@ class ImageProcessing_EXPORT ItkHoughCircles : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    float m_MinRadius = {};
-    float m_MaxRadius = {};
-    int m_NumberCircles = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    float m_MinRadius = {0};
+    float m_MaxRadius = {0};
+    int m_NumberCircles = {0};
 
   public:
     ItkHoughCircles(const ItkHoughCircles&) = delete; // Copy Constructor Not Implemented

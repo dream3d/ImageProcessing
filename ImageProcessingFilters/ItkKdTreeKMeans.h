@@ -207,9 +207,9 @@ class ImageProcessing_EXPORT ItkKdTreeKMeans : public AbstractFilter
 
     IDataArrayWkPtrType m_SelectedCellArrayPtr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    int m_Classes = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {"ClassLabels"};
+    int m_Classes = {2};
 
   public:
     ItkKdTreeKMeans(const ItkKdTreeKMeans&) = delete; // Copy Constructor Not Implemented

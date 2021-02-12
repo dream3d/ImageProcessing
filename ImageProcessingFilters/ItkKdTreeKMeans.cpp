@@ -177,12 +177,7 @@ class itkKdTreeKMeansTemplate
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkKdTreeKMeans::ItkKdTreeKMeans()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("ClassLabels")
-, m_Classes(2)
-{
-}
+ItkKdTreeKMeans::ItkKdTreeKMeans() = default;
 
 // -----------------------------------------------------------------------------
 //

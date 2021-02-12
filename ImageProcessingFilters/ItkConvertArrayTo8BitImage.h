@@ -197,8 +197,8 @@ class ImageProcessing_EXPORT ItkConvertArrayTo8BitImage : public AbstractFilter
     std::weak_ptr<DataArray<uint8_t>> m_NewArrayPtr;
     uint8_t* m_NewArray = nullptr;
 
-    DataArrayPath m_SelectedArrayPath = {};
-    QString m_NewArrayArrayName = {};
+    DataArrayPath m_SelectedArrayPath = {"", "", ""};
+    QString m_NewArrayArrayName = {""};
 
   public:
     ItkConvertArrayTo8BitImage(const ItkConvertArrayTo8BitImage&) = delete; // Copy Constructor Not Implemented

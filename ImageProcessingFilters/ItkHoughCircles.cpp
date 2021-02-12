@@ -66,15 +66,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkHoughCircles::ItkHoughCircles()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_MinRadius(0)
-, m_MaxRadius(0)
-, m_NumberCircles(0)
-{
-}
+ItkHoughCircles::ItkHoughCircles() = default;
 
 // -----------------------------------------------------------------------------
 //

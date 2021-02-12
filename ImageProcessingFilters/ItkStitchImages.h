@@ -244,12 +244,12 @@ class ImageProcessing_EXPORT ItkStitchImages : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_StitchedImageArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_StitchedImageArray = nullptr;
 
-    DataArrayPath m_AttributeMatrixName = {};
-    DataArrayPath m_StitchedCoordinatesArrayPath = {};
+    DataArrayPath m_AttributeMatrixName = {SIMPL::Defaults::ImageDataContainerName, SIMPL::Defaults::CellFeatureAttributeMatrixName, ""};
+    DataArrayPath m_StitchedCoordinatesArrayPath = {SIMPL::Defaults::ImageDataContainerName, "", ""};
     DataArrayPath m_AttributeArrayNamesPath = {};
-    DataArrayPath m_StitchedVolumeDataContainerName = {};
-    QString m_StitchedImagesArrayName = {};
-    QString m_StitchedAttributeMatrixName = {};
+    DataArrayPath m_StitchedVolumeDataContainerName = {"MontagedImageDataContainer", "", ""};
+    QString m_StitchedImagesArrayName = {"Montage"};
+    QString m_StitchedAttributeMatrixName = {"MontageAttributeMatrix"};
 
     StringDataArray::WeakPointer    m_AttributeArrayNamesPtr;
 

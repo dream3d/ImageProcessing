@@ -227,11 +227,11 @@ class ImageProcessing_EXPORT ItkMultiOtsuThreshold : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    bool m_Slice = {};
-    int m_Levels = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    bool m_Slice = {false};
+    int m_Levels = {1};
 
   public:
     ItkMultiOtsuThreshold(const ItkMultiOtsuThreshold&) = delete; // Copy Constructor Not Implemented

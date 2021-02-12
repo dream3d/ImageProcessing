@@ -72,13 +72,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkImageCalculator::ItkImageCalculator()
-: m_SelectedCellArrayPath1("", "", "")
-, m_SelectedCellArrayPath2("", "", "")
-, m_NewCellArrayName("")
-, m_Operator(0)
-{
-}
+ItkImageCalculator::ItkImageCalculator() = default;
 
 // -----------------------------------------------------------------------------
 //

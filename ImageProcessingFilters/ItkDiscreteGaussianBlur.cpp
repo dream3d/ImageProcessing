@@ -64,13 +64,7 @@ enum createdPathID : RenameDataPath::DataID_t
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ItkDiscreteGaussianBlur::ItkDiscreteGaussianBlur()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_Stdev(2.0)
-{
-}
+ItkDiscreteGaussianBlur::ItkDiscreteGaussianBlur() = default;
 
 // -----------------------------------------------------------------------------
 //

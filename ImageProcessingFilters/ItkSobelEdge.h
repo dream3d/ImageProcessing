@@ -214,10 +214,10 @@ class ImageProcessing_EXPORT ItkSobelEdge : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    bool m_Slice = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    bool m_Slice = {false};
 
   public:
     ItkSobelEdge(const ItkSobelEdge&) = delete;   // Copy Constructor Not Implemented

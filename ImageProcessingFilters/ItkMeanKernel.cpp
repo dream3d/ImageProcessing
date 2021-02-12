@@ -66,10 +66,6 @@ enum createdPathID : RenameDataPath::DataID_t
 //
 // -----------------------------------------------------------------------------
 ItkMeanKernel::ItkMeanKernel()
-: m_SelectedCellArrayPath("", "", "")
-, m_NewCellArrayName("")
-, m_SaveAsNewArray(true)
-, m_Slice(false)
 {
   m_KernelSize[0] = 1;
   m_KernelSize[1] = 1;

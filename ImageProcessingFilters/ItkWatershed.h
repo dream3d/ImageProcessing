@@ -216,10 +216,10 @@ class ImageProcessing_EXPORT ItkWatershed : public AbstractFilter
     std::weak_ptr<DataArray<int32_t>> m_FeatureIdsPtr;
     int32_t* m_FeatureIds = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_FeatureIdsArrayName = {};
-    float m_Threshold = {};
-    float m_Level = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_FeatureIdsArrayName = {SIMPL::CellData::FeatureIds};
+    float m_Threshold = {0.005f};
+    float m_Level = {0.5f};
 
   public:
     ItkWatershed(const ItkWatershed&) = delete;   // Copy Constructor Not Implemented

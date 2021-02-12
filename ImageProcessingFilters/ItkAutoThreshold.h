@@ -241,12 +241,12 @@ class ImageProcessing_EXPORT ItkAutoThreshold : public AbstractFilter
     std::weak_ptr<DataArray<ImageProcessingConstants::DefaultPixelType>> m_NewCellArrayPtr;
     ImageProcessingConstants::DefaultPixelType* m_NewCellArray = nullptr;
 
-    DataArrayPath m_SelectedCellArrayPath = {};
-    QString m_NewCellArrayName = {};
-    bool m_SaveAsNewArray = {};
-    bool m_Slice = {};
-    unsigned int m_Method = {};
-    int m_ManualParameter = {};
+    DataArrayPath m_SelectedCellArrayPath = {"", "", ""};
+    QString m_NewCellArrayName = {""};
+    bool m_SaveAsNewArray = {true};
+    bool m_Slice = {false};
+    unsigned int m_Method = {7};
+    int m_ManualParameter = {128};
 
   public:
     ItkAutoThreshold(const ItkAutoThreshold&) = delete; // Copy Constructor Not Implemented
