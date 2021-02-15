@@ -88,26 +88,28 @@ ItkStitchImages::~ItkStitchImages() = default;
 void ItkStitchImages::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::RequiredArray));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
 
   {
     AttributeMatrixSelectionFilterParameter::RequirementType req;
-    parameters.push_back(SIMPL_NEW_AM_SELECTION_FP("Image Tile Attribute Matrix", AttributeMatrixName, FilterParameter::RequiredArray, ItkStitchImages, req));
+    parameters.push_back(SIMPL_NEW_AM_SELECTION_FP("Image Tile Attribute Matrix", AttributeMatrixName, FilterParameter::Category::RequiredArray, ItkStitchImages, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
     req.daTypes = std::vector<QString>(1, SIMPL::TypeNames::Float);
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Tile Origins", StitchedCoordinatesArrayPath, FilterParameter::RequiredArray, ItkStitchImages, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Image Tile Origins", StitchedCoordinatesArrayPath, FilterParameter::Category::RequiredArray, ItkStitchImages, req));
   }
   {
     DataArraySelectionFilterParameter::RequirementType req;
-    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Stitched Coordinates Names", AttributeArrayNamesPath, FilterParameter::RequiredArray, ItkStitchImages, req));
+    parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Stitched Coordinates Names", AttributeArrayNamesPath, FilterParameter::Category::RequiredArray, ItkStitchImages, req));
   }
 
-  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
-  parameters.push_back(SeparatorFilterParameter::New("Cell Data", FilterParameter::CreatedArray));
-  parameters.push_back(SIMPL_NEW_AM_WITH_LINKED_DC_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, StitchedVolumeDataContainerName, FilterParameter::CreatedArray, ItkStitchImages));
-  parameters.push_back(SIMPL_NEW_DA_WITH_LINKED_AM_FP("Montage", StitchedImagesArrayName, StitchedVolumeDataContainerName, StitchedAttributeMatrixName, FilterParameter::CreatedArray, ItkStitchImages));
+  parameters.push_back(SIMPL_NEW_DC_CREATION_FP("Stitched Image Data Container", StitchedVolumeDataContainerName, FilterParameter::Category::CreatedArray, ItkStitchImages));
+  parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::CreatedArray));
+  parameters.push_back(
+      SIMPL_NEW_AM_WITH_LINKED_DC_FP("Montage Attribute Matrix", StitchedAttributeMatrixName, StitchedVolumeDataContainerName, FilterParameter::Category::CreatedArray, ItkStitchImages));
+  parameters.push_back(
+      SIMPL_NEW_DA_WITH_LINKED_AM_FP("Montage", StitchedImagesArrayName, StitchedVolumeDataContainerName, StitchedAttributeMatrixName, FilterParameter::Category::CreatedArray, ItkStitchImages));
 
   setFilterParameters(parameters);
 }
