@@ -80,8 +80,8 @@ void ItkMultiOtsuThreshold::setupFilterParameters()
 
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Category::Parameter, ItkMultiOtsuThreshold));
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Number of Levels", Levels, FilterParameter::Category::Parameter, ItkMultiOtsuThreshold));
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
+  std::vector<QString> linkedProps;
+  linkedProps.push_back("NewCellArrayName");
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkMultiOtsuThreshold, linkedProps));
   parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {

@@ -100,7 +100,7 @@ void ItkAutoThreshold::setupFilterParameters()
     parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkAutoThreshold, this, Method));
     parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkAutoThreshold, this, Method));
 
-    QVector<QString> choices;
+    std::vector<QString> choices;
     choices.push_back("Huang");
     choices.push_back("Intermodes");
     choices.push_back("IsoData");
@@ -118,8 +118,8 @@ void ItkAutoThreshold::setupFilterParameters()
     parameters.push_back(parameter);
   }
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Category::Parameter, ItkAutoThreshold));
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
+  std::vector<QString> linkedProps;
+  linkedProps.push_back("NewCellArrayName");
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkAutoThreshold, linkedProps));
   parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {

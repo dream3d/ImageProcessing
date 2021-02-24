@@ -142,8 +142,8 @@ void ItkManualThresholdTemplate::setupFilterParameters()
   FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INTEGER_FP("Threshold Value", ManualParameter, FilterParameter::Category::Parameter, ItkManualThresholdTemplate));
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
+  std::vector<QString> linkedProps;
+  linkedProps.push_back("NewCellArrayName");
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkManualThresholdTemplate, linkedProps));
   parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {

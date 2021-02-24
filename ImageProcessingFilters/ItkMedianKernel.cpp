@@ -85,8 +85,8 @@ void ItkMedianKernel::setupFilterParameters()
 
   parameters.push_back(SIMPL_NEW_INT_VEC3_FP("Kernel Size", KernelSize, FilterParameter::Category::Parameter, ItkMedianKernel));
   parameters.push_back(SIMPL_NEW_BOOL_FP("Slice at a Time", Slice, FilterParameter::Category::Parameter, ItkMedianKernel));
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
+  std::vector<QString> linkedProps;
+  linkedProps.push_back("NewCellArrayName");
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkMedianKernel, linkedProps));
   parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {

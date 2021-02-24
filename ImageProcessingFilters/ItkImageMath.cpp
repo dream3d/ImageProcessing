@@ -89,8 +89,8 @@ void ItkImageMath::setupFilterParameters()
 {
   FilterParameterVectorType parameters;
 
-  QStringList linkedProps;
-  linkedProps << "NewCellArrayName";
+  std::vector<QString> linkedProps;
+  linkedProps.push_back("NewCellArrayName");
   parameters.push_back(SIMPL_NEW_LINKED_BOOL_FP("Save as New Array", SaveAsNewArray, FilterParameter::Category::Parameter, ItkImageMath, linkedProps));
   parameters.push_back(SeparatorFilterParameter::Create("Cell Data", FilterParameter::Category::RequiredArray));
   {
@@ -104,7 +104,7 @@ void ItkImageMath::setupFilterParameters()
     parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImageMath, this, Operator));
     parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImageMath, this, Operator));
 
-    QVector<QString> choices;
+    std::vector<QString> choices;
     choices.push_back("Add");
     choices.push_back("Subtract");
     choices.push_back("Multiply");

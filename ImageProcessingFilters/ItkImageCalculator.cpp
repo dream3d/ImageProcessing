@@ -97,7 +97,7 @@ void ItkImageCalculator::setupFilterParameters()
     parameter->setSetterCallback(SIMPL_BIND_SETTER(ItkImageCalculator, this, Operator));
     parameter->setGetterCallback(SIMPL_BIND_GETTER(ItkImageCalculator, this, Operator));
 
-    QVector<QString> choices;
+    std::vector<QString> choices;
     choices.push_back("Add");
     choices.push_back("Subtract");
     choices.push_back("Multiply");
