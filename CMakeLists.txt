@@ -288,7 +288,7 @@ endif()
 
 # -------------------------------------------------------------------- 
 # If Python Wrapping is enabled then generate the Python module code 
-if(SIMPL_ENABLE_PYTHON)
+if(SIMPL_WRAP_PYTHON)
   include(${SIMPLProj_SOURCE_DIR}/Wrapping/Python/Binding/CreatePybind11Module.cmake)
 
   CreatePybind11Plugin(PLUGIN_NAME ${PLUGIN_NAME} PLUGIN_TARGET ${plug_target_name})
@@ -296,12 +296,12 @@ endif()
 
 #-------------------------------------------------------------------------------
 #- This installs all the prebuilt pipeline files.
-if(EXISTS ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines/${PLUGIN_NAME})
+if(EXISTS ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines)
   #-------------------------------------------------------------------------------
   #- This copies all the Prebuilt Pipeline files into the Build directory
   add_custom_target(${PLUGIN_NAME}ExamplePipelinesCopy ALL
-              COMMAND ${CMAKE_COMMAND} -E copy_directory ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines/${PLUGIN_NAME}
-              ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${CMAKE_CFG_INTDIR}/PrebuiltPipelines/Examples/${PLUGIN_NAME}
+              COMMAND ${CMAKE_COMMAND} -E copy_directory ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines
+              ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${CMAKE_CFG_INTDIR}/PrebuiltPipelines/Examples
               COMMENT "Copying ${PLUGIN_NAME} Example Pipelines into Binary Directory")
   set_target_properties(${PLUGIN_NAME}ExamplePipelinesCopy PROPERTIES FOLDER ZZ_COPY_FILES)
 
@@ -311,9 +311,14 @@ if(EXISTS ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines/${PLUGIN_NAME})
     set(INSTALL_DESTINATION "${DREAM3D_PACKAGE_DEST_PREFIX}/PrebuiltPipelines/Examples")
   endif()
 
-  install(DIRECTORY ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines/${PLUGIN_NAME}
-          DESTINATION ${INSTALL_DESTINATION}
-          COMPONENT Applications )
+  if(DREAM3D_ANACONDA)
+    set(INSTALL_DESTINATION "share/DREAM3D/PrebuiltPipelines/Examples")
+  endif()
+
+  install(DIRECTORY ${${PLUGIN_NAME}_SOURCE_DIR}/ExamplePipelines/
+    DESTINATION ${INSTALL_DESTINATION}
+    COMPONENT Applications
+  )
 endif()
 
 
@@ -328,15 +333,15 @@ if(EXISTS ${${PLUGIN_NAME}_SOURCE_DIR}/Data/${PLUGIN_NAME})
               COMMENT "Copying ${PLUGIN_NAME} Data Folder into Binary Directory")
   set_target_properties(${PLUGIN_NAME}DataFolderCopy PROPERTIES FOLDER ZZ_COPY_FILES)
 
-  if(APPLE)
-    set(INSTALL_DESTINATION "${DREAM3D_PACKAGE_DEST_PREFIX}/Resources/Data")
-  else()
-    set(INSTALL_DESTINATION "${DREAM3D_PACKAGE_DEST_PREFIX}")
+  set(INSTALL_DESTINATION "Data")
+  if(DREAM3D_ANACONDA)
+    set(INSTALL_DESTINATION "share/DREAM3D/Data")
   endif()
 
-  install(DIRECTORY ${${PLUGIN_NAME}_SOURCE_DIR}/Data/${PLUGIN_NAME}
-          DESTINATION Data
-          COMPONENT Applications )
+  install(DIRECTORY ${${PLUGIN_NAME}_SOURCE_DIR}/Data/
+    DESTINATION ${INSTALL_DESTINATION}
+    COMPONENT Applications
+  )
 endif()
 
 # -- Include the GUI Plugin codes
