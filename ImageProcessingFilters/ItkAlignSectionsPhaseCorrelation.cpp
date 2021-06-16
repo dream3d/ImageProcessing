@@ -60,8 +60,8 @@ class AlignSectionsPhaseCorrelationPrivate
   public:
     typedef DataArray<PixelType> DataArrayType;
 
-    AlignSectionsPhaseCorrelationPrivate() {}
-    virtual ~AlignSectionsPhaseCorrelationPrivate() {}
+    AlignSectionsPhaseCorrelationPrivate() = default;
+    virtual ~AlignSectionsPhaseCorrelationPrivate() = default;
 
     // -----------------------------------------------------------------------------
     // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -159,8 +159,8 @@ class AlignSectionsPhaseCorrelationPrivate
       }
     }
   private:
-    AlignSectionsPhaseCorrelationPrivate(const AlignSectionsPhaseCorrelationPrivate&); // Copy Constructor Not Implemented
-    void operator=(const AlignSectionsPhaseCorrelationPrivate&); // Operator '=' Not Implemented
+    AlignSectionsPhaseCorrelationPrivate(const AlignSectionsPhaseCorrelationPrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const AlignSectionsPhaseCorrelationPrivate&) = delete;                       // Operator '=' Not Implemented
 };
 
 // -----------------------------------------------------------------------------

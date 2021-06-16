@@ -67,8 +67,8 @@ class FindMaximaPrivate
   public:
     typedef DataArray<PixelType> DataArrayType;
 
-    FindMaximaPrivate() {}
-    virtual ~FindMaximaPrivate() {}
+    FindMaximaPrivate() = default;
+    virtual ~FindMaximaPrivate() = default;
 
     // -----------------------------------------------------------------------------
     // Determine if this is the proper type of an array to downcast from the IDataArray
@@ -125,8 +125,8 @@ class FindMaximaPrivate
       }
     }
   private:
-    FindMaximaPrivate(const FindMaximaPrivate&); // Copy Constructor Not Implemented
-    void operator=(const FindMaximaPrivate&); // Operator '=' Not Implemented
+    FindMaximaPrivate(const FindMaximaPrivate&) = delete; // Copy Constructor Not Implemented
+    void operator=(const FindMaximaPrivate&) = delete;    // Operator '=' Not Implemented
 };
 
 // -----------------------------------------------------------------------------

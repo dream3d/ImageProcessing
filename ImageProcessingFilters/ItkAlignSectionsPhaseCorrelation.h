@@ -68,7 +68,7 @@ class AlignSectionsPhaseCorrelation : public AlignSections
     /**
      * @brief Returns the name of the class for AlignSectionsPhaseCorrelation
      */
-    QString getNameOfClass() const override;
+    QString getNameOfClass() const;
     /**
      * @brief Returns the name of the class for AlignSectionsPhaseCorrelation
      */
@@ -100,33 +100,33 @@ class AlignSectionsPhaseCorrelation : public AlignSections
 
     Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
 
-    QString getCompiledLibraryName() const override;
-    AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const override;
-    QString getGroupName() const override;
-    QString getSubGroupName() const override;
+    QString getCompiledLibraryName() const;
+    AbstractFilter::Pointer newFilterInstance(bool copyFilterParameters) const;
+    QString getGroupName() const;
+    QString getSubGroupName() const;
 
     /**
      * @brief getUuid Return the unique identifier for this filter.
      * @return A QUuid object.
      */
-    QUuid getUuid() const override;
-    QString getHumanLabel() const override;
+    QUuid getUuid() const;
+    QString getHumanLabel() const;
     virtual const QString getBrandingString() { return "DREAM3D Reconstruction Plugin"; }
 
     /**
      * @brief Reimplemented from @see AbstractFilter class
      */
-    void execute() override;
-    void preflight() override;
+    void execute();
+    void preflight();
 
   protected:
     AlignSectionsPhaseCorrelation();
 
     virtual void find_shifts(QVector<int>& xshifts, QVector<int>& yshifts);
 
-    void setupFilterParameters() override;
-    virtual int writeFilterParameters(AbstractFilterParametersWriter* writer, int index);
-    void readFilterParameters(AbstractFilterParametersReader* reader, int index) override;
+    void setupFilterParameters();
+    virtual int writeFilterParameters(AbstractFilterParametersReader* writer, int index);
+    void readFilterParameters(AbstractFilterParametersReader* reader, int index);
 
   private:
     IDataArrayWkPtrType m_SelectedCellArrayPtr;
